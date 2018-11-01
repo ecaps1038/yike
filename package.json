@@ -20,6 +20,7 @@
     "formidable": "^1.2.1",
     "jquery-file-upload-middleware": "^0.1.8",
     "mongoose": "^5.3.3",
-    "nodemailer": "^4.6.8"
+    "nodemailer": "^4.6.8",
+    "socket.io": "^2.1.1"
   }
 }
