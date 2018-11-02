@@ -48,6 +48,7 @@ var io = require('socket.io')(http);
 
 //汇总路由文件routes.js
 require('./routes/home.js')(app);
+require('./routes/register.js')(app);
 
 //定制404页面
 app.use(function(req,res,next){

@@ -1,4 +1,16 @@
 {{#section 'head'}}
     <title>yike1</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css">
 {{/section}}
-<h3>我站在这里</h3>
+<h3>请登录</h3>
+<div class="room">占位</div>
+<form class="newslefft" method="post" action="/login">
+<label>邮箱</label><input type="email" name="email" placeholder="请输入注册邮箱">
+<label>密码</label><input type="password" name="pswd">
+<input type="submit" name="submit" value="登录" class="log-submit">
+<a href="./forget">忘记密码？</a>
+<a href="./register">注册</a>
+</form>
+{{#section 'jquery'}}
+	
+{{/section}}
