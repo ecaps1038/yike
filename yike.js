@@ -5,17 +5,6 @@ var bodyparser = require('body-parser');
 var formidable = require('formidable');
 //添加凭证文件
 var credentials = require('./models/credentials');
-//引入邮箱插件
-var nodemailer = require('nodemailer');
-
-//创建传输方式
-var transporter = nodemailer.createTransport({
-	service: 'qq',
-	auth: {
-		user: credentials.qq.user,
-		pass: credentials.qq.pass
-	}
-});
 
 /*引入.hbs后缀文件格式*/
 var handlebars = require('express-handlebars').create({

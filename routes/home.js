@@ -13,6 +13,7 @@ module.exports = function(app){
 	app.post('/login',function(req,res){
 		var email = req.body.email;
 		var pswd = req.body.pswd;
+		login.bcrypts(pswd,res);
 		if(pswd=='123'){
 			login.up(email,pswd,res);
 		}else{
