@@ -1,10 +1,27 @@
-exports.up = function(email,pswd,res){
-	console.log('现在的邮箱'+email+'密码'+pswd);
-	res.redirect('/');
-}
+var userdbserver = require('./userdbserver.js');
+var bcrypt = require('bcryptjs');
+
+exports.logIn = function(email,pwd,res){
+	var email = {'email': email}
+	var out = {'name':1,'pwd':1,'email':1,'online':1};
+	var result = userdbserver.findUser(email,out);
+    console.log(result);
+	if(result){
+		const pwdMatchFlag =bcrypt.compareSync(pwd, result.pwd);
+		if(pwdMatchFlag){
+            console.log('匹配成功！');
+            res.render('test',{title:'验证成功'+result})
+        }else{
+            console.log('匹配失败！');
+            res.redirect('/');
+        }
+	}else{
+		console.log('没有搜索结果');
+		res.redirect('/');
+	}
+};
 
 //对密码加密测试
-var bcrypt = require('bcryptjs');
 exports.bcrypts = function(pswd,res){
 	console.log('原密码：'+pswd);
 
