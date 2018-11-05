@@ -71,7 +71,6 @@ exports.findUser = function(wherestr,out){
     //var wherestr = {'username' : '小黄'};
     //var age = {'userage':{$gte:12,$lte:14}};
     //var out = {'username':1,'userage':1,'_id':0};
-    
     User.find(wherestr, out, function(err, res){
         if (err) {
             console.log("查询失败：" + err);

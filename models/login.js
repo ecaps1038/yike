@@ -6,19 +6,20 @@ exports.logIn = function(email,pwd,res){
 	var out = {'name':1,'pwd':1,'email':1,'online':1};
 	var result = userdbserver.findUser(email,out);
     console.log(result);
-	if(result){
-		const pwdMatchFlag =bcrypt.compareSync(pwd, result.pwd);
-		if(pwdMatchFlag){
-            console.log('匹配成功！');
-            res.render('test',{title:'验证成功'+result})
-        }else{
-            console.log('匹配失败！');
-            res.redirect('/');
-        }
-	}else{
-		console.log('没有搜索结果');
-		res.redirect('/');
-	}
+    res.redirect('/');
+	// if(result){
+	// 	const pwdMatchFlag =bcrypt.compareSync(pwd, result.pwd);
+	// 	if(pwdMatchFlag){
+ //            console.log('匹配成功！');
+ //            res.render('test',{title:'验证成功'+result})
+ //        }else{
+ //            console.log('匹配失败！');
+ //            res.redirect('/');
+ //        }
+	// }else{
+	// 	console.log('没有搜索结果');
+	// 	res.redirect('/');
+	// }
 };
 
 //对密码加密测试
