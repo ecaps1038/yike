@@ -1,0 +1,17 @@
+<h3>查看用户<h3>
+{{#each vacation}}
+{{#if admin}}
+	<div style="margin:20px;padding:20px;background:#00aaee;">
+{{else}}
+	<div style="margin:20px;padding:20px;background:#f0f0f0;">
+{{/if}}
+<p>姓名：{{name}}</p>
+<p>邮箱:{{email}}</p>
+<p>说明:{{explain}}</p>
+<p>性别:{{sex}}</p>
+<p>生日:{{birth}}</p>
+<p>注册时间:{{registerdate}}</p>
+<p>是否在线:{{online}}</p>
+</div>
+{{/each}}
+

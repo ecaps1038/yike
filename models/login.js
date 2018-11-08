@@ -1,26 +1,73 @@
 var userdbserver = require('./userdbserver.js');
 var bcrypt = require('bcryptjs');
+var User = require("./userdb.js");
 
-exports.logIn = function(email,pwd,res){
-	var email = {'email': email}
-	var out = {'name':1,'pwd':1,'email':1,'online':1};
-	var result = userdbserver.findUser(email,out);
-    console.log(result);
-    res.redirect('/');
-	// if(result){
-	// 	const pwdMatchFlag =bcrypt.compareSync(pwd, result.pwd);
-	// 	if(pwdMatchFlag){
- //            console.log('匹配成功！');
- //            res.render('test',{title:'验证成功'+result})
- //        }else{
- //            console.log('匹配失败！');
- //            res.redirect('/');
- //        }
-	// }else{
-	// 	console.log('没有搜索结果');
-	// 	res.redirect('/');
-	// }
+exports.showUser = function(req,res,id){
+    var email = {};
+    // var out = {'name':1,'pwd':1,'email':1,'online':1};
+    var out = {};
+    User.find(email, out, function(err, ress){
+        if (err) {
+            console.log("查询失败：" + err);
+        }
+        else {
+            var context = {
+            vacation : ress.map(function(ver){
+                var admin;
+                if(ver._id==id){
+                    admin=1;
+                }else{admin=null;}
+                //console.log(ver);
+                return {
+                    name: ver.name,
+                    pwd: ver.pwd,
+                    email: ver.email,
+                    explain: ver.explain,
+                    sex: ver.sex,
+                    birth: ver.birth,
+                    registerdate: ver.registerdate,
+                    online: ver.online,
+                    admin:admin,
+                }
+            })
+        };
+        res.render('showUser',context);
+        }
+    })
+}
+
+exports.logIn = function(email,pwd,req,res){
+    var email = {'email':email};
+    var out = {'name':1,'pwd':1,'email':1,'online':1};
+    User.find(email, out, function(err, ress){
+        if (err) {
+            console.log("查询失败：" + err);
+            return res.redirect('/');
+        }
+        else {
+            if(ress==''){return res.render('home',{return:'无结果'});}
+            ress.map(function(ver){
+                const pwdMatchFlag =bcrypt.compareSync(pwd, ver.pwd);
+                if(pwdMatchFlag){
+                    res.cookie('id',ver._id,{signed:true, maxAge: 1000});
+                    res.cookie('username',ver.name,{signed:true, maxAge: 1000});
+                    console.log('匹配成功！');
+                    if(ver.online==0){
+                        userdbserver.update(ver._id,{'online':1});
+                    }
+                    //console.log(ver);
+                    //res.render('test',{title:ver.id});
+                    //showUser(res);
+                   return res.redirect('/showUser');
+                }else{
+                    console.log('匹配失败！');
+                    return res.redirect('/');
+                }            
+            })
+        }
+    })
 };
+
 
 //对密码加密测试
 exports.bcrypts = function(pswd,res){

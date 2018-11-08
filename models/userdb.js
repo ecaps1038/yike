@@ -1,5 +1,6 @@
 var mongoose = require('./db.js'),
     Schema = mongoose.Schema;
+    mongoose.Promise = Promise;
 
 var UserSchema = new Schema({          
     name : { type: String },                    //用户账号

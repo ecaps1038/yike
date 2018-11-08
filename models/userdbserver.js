@@ -31,7 +31,6 @@ exports.insert = function(data){
         else {
             console.log("数据添加成功");
         }
-        return err;
     });
 };
 
@@ -47,7 +46,6 @@ exports.update = function(id,updatestr){
         else {
             console.log("数据修改成功！");
         }
-        return err;
     });
 };
 
@@ -62,7 +60,6 @@ exports.remove = function(id){
         else {
             console.log("数据删除成功！");
         }
-        return err;
     });
 };
 
@@ -77,8 +74,32 @@ exports.findUser = function(wherestr,out){
         }
         else {
             console.log("查询结果：" + res);
-            return res;
         }
+    }).then(function(arrys){
+        console.log('结果1'+arrys);
+    });
+};
+//条件查找: Model.find(conditions, [fields], [options], [callback])第2个参数可以设置要查询输出的字段,1或0
+exports.findUser1 = function(wherestr,out){
+    //var wherestr = {'username' : '小黄'};
+    //var age = {'userage':{$gte:12,$lte:14}};
+    //var out = {'username':1,'userage':1,'_id':0};
+   User.find(wherestr, out, function(err, ress){
+    console.log(res);
+        var context = {
+            res: res.map(function(vacation){
+                console.log('name'+vacation.name);
+                return {
+                    name: vacation.name,
+                    pwd: vacation.pwd,
+                    email: vacation.email,
+                    online: vacation.online,
+                }
+            })
+        };
+        console.log('aaa:'+context);
+        return context;
+
     });
 };
 

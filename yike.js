@@ -35,9 +35,19 @@ app.use(bodyparser.urlencoded({extended:false}));
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+//添加cookie中间件和session
+app.use(require('cookie-parser')(credentials.cookieSecret));
+app.use(require('express-session')({
+	name: 'yike',
+	secret: 'abdef',
+	resave: true,
+	//cookie: {maxAge:60*1000,httpOnly:true}
+}));
+
 //汇总路由文件routes.js
 require('./routes/home.js')(app);
 require('./routes/register.js')(app);
+require('./routes/showuser.js')(app);
 
 //定制404页面
 app.use(function(req,res,next){

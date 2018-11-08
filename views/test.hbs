@@ -1,2 +1,7 @@
 <h3>看到我就成功了！<h3>
-<p>{{title}}</p>
+{{#each ver}}
+<p>姓名:{{ver.name}}</p>
+<p>密码:{{ver.pwd}}</p>
+{{/each}}
+<p>--------分割-------</p>
+<p>name:{{title}}</p>
