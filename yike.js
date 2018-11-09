@@ -48,6 +48,7 @@ app.use(require('express-session')({
 require('./routes/home.js')(app);
 require('./routes/register.js')(app);
 require('./routes/showuser.js')(app);
+require('./routes/install.js')(app);
 
 //定制404页面
 app.use(function(req,res,next){

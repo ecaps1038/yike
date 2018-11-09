@@ -4,8 +4,14 @@ module.exports = function(app){
 		if(req.signedCookies.id){
 			req.session.userId = req.signedCookies.id;
 			req.session.username = req.signedCookies.username;
+			var id = req.session.userId;
+			login.showUser(req,res,id);
+		}else if(req.session.userId){
+			var id = req.session.userId;
+			login.showUser(req,res,id);
+		}else{
+			res.redirect('/');
 		}
-		var id = req.session.userId;
-		login.showUser(req,res,id);
+
 	})
 };

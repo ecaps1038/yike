@@ -1,0 +1,25 @@
+<h3>个人设置</h3>
+<form method="post" action="/install">
+{{#each vacation}}
+<p><img src="/images/one.png" style="width:120px"></p>
+{{#if imgurl}}
+	<p>头像{{imgurl}}</p>
+{{else}}
+	<input type="file" accept="image/*" id="fieldPhoto" name="photo">
+{{/if}}
+<p>姓名：<input type="text" value="{{name}}" name="name"></p>
+<p>说明：<textarea name="explain">{{explain}}</textarea>
+<p>邮箱:<input type="email" value="{{email}}" name="name"></p>
+<p>性别:
+	{{#if sex}}
+		<input type="radio" name="sex" value="male">男
+		<input type="radio" name="sex" value="female" checked>女
+	{{else}}
+		<input type="radio" name="sex" value="male" checked>男
+		<input type="radio" name="sex" value="female">女
+	{{/if}}
+</p>
+<p>生日:<input type="date" name="birth" value="{{birth}}"></p>
+{{/each}}
+<input type="submit" name="submit" value="确定">
+</form>

@@ -10,7 +10,7 @@ module.exports = function(app){
 	});
 	app.get('/login',function(req,res){
 		res.render('register');
-	})	
+	});	
 	app.get('/test',function(req,res){
 		res.render('test');
 		if(req.session.userId==req.signedCookies.id){
@@ -19,10 +19,10 @@ module.exports = function(app){
 			console.log('不同'+req.session.userId);
 		}
 		console.log('name'+req.session.username);
-	})	
+	});	
 	app.post('/login',function(req,res){
 		var email = req.body.email;
 		var pswd = req.body.pswd;
 		login.logIn(email,pswd,req,res);
-	})
+	});
 }
