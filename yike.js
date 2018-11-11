@@ -27,6 +27,7 @@ app.set('view engine', 'hbs');
 
 //添加static中间价
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/data'));
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended:false}));

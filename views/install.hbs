@@ -1,25 +1,26 @@
 <h3>个人设置</h3>
-<form method="post" action="/install">
+
 {{#each vacation}}
+<form method="post" action="/photoinst" enctype="multipart/form-data">
 <p><img src="/images/one.png" style="width:120px"></p>
 {{#if imgurl}}
-	<p>头像{{imgurl}}</p>
+	<p>头像:<img src="/vacation-photo/{{imgurl}}"/></p>
 {{else}}
 	<input type="file" accept="image/*" id="fieldPhoto" name="photo">
 {{/if}}
+<input type="submit" name="submit1" value="上传头像">
+</form>
+<form method="post" action="/install">
 <p>姓名：<input type="text" value="{{name}}" name="name"></p>
-<p>说明：<textarea name="explain">{{explain}}</textarea>
-<p>邮箱:<input type="email" value="{{email}}" name="name"></p>
-<p>性别:
-	{{#if sex}}
-		<input type="radio" name="sex" value="male">男
-		<input type="radio" name="sex" value="female" checked>女
-	{{else}}
-		<input type="radio" name="sex" value="male" checked>男
-		<input type="radio" name="sex" value="female">女
-	{{/if}}
-</p>
+<p>说明：<textarea name="explain">{{explain}}</textarea></p>
+<p>注册：{{registerdate}}</p>
+<p>邮箱:<input type="email" value="{{email}}" name="name" class="email"></p>
+<input type="hidden" value="{{sex}}" name="sex" class="sex">
+<p>性别:<span id="sex"></span></p>
 <p>生日:<input type="date" name="birth" value="{{birth}}"></p>
 {{/each}}
 <input type="submit" name="submit" value="确定">
 </form>
+{{#section 'jquery'}}
+	<script src="/js/install.js" type="text/javascript"></script>
+{{/section}}
