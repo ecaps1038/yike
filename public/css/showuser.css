@@ -1,0 +1,13 @@
+.user{
+	width:300px;
+	height: 260px;
+	border-radius: 12px;
+	margin: 20px;
+	float:left;
+}
+.myself{
+	background: #f0f0f0;
+}
+.other{
+	background: #fafafa;
+}

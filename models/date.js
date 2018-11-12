@@ -1,5 +1,5 @@
 //日期转换
-exports.DateChange = function(date){
+exports.DateSimple = function(date){
 	var d = new Date(date);
 	var tiems = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
 	// + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 

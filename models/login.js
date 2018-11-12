@@ -1,6 +1,7 @@
 var userdbserver = require('./userdbserver.js');
 var bcrypt = require('bcryptjs');
 var User = require("./userdb.js");
+var date = require('./date.js');
 
 exports.showUser = function(req,res,id){
     var email = {};
@@ -19,13 +20,26 @@ exports.showUser = function(req,res,id){
                 }else{admin=null;}
                 //console.log(ver);
                 return {
+                    id : ver._id,
                     name: ver.name,
                     pwd: ver.pwd,
                     email: ver.email,
                     explain: ver.explain,
-                    sex: ver.sex,
-                    birth: ver.birth,
-                    registerdate: ver.registerdate,
+                    sex: function(){
+                        if(ver.sex){
+                            if(ver.sex=='male'){return '男';}
+                            else{return '女';}
+                        }
+                    },
+                    imgurl: function(){
+                        if(ver.imgurl){
+                            return ver.imgurl;
+                        }else{
+                            return 'user.jpg';
+                        }
+                    },
+                    birth: date.DateSimple(ver.birth),
+                    registerdate: date.DateDetail(ver.registerdate),
                     online: ver.online,
                     admin:admin,
                 }
