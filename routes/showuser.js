@@ -12,6 +12,9 @@ module.exports = function(app){
 		}else{
 			res.redirect('/');
 		}
-
-	})
+	});
+app.get('/logout', function(req,res) {
+     delete req.session.userId;
+     return res.redirect('/');
+})
 };

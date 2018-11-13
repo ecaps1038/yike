@@ -24,12 +24,17 @@ exports.showUser = function(req,res,id){
                     name: ver.name,
                     pwd: ver.pwd,
                     email: ver.email,
-                    explain: ver.explain,
-                    sex: function(){
-                        if(ver.sex){
-                            if(ver.sex=='male'){return '男';}
-                            else{return '女';}
+                    explain: function(){
+                        if(ver.explain){
+                            return ver.explain;
+                        }else{
+                            return '不签名是我的个性之一'
                         }
+                    },
+                    sex: function(){
+                        if(!ver.sex){
+                            return 'asexual';
+                        }else{return ver.sex;}
                     },
                     imgurl: function(){
                         if(ver.imgurl){
@@ -47,8 +52,15 @@ exports.showUser = function(req,res,id){
         };
         res.render('showUser',context);
         }
-    })
-}
+    });
+};
+
+exports.logout = function(req,res){
+    var id = req.session.userId;
+    userdbserver.update(ver._id,{'online':0});
+    delete req.session.userId;
+    return res.redirect('/');
+};
 
 exports.logIn = function(email,pwd,req,res){
     var email = {'email':email};

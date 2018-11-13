@@ -12,7 +12,7 @@
 		                  '<input type="radio" name="sex" value="female" checked>女';
     				}
     			}else{
-    				html+='<input type="radio" name="sex" value="noth">中性'+'<input type="radio" name="sex" value="male">男'+
+    				html+='<input type="radio" name="sex" value="male">男'+
 		              '<input type="radio" name="sex" value="female">女';
     			}
     			return html;

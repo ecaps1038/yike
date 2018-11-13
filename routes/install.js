@@ -2,13 +2,19 @@ var install = require('../models/install');
 var fileServe = require('../models/file.js');
 
 module.exports = function(app){
-	app.get('/install',function(req,res){
-		var ids = req.query.id;
-		var id = req.session.userId;
-		if(id==ids){
+	//详情页面
+	app.get('/detail',function(req,res){
+		var id = req.query.id;
+		if(id){
 			install.findUser(req,res,id);
-		}else if(id != ids){
-			install.findOther(req,res,ids);
+		}else{
+			res.redirect('/');
+		}
+	});	
+	app.get('/install',function(req,res){
+		var id = req.session.userId;
+		if(id){
+			install.findMy(req,res,id);
 		}else{
 			res.redirect('/');
 		}

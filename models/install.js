@@ -12,24 +12,49 @@ exports.findUser = function(req,res,id){
         else {
             var context = {
             vacation : ress.map(function(ver){
+            	var admin;
+            	var myid = req.session.userId;
+                if(ver._id==myid){
+                    admin=1;
+                }else{admin=null;}
                 //console.log(ver);
                 return {
+                    id : ver._id,
                     name: ver.name,
                     pwd: ver.pwd,
                     email: ver.email,
-                    explain: ver.explain,
-                    sex: ver.sex,
+                    explain: function(){
+                        if(ver.explain){
+                            return ver.explain;
+                        }else{
+                            return '不签名是我的个性之一'
+                        }
+                    },
+                    sex: function(){
+                        if(ver.sex){
+                            if(ver.sex=='male'){return '男';}
+                            else{return '女';}
+                        }else{return '不知';}
+                    },
+                    imgurl: function(){
+                        if(ver.imgurl){
+                            return ver.imgurl;
+                        }else{
+                            return 'user.jpg';
+                        }
+                    },
                     birth: date.DateSimple(ver.birth),
-                    imgurl:ver.imgurl,
                     registerdate: date.DateDetail(ver.registerdate),
+                    online: ver.online,
+                    admin:admin,
                 }
             })
         };
-        res.render('install',context);
+        res.render('user-detail',context);
         }
     });
 };
-exports.findOther = function(req,res,id){
+exports.findMy = function(req,res,id){
     var id = {'_id':id};
     var out = {};
     User.find(id, out, function(err, ress){

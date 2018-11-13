@@ -2,8 +2,12 @@ var login = require('../models/login');
 
 module.exports = function(app){
 	app.get('/', function(req, res){
-	//res.cookie('id','我是id中的松溪',{signed:true, maxAge: 5000});
-	  res.render('home');
+		var id = req.session.userId;
+		if(id){
+			res.redirect('/showuser');
+		}else{
+	    	res.render('home');
+		}
 	});
 	app.get('/register', function(req, res){
 	  res.render('register');

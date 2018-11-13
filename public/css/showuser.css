@@ -1,13 +1,65 @@
 .user{
-	width:300px;
-	height: 260px;
+	width:240px;
 	border-radius: 12px;
-	margin: 20px;
+	margin: 10px;
+	padding: 20px;
 	float:left;
+	text-align: center;
+	color: #333;
+	position: relative;
+}
+.quit{
+	display: block;
+	position: fixed;
+	right: 40px;
+	top: 40px;
+	height: 42px;
+	width: 80px;
+	border-radius: 21px;
+	background: #f9644e;
+	text-decoration: none;
+	font-size: 16px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
 }
 .myself{
-	background: #f0f0f0;
+	background: #eee;
 }
 .other{
-	background: #fafafa;
+	background: #f8f8f8;
+}
+.header{
+	display: inline-block;
+	border-radius: 50%;
+	height: 80px;
+	width: 80px;
+	overflow: hidden;
+}
+.header img{
+	width: 82px;
+}
+.name{
+	font-size: 18px;
+}
+.explain{
+	font-size: 14px;
+}
+.sex{
+	position: absolute;
+	top: 56px;
+	left: 160px;
+	height: 28px;
+	width: 28px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.male{
+	background: url('../images/sex/male.png');
+}
+.female{
+	background: url('../images/sex/female.png');
+}
+.asexual{
+	background: url('../images/sex/asexual.png');
 }

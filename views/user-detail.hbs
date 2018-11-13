@@ -1,0 +1,20 @@
+{{#section 'head'}}
+    <title>详情</title>
+    <link rel="stylesheet" type="text/css" href="css/install.css">
+{{/section}}
+<h3>详情</h3>
+<a href="/showuser">返回</a>
+
+{{#each vacation}}
+<p><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></p>
+<p>姓名：{{name}}</p>
+<p>说明：{{explain}}</p>
+<p>注册：{{registerdate}}</p>
+<p>邮箱:{{email}}</p>
+<p>性别:{{sex}}</p>
+<p>生日:{{birth}}</p>
+<p>在线:{{online}}</p>
+{{#if admin}}
+	<a href="/install">修改</a>
+{{/if}}
+{{/each}}
