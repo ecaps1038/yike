@@ -63,3 +63,13 @@
 .asexual{
 	background: url('../images/sex/asexual.png');
 }
+.chart{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: url('../images/chart.png') no-repeat center /30px;
+
+}

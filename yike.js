@@ -48,7 +48,7 @@ app.use(require('express-session')({
 //汇总路由文件routes.js
 require('./routes/home.js')(app);
 require('./routes/register.js')(app);
-require('./routes/showuser.js')(app);
+require('./routes/showuser.js')(app,io);
 require('./routes/install.js')(app);
 
 //定制404页面
@@ -65,6 +65,6 @@ app.use(function(err,req,res,next){
 });
 
 app.set('port',process.env.PORT || 3000);
-app.listen(app.get('port'),function(){
+http.listen(app.get('port'),function(){
 	console.log('监听. http://localhost:' + app.get('port'));
 });

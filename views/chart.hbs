@@ -1,0 +1,32 @@
+{{#section 'head'}}
+    <title>聊天</title>
+    <link rel="stylesheet" type="text/css" href="css/chart.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/json3.min.js"></script>
+{{/section}}
+<div class="main">
+	{{#each vacation}}
+		<img src="/vacation-photo/{{imgurl}}" style="width:100px;" /><span>{{name}}</span>
+		<input type="hidden" value="{{imgurl}}" class="imgurl">
+	{{/each}}
+	<div id="doc">
+	    <div id="chat">
+	        <div id="message" class="message">
+	            <div id="onLineCounts"
+	                style="background: #EFEFF4; font-size: 12px;margin-top: 10px;margin-left: 10px;color: #666;padding:10px">
+	            </div>
+	        </div>
+	        <div class="input-box">
+	            <div class="input">
+	                <input type="text" maxlength="140" placeholder="输入聊天内容 " id="content" name="content" >
+	            </div>
+	            <div class="action">
+	                <button type="button" id="send">提交</button>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+{{#section 'jquery'}}
+	<script src="/js/chart.js" type="text/javascript"></script>
+{{/section}}

@@ -1,5 +1,7 @@
 var login = require('../models/login');
-module.exports = function(app){
+var chart = require('../models/chart');
+var socket = require('../models/socket');
+module.exports = function(app,io){
 	app.get('/showUser',function(req,res){
 		if(req.signedCookies.id){
 			req.session.userId = req.signedCookies.id;
@@ -14,7 +16,11 @@ module.exports = function(app){
 		}
 	});
 app.get('/logout', function(req,res) {
-     delete req.session.userId;
-     return res.redirect('/');
-})
+     login.logout(req,res);
+});
+app.get('/chart', function(req,res) {
+	var id = req.query.id;
+    chart.findUser(req,res,id);
+    socket.socket(req,res,io);
+});
 };

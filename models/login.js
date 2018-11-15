@@ -57,7 +57,7 @@ exports.showUser = function(req,res,id){
 
 exports.logout = function(req,res){
     var id = req.session.userId;
-    userdbserver.update(ver._id,{'online':0});
+    userdbserver.update(id,{'online':0});
     delete req.session.userId;
     return res.redirect('/');
 };
