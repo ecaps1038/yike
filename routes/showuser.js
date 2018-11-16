@@ -21,6 +21,6 @@ app.get('/logout', function(req,res) {
 app.get('/chart', function(req,res) {
 	var id = req.query.id;
     chart.findUser(req,res,id);
-    socket.socket(req,res,io);
+    //socket.socket(req,res,io);
 });
 };

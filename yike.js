@@ -35,6 +35,7 @@ app.use(bodyparser.urlencoded({extended:false}));
 //socket.io引入
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+require('./models/socket.js')(io);
 
 //添加cookie中间件和session
 app.use(require('cookie-parser')(credentials.cookieSecret));
@@ -50,6 +51,8 @@ require('./routes/home.js')(app);
 require('./routes/register.js')(app);
 require('./routes/showuser.js')(app,io);
 require('./routes/install.js')(app);
+require('./routes/chart.js')(app);
+
 
 //定制404页面
 app.use(function(req,res,next){
