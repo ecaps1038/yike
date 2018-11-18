@@ -49,9 +49,9 @@ app.use(require('express-session')({
 //汇总路由文件routes.js
 require('./routes/home.js')(app);
 require('./routes/register.js')(app);
-require('./routes/showuser.js')(app,io);
+require('./routes/showuser.js')(app);
 require('./routes/install.js')(app);
-require('./routes/chart.js')(app);
+require('./routes/chart.js')(app,io);
 
 
 //定制404页面

@@ -1,10 +1,11 @@
-var io = require('socket.io');
-var socket = io();
-module.exports = function(app){
-	app.post('/chart',function(req,res){
-		console.log('chart');
-		console.log('chart测试:' + req.body);
-		res.send({success:true});
-		//socket.emit('message',email);
+var chart = require('../models/chart');
+var sockets = require('../models/socket');
+
+module.exports = function(app,io){
+	app.get('/chart', function(req,res) {
+		var id = req.query.id;
+		//sockets.socket(req,res,io);
+	    chart.findUser(req,res,id);
+	    //res.render('chart');
 	});
 }

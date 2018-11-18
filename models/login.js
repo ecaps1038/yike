@@ -64,7 +64,7 @@ exports.logout = function(req,res){
 
 exports.logIn = function(email,pwd,req,res){
     var email = {'email':email};
-    var out = {'name':1,'pwd':1,'email':1,'online':1};
+    var out = {'name':1,'pwd':1,'email':1,'online':1,'imgurl':1};
     User.find(email, out, function(err, ress){
         if (err) {
             console.log("查询失败：" + err);
@@ -77,6 +77,12 @@ exports.logIn = function(email,pwd,req,res){
                 if(pwdMatchFlag){
                     res.cookie('id',ver._id,{signed:true, maxAge: 1000});
                     res.cookie('username',ver.name,{signed:true, maxAge: 1000});
+                    if(ver.imgurl){
+                        res.cookie('imgurl',ver.imgurl,{signed:true, maxAge: 1000}); 
+                   }else{
+                        res.cookie('imgurl','user.jpg',{signed:true, maxAge: 1000});
+                   }
+                    
                     console.log('匹配成功！');
                     if(ver.online==0){
                         userdbserver.update(ver._id,{'online':1});
