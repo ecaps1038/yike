@@ -43,7 +43,7 @@ module.exports = function(io){
 	        if(socketList.hasOwnProperty(socket.name)) {
 	            //退出用户的信息
 	            //var obj = {userid:socket.name, nickname:onlineUsers[socket.name]};
-	            console.log('离开'+socket.name);
+	            //console.log('离开'+socket.name);
 	            //删除
 	            delete socketList[socket.name];
 

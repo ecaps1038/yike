@@ -1,9 +1,12 @@
 {{#section 'head'}}
-    <title>alluser</title>
-    <link rel="stylesheet" type="text/css" href="css/showuser.css">
+    <title>yike</title>
+    <link rel="stylesheet" type="text/css" href="css/yike.css">
 {{/section}}
-<h3>查看用户</h3>
+<h3>yike</h3>
 <a href="/logout" class="quit">退出</a>
+<form>
+	<input type="search" name="search"><button class="searup">搜索</button>
+</form>
 {{#each vacation}}
 {{#if admin}}
 	<div class="user myself">
@@ -24,4 +27,3 @@
 {{#section 'jquery'}}
 	<script src="/js/showuser.js" type="text/javascript"></script>
 {{/section}}
-
