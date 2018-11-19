@@ -15,7 +15,4 @@ module.exports = function(app,io){
 			res.redirect('/');
 		}
 	});
-app.get('/logout', function(req,res) {
-     login.logout(req,res);
-});
 };

@@ -29,4 +29,7 @@ module.exports = function(app){
 		var pswd = req.body.pswd;
 		login.logIn(email,pswd,req,res);
 	});
+	app.get('/logout', function(req,res) {
+        login.logout(req,res);
+	});
 }

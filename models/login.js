@@ -2,6 +2,7 @@ var userdbserver = require('./userdbserver.js');
 var bcrypt = require('bcryptjs');
 var User = require("./userdb.js");
 var date = require('./date.js');
+var friend = require('./friendsdb.js');
 
 exports.showUser = function(req,res,id){
     var email = {};
@@ -53,6 +54,23 @@ exports.showUser = function(req,res,id){
         res.render('showUser',context);
         }
     });
+};
+exports.showFriend = function(req,res,id){
+    var userid = {'_id':id};
+    //var out = {};
+    var query = friend.find({},{'friendID':1});
+    //根据userID查询
+    query.where('userID',id);
+    //查出friendID的user对象
+    query.populate('friendID');
+    //按照最后会话时间倒序排列
+    query.sort({'lasttime':-1});
+    //查询结果
+    query.exec().then(function(result){
+        console.log(result);
+    }).catch(function(err){
+        console.log(err);
+    });   
 };
 
 exports.logout = function(req,res){

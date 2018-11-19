@@ -48,6 +48,7 @@ app.use(require('express-session')({
 
 //汇总路由文件routes.js
 require('./routes/home.js')(app);
+require('./routes/yike.js')(app);
 require('./routes/register.js')(app);
 require('./routes/showuser.js')(app);
 require('./routes/install.js')(app);
