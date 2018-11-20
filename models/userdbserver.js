@@ -5,7 +5,7 @@ var User = require("./userdb.js");
  */
 
 function insert1(data) {
-	手动添加
+	//手动添加
     var user = new User({
         name : '张飞',                    			//用户账号
 	    pwd: '123456',                       		//密码

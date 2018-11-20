@@ -155,3 +155,8 @@ GM _State    Bit    接收状态
 GM _CreateTime    Datetime    发送时间    
 GM_ UserGroupID    Int    所属群ID    
 ）
+
+
+mogoose语句
+
+MyModel.find({}).sort({'_id':-1}).limit(6).exec(function(err,docs){})
