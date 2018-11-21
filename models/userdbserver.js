@@ -105,7 +105,7 @@ exports.findUser1 = function(wherestr,out){
 
 //数量查询Model.count(conditions, [callback])res会输出数量，也可以传入条件做条件查询！
 exports.getCount = function(wherestr){
-    //var wherestr = {};
+    //var where = {};
     
     User.countDocuments(wherestr, function(err, res){
         if (err) {

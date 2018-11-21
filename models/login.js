@@ -56,8 +56,6 @@ exports.showUser = function(req,res,id){
     });
 };
 exports.showFriend = function(req,res,id){
-    var userid = {'_id':id};
-    //var out = {};
     var query = friend.find({},{'friendID':1});
     //根据userID查询
     query.where('userID',id);
@@ -67,7 +65,41 @@ exports.showFriend = function(req,res,id){
     query.sort({'lasttime':-1});
     //查询结果
     query.exec().then(function(result){
-        console.log(result);
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+                return {
+                    id : ver.friendID._id,
+                    name: ver.friendID.name,
+                    pwd: ver.friendID.pwd,
+                    email: ver.friendID.email,
+                    explain: function(){
+                        if(ver.friendID.explain){
+                            return ver.friendID.explain;
+                        }else{
+                            return '不签名是我的个性之一'
+                        }
+                    },
+                    sex: function(){
+                        if(!ver.friendID.sex){
+                            return 'asexual';
+                        }else{return ver.sex;}
+                    },
+                    imgurl: function(){
+                        if(ver.friendID.imgurl){
+                            return ver.friendID.imgurl;
+                        }else{
+                            return 'user.jpg';
+                        }
+                    },
+                    birth: date.DateSimple(ver.friendID.birth),
+                    registerdate: date.DateDetail(ver.friendID.registerdate),
+                    online: ver.friendID.online,
+                }
+            })
+        };
+        //console.log(context);
+        res.render('yike',context);
     }).catch(function(err){
         console.log(err);
     });   
@@ -108,7 +140,7 @@ exports.logIn = function(email,pwd,req,res){
                     //console.log(ver);
                     //res.render('test',{title:ver.id});
                     //showUser(res);
-                   return res.redirect('/showUser');
+                   return res.redirect('/yike');
                 }else{
                     console.log('匹配失败！');
                     return res.redirect('/');
