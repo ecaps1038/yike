@@ -1,0 +1,31 @@
+{{#section 'head'}}
+    <title>搜索详情</title>
+    <link rel="stylesheet" type="text/css" href="css/shdetal.css">
+{{/section}}
+<h3>详情</h3>
+<a href="/yike">返回</a>
+
+{{#each vacation}}
+<p><img src="/vacation-photo/{{mgurl}}" style="width:100px;" /></p>
+{{!-- <p>id:{{id}}</p> --}}
+<p>姓名：{{name}}</p>
+<p>说明：{{explain}}</p>
+<p>注册：{{registerdate}}</p>
+<p>性别:{{sex}}</p>
+<input type="hidden" value="{{count}}" class="count"/>
+<input type="hidden" value="{{id}}" class="id"/>
+<p class="button"></p>
+{{/each}}
+{{#section 'jquery'}}
+	<script>
+		var count = $('.count').val();
+		var id = $('.id').val();
+		if(count==0){
+			var html="<a href='/add?id="+id+"'>加为好友</a>";
+			$('.button').html(html);
+		}else{
+			var html="<a href='/chart?id="+id+"'>聊天</a>";
+			$('.button').html(html);		}
+	</script>
+	<script src="/js/showuser.js" type="text/javascript"></script>
+{{/section}}

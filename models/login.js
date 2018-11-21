@@ -56,6 +56,8 @@ exports.showUser = function(req,res,id){
     });
 };
 exports.showFriend = function(req,res,id){
+    var myimgurl = req.session.imgurl;
+    var myname = req.session.username;
     var query = friend.find({},{'friendID':1});
     //根据userID查询
     query.where('userID',id);
@@ -96,10 +98,12 @@ exports.showFriend = function(req,res,id){
                     registerdate: date.DateDetail(ver.friendID.registerdate),
                     online: ver.friendID.online,
                 }
-            })
+            }),
+            imgurl: myimgurl,
+            name: myname
+            
         };
-        //console.log(context);
-        res.render('yike',context);
+        res.render('yike',context,);
     }).catch(function(err){
         console.log(err);
     });   

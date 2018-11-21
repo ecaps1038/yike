@@ -21,5 +21,27 @@ module.exports = function(app,io){
 		var id = req.session.userId;
 		yike.search(req,res,content,id);
 		//res.send({success:true});
-	})
+	});
+	//进入搜索结果
+	app.get('/search-detail',function(req,res){
+		var id = req.query.id;
+		if(id){
+			yike.findUser(req,res,id);
+		}else{
+			res.redirect('/');
+		}
+	});		
+	//添加好友
+	app.get('/add',function(req,res){
+		var friendid = req.query.id;
+		var userid = req.session.userId;
+		yike.addfriend(res,friendid,userid);
+	});	
+	//查询数据库信息
+	app.post('/showMessage',function(req,res){
+		var from = req.body.fromid;
+		var to = req.body.toid;
+		//yike.search(req,res,content,id);
+		res.send({success:true});
+	});
 };

@@ -1,18 +1,5 @@
 //socket.io引入
-
-exports.socket = function(req,res,io){
-	var name = req.session.username;
-
-    io.on('connection', function(socket){
-	  socket.on('message', function(msg){
-
-	    console.log(name + ':' + msg);
-	    var masg = name + ':' + msg;
-	    //广播消息
-	    io.emit('message',masg);
-	  });
-	});
-};
+var messagedb = require("./messagedbserver.js");
 
 module.exports = function(io){
 	var socketList = {};
@@ -32,9 +19,23 @@ module.exports = function(io){
 		    //1对1发送消息
 		    if(socketList[msg.to]){
 		    	//保存数据库且标记为已读
+		    	var data = {
+					fromUserID : msg.fromid,                    			
+				    toUserID: msg.toid,                       		
+				    dateTime: new Date(),							
+				    status: 1  
+				}
+		    	messagedb.insert(data);
 			    socket.to(socketList[msg.to]).emit('sendMsg',msg.name,msg.message);
 			}else{
 				//保存数据库且标为未读
+				var data = {
+					fromUserID : msg.fromid,                    			
+				    toUserID: msg.toid,                       		
+				    dateTime: new Date(),							
+				    status: 0  
+				}
+		    	messagedb.insert(data);
 			}
 	  	});
 	  	//用户离开

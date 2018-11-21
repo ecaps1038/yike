@@ -16,7 +16,8 @@ $(document).ready(function(){
 					console.log(aa)
 					var html='';
 					var tt = aa.map(function(i){
-						html+="<li><img src='/vacation-photo/"+i.imgurl+"'/>"+i.name+"</li>";
+						html+="<div><img src='/vacation-photo/"+i.imgurl+"' style='width:60px;'/>"+i.name+
+						"<a href='/search-detail?id="+i.id+"'>进入</a></div>";
 						$container.html(html);
 					})
 					

@@ -3,8 +3,8 @@ var Friend = require("./friendsdb.js");
 function insert1(data) {
 	//手动添加
     var friend = new Friend({
-        friendID : '5be2da44a83ce75d14422629',                    			
-	    userID: '5bdfadf1561a5f24bca85715',                       		
+        friendID : '5bdf164348705b04254a2b9b',                    			
+	    userID: '5be04644092be8033dc07c5c',                       		
 	    time: new Date(),							
 	    lasttime: new Date() 				
     });
