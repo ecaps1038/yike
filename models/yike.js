@@ -37,7 +37,6 @@ exports.findUser = function(req,res,id){
             console.log("数据统计失败：" + err);
         }
         else {
-            
             var ids = {'_id':id};
 			var out = {'pwd':0};
 			User.find(ids, out, function(err, ress){
@@ -79,7 +78,6 @@ exports.findUser = function(req,res,id){
 			        })
 			    };
 			    res.render('search-detail',context);
-			    //console.log(context);
 			    }
 			});
         }
@@ -102,5 +100,9 @@ exports.addfriend = function(res,friendid,userid){
 	frienddb.insert(data1);
 	frienddb.insert(data2);
 	return res.redirect('/yike');
-
+}
+exports.deletefriend = function(res,friendid,userid){
+	frienddb.delOne(friendid,userid);
+	frienddb.delOne(userid,friendid);
+	return res.redirect('/yike');
 }

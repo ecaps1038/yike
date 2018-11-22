@@ -17,5 +17,19 @@
 <p>在线:{{online}}</p>
 {{#if admin}}
 	<a href="/install">修改</a>
+{{else}}
+	<a href="/delete-friend?id={{id}}" class="delete">删除好友</a>
 {{/if}}
 {{/each}}
+{{#section 'jquery'}}
+	<script>
+		$('.delete').on('click',function(ev){
+			ev = ev || window.event;
+			if(confirm("是否删除好友?")){
+				//alert ("点击了确定");
+			}else{
+				return false;
+			}
+		});
+	</script>
+{{/section}}

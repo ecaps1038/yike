@@ -37,11 +37,10 @@ module.exports = function(app,io){
 		var userid = req.session.userId;
 		yike.addfriend(res,friendid,userid);
 	});	
-	//查询数据库信息
-	app.post('/showMessage',function(req,res){
-		var from = req.body.fromid;
-		var to = req.body.toid;
-		//yike.search(req,res,content,id);
-		res.send({success:true});
+	//删除好友
+	app.get('/delete-friend',function(req,res){
+		var friendid = req.query.id;
+		var userid = req.session.userId;
+		yike.deletefriend(res,friendid,userid);
 	});
 };

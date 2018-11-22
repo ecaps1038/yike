@@ -20,17 +20,19 @@ module.exports = function(io){
 		    if(socketList[msg.to]){
 		    	//保存数据库且标记为已读
 		    	var data = {
-					fromUserID : msg.fromid,                    			
+		    		postMessages: msg.message,
+					fromUserID: msg.fromid,                    			
 				    toUserID: msg.toid,                       		
 				    dateTime: new Date(),							
 				    status: 1  
 				}
 		    	messagedb.insert(data);
-			    socket.to(socketList[msg.to]).emit('sendMsg',msg.name,msg.message);
+			    socket.to(socketList[msg.to]).emit('sendMsg',msg.message);
 			}else{
 				//保存数据库且标为未读
 				var data = {
-					fromUserID : msg.fromid,                    			
+					postMessages: msg.message,
+					fromUserID: msg.fromid,                    			
 				    toUserID: msg.toid,                       		
 				    dateTime: new Date(),							
 				    status: 0  

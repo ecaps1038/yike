@@ -3,8 +3,8 @@ var Friend = require("./friendsdb.js");
 function insert1(data) {
 	//手动添加
     var friend = new Friend({
-        friendID : '5bdf164348705b04254a2b9b',                    			
-	    userID: '5be04644092be8033dc07c5c',                       		
+        friendID : '5bdfadf1561a5f24bca85715',                    			
+	    userID: '5be4117dcd6ca75754b5e8bf',                       		
 	    time: new Date(),							
 	    lasttime: new Date() 				
     });
@@ -46,3 +46,16 @@ exports.getCount = function(userid,friendid){
         }
     });
 };
+
+//根据条件删除
+exports.delOne = function(userid,friendid){
+    var wherestr = {'userID':userid,'friendID':friendid};
+    Friend.deleteOne(wherestr, function(err, res){
+        if (err) {
+            console.log("Error:" + err);
+        }
+        else {
+            console.log('删除朋友成功');
+        }
+    })
+}

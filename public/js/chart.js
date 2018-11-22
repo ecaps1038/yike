@@ -8,7 +8,10 @@
         var myimgurl = $('.myimgurl').val();
         var from = fromid+toid;
         var to = toid+fromid;
-
+        var name = $('.name').html();
+        function scrollWindow(){
+            window.scrollTo(100,500);
+        }
         function showMessage(){
             $.ajax({
                 url: '/showMessage',
@@ -16,7 +19,24 @@
                 data: {fromid:fromid,toid:toid},
                 success: function(data){
                     if(data.success){
-                        console.log('读取数据成功');
+                        var aa = data.context.vacation;
+                        console.log(aa)
+                        var html='';
+                        var tt = aa.map(function(i){
+                            if(i.toUserID==toid){
+                                html+='<div style="height:60px; width:400px; margin:10px; background:#fff; float:right;"><li><img src="/vacation-photo/'+ 
+                                myimgurl+'" style="width:60px;" />'+i.message+'</li></div>';
+                            }else{
+                                html+='<div style="height:60px; width:400px; margin:10px;  float:left;"><li><img src="/vacation-photo/'+ 
+                                imgurl+'" style="width:60px;" />'+name+':'+i.message+'</li></div>';
+                            }
+
+                    })
+                    $('#message').append(html);
+                    var height = $('#message').height()-400;
+                    $('#message').scrollTop=height;
+                    //scrollWindow();
+                    //alert($('#message').clientHeight);
                     }
                     else{
                         console.log('出现问题1');
@@ -32,7 +52,6 @@
         socket.emit('login',from);
     	$('.but').on('click',function(evt){
             evt.preventDefault();
-            var name = $('.name').html();
             var message = $('.text').val();
             var mesg = {
                 name:name,
@@ -49,7 +68,7 @@
             $('.text').val("");
 
         });
-        socket.on('sendMsg',function(name,msg){
+        socket.on('sendMsg',function(msg){
             html+='<div style="height:60px; width:400px; margin:10px; float:left;"><li style="float:left;"><img src="/vacation-photo/'+ 
             imgurl+'" style="width:60px;" />'+name+':'+msg+'</li></div>';
           $('#message').append(html);

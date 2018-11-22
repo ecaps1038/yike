@@ -43,3 +43,17 @@ exports.update = function(id,updatestr){
         }
     });
 };
+//根据_id更新： Model.findByIdAndUpdate(id, [update], [options], [callback])
+exports.read = function(from,to){
+     var wherestr = {'toUserID':to,'fromUserID':from};
+     var updatestr = {'status': 1};
+    
+    Message.update(wherestr, updatestr, function(err, res){
+        if (err) {
+            console.log("修改已读失败" + err);
+        }
+        else {
+            console.log("修改已读成功");
+        }
+    });
+};

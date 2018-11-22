@@ -2,9 +2,13 @@
 	margin: 20px auto;
 	width: 800px;
 }
-.message{
+.msgout{
+	position:relative;
 	height: 400px;
 	width: 800px;
 	background: #f0f0f0;
 	overflow-y: auto;
+}
+.message{
+	
 }

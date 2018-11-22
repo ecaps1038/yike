@@ -7,4 +7,12 @@ module.exports = function(app,io){
 	    chart.findUser(req,res,id);
 	    //res.render('chart');
 	});
+
+	//查询数据库信息
+	app.post('/showMessage',function(req,res){
+		var from = req.body.fromid;
+		var to = req.body.toid;
+		chart.showMessage(req,res,from,to);
+		//res.send({success:true});
+	});
 }

@@ -58,7 +58,7 @@ exports.showUser = function(req,res,id){
 exports.showFriend = function(req,res,id){
     var myimgurl = req.session.imgurl;
     var myname = req.session.username;
-    var query = friend.find({},{'friendID':1});
+    var query = friend.find({},{'name':1,'friendID':1});
     //根据userID查询
     query.where('userID',id);
     //查出friendID的user对象
@@ -71,6 +71,7 @@ exports.showFriend = function(req,res,id){
         var context = {
             vacation : result.map(function(ver){
                 return {
+                    markname: ver.name,
                     id : ver.friendID._id,
                     name: ver.friendID.name,
                     pwd: ver.friendID.pwd,
