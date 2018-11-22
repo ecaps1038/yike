@@ -1,22 +1,25 @@
 {{#section 'head'}}
     <title>yike</title>
     <link rel="stylesheet" type="text/css" href="css/yike.css">
+    <script src="/socket.io/socket.io.js"></script>
 {{/section}}
 <h3>yike</h3>
 <div>
-	<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{imgurl}}"/></a>
-		<p>{{name}}</p>
+	<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{imgurl}}"/>
+	</a>
+	<p>{{name}}</p>
+	<input type="hidden" class="userid" value="{{id}}">
 </div>
 <a href="/logout" class="quit">退出</a>
 <form class="search">
 	<input type="text" name="search"><button class="searup">搜索</button>
 </form>
-<div class="sear">
-
-</div>
+<div class="sear"></div>
 {{#if vacation}}
 	{{#each vacation}}
 		<div class="user other">
+			<input type="hidden" value="{{id}}" class="friendid">
+			<p class="count"></p>
 			<a href="/chart?id={{id}}" class="chart"></a>
 			<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{imgurl}}"/></a></p>
 			{{#if markname}}

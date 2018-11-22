@@ -65,11 +65,27 @@
 }
 .chart{
 	position: absolute;
-	right: 10px;
-	top: 10px;
+	right: 20px;
+	top: 20px;
 	display: block;
 	width: 30px;
 	height: 30px;
 	background: url('../images/chart.png') no-repeat center /30px;
 
+}
+.count{
+	display: none;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	min-width: 10px;
+	height: 20px;
+	padding: 0 5px;
+	margin: 0;
+	border-radius:10px;
+	color:#fff;
+	background: #ff462d;
+	z-index: 1000;
+	font-size: 14px;
+	line-height: 20px;
 }

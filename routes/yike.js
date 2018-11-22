@@ -1,6 +1,7 @@
 var login = require('../models/login');
 var socket = require('../models/socket');
 var yike = require('../models/yike');
+var chart = require('../models/chart');
 module.exports = function(app,io){
 	app.get('/yike',function(req,res){
 		if(req.signedCookies.id){
@@ -16,6 +17,7 @@ module.exports = function(app,io){
 			res.redirect('/');
 		}
 	});
+	//搜索
 	app.post('/search',function(req,res){
 		var content = req.body.search;
 		var id = req.session.userId;
@@ -43,4 +45,12 @@ module.exports = function(app,io){
 		var userid = req.session.userId;
 		yike.deletefriend(res,friendid,userid);
 	});
+	//获取未读信息数
+	app.post('/imsg',function(req,res){
+		var friendid = req.body.id;
+		var userid = req.session.userId;
+		chart.getcount(res,userid,friendid);
+		//console.log('朋友id：'+friendid);
+
+	})
 };

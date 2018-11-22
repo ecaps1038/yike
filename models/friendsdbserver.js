@@ -58,4 +58,21 @@ exports.delOne = function(userid,friendid){
             console.log('删除朋友成功');
         }
     })
-}
+};
+
+//修改最后  Model.findByIdAndUpdate(id, [update], [options], [callback])
+exports.updateTime = function(friendid,userid){
+     var wherestr = {'friendID':friendid,'userID':userid};
+     var updatestr = {'lasttime': new Date()};
+    
+    
+    Friend.updateOne(wherestr, updatestr, function(err, res){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            console.log("数据修改成功！");
+        }
+    });
+};
+

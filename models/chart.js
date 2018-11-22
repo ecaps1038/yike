@@ -55,8 +55,8 @@ exports.showMessage = function(req,res,from,to){
         else {
             var context = {
                 vacation : rest.map(function(ver){
-                    if(ver.status==0 && ver.toUserID==to){
-                        messagedb.read(from,to);
+                    if(ver.status==0 && ver.toUserID==from){
+                        messagedb.read(to,from);
                     }
                     return {
                         message: ver.postMessages,
@@ -73,3 +73,18 @@ exports.showMessage = function(req,res,from,to){
     });
 
 };
+
+//统计未读数
+exports.getcount = function(res,userid,friendid){
+    var wherestr = {'toUserID':userid,'fromUserID':friendid, 'status':0};
+    
+    message.countDocuments(wherestr, function(err, rest){
+        if (err) {
+            console.log("数据统计失败：" + err);
+        }
+        else {
+            //console.log("数据统计成功！" + rest);
+            res.send({success:true,rest:rest});
+        }
+    });
+}

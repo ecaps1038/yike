@@ -100,6 +100,7 @@ exports.showFriend = function(req,res,id){
                     online: ver.friendID.online,
                 }
             }),
+            id:id,
             imgurl: myimgurl,
             name: myname
             

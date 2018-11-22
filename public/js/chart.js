@@ -9,9 +9,6 @@
         var from = fromid+toid;
         var to = toid+fromid;
         var name = $('.name').html();
-        function scrollWindow(){
-            window.scrollTo(100,500);
-        }
         function showMessage(){
             $.ajax({
                 url: '/showMessage',
@@ -33,10 +30,6 @@
 
                     })
                     $('#message').append(html);
-                    var height = $('#message').height()-400;
-                    $('#message').scrollTop=height;
-                    //scrollWindow();
-                    //alert($('#message').clientHeight);
                     }
                     else{
                         console.log('出现问题1');
@@ -49,7 +42,7 @@
         }
         showMessage();
 
-        socket.emit('login',from);
+        socket.emit('chart',from);
     	$('.but').on('click',function(evt){
             evt.preventDefault();
             var message = $('.text').val();
