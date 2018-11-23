@@ -1,6 +1,7 @@
 //socket.io引入
 var messagedb = require("./messagedbserver.js");
 var frienddb = require('./friendsdbserver.js');
+var date = require('./date.js');
 
 module.exports = function(io){
 	var socketList = {};
@@ -20,8 +21,7 @@ module.exports = function(io){
 			//console.log('socketid'+socketList[id]);
 		});
 	  	socket.on('message', function(msg){
-		    //console.log(msg);
-		    var masg = msg.fromid+':'+msg.message;
+		    var nowtime = date.NowTime(new Date());
 		    //更新好友最近通信时间
 		    frienddb.updateTime(msg.fromid,msg.toid,);
 		    //1对1发送消息
@@ -46,7 +46,7 @@ module.exports = function(io){
 				    status: 0  
 				}
 		    	messagedb.insert(data);
-		    	socket.to(socketLogin[msg.toid]).emit('addMsg',msg.fromid);
+		    	socket.to(socketLogin[msg.toid]).emit('addMsg',msg.fromid,msg.message,nowtime);
 			}
 	  	});
 	  	//用户离开

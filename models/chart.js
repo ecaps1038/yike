@@ -55,6 +55,7 @@ exports.showMessage = function(req,res,from,to){
         else {
             var context = {
                 vacation : rest.map(function(ver){
+                    //将对应的信息标为已读
                     if(ver.status==0 && ver.toUserID==from){
                         messagedb.read(to,from);
                     }
@@ -89,3 +90,17 @@ exports.getcount = function(res,userid,friendid){
         }
     });
 }
+
+//查询符合条件的第一条数据
+exports.findOne = function(res,userid,friendid){
+    var query = message.findOne({});
+    //根据userID查询
+    query.where({'toUserID':userid,'fromUserID':friendid});
+    query.sort({'dateTime':-1});
+    //查询结果
+    query.exec().then(function(result){
+        res.send({success:true,result:result});
+    }).catch(function(err){
+        console.log(err);
+    }); 
+};

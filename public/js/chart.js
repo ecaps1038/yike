@@ -14,11 +14,21 @@
         var room = {};
         var j =1;
         room[0]=0;
+
+        //定位到区域最下方
         function scrollToBottom(){
             var $msgout = $('.msgout');
             var $message = $('#message');
             var toHeight = $message.outerHeight()-$msgout.height()+30;
             $msgout.scrollTop(toHeight);
+        }
+
+        //时间转换
+        function changeTime(date){
+            var d = new Date(date);
+            var tiems = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
+             + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
+            return tiems;
         }
 
         function showMessage(){
@@ -76,9 +86,10 @@
 
             //获取时间点
             var nowTime= new Date();
+            var changetime = changeTime(nowTime);
             room[j] =nowTime;
             if(nowTime>(room[j-1]+4*60*1000)){
-                html+="<p class='time'>"+nowTime+"</p>";
+                html+="<p class='time'>"+changetime+"</p>";
             }
             j++;
 
@@ -94,9 +105,10 @@
 
             //获取时间点
             var nowTime= new Date();
+            var changetime = changeTime(nowTime);
             room[j] =nowTime;
             if(nowTime>(room[j-1]+4*60*1000)){
-                html+="<p class='time'>"+nowTime+"</p>";
+                html+="<p class='time'>"+changetime+"</p>";
             }
             j++;
 

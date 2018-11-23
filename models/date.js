@@ -11,3 +11,8 @@ exports.DateDetail = function(date){
 	 + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
 	return tiems;
 };
+exports.NowTime = function(date){
+	var d = new Date(date);
+	var tiems = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
+	return tiems;
+}

@@ -50,7 +50,11 @@ module.exports = function(app,io){
 		var friendid = req.body.id;
 		var userid = req.session.userId;
 		chart.getcount(res,userid,friendid);
-		//console.log('朋友id：'+friendid);
-
-	})
+	});
+	//获取最后一条通信信息
+	app.post('/lastmsg',function(req,res){
+		var friendid = req.body.id;
+		var userid = req.session.userId;
+		chart.findOne(res,userid,friendid);
+	});
 };
