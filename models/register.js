@@ -11,4 +11,5 @@ exports.loginUp = function(name,email,pwd){
 	    online: 1  
 	}
 	userdbserver.insert(data);
+	return res.redirect('/yike');
 }

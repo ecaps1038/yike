@@ -9,6 +9,18 @@
         var from = fromid+toid;
         var to = toid+fromid;
         var name = $('.name').html();
+
+        var time =0;
+        var room = {};
+        var j =1;
+        room[0]=0;
+        function scrollToBottom(){
+            var $msgout = $('.msgout');
+            var $message = $('#message');
+            var toHeight = $message.outerHeight()-$msgout.height()+30;
+            $msgout.scrollTop(toHeight);
+        }
+
         function showMessage(){
             $.ajax({
                 url: '/showMessage',
@@ -17,19 +29,26 @@
                 success: function(data){
                     if(data.success){
                         var aa = data.context.vacation;
-                        console.log(aa)
-                        var html='';
+                        
                         var tt = aa.map(function(i){
-                            if(i.toUserID==toid){
-                                html+='<div style="height:60px; width:400px; margin:10px; background:#fff; float:right;"><li><img src="/vacation-photo/'+ 
-                                myimgurl+'" style="width:60px;" />'+i.message+'</li></div>';
-                            }else{
-                                html+='<div style="height:60px; width:400px; margin:10px;  float:left;"><li><img src="/vacation-photo/'+ 
-                                imgurl+'" style="width:60px;" />'+name+':'+i.message+'</li></div>';
+                            time = i.timeInt;
+                            room[j] =time;
+                            if(time>(room[j-1]+4*60*1000)){
+                                html+="<p class='time'>"+i.dateTime+"</p>";
                             }
+                            j++;
+
+                            if(i.toUserID==toid){
+                                html+='<div class="my message"><p><img src="/vacation-photo/'+ 
+                                myimgurl+'"/>'+i.message+'</p></div>';
+                            }else{
+                                html+='<div class="to message"><p><img src="/vacation-photo/'+ 
+                                imgurl+'"/>'+name+':'+i.message+'</p></div>';
+                            }                           
 
                     })
                     $('#message').append(html);
+                    scrollToBottom();
                     }
                     else{
                         console.log('出现问题1');
@@ -54,18 +73,38 @@
                 toid: toid
             }
             socket.emit('message',mesg);
-            html+='<div style="height:60px; width:400px; margin:10px; background:#fff; float:right;"><li><img src="/vacation-photo/'+ 
-            myimgurl+'" style="width:60px;" />'+message+'</li></div>';
+
+            //获取时间点
+            var nowTime= new Date();
+            room[j] =nowTime;
+            if(nowTime>(room[j-1]+4*60*1000)){
+                html+="<p class='time'>"+nowTime+"</p>";
+            }
+            j++;
+
+            html+='<div class="my message"><p><img src="/vacation-photo/'+ 
+            myimgurl+'"/>'+message+'</p></div>';
             $('#message').append(html); 
             html='';
             $('.text').val("");
+            scrollToBottom();
 
         });
         socket.on('sendMsg',function(msg){
-            html+='<div style="height:60px; width:400px; margin:10px; float:left;"><li style="float:left;"><img src="/vacation-photo/'+ 
-            imgurl+'" style="width:60px;" />'+name+':'+msg+'</li></div>';
-          $('#message').append(html);
-          html='';
+
+            //获取时间点
+            var nowTime= new Date();
+            room[j] =nowTime;
+            if(nowTime>(room[j-1]+4*60*1000)){
+                html+="<p class='time'>"+nowTime+"</p>";
+            }
+            j++;
+
+            html+='<div class="to message"><p><img src="/vacation-photo/'+ 
+            imgurl+'"/>'+name+':'+msg+'</p></div>';
+            $('#message').append(html);
+            html='';
+            scrollToBottom();
         });
     })
 })(jQuery,window,document);

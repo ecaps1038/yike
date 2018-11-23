@@ -63,7 +63,8 @@ exports.showMessage = function(req,res,from,to){
                         status : ver.status,
                         fromUserID : ver.fromUserID,
                         toUserID: ver.toUserID,          
-                        dateTime: ver.dateTime,    
+                        dateTime: date.DateDetail(ver.dateTime), 
+                        timeInt: ver.dateTime.getTime(),
                     }
                 })
             };

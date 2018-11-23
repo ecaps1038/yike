@@ -9,6 +9,30 @@
 	background: #f0f0f0;
 	overflow-y: auto;
 }
-.message{
-	
+#message .message{
+	width:100%;
+	height: 50px;
+	margin: 10px 0;
+	padding-bottom:30px;
+}
+#message .message p{
+	max-width: 400px;
+	padding: 5px;
+	border:1px solid #ddd;
+	margin: 0;
+}
+#message .message img{
+	width: 38px;
+	height: 38px;
+}
+#message .my p{
+	float: right;
+	background:#fff;
+}
+#message .to p{
+	float: left;
+}
+#message .time{
+	text-align: center;
+	padding: 20px 0;
 }
