@@ -86,7 +86,7 @@ exports.showFriend = function(req,res,id){
                     sex: function(){
                         if(!ver.friendID.sex){
                             return 'asexual';
-                        }else{return ver.sex;}
+                        }else{return ver.friendID.sex;}
                     },
                     imgurl: function(){
                         if(ver.friendID.imgurl){
