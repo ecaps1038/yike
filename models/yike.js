@@ -90,13 +90,13 @@ exports.addfriend = function(res,friendid,userid){
 	    userID: userid,                       		
 	    time: new Date(),							
 	    lasttime: new Date()  
-	}
+	};
 	var data2 = {
 		friendID : userid,
 		userID: friendid,                       		
 	    time: new Date(),							
 	    lasttime: new Date()  
-	}
+	};
 	frienddb.insert(data1);
 	frienddb.insert(data2);
 	return res.redirect('/yike');

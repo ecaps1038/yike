@@ -1,0 +1,31 @@
+{{#section 'head'}}
+    <title>创建群</title>
+    <link rel="stylesheet" type="text/css" href="css/group.css">
+{{/section}}
+<h3>创建群聊</h3>
+<a href="/yike">放弃</a>
+{{!-- <form method="post" action="/photoinst" enctype="multipart/form-data">
+	<input type="file" accept="image/*" id="fieldPhoto" name="photo">
+	<input type="submit" name="submit1" value="上传头像">
+</form> --}}
+
+<form method="post" class="group" action="/addgroup" enctype="multipart/form-data">
+<input type="file" accept="image/*" id="fieldPhoto" name="photo">
+<p>群名称：<input type="text" name="name"></p>
+<p>说明：<textarea name="explain">{{explain}}</textarea></p>
+
+{{!-- 调出好友列表 --}}
+<ul>
+{{#each vacation}}
+	<li>
+		<input type="checkbox" name="user" value="{{id}}">
+		<img src="/vacation-photo/{{imgurl}}" style="width:100px;" />
+		<span class="name">{{name}}</span>
+	</li>
+{{/each}}
+</ul>
+<button class="upuser">确定</button>
+</form>
+{{#section 'jquery'}}
+	<script src="/js/group.js" type="text/javascript"></script>
+{{/section}}

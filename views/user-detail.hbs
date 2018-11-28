@@ -17,6 +17,7 @@
 <p>在线:{{online}}</p>
 {{#if admin}}
 	<a href="/install">修改</a>
+	<a href="/logout" class="quit">退出</a>
 {{else}}
 	<a href="/delete-friend?id={{id}}" class="delete">删除好友</a>
 {{/if}}

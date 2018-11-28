@@ -23,6 +23,20 @@
 	line-height: 42px;
 	text-align: center;
 }
+.cregroup{
+	display: block;
+	position: fixed;
+	right: 40px;
+	top: 40px;
+	height: 42px;
+	width: 80px;
+	border-radius: 21px;
+	background: #f9644e;
+	text-decoration: none;
+	font-size: 16px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;}
 .myself{
 	background: #eee;
 }

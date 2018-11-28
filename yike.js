@@ -34,7 +34,10 @@ app.use(bodyparser.urlencoded({extended:false}));
 
 //socket.io引入
 var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var io = require('socket.io')(http,{
+	pingInterval: 10000,
+  	pingTimeout: 5000,
+});
 require('./models/socket.js')(io);
 
 //添加cookie中间件和session

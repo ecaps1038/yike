@@ -74,8 +74,7 @@ exports.showFriend = function(req,res,id){
                     markname: ver.name,
                     id : ver.friendID._id,
                     name: ver.friendID.name,
-                    pwd: ver.friendID.pwd,
-                    email: ver.friendID.email,
+                    //email: ver.friendID.email,
                     explain: function(){
                         if(ver.friendID.explain){
                             return ver.friendID.explain;
@@ -106,6 +105,39 @@ exports.showFriend = function(req,res,id){
             
         };
         res.render('yike',context,);
+    }).catch(function(err){
+        console.log(err);
+    });   
+};
+
+exports.showFriend1 = function(res,id){
+    var query = friend.find({});
+    //根据userID查询
+    query.where('userID',id);
+    //查出friendID的user对象
+    query.populate('friendID');
+    //按照最后会话时间倒序排列
+    query.sort({'lasttime':-1});
+    //查询结果
+    query.exec().then(function(result){
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+                return {
+                    markname: ver.name,
+                    id : ver.friendID._id,
+                    name: ver.friendID.name,
+                    imgurl: function(){
+                        if(ver.friendID.imgurl){
+                            return ver.friendID.imgurl;
+                        }else{
+                            return 'user.jpg';
+                        }
+                    },
+                }
+            }),            
+        };
+        res.render('create-group',context,);
     }).catch(function(err){
         console.log(err);
     });   
