@@ -57,10 +57,5 @@ module.exports = function(app,io){
 		var userid = req.session.userId;
 		chart.findOne(res,userid,friendid);
 	});
-	//创建群
-	app.get('/create-group',function(req,res){
-		var userid = req.session.userId;
-		login.showFriend1(res,userid);
-	});
 
 };

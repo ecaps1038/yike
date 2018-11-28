@@ -55,6 +55,7 @@ require('./routes/yike.js')(app);
 require('./routes/register.js')(app);
 require('./routes/showuser.js')(app);
 require('./routes/install.js')(app);
+require('./routes/group.js')(app);
 require('./routes/chart.js')(app,io);
 
 
