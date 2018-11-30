@@ -18,6 +18,8 @@ var GroupuserSchema = new Schema({
     name: {type: String},					   					//群内名称
     time: {type: Date},  										//加入时间
     status: {type: Number},  									//未读消息数
+    lasttime: {type: Date},                      				//最后通话时间
+    shield: {type: Number}     									//是否屏蔽（0,1,2）
 });
 
 //群消息表

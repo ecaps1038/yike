@@ -51,10 +51,6 @@ exports.fileUp = function(req,res){
 	form.uploadDir = '/tmp';
 	form.parse(req, function(err, fields, files){
 		if(err) {return res.redirect(303, '/error');}
-		var name = fields.name;
-		var user = fields.user;
-		console.log(user);
-		console.log(fields);
 		if(files.photo.size>0){
 			var photo = files.photo;
 			//var dir = groupPhotoDir + '/' + Date.now();
@@ -68,9 +64,30 @@ exports.fileUp = function(req,res){
 				}
 			});
 		}else{
-			var photo = 'group.jpg';
+			var photo = 'group.png';
 		}
-		
-		return res.redirect(303, '/yike');
+		res.cookie('iconname',photoName,{signed:true, maxAge: 60*1000});
+		return res.redirect(303, '/create-group');
+		//res.render('/create-group');
 	});
+
+}
+
+//https://cnodejs.org/topic/4f939c84407edba2143c12f7
+exports.filecil = function(req,res){
+	var imgData = req.body.dataurl;
+	//过滤data:URL
+	var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+	var dataBuffer = new Buffer(base64Data, 'base64');
+	// console.log(dataBuffer);
+
+	var photoName = Date.now()+'.png';
+	var pathh = groupPhotoDir + '/' + photoName;
+	fs.writeFile(pathh,dataBuffer,function(err){
+		if(err){
+			return console.log(err.message);
+		}
+	});
+	res.cookie('iconname',photoName,{signed:true, maxAge: 60*1000});
+	res.send({success:true});
 }

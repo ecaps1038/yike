@@ -110,8 +110,14 @@ exports.showFriend = function(req,res,id){
     });   
 };
 
-exports.showFriend1 = function(res,id){
+exports.showFriend1 = function(req,res,id){
     var query = friend.find({});
+    //将上传的图片名称用cookies带过来1分钟时间刷新有效
+    if(req.signedCookies.iconname){
+        var iconname=req.signedCookies.iconname;
+    }else{
+        var iconname='group.png';
+    }
     //根据userID查询
     query.where('userID',id);
     //查出friendID的user对象
@@ -135,7 +141,8 @@ exports.showFriend1 = function(res,id){
                         }
                     },
                 }
-            }),            
+            }), 
+            iconname:iconname, 
         };
         res.render('create-group',context,);
     }).catch(function(err){

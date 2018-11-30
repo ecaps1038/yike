@@ -21,6 +21,13 @@ var handlebars = require('express-handlebars').create({
 
 var app = express();
 
+//处理附件内容字节数太大
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit:'50mb'}));
+app.use(bodyParser.urlencoded({limit:'50mb',extended:true}));
+
+
+
 //设置handlebars视图引擎
 app.engine('hbs',handlebars.engine);
 app.set('view engine', 'hbs');
@@ -57,7 +64,6 @@ require('./routes/showuser.js')(app);
 require('./routes/install.js')(app);
 require('./routes/group.js')(app);
 require('./routes/chart.js')(app,io);
-
 
 //定制404页面
 app.use(function(req,res,next){

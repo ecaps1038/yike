@@ -1,0 +1,15 @@
+#clipArea {
+	margin: 20px;
+	height: 400px;
+	width: 400px;
+}
+#file,
+#clipBtn {
+	margin: 20px;
+}
+#view {
+	margin: -220px 0px 0 440px;
+	width: 200px;
+	height: 200px;
+	background-color:#fff; 
+}
