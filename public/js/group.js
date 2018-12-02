@@ -24,7 +24,7 @@ $(document).ready(function(){
 			data: {icon:icon,groupName:groupName,user:user},
 			success: function(data){
 				if(data.success){
-					alert('发送成功');
+					console.log('发送成功');
 				}
 				else{
 					alert('接收失败');
