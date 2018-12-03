@@ -25,6 +25,7 @@ module.exports = function(app){
 		
 		//var id = req.session.userId;
 		group.addgroup(req,res);
+		//group.addgroupuser(req,res);
 		//res.redirect('/yike');
 		res.send({success:true});
 	});

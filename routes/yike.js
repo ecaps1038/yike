@@ -2,6 +2,7 @@ var login = require('../models/login');
 var socket = require('../models/socket');
 var yike = require('../models/yike');
 var chart = require('../models/chart');
+var group = require('../models/group');
 module.exports = function(app,io){
 	app.get('/yike',function(req,res){
 		if(req.signedCookies.id){
@@ -10,9 +11,11 @@ module.exports = function(app,io){
 			req.session.imgurl = req.signedCookies.imgurl;
 			var id = req.session.userId;
 			login.showFriend(req,res,id);
+			group.showGroup(req,res,id);
 		}else if(req.session.userId){
 			var id = req.session.userId;
 			login.showFriend(req,res,id);
+			group.showGroup(req,res,id);
 		}else{
 			res.redirect('/');
 		}
