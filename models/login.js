@@ -58,7 +58,7 @@ exports.showUser = function(req,res,id){
 exports.showFriend = function(req,res,id){
     var myimgurl = req.session.imgurl;
     var myname = req.session.username;
-    var query = friend.find({},{'name':1,'friendID':1});
+    var query = friend.find({});
     //根据userID查询
     query.where('userID',id);
     //查出friendID的user对象
@@ -72,16 +72,18 @@ exports.showFriend = function(req,res,id){
             vacation : result.map(function(ver){
                 return {
                     markname: ver.name,
+                    lasttime: ver.lasttime.getTime(),
+                    time: ver.time,
                     id : ver.friendID._id,
                     name: ver.friendID.name,
                     //email: ver.friendID.email,
-                    explain: function(){
-                        if(ver.friendID.explain){
-                            return ver.friendID.explain;
-                        }else{
-                            return '不签名是我的个性之一'
-                        }
-                    },
+                    // explain: function(){
+                    //     if(ver.friendID.explain){
+                    //         return ver.friendID.explain;
+                    //     }else{
+                    //         return '不签名是我的个性之一'
+                    //     }
+                    // },
                     sex: function(){
                         if(!ver.friendID.sex){
                             return 'asexual';
@@ -94,8 +96,8 @@ exports.showFriend = function(req,res,id){
                             return 'user.jpg';
                         }
                     },
-                    birth: date.DateSimple(ver.friendID.birth),
-                    registerdate: date.DateDetail(ver.friendID.registerdate),
+                    //birth: date.DateSimple(ver.friendID.birth),
+                    //registerdate: date.DateDetail(ver.friendID.registerdate),
                     online: ver.friendID.online,
                 }
             }),
@@ -104,6 +106,7 @@ exports.showFriend = function(req,res,id){
             name: myname
             
         };
+        //console.log(context);
         res.render('yike',context,);
     }).catch(function(err){
         console.log(err);

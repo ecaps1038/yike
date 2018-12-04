@@ -32,3 +32,20 @@ exports.insertGroupUser = function(data){
         }
     });
 };
+
+//更新
+function updateTime(friendid,userid){
+     var wherestr = {'groupID':friendid};
+     var updatestr = {'lasttime': new Date()};
+    
+    
+    Groupuser.updateMany(wherestr, updatestr, function(err, res){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            console.log("数据修改成功！");
+        }
+    });
+}
+//updateTime('5c049d7c8be7d71760120b69');

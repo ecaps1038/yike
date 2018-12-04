@@ -11,11 +11,11 @@ module.exports = function(app,io){
 			req.session.imgurl = req.signedCookies.imgurl;
 			var id = req.session.userId;
 			login.showFriend(req,res,id);
-			group.showGroup(req,res,id);
+			//group.showGroup(req,res,id);
 		}else if(req.session.userId){
 			var id = req.session.userId;
 			login.showFriend(req,res,id);
-			group.showGroup(req,res,id);
+			//group.showGroup(req,res,id);
 		}else{
 			res.redirect('/');
 		}
@@ -60,5 +60,11 @@ module.exports = function(app,io){
 		var userid = req.session.userId;
 		chart.findOne(res,userid,friendid);
 	});
+
+	//获取群列表
+	app.post('/getgroup',function(req,res){
+		var userid = req.session.userId;
+		group.showGroup(req,res,userid);
+	})
 
 };

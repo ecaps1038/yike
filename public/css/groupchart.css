@@ -1,0 +1,75 @@
+.main{
+	margin: 20px auto;
+	width: 860px;
+}
+.inner{
+	height: 400px;
+}
+.msgout{
+	position:relative;
+	height: 400px;
+	width: 640px;
+	background: #f0f0f0;
+	overflow-y: auto;
+	float: left;
+}
+#message .message{
+	width:100%;
+	height: 50px;
+	margin: 10px 0;
+	padding-bottom:30px;
+}
+#message .message p{
+	max-width: 400px;
+	padding: 5px;
+	border:1px solid #ddd;
+	margin: 0;
+}
+#message .message img{
+	width: 38px;
+	height: 38px;
+}
+#message .my p{
+	float: right;
+	background:#fff;
+}
+#message .to p{
+	float: left;
+}
+#message .time{
+	text-align: center;
+	padding: 20px 0;
+}
+.groupmsg{
+	height: 400px;
+	width: 220px;
+	background: #fafafa;
+	float:right;
+}
+.groupmsg .user{
+	padding: 0;
+	margin: 10px;
+}
+.groupmsg .user li{
+	list-style: none;
+	display: inline-block;
+}
+.user li .img{
+	width: 40px;
+	height: 40px;
+	overflow: hidden;
+	border-radius: 5px;
+	margin: 0 13px;
+}
+.user li img{
+	width: 40px;
+	height: 40px;
+}
+.user li a{
+	display: inline-block;
+	width: 66px;
+	text-decoration: none;
+	font-size: 12px;
+	text-align: center;
+	padding-top: 10px;
+}

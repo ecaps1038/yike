@@ -17,23 +17,26 @@
 </form>
 <div class="sear"></div>
 {{#if vacation}}
-	{{#each vacation}}
-		<div class="user other">
-			<input type="hidden" value="{{id}}" class="friendid">
-			<p class="count"></p>
-			<a href="/chart?id={{id}}" class="chart"></a>
-			<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{imgurl}}"/></a></p>
-			{{#if markname}}
-				<p class="name">{{markname}}</p>
-			{{else}}
-				<p class="name">{{name}}</p>
-			{{/if}}
-			{{!-- <p class="explain">{{explain}}</p> --}}
-			<p class="sex {{sex}}"></p>
-			<p class="news"></p>
-			<p class="nowtime"></p>
-		</div>
-	{{/each}}
+	<ul class="userlist">
+		{{#each vacation}}
+			<li class="user other">
+				<input type="hidden" value="{{id}}" class="friendid">
+				<p class="count"></p>
+				<a href="/chart?id={{id}}" class="chart"></a>
+				<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{imgurl}}"/></a></p>
+				{{#if markname}}
+					<p class="name">{{markname}}</p>
+				{{else}}
+					<p class="name">{{name}}</p>
+				{{/if}}
+				{{!-- <p class="explain">{{explain}}</p> --}}
+				<p class="sex {{sex}}"></p>
+				<p class="news"></p>
+				<p class="nowtime"></p>
+				<p class="lasttime" style="display:none">{{lasttime}}</p>
+			</li>
+		{{/each}}
+	</ul>
 {{else}}
 	<div><img src="/images/nothing.png"></div>
 {{/if}}

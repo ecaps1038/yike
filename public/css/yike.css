@@ -7,6 +7,7 @@
 	text-align: center;
 	color: #333;
 	position: relative;
+	list-style: none;
 }
 .quit{
 	display: block;
@@ -76,6 +77,9 @@
 }
 .asexual{
 	background: url('../images/sex/asexual.png');
+}
+.group{
+	background: url('../images/sex/group.png');
 }
 .chart{
 	position: absolute;

@@ -1,0 +1,50 @@
+{{#section 'head'}}
+    <title>聊天</title>
+    <link rel="stylesheet" type="text/css" href="css/groupchart.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/json3.min.js"></script>
+{{/section}}
+<div class="main">
+	{{#each vacation}}
+		<img src="/group-photo/{{icon}}" style="width:100px;" /><span class="name">{{name}}</span>
+		<input type="hidden" value="{{icon}}" class="imgurl">
+		<input type="hidden" value="{{myimgurl}}" class="myimgurl">
+		<input type="hidden" value="{{id}}" class="id">
+		<input type="hidden" value="{{myid}}" class="myid">
+	{{/each}}
+	<a href="/yike">返回</a>
+	<div class="inner">
+		<div class="msgout">
+			<div id="message"></div>	
+		</div>
+		<div class="groupmsg">
+			<ul class="user"></ul>
+			<a href="#">添加人员</a>
+			<div>
+				<p>群公告</p>
+				<p>公告内容</p>
+			</div>
+			<div>
+				<p>群内名称</p>
+				<p>名称</p>
+			</div>
+			{{#each vacation}}
+				{{#if admin}}
+				<div>
+					<a href="#">管理群</a>
+				</div>
+				{{else}}
+				<a href="#">退群</a>
+				{{/if}}
+			{{/each}}
+		</div>
+	</div>
+	<form class="forms">
+		<input type="text" name="text" class="text">
+		<button class="but" type="button">点击</button>
+	</form>
+</div>
+
+{{#section 'jquery'}}
+	<script src="/js/groupchart.js" type="text/javascript"></script>
+{{/section}}
