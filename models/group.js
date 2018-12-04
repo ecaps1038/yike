@@ -33,19 +33,21 @@ exports.addgroup = function(req,res){
 			        		var guserData = {
 			        			groupID: ids._id,
 			        			userID: ver,
-								time: new Date()
+								time: new Date(),
+                                lasttime: new Date()
 			        		}
 			        		console.log(guserData);
 			        		groupdbs.insertGroupUser(guserData);
-			        	})
+			        	});
+                        //添加自己入群
+                        userData = {
+                            groupID: ids._id,
+                            userID: adminid,
+                            time: new Date(),
+                            lasttime: new Date()
+                        }
+                        groupdbs.insertGroupUser(userData);
 			        });
-			        //添加自己入群
-			        userData = {
-			        	groupID: ids._id,
-			        	userID: adminid,
-			        	time: new Date()
-			        }
-			        groupdbs.insertGroupUser(userData);
 		        }
 			})
         }

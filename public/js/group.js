@@ -25,6 +25,7 @@ $(document).ready(function(){
 			success: function(data){
 				if(data.success){
 					console.log('发送成功');
+					$(location).attr('href', '/yike');
 				}
 				else{
 					alert('接收失败');
