@@ -52,8 +52,8 @@
                                 html+='<div class="my message"><p><img src="/vacation-photo/'+ 
                                 myimgurl+'"/>'+i.message+'</p></div>';
                             }else{
-                                html+='<div class="to message"><p><img src="/vacation-photo/'+ 
-                                i.imgurl+'"/>'+name+':'+i.message+'</p></div>';
+                                html+='<div class="to message"><p><a href="/search-detail?id='+i.id+'"><img src="/vacation-photo/'+ 
+                                i.imgurl+'"/></a>'+name+':'+i.message+'</p></div>';
                             }                           
 
                     })
