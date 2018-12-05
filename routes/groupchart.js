@@ -10,14 +10,13 @@ module.exports = function(app,io){
 
 	//获取群成员
 	app.post('/showUser',function(req,res){
-		var groupid = req.body.toid;
+		var groupid = req.body.groupid;
 		group.showUser(req,res,groupid);
 	})
-	//查询数据库信息
-	app.post('/showMessage',function(req,res){
-		var from = req.body.fromid;
-		var to = req.body.toid;
-		chart.showMessage(req,res,from,to);
+	//查询群数据库信息
+	app.post('/showGroupMessage',function(req,res){
+		var groupid = req.body.groupid;
+		group.showGroupMessage(req,res,groupid);
 		//res.send({success:true});
 	});
 }

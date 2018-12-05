@@ -3,6 +3,7 @@ var groupdb = require("./groupsdb.js");
 var Group = groupdb.model('Group');
 var Groupuser = groupdb.model('Groupuser');
 var Groupmsg = groupdb.model('Groupmsg');
+var date = require('./date.js');
 
 //添加群及群成员数据
 exports.addgroup = function(req,res){
@@ -88,6 +89,11 @@ exports.showGroup = function(req,res,id){
 exports.findGroup = function(req,res,id){
     var myid = req.session.userId;
     var myimgurl = req.session.imgurl;
+    var myname = req.session.username;
+
+    //复位群未读消息数
+    groupdbs.updateStatus(id,myid);
+
     var id = {'_id':id};
     var out = {'name':1,'icon':1,'adminID':1};
     Group.find(id, out, function(err, ress){
@@ -109,6 +115,7 @@ exports.findGroup = function(req,res,id){
 	                    online: ver.online,
 	                    myid: myid,
 	                    myimgurl: myimgurl,
+	                    myname: myname,
 	                    admin: admin,
 	                }
 	            })
@@ -117,6 +124,41 @@ exports.findGroup = function(req,res,id){
         }
     });
 };
+
+//查询群消息
+exports.showGroupMessage = function(req,res,id){
+	var query = Groupmsg.find({});
+    //根据userID查询
+    query.where('groupID',id);
+    //查出friendID的user对象
+    query.populate('fromID');
+    //按照最后会话时间倒序排列
+    //query.sort({'time':-1});
+    //查询结果
+    query.exec().then(function(result){
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+            	if(ver.fromID.imgurl){
+                    var imgurl = ver.fromID.imgurl;
+                }else{
+                    var imgurl = 'user.jpg';
+                } 
+                return {
+                    content: ver.content,
+                    id : ver.fromID._id,
+                    name: ver.fromID.name,
+                    imgurl: imgurl,
+                    dateTime: date.DateDetail(ver.time), 
+                    timeInt: ver.time.getTime(),                
+                }
+            })           
+        };
+        res.send({success:true,result:context});
+    }).catch(function(err){
+        console.log(err);
+    });   
+}
 
 //查询群对应的群成员
 exports.showUser = function(req,res,id){
@@ -132,11 +174,16 @@ exports.showUser = function(req,res,id){
         //console.log(result);
         var context = {
             vacation : result.map(function(ver){
+            	if(ver.userID.imgurl){
+                    var imgurl = ver.userID.imgurl;
+                }else{
+                    var imgurl = 'user.jpg';
+                } 
                 return {
                     markname: ver.name,
                     id : ver.userID._id,
                     name: ver.userID.name,
-                    imgurl: ver.userID.imgurl,
+                    imgurl: imgurl,
                 }
             })           
         };

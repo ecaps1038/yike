@@ -139,17 +139,20 @@ $(document).ready(function(){
 					var val = data.result.vacation;
 					console.log(val);
 					var aa = val.map(function(i){
+						//注册群登录
+						socket.emit('grouplogin',i.id); 
 						html +='<li class="user other">'+
-			'<input type="hidden" value="'+i.id+'" class="friendid">'+
-			'<p class="count"></p>'+
-			'<a href="/groupchart?id='+i.id+'" class="chart"></a>'+
-			'<a href="/groupchart?id='+i.id+'" class="header"><img src="/group-photo/'+i.icon+'"/></a></p>'+
-			'<p class="name">'+i.name+'</p>'+
-			'<p class="sex group"></p>'+
-			'<p class="news"></p>'+
-			'<p class="nowtime"></p>'+
-			'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
-		'</li>'
+						'<input type="hidden" value="'+i.id+'" class="friendid">'+
+						'<p class="count"></p>'+
+						'<a href="/groupchart?id='+i.id+'" class="chart"></a>'+
+						'<a href="/groupchart?id='+i.id+'" class="header"><img src="/group-photo/'
+						+i.icon+'"/></a></p>'+
+						'<p class="name">'+i.name+'</p>'+
+						'<p class="sex group"></p>'+
+						'<p class="news"></p>'+
+						'<p class="nowtime"></p>'+
+						'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
+					'</li>'
 					});
 					$('.userlist').append(html);
 					//用户列表重新排序

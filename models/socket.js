@@ -1,11 +1,13 @@
 //socket.io引入
 var messagedb = require("./messagedbserver.js");
 var frienddb = require('./friendsdbserver.js');
+var groupdb = require('./groupdbserver.js');
 var date = require('./date.js');
 
 module.exports = function(io){
 	var socketList = {};
 	var socketLogin = {};
+	var socketGroupList = {};
 
 	io.on('connection', function(socket){
 		//用户登陆到大厅
@@ -20,6 +22,7 @@ module.exports = function(io){
 			socketList[id] = socket.id;
 			//console.log('socketid'+socketList[id]);
 		});
+		//接收好友信息
 	  	socket.on('message', function(msg){
 		    var nowtime = date.NowTime(new Date());
 		    //更新好友最近通信时间
@@ -61,5 +64,28 @@ module.exports = function(io){
 	        	//console.log('离开yike');
 	        }
 	    });
+
+		socket.on('group', function (data) {
+			console.log(data);
+	    	socket.join(data);
+	  	});
+		//接收群信息
+	  	socket.on('groupmessage', function(msg){
+		    var nowtime = date.NowTime(new Date());
+		    //保存到群消息内
+		    var msgData = {
+		    	groupID: msg.groupid,
+		    	fromID: msg.userid,
+		    	content: msg.message,
+		    	time: new Date(),
+		    }
+		    groupdb.insertGroupMsg(msgData);
+
+		    //更新群用户消息数及最后通讯时间
+		    groupdb.updateTime(msg.groupid);
+
+			//广播消息
+			socket.broadcast.to(msg.groupid).emit('sendGroupMsg',msg.message,msg.name,msg.imgurl,msg.userid);
+	  	});
 	});
 }

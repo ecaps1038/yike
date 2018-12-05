@@ -33,12 +33,25 @@ exports.insertGroupUser = function(data){
     });
 };
 
-//更新
-function updateTime(friendid,userid){
-     var wherestr = {'groupID':friendid};
-     var updatestr = {'lasttime': new Date()};
-    
-    
+//存储群消息到数据库
+exports.insertGroupMsg = function(data){
+
+    var groupmsg = new Groupmsg(data);
+
+    groupmsg.save(function (err, res) {
+        if (err) {
+            console.log("数据群消息失败" + err);
+        }
+        else {
+            console.log("数据群消息成功");
+        }
+    });
+};
+
+//更新群用户消息最后时间
+exports.updateTime = function(groupid){
+    var wherestr = {'groupID':groupid};
+    var updatestr = {'lasttime': new Date(),$inc: {'status': 1} };
     Groupuser.updateMany(wherestr, updatestr, function(err, res){
         if (err) {
             console.log("数据修改出错：" + err);
@@ -48,4 +61,17 @@ function updateTime(friendid,userid){
         }
     });
 }
-//updateTime('5c049d7c8be7d71760120b69');
+
+//进入群时复位群消息数
+exports.updateStatus = function(groupid,userid){
+    var wherestr = {'groupID':groupid,'userID':userid};
+    var updatestr = {'status': 0};
+    Groupuser.updateMany(wherestr, updatestr, function(err, res){
+        if (err) {
+            console.log("复位群消息数失败：" + err);
+        }
+        else {
+            console.log("复位群消息数成功！");
+        }
+    });
+}

@@ -2,13 +2,11 @@
     $(document).ready(function(){
     	var socket = io();
         var html='';
-        var fromid = $('.myid').val();
-        var toid = $('.id').val();
-        var groupid = toid;
+        var userid = $('.myid').val();
+        var groupid = $('.id').val();
         var imgurl = $('.imgurl').val();
         var myimgurl = $('.myimgurl').val();
-        var from = fromid+toid;
-        var to = toid+fromid;
+        var myname = $('.myname').val();
         var name = $('.name').html();
 
         var time =0;
@@ -32,14 +30,15 @@
             return tiems;
         }
 
-        function showMessage(){
+        function showGroupMessage(){
             $.ajax({
-                url: '/showMessage',
+                url: '/showGroupMessage',
                 type: 'POST',
-                data: {fromid:fromid,toid:toid},
+                data: {groupid:groupid},
                 success: function(data){
                     if(data.success){
-                        var aa = data.context.vacation;
+                        var aa = data.result.vacation;
+                        console.log(aa);
                         
                         var tt = aa.map(function(i){
                             time = i.timeInt;
@@ -49,12 +48,12 @@
                             }
                             j++;
 
-                            if(i.toUserID==toid){
+                            if(i.id==userid){
                                 html+='<div class="my message"><p><img src="/vacation-photo/'+ 
                                 myimgurl+'"/>'+i.message+'</p></div>';
                             }else{
                                 html+='<div class="to message"><p><img src="/vacation-photo/'+ 
-                                imgurl+'"/>'+name+':'+i.message+'</p></div>';
+                                i.imgurl+'"/>'+name+':'+i.message+'</p></div>';
                             }                           
 
                     })
@@ -70,20 +69,22 @@
                 }
             });
         }
-        showMessage();
+        showGroupMessage();
 
-        socket.emit('chart',from);
+        //加入群申请
+        socket.emit('group',groupid);
+        //发送消息
     	$('.but').on('click',function(evt){
             evt.preventDefault();
             var message = $('.text').val();
             var mesg = {
-                name:name,
-                to:to,
+                name:myname,
+                groupid:groupid,
                 message: message,
-                fromid: fromid,
-                toid: toid
+                userid: userid,
+                imgurl: myimgurl,
             }
-            socket.emit('message',mesg);
+            socket.emit('groupmessage',mesg);
 
             //获取时间点
             var nowTime= new Date();
@@ -102,7 +103,8 @@
             scrollToBottom();
 
         });
-        socket.on('sendMsg',function(msg){
+        //接收信息
+        socket.on('sendGroupMsg',function(msg,uname,img,fromid){
 
             //获取时间点
             var nowTime= new Date();
@@ -113,8 +115,8 @@
             }
             j++;
 
-            html+='<div class="to message"><p><img src="/vacation-photo/'+ 
-            imgurl+'"/>'+name+':'+msg+'</p></div>';
+            html+='<div class="to message"><p><a href="/search-detail?id='+fromid+'"><img src="/vacation-photo/'+ 
+            img+'"/></a>'+uname+':'+msg+'</p></div>';
             $('#message').append(html);
             html='';
             scrollToBottom();
@@ -125,15 +127,15 @@
         	 $.ajax({
                 url: '/showUser',
                 type: 'POST',
-                data: {toid:toid},
+                data: {groupid:groupid},
                 success: function(data){
                 	if(data.success){
                 		var html='';
                 		var aa = data.result.vacation;
-                        console.log(aa);
+                        //console.log(aa);
                         var tt = aa.map(function(i){
-                        	html += '<li><a href="#"><div class="img"><img src="/vacation-photo/'+i.imgurl+'"/>'+
-                        	'</div><span>'+i.name+'</span></a>';
+                        	html += '<li><a href="/search-detail?id='+i.id+'"><div class="img"><img src="/vacation-photo/'
+                        	+i.imgurl+'"/>'+'</div><span>'+i.name+'</span></a>';
                         });
                         $('.groupmsg .user').append(html);
 	                }else{

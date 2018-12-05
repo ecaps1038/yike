@@ -1,5 +1,5 @@
 {{#section 'head'}}
-    <title>聊天</title>
+    <title>群聊天</title>
     <link rel="stylesheet" type="text/css" href="css/groupchart.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/json3.min.js"></script>
@@ -9,6 +9,7 @@
 		<img src="/group-photo/{{icon}}" style="width:100px;" /><span class="name">{{name}}</span>
 		<input type="hidden" value="{{icon}}" class="imgurl">
 		<input type="hidden" value="{{myimgurl}}" class="myimgurl">
+		<input type="hidden" value="{{myname}}" class="myname">
 		<input type="hidden" value="{{id}}" class="id">
 		<input type="hidden" value="{{myid}}" class="myid">
 	{{/each}}
