@@ -192,3 +192,31 @@ exports.showUser = function(req,res,id){
         console.log(err);
     });   
 }
+
+//获取群最后消息及未读消息数
+exports.getgroupcount = function(res,groupid,userid){
+	var wherestr = {'groupID':groupid,'userID':userid};
+	var out = {'status':1};  
+    Groupuser.find(wherestr, out, function(err, rest){
+        if (err) {
+            console.log("数据统计失败：" + err);
+        }
+        else {
+            res.send({success:true,rest:rest});
+        }
+    });
+}
+
+//查询符合条件的第一条数据
+exports.findOne = function(res,groupid){
+    var query = Groupmsg.findOne({});
+    //根据userID查询
+    query.where({'groupID':groupid});
+    query.sort({'time':-1});
+    //查询结果
+    query.exec().then(function(result){
+        res.send({success:true,result:result});
+    }).catch(function(err){
+        console.log(err);
+    }); 
+};

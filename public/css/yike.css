@@ -8,6 +8,7 @@
 	color: #333;
 	position: relative;
 	list-style: none;
+	background: #f8f8f8;
 }
 .quit{
 	display: block;
@@ -40,9 +41,6 @@
 	text-align: center;}
 .myself{
 	background: #eee;
-}
-.other{
-	background: #f8f8f8;
 }
 .header{
 	display: inline-block;

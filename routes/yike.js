@@ -60,11 +60,21 @@ module.exports = function(app,io){
 		var userid = req.session.userId;
 		chart.findOne(res,userid,friendid);
 	});
-
 	//获取群列表
 	app.post('/getgroup',function(req,res){
 		var userid = req.session.userId;
 		group.showGroup(req,res,userid);
+	});
+	//获取群未读消息数及最后通话时间
+	app.post('/groupcount',function(req,res){
+		var groupid = req.body.id;
+		var userid = req.session.userId;
+		group.getgroupcount(res,groupid,userid);
+	});
+	//获取群最后通讯信息
+	app.post('/lastgroupmsg',function(req,res){
+		var groupid = req.body.id;
+		group.findOne(res,groupid);	
 	})
 
 };

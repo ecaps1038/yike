@@ -51,7 +51,7 @@ $(document).ready(function(){
 	});
 
 	//遍历获取未读信息数及最后通话信息
-	$('.user').each(function(){
+	$('.other').each(function(){
 		var that = $(this);
 		var id = $(this).find('.friendid').val();
 		var $count = that.find('.count');
@@ -88,13 +88,15 @@ $(document).ready(function(){
 				if(data.success){
 					var count = data.result;
 					var nowt = new Date();
-					var times = gettime(count.dateTime);
+					if(count){
+						var times = gettime(count.dateTime);
 
-					$news.html(count.postMessages);
+						$news.html(count.postMessages);
 
-					if(nowt-times>1000*60*60*24){
-            		$time.html(changeTime2(count.dateTime));}
-            		else{$time.html(changeTime1(count.dateTime));}
+						if(nowt-times>1000*60*60*24){
+	            		$time.html(changeTime2(count.dateTime));}
+	            		else{$time.html(changeTime1(count.dateTime));}
+            		}
 				}else{
 					console.log('查询失败');
 				}
@@ -102,14 +104,73 @@ $(document).ready(function(){
 		})
 	});
 
+	//遍历获取群未读信息数及最后通话信息、
+	function getgroupcount(){
+		$('.groups').each(function(){
+			var that = $(this);
+			var id = $(this).find('.groupid').val();
+			var $count = that.find('.count');
+	        var $news = that.find('.news');
+	        var $time = that.find('.nowtime');
+	        var count = $count.html();
+
+			//获取群未读数
+			$.ajax({
+				url: '/groupcount',
+				type: 'POST',
+				data: {id:id},
+				success: function(data){
+					if(data.success){
+						var count = data.rest;
+						count.map(function(i){
+							if(i.status>0){
+								that.find('.count').html(i.status).css('display','block');
+
+							}else{
+								that.find('.count').html(0).css('display','none');
+							}						
+						});
+					}else{
+						console.log('查询失败');
+					}
+				}
+			})
+
+			//最后通话信息
+			$.ajax({
+				url: '/lastgroupmsg',
+				type: 'POST',
+				data: {id:id},
+				success: function(data){
+					if(data.success){
+						var msg = data.result;
+						var nowt = new Date();
+						if(msg){
+							var times = gettime(msg.time);
+
+							$news.html(msg.content);
+
+							if(nowt-times>1000*60*60*24){
+		            		$time.html(changeTime2(msg.time));}
+		            		else{$time.html(changeTime1(msg.time));}
+	            		}
+					}else{
+						console.log('查询失败');
+					}
+				}
+			})
+		});
+	}
+
+
 	//获取即时信息数
 	var socket = io();
 	var userid = $('.userid').val();
 	socket.emit('login',userid); 
-	//接收socket
+	//接收一对一socket
 	socket.on('addMsg',function(toid,msg,time){
             
-        $('.user').each(function(){
+        $('.other').each(function(){
             var that = $(this);
             var id = that.find('.friendid').val();
             var $count = that.find('.count');
@@ -122,7 +183,29 @@ $(document).ready(function(){
             	$news.html(msg);
             	$time.html(time);
             }
-        })
+        });
+        //用户列表重新排序
+		userSort();
+    });
+	//接收群socket
+	socket.on('addGroupMsg',function(groupid,msg,time){
+            
+        $('.groups').each(function(){
+            var that = $(this);
+            var id = that.find('.groupid').val();
+            var $count = that.find('.count');
+            var $news = that.find('.news');
+            var $time = that.find('.nowtime');
+            var count = $count.html();
+            if(id==groupid){
+            	count++;
+            	$count.html(count).css('display','block');
+            	$news.html(msg);
+            	$time.html(time);
+            }
+        });
+        //用户列表重新排序
+		userSort();
     });
 
 
@@ -141,8 +224,8 @@ $(document).ready(function(){
 					var aa = val.map(function(i){
 						//注册群登录
 						socket.emit('grouplogin',i.id); 
-						html +='<li class="user other">'+
-						'<input type="hidden" value="'+i.id+'" class="friendid">'+
+						html +='<li class="user groups">'+
+						'<input type="hidden" value="'+i.id+'" class="groupid">'+
 						'<p class="count"></p>'+
 						'<a href="/groupchart?id='+i.id+'" class="chart"></a>'+
 						'<a href="/groupchart?id='+i.id+'" class="header"><img src="/group-photo/'
@@ -157,6 +240,8 @@ $(document).ready(function(){
 					$('.userlist').append(html);
 					//用户列表重新排序
 					userSort();
+					//获取群最后通话消息及未读数
+					getgroupcount();
 				}else{
 					console.log('查询失败');
 				}

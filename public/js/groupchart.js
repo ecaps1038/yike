@@ -38,8 +38,7 @@
                 success: function(data){
                     if(data.success){
                         var aa = data.result.vacation;
-                        console.log(aa);
-                        
+                        //console.log(aa);  
                         var tt = aa.map(function(i){
                             time = i.timeInt;
                             room[j] =time;
@@ -50,10 +49,10 @@
 
                             if(i.id==userid){
                                 html+='<div class="my message"><p><img src="/vacation-photo/'+ 
-                                myimgurl+'"/>'+i.message+'</p></div>';
+                                myimgurl+'"/>'+i.content+'</p></div>';
                             }else{
                                 html+='<div class="to message"><p><a href="/search-detail?id='+i.id+'"><img src="/vacation-photo/'+ 
-                                i.imgurl+'"/></a>'+name+':'+i.message+'</p></div>';
+                                i.imgurl+'"/></a>'+i.name+':'+i.content+'</p></div>';
                             }                           
 
                     })
@@ -148,6 +147,12 @@
             });
         }
         showUsers();
+        //返回时清一下群消息数
+        function toyike(){
+            $('.toyike').on('click',function(){
+                
+            })
+        }
     })
 })(jQuery,window,document);
 

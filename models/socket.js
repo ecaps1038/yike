@@ -4,6 +4,9 @@ var frienddb = require('./friendsdbserver.js');
 var groupdb = require('./groupdbserver.js');
 var date = require('./date.js');
 
+var group = require("./groupsdb.js");
+var Groupuser = group.model('Groupuser');
+
 module.exports = function(io){
 	var socketList = {};
 	var socketLogin = {};
@@ -14,7 +17,7 @@ module.exports = function(io){
 		socket.on('login',function(id){
 			socket.name = id;
 			socketLogin[id] = socket.id;
-			//console.log('socketid'+socketList[id]);
+			//console.log('socketid'+socketLogin);
 		});
 		//用户进入聊天
 		socket.on('chart',function(id){
@@ -61,10 +64,11 @@ module.exports = function(io){
 	        }
 	        if(socketLogin.hasOwnProperty(socket.name)){
 	        	delete socketLogin[socket.name];
-	        	//console.log('离开yike');
+	        	console.log('离开yike');
 	        }
 	    });
 
+	  	//加入群
 		socket.on('group', function (data) {
 			console.log(data);
 	    	socket.join(data);
@@ -86,6 +90,26 @@ module.exports = function(io){
 
 			//广播消息
 			socket.broadcast.to(msg.groupid).emit('sendGroupMsg',msg.message,msg.name,msg.imgurl,msg.userid);
+
+			//未进入聊天群提示
+			function getGroupUser(groupid){
+				var id = {'groupID':groupid};
+			    var out = {'userID':1};
+			    Groupuser.find(id, out, function(err, res){
+			        if (err) {
+			            console.log("查询失败：" + err);
+			        }
+			        else {
+			        	res.map(function(ver){
+			        		var userid = ver.userID;
+			        		if(socketLogin[userid]){
+			        			socket.to(socketLogin[userid]).emit('addGroupMsg',msg.groupid,msg.message,nowtime);
+			        		}
+			        	})
+			        }
+			    });
+			}
+			getGroupUser(msg.groupid);
 	  	});
 	});
 }
