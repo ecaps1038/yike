@@ -1,4 +1,5 @@
 var group = require('../models/group');
+var groupdb = require('../models/groupdbserver');
 var sockets = require('../models/socket');
 
 module.exports = function(app,io){
@@ -12,11 +13,19 @@ module.exports = function(app,io){
 	app.post('/showUser',function(req,res){
 		var groupid = req.body.groupid;
 		group.showUser(req,res,groupid);
-	})
+	});
 	//查询群数据库信息
 	app.post('/showGroupMessage',function(req,res){
 		var groupid = req.body.groupid;
 		group.showGroupMessage(req,res,groupid);
 		//res.send({success:true});
+	});
+
+	//群返回刷新群未读数
+	app.post('/toyike',function(req,res){
+		var groupid = req.body.groupid;
+		var userid = req.session.userId;
+		groupdb.updateStatus(groupid,userid);
+		res.send({success:true});
 	});
 }

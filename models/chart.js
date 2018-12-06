@@ -59,12 +59,18 @@ exports.showMessage = function(req,res,from,to){
                     if(ver.status==0 && ver.toUserID==from){
                         messagedb.read(to,from);
                     }
+                    var now = new Date();
+                    if(now-ver.dateTime>1000*60*60*18){
+                        var lasttime = date.DateDetail(ver.dateTime);
+                    }else{
+                        var lasttime = date.DateHouse(ver.dateTime);
+                    }
                     return {
                         message: ver.postMessages,
                         status : ver.status,
                         fromUserID : ver.fromUserID,
                         toUserID: ver.toUserID,          
-                        dateTime: date.DateDetail(ver.dateTime), 
+                        dateTime: lasttime, 
                         timeInt: ver.dateTime.getTime(),
                     }
                 })
@@ -95,7 +101,11 @@ exports.getcount = function(res,userid,friendid){
 exports.findOne = function(res,userid,friendid){
     var query = message.findOne({});
     //根据userID查询
-    query.where({'toUserID':userid,'fromUserID':friendid});
+    //query.where({'toUserID':userid,'fromUserID':friendid});
+    query.where({$or : [ //多条件，数组
+            {'fromUserID': friendid,'toUserID':userid},
+            {'fromUserID': userid,'toUserID':friendid}
+        ]})
     query.sort({'dateTime':-1});
     //查询结果
     query.exec().then(function(result){

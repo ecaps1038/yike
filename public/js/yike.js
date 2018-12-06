@@ -3,15 +3,35 @@ $(document).ready(function(){
 	//时间转换
         function changeTime1(date){
             var d = new Date(date);
-           // var tiems = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-           //  + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
-            var tiems =d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
-            return tiems;
+			var h = d.getHours();
+			var m = d.getMinutes();
+			var s = d.getSeconds();
+
+			if(h<10){
+				h = '0'+h;
+			}
+			if(m<10){
+				m = '0'+m;
+			}
+			if(s<10){
+				s = '0'+s;
+			}
+			var tiems = h+':'+m;	
+			return tiems;
         }
         function changeTime2(date){
             var d = new Date(date);
-           var tiems = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-            return tiems;
+			var Y = d.getFullYear();
+			var M = d.getMonth() + 1;
+			var D = d.getDate();
+			if(M<10){
+				M = '0'+M;
+			}
+			if(D<10){
+				D = '0'+D;
+			}
+			var tiems = Y+'-'+M+'-'+D;
+			return tiems;
         }
         function gettime(date){
         	var d = new Date(date);
@@ -93,7 +113,7 @@ $(document).ready(function(){
 
 						$news.html(count.postMessages);
 
-						if(nowt-times>1000*60*60*24){
+						if(nowt-times>1000*60*60*18){
 	            		$time.html(changeTime2(count.dateTime));}
 	            		else{$time.html(changeTime1(count.dateTime));}
             		}
@@ -150,7 +170,7 @@ $(document).ready(function(){
 
 							$news.html(msg.content);
 
-							if(nowt-times>1000*60*60*24){
+							if(nowt-times>1000*60*60*18){
 		            		$time.html(changeTime2(msg.time));}
 		            		else{$time.html(changeTime1(msg.time));}
 	            		}
@@ -168,9 +188,10 @@ $(document).ready(function(){
 	var userid = $('.userid').val();
 	socket.emit('login',userid); 
 	//接收一对一socket
-	socket.on('addMsg',function(toid,msg,time){
+	socket.on('addMsg',function(toid,msg){
             
         $('.other').each(function(){
+        	var time = changeTime1(new Date());
             var that = $(this);
             var id = that.find('.friendid').val();
             var $count = that.find('.count');
@@ -182,15 +203,15 @@ $(document).ready(function(){
             	$count.html(count).css('display','block');
             	$news.html(msg);
             	$time.html(time);
+            	$('.userlist').prepend(that);
             }
         });
-        //用户列表重新排序
-		userSort();
     });
 	//接收群socket
-	socket.on('addGroupMsg',function(groupid,msg,time){
+	socket.on('addGroupMsg',function(groupid,msg,name){
             
         $('.groups').each(function(){
+        	var time = changeTime1(new Date());
             var that = $(this);
             var id = that.find('.groupid').val();
             var $count = that.find('.count');
@@ -200,12 +221,11 @@ $(document).ready(function(){
             if(id==groupid){
             	count++;
             	$count.html(count).css('display','block');
-            	$news.html(msg);
+            	$news.html(name+':'+msg);
             	$time.html(time);
+            	$('.userlist').prepend(that);
             }
         });
-        //用户列表重新排序
-		userSort();
     });
 
 

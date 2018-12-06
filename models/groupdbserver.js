@@ -62,7 +62,7 @@ exports.updateTime = function(groupid){
     });
 }
 
-//进入群时复位群消息数
+//复位群消息数
 exports.updateStatus = function(groupid,userid){
     var wherestr = {'groupID':groupid,'userID':userid};
     var updatestr = {'status': 0};

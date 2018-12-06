@@ -27,9 +27,10 @@ module.exports = function(io){
 		});
 		//接收好友信息
 	  	socket.on('message', function(msg){
-		    var nowtime = date.NowTime(new Date());
-		    //更新好友最近通信时间
+		    //var nowtime = date.NowTime(new Date());
+		    //更新自己及好友最近通信时间
 		    frienddb.updateTime(msg.fromid,msg.toid,);
+		    frienddb.updateTime(msg.toid,msg.fromid,);
 		    //1对1发送消息
 		    if(socketList[msg.to]){
 		    	//保存数据库且标记为已读
@@ -52,7 +53,8 @@ module.exports = function(io){
 				    status: 0  
 				}
 		    	messagedb.insert(data);
-		    	socket.to(socketLogin[msg.toid]).emit('addMsg',msg.fromid,msg.message,nowtime);
+		    	socket.to(socketLogin[msg.toid]).emit('addMsg',msg.fromid,msg.message);
+		    	socket.to(socketLogin[msg.fromid]).emit('addMsg',msg.fromid,msg.message);
 			}
 	  	});
 	  	//用户离开
@@ -64,18 +66,17 @@ module.exports = function(io){
 	        }
 	        if(socketLogin.hasOwnProperty(socket.name)){
 	        	delete socketLogin[socket.name];
-	        	console.log('离开yike');
+	        	//console.log('离开yike');
 	        }
 	    });
 
 	  	//加入群
 		socket.on('group', function (data) {
-			console.log(data);
+			//console.log(data);
 	    	socket.join(data);
 	  	});
 		//接收群信息
 	  	socket.on('groupmessage', function(msg){
-		    var nowtime = date.NowTime(new Date());
 		    //保存到群消息内
 		    var msgData = {
 		    	groupID: msg.groupid,
@@ -103,7 +104,7 @@ module.exports = function(io){
 			        	res.map(function(ver){
 			        		var userid = ver.userID;
 			        		if(socketLogin[userid]){
-			        			socket.to(socketLogin[userid]).emit('addGroupMsg',msg.groupid,msg.message,nowtime);
+			        			socket.to(socketLogin[userid]).emit('addGroupMsg',msg.groupid,msg.message,msg.name);
 			        		}
 			        	})
 			        }

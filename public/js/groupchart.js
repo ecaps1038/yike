@@ -150,9 +150,24 @@
         //返回时清一下群消息数
         function toyike(){
             $('.toyike').on('click',function(){
-                
+                $.ajax({
+                    url: '/toyike',
+                    type: 'POST',
+                    data: {groupid:groupid},
+                    uccess: function(data){
+                        if(data.success){
+                            console.log('返回刷新成功');
+                        }else{
+                            console.log('出现问题1');
+                        }
+                    },
+                    error: function(){
+                        console.log('出现问题2');
+                    }
+                })
             })
         }
+        toyike();
     })
 })(jQuery,window,document);
 

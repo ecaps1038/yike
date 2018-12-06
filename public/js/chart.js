@@ -26,11 +26,22 @@
         //时间转换
         function changeTime(date){
             var d = new Date(date);
-            var tiems = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-             + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+
+            if(h<10){
+                h = '0'+h;
+            }
+            if(m<10){
+                m = '0'+m;
+            }
+            if(s<10){
+                s = '0'+s;
+            }
+            var tiems = h+':'+m;    
             return tiems;
         }
-
         function showMessage(){
             $.ajax({
                 url: '/showMessage',
