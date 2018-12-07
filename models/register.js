@@ -8,7 +8,8 @@ exports.loginUp = function(name,email,pwd){
 	    pwd: pwd,                       		//密码
 	    email: email,
 	    registerdate : new Date(),					//注册时间   
-	    online: 1  
+	    online: 1,
+	    //grade: 1,  
 	}
 	userdbserver.insert(data);
 	//return res.redirect('/yike');

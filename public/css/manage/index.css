@@ -1,0 +1,80 @@
+.manage{
+	padding:0;
+	margin:0;
+	position: relative;
+	padding-top: 52px;
+}
+.manage-head{
+	height: 52px;
+	width: 100%;
+	padding-left: 72px;
+	position: fixed;
+	top: 0;
+	box-shadow: 0px 1px 6px rgba(0,0,0,0.1);
+}
+.manage-left{
+	width: 52px;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #303030;
+	z-index: 1000;
+	color: #fff;
+}
+.manage-left .logo{
+	width: 52px;
+	height: 52px;
+	background: url('/images/manage/index/logo.png') #404040 no-repeat center center;
+
+}
+.bar-option ul{
+	padding: 0;
+	margin: 0;
+}
+.bar-option ul li{
+	height: 52px;
+	width: 52px;
+	opacity: 0.4;
+	cursor: pointer;
+}
+.bar-option ul li.current, .bar-option ul li:hover{
+	background: #202020;
+	opacity: 1;
+}
+.bar-option ul li.current i, .bar-option ul li:hover i{
+	display: inline-block;
+	width: 2px;
+	height: 52px;
+	background: #ff7f26;
+	float: left;
+}
+.bar-option ul li span{
+	display: inline-block;
+	height: 52px;
+	width: 50px;
+}
+.bar-option ul li .home{
+	background: url('/images/manage/index/home.png') no-repeat center center;
+}
+.bar-option ul li .user{
+	background: url('/images/manage/index/user.png') no-repeat center center;
+}
+.bar-option ul li .group{
+	background: url('/images/manage/index/group.png') no-repeat center center;
+}
+.bar-option ul li .msg{
+	background: url('/images/manage/index/msg.png') no-repeat center center;
+}
+.bar-option ul li .grpmsg{
+	background: url('/images/manage/index/grpmsg.png') no-repeat center center;
+}
+.bar-option ul li .friend{
+	background: url('/images/manage/index/friend.png') no-repeat center center;
+}
+.bar-option ul li .groupus{
+	background: url('/images/manage/index/groupus.png') no-repeat center center;
+}
+.bar-option ul li .search{
+	background: url('/images/manage/index/search.png') no-repeat center center;
+}

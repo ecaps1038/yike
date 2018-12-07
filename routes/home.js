@@ -4,7 +4,7 @@ module.exports = function(app){
 	app.get('/', function(req, res){
 		var id = req.session.userId;
 		if(id){
-			res.redirect('/showuser');
+			res.redirect('/yike');
 		}else{
 	    	res.render('home');
 		}

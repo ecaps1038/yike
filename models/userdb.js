@@ -11,7 +11,8 @@ var UserSchema = new Schema({
     birth: {type: Date},                        //生日日期
     imgurl: {type: String},						//头像路径 
     registerdate : { type: Date},				//注册时间   
-    online: {type: Number}                     //是否在线0和1
+    online: {type: Number},                      //是否在线0和1
+    grade: {type: Number,default: 0}            //权限等级
 });
 
 module.exports = mongoose.model('User',UserSchema);
