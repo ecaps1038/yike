@@ -21,6 +21,21 @@ exports.DateSimple = function(date){
 	return tiems;
 };
 
+exports.DateSimples = function(date){
+	var d = new Date(date);
+	var Y = d.getFullYear();
+	var M = d.getMonth() + 1;
+	var D = d.getDate();
+	if(M<10){
+		M = '0'+M;
+	}
+	if(D<10){
+		D = '0'+D;
+	}
+	var tiems =M+'-'+D;
+	return tiems;
+};
+
 exports.DateDetail = function(date){
 	var d = new Date(date);
 	var Y = d.getFullYear();
@@ -66,3 +81,15 @@ exports.DateHouse = function(date){
 	var tiems = h+':'+m;	
 	return tiems;
 }
+
+//计算年月日和
+exports.DateAdd = function(date){
+	var d = new Date(date);
+	var Y = d.getFullYear();
+	var M = d.getMonth() + 1;
+	var D = d.getDate();
+	
+	var tiems = Y+M+D;
+	return tiems;
+};
+

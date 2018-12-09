@@ -1,1 +1,48 @@
-<h2>baababababab</h2>
+{{#section 'head'}}
+    <title>yike后台</title>
+    <link rel="stylesheet" type="text/css" href="/css/manage/home.css">
+{{/section}}
+<div class="home">
+	<div class="home-user">
+		<div class="user-head"><img src="/vacation-photo/{{img}}"/></div>
+		<p class="user-name">{{name}}</p>
+	</div>
+	<div class="home-count">
+		<div class="count-inner">
+			<div class="user-count count">
+				<i></i>
+				<p class="data">0</p>
+				<div class="user-sex">
+					<p><span class="sex male"></span><span class="sex-data m">0人</span></p>
+					<p><span class="sex female"></span><span class="sex-data f">0人</span></p>
+					<p><span class="sex no"></span><span class="sex-data n">0人</span></p>
+				</div>
+			</div>
+			<div class="group-count count">
+				<i></i>
+				<p class="data">0</p>
+				<div class="user-sex">
+					<p><span class="sex-data">建群数</span></p>
+				</div>
+			</div>
+			<div class="msg-count count">
+				<i></i>
+				<p class="data">0</p>
+				<div class="user-sex">
+					<p><span class="sex memory"></span><span class="sex-data mm">0kb</span></p>
+				</div>
+			</div>
+			<div class="grpmsg-count count">
+				<i></i>
+				<p class="data">0</p>
+				<div class="user-sex">
+					<p><span class="sex memory"></span><span class="sex-data gm">0kb</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{{#section 'jquery'}}
+	<script src="/js/manage/home.js" type="text/javascript"></script>
+{{/section}}

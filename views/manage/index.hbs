@@ -1,20 +1,27 @@
 {{#section 'head'}}
     <title>yike后台</title>
-    <link rel="stylesheet" type="text/css" href="css/manage/index.css">
+    <link rel="stylesheet" type="text/css" href="/css/manage/index.css">
 {{/section}}
 
 <div class="manage">
 	<div class="manage-head">
-		头部
+		<div class="head-search">
+            <input type="search" placeholder="搜索用户，群，消息" class="search-in">
+            <button class="search" name="search"></button>      
+        </div>
+        <div class="head-user">
+            <div class="userimg"><img src="/vacation-photo/{{img}}"></div>
+            <div class="news"><span>4</span></div>
+        </div>
 	</div>	
 	<div class="manage-left">
 		<div class="logo"></div>
 		<!-- 导航选项 -->
         <div class="bar-option">
             <ul class="bar-option-ul">
-                <li class="current" data-link="./home.html"><i></i><span class="home"></span></li>
-                <li data-link="./sendPhoto.html"><i></i><span class="user"></span></li>
-                <li data-show="true" data-title="签到" data-link="./sign.html"><i></i><span class="group"></span></li>
+                <li class="current" data-link="/yike/manage/home"><i></i><span class="home"></span></li>
+                <li data-link="/yike/manage/user"><i></i><span class="user"></span></li>
+                <li data-show="true" data-link="/yike/manage/group"><i></i><span class="group"></span></li>
                 <li data-show="true" data-title="小测" data-link="./test.html"><i></i><span class="msg"></span></li>
                 <li data-show="true" data-title="问卷" data-link="./test.html"><i></i><span class="grpmsg"></span></li>
                 <li data-show="true" data-title="作业" data-link="./homework.html"><i></i><span class="friend"></span></li>
@@ -23,14 +30,9 @@
             </ul>
         </div>
 	</div>
-	<p class="body-title">问答区</p>
-    <div class="cancel-cover-div" > 
-        <p class="cancel-mission-p">取消签到学习任务</p>
-        <span></span>
-    </div>
     <!-- iframe嵌套 -->
     <div class="training-iframe-div">
-        <iframe src="./an_qu.html" frameborder="0" class="training-iframe" ></iframe>
+        <iframe src="/yike/manage/home" frameborder="0" class="training-iframe" ></iframe>
     </div>
 </div>
 

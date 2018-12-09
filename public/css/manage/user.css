@@ -1,0 +1,69 @@
+.top-count{
+	height: 148px;
+	padding: 24px 0 24px 24px;
+}
+.top-count .title{
+	width: 120px;
+	height: 148px;
+	background: #303030;
+	float: left;
+	border-radius: 5px;
+	color: #fff;
+	text-align: center;
+}
+.title .count{
+	font-size: 48px;
+	line-height: 60px;
+	padding-top: 30px;
+}
+.title .name{
+	font-size: 18px;
+	line-height: 30px;
+}
+.top-count .detial-count{
+	float: left;
+	width: 400px;
+	position: relative;
+	padding-left: 16px;
+	height: 148px;
+	/*border: 1px solid red;*/
+}
+.detial-count ul{
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	bottom: 0;
+}
+.detial-count ul li{
+	float: left;
+	width: 48px;
+	text-align: center;
+	font-size: 12px;
+	line-height: 12px;
+}
+.detial-count ul li i{
+	width: 20px;
+	height: 60px;
+	background: #08d26f;
+	display: block;
+	margin: 4px auto;
+}
+
+.user-table table{
+	text-align: left;
+	width: 100%;
+	border-spacing: 0px;
+}
+.user-table table tr:hover,.user-table table tr th{
+	background: #f6f6f6;
+}
+.user-table table tr th,.user-table table tr td{
+	padding-left: 20px;
+	height: 48px;
+	border-bottom: 1px solid #dddfe3;
+}
+
+.user-table table tr td img{
+	width: 30px;
+}
+

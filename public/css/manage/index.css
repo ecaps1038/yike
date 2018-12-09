@@ -1,16 +1,84 @@
 .manage{
-	padding:0;
-	margin:0;
-	position: relative;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 99;
 	padding-top: 52px;
 }
 .manage-head{
 	height: 52px;
 	width: 100%;
-	padding-left: 72px;
+	padding-left: 76px;
 	position: fixed;
+	z-index: 98;
 	top: 0;
 	box-shadow: 0px 1px 6px rgba(0,0,0,0.1);
+}
+.head-search{
+	position: relative;
+	float: left;
+	height: 28px;
+	width: 240px;
+	padding-top: 12px;
+}
+.head-search .search-in{
+	height: 28px;
+	width: 240px;
+	padding: 0 38px 0 12px;
+	border-radius: 14px;
+	background: #f2f2f2;
+	border: 0px;
+	outline: none;
+}
+.head-search .search{
+	position: absolute;
+	top: 12px;
+	right: 0px;
+	width: 40px;
+	height: 28px;
+	border: 0px;
+	outline: none;
+	background: url('/images/manage/index/search1.png') no-repeat center center;
+}
+.head-user{
+	float: right;
+	height: 42px;
+	margin-right: 96px;
+}
+.head-user .news{
+	position: relative;
+	float: right;
+	width: 40px;
+	height: 52px;
+	margin-right: 16px;
+	background: url('/images/manage/index/news.png')no-repeat center center;
+}
+.head-user .news span{
+	font-size: 12px;
+	line-height: 16px;
+	padding-left: 4px;
+	display: inline-block;
+	height: 16px;
+	min-width: 12px;
+	border-radius: 8px;
+	color: #fff;
+	background: #ff7f26;
+	position: absolute;
+	left: 20px;
+	top: 10px;
+}
+.head-user .userimg{
+	float: right;
+	margin-top: 8px;
+	width: 36px;
+	height: 36px;
+	border-radius: 18px;
+	overflow: hidden;
+}
+.head-user .userimg img{
+	width: 36px;
 }
 .manage-left{
 	width: 52px;
@@ -78,3 +146,17 @@
 .bar-option ul li .search{
 	background: url('/images/manage/index/search.png') no-repeat center center;
 }
+/*iframe*/
+.manage .training-iframe-div{
+	position: absolute;
+	top: 52px;
+	left: 52px;
+	right: 0px;
+	bottom: 6px;
+}
+.manage .training-iframe-div .training-iframe{
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+}
+

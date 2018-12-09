@@ -26,19 +26,12 @@
             $('body').on('click','.bar-option-ul li',function(){
                 $(this).addClass('current').siblings('li').removeClass('current');
                 // 修改取消任务按钮
-                _has = $(this).attr('data-title');
                 _link = $(this).attr('data-link');
-                if(_has){
-                    $('.cancel-cover-div').show();
-                    $('.cancel-mission-p').text('取消'+ _has +'学习任务');
-                    that._index = $(this).index()
-                }else{
-                    $('.cancel-cover-div').hide();
-                }
+                
                 // 修改标题
                 // $('.training-iframe-div').css('height','623px');
-                $('.training-body').removeAttr('style');
-                $('.body-title').text($(this).text());
+                //$('.manage').removeAttr('style');
+                //$('.body-title').text($(this).text());
                 $('.training-iframe').attr('src',_link);
             })
         },

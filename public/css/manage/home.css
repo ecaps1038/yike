@@ -1,0 +1,106 @@
+.home{
+	width: 100%;
+}
+.home-user{
+	height: 328px;
+	text-align: center;
+}
+.home-user .user-head{
+	display: inline-block;
+	margin-top: 98px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	overflow: hidden;
+	background: #ddd;
+}
+.home-user .user-head img{
+	width: 100px;
+}
+.home-user .user-name{
+	font-size: 24px;
+	line-height: 42px;
+}
+.home-count{
+	padding-top: 60px;
+	height: 220px;
+	background: #f6f6f6;
+}
+.count-inner{
+	margin: 0 auto;
+	width: 1290px;
+	height: 162px;
+}
+.home-count .count{
+	position: relative;
+	text-align: center;
+	float: left;
+	width: 300px;
+	height: 160px;
+	border: 1px solid #eee;
+	border-radius: 5px;
+	background: #fff;
+	margin: 0 10px;
+}
+.home-count .count i{
+	display: inline-block;
+	width: 38px;
+	height: 38px;
+	border-radius: 19px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+}
+.user-count i{
+	background: url('/images/manage/user.png') #f0f0f0 no-repeat center 7px;
+}
+.group-count i{
+	background: url('/images/manage/group.png') #f0f0f0 no-repeat center 7px;
+}
+.msg-count i{
+	background: url('/images/manage/msg.png') #f0f0f0 no-repeat center 7px;
+}
+.grpmsg-count i{
+	background: url('/images/manage/grpmsg.png') #f0f0f0 no-repeat center 7px;
+}
+.home-count .count .data{
+	font-size: 80px;
+	text-align: center;
+	line-height: 80px;
+	padding-top: 20px;
+	color: #333;
+}
+.user-sex{
+	display: inline-block;
+	margin: 0 auto;
+	padding:16px 0px; 
+}
+.user-sex p{
+	float: left;
+	padding: 0 10px;
+}
+.user-sex p .sex{
+
+	display: inline-block;
+	height: 8px;
+	width: 8px;
+	border-radius: 50%;
+}
+.user-sex p .male{
+	background: #3b74ff;
+}
+.user-sex p .female{
+	background: #ff627a;
+}
+.user-sex p .no{
+	background: #c4c4c4;
+}
+.user-sex p .memory{
+	background: #08d26f;
+}
+.user-sex p .sex-data{
+	vertical-align: top;
+	padding-left: 6px;
+	line-height: 24px;
+	font-size: 16px;
+}
