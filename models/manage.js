@@ -241,33 +241,40 @@ exports.groupTable = function(res,nowPage){
     var condition = {};                 //条件
     var skipnum = (nowPage - 1) * pageSize;   //跳过数
     var d = skipnum;
-    
-    Group.find(condition).skip(skipnum).limit(pageSize).sort(sort).exec(function (err, rest) {
-        if (err) {
-            console.log("Error:" + err);
-        }
-        else {
-            var context = {
-                vacation : rest.map(function(ver){
-                    if(ver.icon){
-                        var icon = ver.icon;
-                    }else{
-                        var icon = 'group.png';
-                    }
-                    return {
-                        d:++d,
-                        id: ver._id,
-                        name: ver.name,
-                        adminID: ver.adminID,
-                        intro: ver.intro,
-                        icon: icon,
-                        time: date.DateDetail(ver.time),
-                    }
-                }),
-            };
-            //res.render('manage/user',context);
-            res.send({success:true,context});
-        }
+
+    var query = Group.find({});
+    //根据userID查询
+    query.where();
+    //查出friendID的user对象
+    query.populate('adminID');
+    //按照最后会话时间倒序排列
+    query.sort({'time':-1});
+    //跳过数
+    query.skip(skipnum);
+    //一页多少条
+    query.limit(pageSize);
+    //查询结果
+    query.exec().then(function(result){
+        var context = {
+            vacation : result.map(function(ver){
+                if(ver.icon){
+                    var icon = ver.icon;
+                }else{
+                    var icon = 'group.png';
+                }
+                return {
+                    d:++d,
+                    id: ver._id,
+                    name: ver.name,
+                    admin: ver.adminID.name,
+                    intro: ver.intro,
+                    icon: icon,
+                    time: date.DateDetail(ver.time),
+                }
+            }),
+        };
+        //res.render('manage/user',context);
+        res.send({success:true,context});
     })
 }
 
@@ -315,7 +322,7 @@ exports.msgTable = function(res,nowPage){
 
     var pageSize = 8;                   //一页多少条
     //var currentPage = 1;                //当前第几页
-    var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
+    //var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
     var condition = {};                 //条件
     var skipnum = (nowPage - 1) * pageSize;   //跳过数
     var d = skipnum;

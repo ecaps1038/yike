@@ -1,6 +1,7 @@
 .top-count{
 	height: 148px;
 	padding: 24px 0 24px 24px;
+	background: #f6f6f6;
 }
 .top-count .title{
 	width: 120px;
@@ -57,6 +58,34 @@
 .user-table{
 	padding: 0 24px;
 }
+.user-table .table-title{
+	height: 28px;
+	padding: 20px 0;
+}
+.table-title .button{
+	float: right;
+}
+.table-title .button button{
+	height: 28px;
+	width: 48px;
+	border-radius: 2px;
+	border: 0px;
+	margin-right: 10px;
+	cursor: pointer;
+}
+.table-title .button .sixin{
+	background: #ff8c19;
+	color: #fff;
+}
+.table-title .button .delete{
+
+	background: #868a95;
+	color: #fff;
+}
+.table-title p{
+	float: left;
+	font-size: 18px;
+}
 .user-table table{
 	text-align: left;
 	width: 100%;
@@ -68,10 +97,18 @@
 .user-table table tr th,.user-table table tr td{
 	padding-left: 20px;
 	height: 48px;
+	max-width: 240px;
 	border-bottom: 1px solid #dddfe3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	/*display: -webkit-box;
+	-webkit-box-orient:vertical;
+	-webkit-line-clamp: 2;*/
 }
 
 .user-table table tr td img{
+	margin-top: 4px;
 	width: 30px;
 }
 

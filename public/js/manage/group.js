@@ -76,7 +76,7 @@
 						html += '<tr><td><i></i><span>'+ver.d+'</span></td>'+
 						'<td><img src="/group-photo/'+ver.icon+'"></td>'+
 						'<td>'+ver.name+'</td>'+
-						'<td>'+ver.adminID+'</td>'+
+						'<td>'+ver.admin+'</td>'+
 						'<td>'+ver.intro+'</td>'+
 						'<td>'+ver.time+'</td>'+
 						'<td><span class="td-sixin">私信</span><span class="td-delete">删除</span></td>';
@@ -112,7 +112,7 @@
 					html += '<tr><td><i></i><span>'+ver.d+'</span></td>'+
 					'<td><img src="/group-photo/'+ver.icon+'"></td>'+
 					'<td>'+ver.name+'</td>'+
-					'<td>'+ver.adminID+'</td>'+
+					'<td>'+ver.admin+'</td>'+
 					'<td>'+ver.intro+'</td>'+
 					'<td>'+ver.time+'</td>'+
 					'<td><span class="td-sixin">私信</span><span class="td-delete">删除</span></td>';
