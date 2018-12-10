@@ -56,7 +56,8 @@ module.exports = function(app){
 	//获取用户列表
 	app.post('/yike/manage/user/userTable',function(req,res){
 		var id = req.session.userId;
-		manage.userTable(res,id);
+		var num = req.body.num;
+		manage.userTable(res,id,num);
 	});
 
 	//群页面
@@ -78,6 +79,27 @@ module.exports = function(app){
 	app.post('/yike/manage/group/groupTable',function(req,res){
 		var id = req.session.userId;
 		manage.groupTable(res,id);
+	});
+
+	//点信息
+	app.get('/yike/manage/msg',function(req,res){
+		var id = req.session.userId;
+		var adminid = req.session.adminid;
+		if(id == adminid){
+			//manage.userDet(res,id);
+			res.render('manage/message');
+		}else{
+			res.redirect('/');
+		}
+	});	
+	//获取群建立时间数据
+	app.post('/yike/manage/msg/msgCount',function(req,res){
+		manage.msgCount(res);
+	});
+	//获取群列表
+	app.post('/yike/manage/msg/msgTable',function(req,res){
+		var num = req.body.num;
+		manage.msgTable(res,num);
 	});
 
 }

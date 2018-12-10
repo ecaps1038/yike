@@ -37,9 +37,14 @@
 .detial-count ul li{
 	float: left;
 	width: 48px;
+	height: 148px;
 	text-align: center;
 	font-size: 12px;
 	line-height: 12px;
+}
+.detial-count ul li .li-inner{
+	position: absolute;
+	bottom: 0;
 }
 .detial-count ul li i{
 	width: 20px;
@@ -49,6 +54,9 @@
 	margin: 4px auto;
 }
 
+.user-table{
+	padding: 0 24px;
+}
 .user-table table{
 	text-align: left;
 	width: 100%;
@@ -67,3 +75,30 @@
 	width: 30px;
 }
 
+/*翻页*/
+.page{
+	padding-top: 16px;
+	height: 36px;
+}
+.page ul{
+	float: right;
+	
+}
+.page ul li,.page ul p{
+	float: left;
+	width: 26px;
+	height: 26px;
+	border-radius: 2px;
+	border: 1px solid #d7d8d8;
+	margin-left: 6px;
+	line-height: 26px;
+	text-align: center;
+	font-size: 12px;
+	color: #666;
+	cursor: pointer;
+}
+.page ul li:hover,.page ul li.select{
+	border: 1px solid #fe7f26;
+	background: #fe7f26;
+	color: #fff;
+}

@@ -124,34 +124,36 @@ exports.userRegist = function(res){
                 var d=date.DateSimples(ver.registerdate);
                 i++;
                 dates[i] = d;
-                //console.log(dates[i]);
                 if(dates[i]!=dates[i-1]){
                     j=b;
                     b=1;
-                    return {
-                        d:d,
-                        j:j,
-                    }
+                    if(i>1){
+	                    return {
+	                        d:dates[i-1],
+	                        j:j,
+	                    }
+	                }
                 }else{
                     b++;
                 }
                 
             }),
             i:i,
+            ld:dates[i],
         };
         res.send({success:true,context});
         }
     });
 }
 //分页查询
-exports.userTable = function(res,id){
+exports.userTable = function(res,id,nowPage){
     
-    var pageSize = 8;                   //一页多少条
-    var currentPage = 1;                //当前第几页
+    var pageSize = 5;                   //一页多少条
+    //var currentPage = 1;                //当前第几页
     var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
     var condition = {};                 //条件
-    var skipnum = (currentPage - 1) * pageSize;   //跳过数
-    var d = skipnum*pageSize;
+    var skipnum = (nowPage - 1) * pageSize;   //跳过数
+    var d = skipnum;
     
     User.find(condition).skip(skipnum).limit(pageSize).sort(sort).exec(function (err, rest) {
         if (err) {
@@ -174,7 +176,7 @@ exports.userTable = function(res,id){
                     }
                     return {
                         d:++d,
-                        //id : ver._id,
+                        id : ver._id,
                         name: ver.name,
                         email: ver.email,
                         sex: sex,
@@ -207,37 +209,38 @@ exports.groupRegist = function(res){
             var context = {
             vacation : rest.map(function(ver){
                 var d=date.DateSimples(ver.time);
-                var num = date.DateAdd(ver.time);
                 i++;
                 dates[i] = d;
-                //console.log(dates[i]);
                 if(dates[i]!=dates[i-1]){
                     j=b;
                     b=1;
-                    return {
-                        d:d,
-                        j:j,
-                    }
+                    if(i>1){
+	                    return {
+	                        d:dates[i-1],
+	                        j:j,
+	                    }
+	                }
                 }else{
                     b++;
                 }
                 
             }),
             i:i,
+            ld:dates[i],
         };
         res.send({success:true,context});
         }
     });
 }
 //分页查询
-exports.groupTable = function(res,id){
+exports.groupTable = function(res,nowPage){
     
     var pageSize = 8;                   //一页多少条
-    var currentPage = 1;                //当前第几页
+    //var currentPage = 1;                //当前第几页
     var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
     var condition = {};                 //条件
-    var skipnum = (currentPage - 1) * pageSize;   //跳过数
-    var d = skipnum*pageSize;
+    var skipnum = (nowPage - 1) * pageSize;   //跳过数
+    var d = skipnum;
     
     Group.find(condition).skip(skipnum).limit(pageSize).sort(sort).exec(function (err, rest) {
         if (err) {
@@ -253,6 +256,7 @@ exports.groupTable = function(res,id){
                     }
                     return {
                         d:++d,
+                        id: ver._id,
                         name: ver.name,
                         adminID: ver.adminID,
                         intro: ver.intro,
@@ -266,3 +270,87 @@ exports.groupTable = function(res,id){
         }
     })
 }
+
+//message
+//查询点消息
+exports.msgCount = function(res){
+    var wherestr = {};
+    var out = {'dateTime':1};
+    var i = 0,b = 1,j = 0;
+    var dates = {};
+    Message.find(wherestr, out, function(err, rest){
+        if (err) {
+            console.log("查询失败：" + err);
+        }
+        else {
+            var context = {
+            vacation : rest.map(function(ver){
+                var d=date.DateSimples(ver.dateTime);
+                i++;
+                dates[i] = d;
+                if(dates[i]!=dates[i-1]){
+                    j=b;
+                    b=1;
+                    if(i>1){
+	                    return {
+	                        d:dates[i-1],
+	                        j:j,
+	                    }
+	                }
+                }else{
+                    b++;
+                }
+                
+            }),
+            i:i,
+            ld:dates[i],
+        };
+        res.send({success:true,context});
+        }
+    });
+}
+
+
+exports.msgTable = function(res,nowPage){
+
+    var pageSize = 8;                   //一页多少条
+    //var currentPage = 1;                //当前第几页
+    var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
+    var condition = {};                 //条件
+    var skipnum = (nowPage - 1) * pageSize;   //跳过数
+    var d = skipnum;
+
+    var query = Message.find({});
+    //根据userID查询
+    query.where();
+    //查出friendID的user对象
+    query.populate('fromUserID');
+    query.populate('toUserID');
+    //按照最后会话时间倒序排列
+    query.sort({'lasttime':-1});
+    //跳过数
+    query.skip(skipnum);
+    //一页多少条
+    query.limit(pageSize);
+    //查询结果
+    query.exec().then(function(result){
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+                return {
+                	d:++d,
+                	id: ver._id,
+                    postMessages: ver.postMessages,
+                    status: ver.status,
+                    fromUser: ver.fromUserID.name,
+                    toUser: ver.toUserID.name,
+                    dateTime: date.DateDetail(ver.dateTime),
+                }
+            }), 
+        };
+        //console.log(context);
+        res.send({success:true,context});
+    }).catch(function(err){
+        console.log(err);
+    });   
+};

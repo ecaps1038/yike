@@ -1,5 +1,4 @@
 {{#section 'head'}}
-    <title>yike后台</title>
     <link rel="stylesheet" type="text/css" href="/css/manage/user.css">
 {{/section}}
 
@@ -22,16 +21,22 @@
 			</div>
 		</div>
 		<table>
-			<tr>
-				<th><i></i><span>序号</span></th>
-				<th>头像</th><th>用户名</th><th>邮箱</th><th>性别</th><th>生日</th>
-				<th>注册时间</th><th>是否在线</th><th>操作</th>
-			</tr>
-
+			
 		</table>
+		<div class="page">
+			<ul>
+				<li class="before">回</li>
+				<span>
+					<li class="select">1</li>
+					<li>2</li>
+				</span>
+				<li class="after">去</li>
+			</ul>
+		</div>
 	</div>
 </div>
 
 {{#section 'jquery'}}
+	<script src="/js/manage/page.js" type="text/javascript"></script>
 	<script src="/js/manage/user.js" type="text/javascript"></script>
 {{/section}}
