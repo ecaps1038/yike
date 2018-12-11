@@ -263,7 +263,7 @@ exports.groupTable = function(res,nowPage){
                     var icon = 'group.png';
                 }
                 return {
-                    d:++d,
+                    d: ++d,
                     id: ver._id,
                     name: ver.name,
                     admin: ver.adminID.name,
@@ -273,6 +273,7 @@ exports.groupTable = function(res,nowPage){
                 }
             }),
         };
+        //console.log(context);
         //res.render('manage/user',context);
         res.send({success:true,context});
     })
@@ -361,3 +362,21 @@ exports.msgTable = function(res,nowPage){
         console.log(err);
     });   
 };
+
+//删除数据
+exports.msgDelete = function(req,res){
+	var data = req.body.d;
+	data.map(function(ver){
+		var id = {'_id':ver};
+		Message.findByIdAndRemove(id, function(err, res){
+	        if (err) {
+	            console.log("数据删除失败：" + err);
+	        }
+	        else {
+	            console.log("数据删除成功！");
+	        }
+	    });
+	});
+	res.send({success:true});
+
+}

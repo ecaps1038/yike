@@ -117,7 +117,7 @@
 					//console.log(aa);
 					aa.map(function(ver){
 					html += '<tr><td><i></i><span>'+ver.d+'</span></td>'+
-					'<td><img src="/vacation-photo/'+ver.imgurl+'"></td>'+
+					'<td><div class="img"><img src="/vacation-photo/'+ver.imgurl+'"></div></td>'+
 					'<td>'+ver.name+'</td>'+
 					'<td>'+ver.email+'</td>'+
 					'<td>'+ver.sex+'</td>'+

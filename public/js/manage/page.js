@@ -1,6 +1,6 @@
 //初始化翻页
     function pages(page){
-    	if(page>1&&page<5){
+    	if(page>1&&page<=5){
 			var htmls='';
 			for(i=1;i<=page;i++){
 				htmls+='<li>'+i+'</li>';

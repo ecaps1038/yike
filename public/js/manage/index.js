@@ -28,7 +28,7 @@
                 // 修改取消任务按钮
                 _link = $(this).attr('data-link');
                 
-                // 修改标题
+                // 修改标
                 // $('.training-iframe-div').css('height','623px');
                 //$('.manage').removeAttr('style');
                 //$('.body-title').text($(this).text());

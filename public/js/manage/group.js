@@ -74,7 +74,7 @@
 						//console.log(aa);
 						aa.map(function(ver){
 						html += '<tr><td><i></i><span>'+ver.d+'</span></td>'+
-						'<td><img src="/group-photo/'+ver.icon+'"></td>'+
+						'<td><div class="img"><img src="/group-photo/'+ver.icon+'"></div></td>'+
 						'<td>'+ver.name+'</td>'+
 						'<td>'+ver.admin+'</td>'+
 						'<td>'+ver.intro+'</td>'+
@@ -100,7 +100,7 @@
     	$.ajax({
 			url: '/yike/manage/group/groupTable',
 			type: 'POST',
-			data: '',
+			data: {num:num},
 			success: function(data){
 				if(data.success){
 					var aa = data.context.vacation;

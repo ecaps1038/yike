@@ -77,8 +77,8 @@ module.exports = function(app){
 	});
 	//获取群列表
 	app.post('/yike/manage/group/groupTable',function(req,res){
-		var id = req.session.userId;
-		manage.groupTable(res,id);
+		var num = req.body.num;
+		manage.groupTable(res,num);
 	});
 
 	//点信息
@@ -101,5 +101,9 @@ module.exports = function(app){
 		var num = req.body.num;
 		manage.msgTable(res,num);
 	});
+	//删除
+	app.post('/yike/manage/msg/delete',function(req,res){
+		manage.msgDelete(req,res);
+	})
 
 }

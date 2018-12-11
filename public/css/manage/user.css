@@ -106,12 +106,30 @@
 	-webkit-box-orient:vertical;
 	-webkit-line-clamp: 2;*/
 }
-
+.user-table img{
+	border-radius: 50%;
+	overflow: hidden;
+}
 .user-table table tr td img{
 	margin-top: 4px;
 	width: 30px;
 }
-
+/*复选框*/
+.user-table table tr i{
+	display: inline-block;
+	margin-right: 8px;
+	vertical-align: top;
+	height: 14px;
+	width: 14px;
+	overflow: hidden;
+	border: 1px solid #ddd;
+	border-radius: 2px;
+	cursor: pointer;
+}
+.user-table table tr .selects{
+	border: 1px solid #fe7f26;
+	background: url('/images/manage/select.png') no-repeat center center;
+}
 /*翻页*/
 .page{
 	padding-top: 16px;
@@ -138,4 +156,15 @@
 	border: 1px solid #fe7f26;
 	background: #fe7f26;
 	color: #fff;
+}
+
+//弹出
+.outer-delete{
+	text-align: center;
+	border: 1px solid red;
+}
+.outer-delete p{
+	text-align: center;
+	font-size: 14px;
+	line-height: 58px;
 }
