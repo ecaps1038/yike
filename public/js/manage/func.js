@@ -46,7 +46,14 @@ function tab(num,types){
 				'<th>注册时间</th><th>是否在线</th><th>操作</th></tr>';
 					//console.log(aa);
 					aa.map(function(ver){
-					html += '<tr><td><i data-id="'+ver.id+'"></i><span>'+ver.d+'</span></td>'+
+					html += '<tr><td>';
+					if(ver.admin){
+						html +='<span class="admin"></span>';
+					}else{
+						html +='<i data-id="'+ver.id+'"></i>';
+					}
+					
+					html+='<span>'+ver.d+'</span></td>'+
 					'<td><div class="img"><img src="/vacation-photo/'+ver.imgurl+'"></div></td>'+
 					'<td>'+ver.name+'</td>'+
 					'<td>'+ver.email+'</td>'+
@@ -156,6 +163,40 @@ function tab(num,types){
 					'<td>'+ver.name+'</td>'+
 					'<td>'+ver.time+'</td>'+
 					'<td>'+ver.lasttime+'</td>'+
+					'<td><span class="td-sixin">私信</span><span class="td-delete">删除</span></td>';
+					html +='</tr>';
+					})
+					$('.user-table table').html(html);
+				}
+				else{
+				console.log('返回数据失败');
+				}
+			},
+			error: function(){
+				console.log('出现问题');
+			}
+		});
+    }else if(types == 'grpuser'){
+    	var html = '';
+    	$.ajax({
+			url: '/yike/manage/grpuser/gpuTable',
+			type: 'POST',
+			data: {num:num},
+			success: function(data){
+				if(data.success){
+					var aa = data.context.vacation;
+					html +='<tr><th><i></i><span>序号</span></th>'+
+				'<th>群名</th><th>成员名</th><th>昵称</th>'+
+				'<th>添加时间</th><th>最后通话</th><th>未读信息</th><th>操作</th></tr>';
+					//console.log(aa);
+					aa.map(function(ver){
+					html += '<tr><td><i data-id="'+ver.id+'"></i><span>'+ver.d+'</span></td>'+
+					'<td>'+ver.grp+'</td>'+
+					'<td>'+ver.use+'</td>'+
+					'<td>'+ver.name+'</td>'+
+					'<td>'+ver.time+'</td>'+
+					'<td>'+ver.lasttime+'</td>'+
+					'<td>'+ver.status+'</td>'+
 					'<td><span class="td-sixin">私信</span><span class="td-delete">删除</span></td>';
 					html +='</tr>';
 					})

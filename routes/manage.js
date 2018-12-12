@@ -164,4 +164,29 @@ module.exports = function(app){
 		manage.frdDelete(req,res);
 	})
 
+	//群与用户关系
+	app.get('/yike/manage/grpuser',function(req,res){
+		var id = req.session.userId;
+		var adminid = req.session.adminid;
+		if(id == adminid){
+			//manage.userDet(res,id);
+			res.render('manage/grpuser');
+		}else{
+			res.redirect('/');
+		}
+	});	
+	//获取群建立时间数据
+	app.post('/yike/manage/grpuser/gpuCount',function(req,res){
+		manage.gpuCount(res);
+	});
+	//获取群列表
+	app.post('/yike/manage/grpuser/gpuTable',function(req,res){
+		var num = req.body.num;
+		manage.gpuTable(res,num);
+	});
+	//删除
+	app.post('/yike/manage/grpuser/delete',function(req,res){
+		manage.gpuDelete(req,res);
+	})
+
 }

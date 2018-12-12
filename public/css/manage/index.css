@@ -24,6 +24,7 @@
 	padding-top: 12px;
 }
 .head-search .search-in{
+	display: inline-block;
 	height: 28px;
 	width: 240px;
 	padding: 0 38px 0 12px;

@@ -126,6 +126,15 @@
 	border-radius: 2px;
 	cursor: pointer;
 }
+.user-table table tr .admin{
+	display: inline-block;
+	margin-right: 9px;
+	vertical-align: top;
+	height: 14px;
+	width: 14px;
+	border-radius: 50%;
+	background: #fe7f26;
+}
 .user-table table tr .selects{
 	border: 1px solid #fe7f26;
 	background: url('/images/manage/select.png') no-repeat center center;
