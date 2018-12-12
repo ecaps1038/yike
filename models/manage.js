@@ -5,6 +5,7 @@ var Group = groupdb.model('Group');
 var Groupuser = groupdb.model('Groupuser');
 var Groupmsg = groupdb.model('Groupmsg');
 var Message = require("./messagesdb.js");
+var Friend = require("./friendsdb.js");
 
 var date = require('./date.js');
 
@@ -148,7 +149,7 @@ exports.userRegist = function(res){
 //分页查询
 exports.userTable = function(res,id,nowPage){
     
-    var pageSize = 5;                   //一页多少条
+    var pageSize = 8;                   //一页多少条
     //var currentPage = 1;                //当前第几页
     var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
     var condition = {};                 //条件
@@ -192,6 +193,23 @@ exports.userTable = function(res,id,nowPage){
             res.send({success:true,context});
         }
     })
+}
+
+//删除数据
+exports.userDelete = function(req,res){
+	var data = req.body.d;
+	data.map(function(ver){
+		var id = {'_id':ver};
+		User.findByIdAndRemove(id, function(err, res){
+	        if (err) {
+	            console.log("数据删除失败：" + err);
+	        }
+	        else {
+	            console.log("数据删除成功！");
+	        }
+	    });
+	});
+	res.send({success:true});
 }
 
 //group
@@ -278,6 +296,24 @@ exports.groupTable = function(res,nowPage){
         res.send({success:true,context});
     })
 }
+//删除数据
+exports.groupDelete = function(req,res){
+	var data = req.body.d;
+	console.log('暂时就不删除了');
+	// data.map(function(ver){
+	// 	var id = {'_id':ver};
+	// 	Group.findByIdAndRemove(id, function(err, res){
+	//         if (err) {
+	//             console.log("数据删除失败：" + err);
+	//         }
+	//         else {
+	//             console.log("数据删除成功！");
+	//         }
+	//     });
+	// });
+	res.send({success:true});
+}
+
 
 //message
 //查询点消息
@@ -378,5 +414,205 @@ exports.msgDelete = function(req,res){
 	    });
 	});
 	res.send({success:true});
+}
 
+//grpmsg
+//查询群消息
+exports.grpmsgCount = function(res){
+    var wherestr = {};
+    var out = {'time':1};
+    var i = 0,b = 1,j = 0;
+    var dates = {};
+    Groupmsg.find(wherestr, out, function(err, rest){
+        if (err) {
+            console.log("查询失败：" + err);
+        }
+        else {
+            var context = {
+            vacation : rest.map(function(ver){
+                var d=date.DateSimples(ver.time);
+                i++;
+                dates[i] = d;
+                if(dates[i]!=dates[i-1]){
+                    j=b;
+                    b=1;
+                    if(i>1){
+	                    return {
+	                        d:dates[i-1],
+	                        j:j,
+	                    }
+	                }
+                }else{
+                    b++;
+                }
+                
+            }),
+            i:i,
+            ld:dates[i],
+        };
+        res.send({success:true,context});
+        }
+    });
+}
+
+
+exports.grpmsgTable = function(res,nowPage){
+
+    var pageSize = 8;                   //一页多少条
+    //var currentPage = 1;                //当前第几页
+    //var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
+    var condition = {};                 //条件
+    var skipnum = (nowPage - 1) * pageSize;   //跳过数
+    var d = skipnum;
+
+    var query = Groupmsg.find({});
+    //根据userID查询
+    query.where();
+    //查出friendID的user对象
+    query.populate('groupID');
+    query.populate('fromID');
+    //按照最后会话时间倒序排列
+    query.sort({'time':-1});
+    //跳过数
+    query.skip(skipnum);
+    //一页多少条
+    query.limit(pageSize);
+    //查询结果
+    query.exec().then(function(result){
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+                return {
+                	d:++d,
+                	id: ver._id,
+                    content: ver.content,
+                    group: ver.groupID.name,
+                    from: ver.fromID.name,
+                    time: date.DateDetail(ver.time),
+                }
+            }), 
+        };
+        //console.log(context);
+        res.send({success:true,context});
+    }).catch(function(err){
+        console.log(err);
+    });   
+};
+
+//删除数据
+exports.grpmsgDelete = function(req,res){
+	var data = req.body.d;
+	data.map(function(ver){
+		var id = {'_id':ver};
+		Groupmsg.findByIdAndRemove(id, function(err, res){
+	        if (err) {
+	            console.log("数据删除失败：" + err);
+	        }
+	        else {
+	            console.log("数据删除成功！");
+	        }
+	    });
+	});
+	res.send({success:true});
+}
+
+//friend
+//点对点关系
+exports.frdCount = function(res){
+    var wherestr = {};
+    var out = {'time':1};
+    var i = 0,b = 1,j = 0;
+    var dates = {};
+    Friend.find(wherestr, out, function(err, rest){
+        if (err) {
+            console.log("查询失败：" + err);
+        }
+        else {
+            var context = {
+            vacation : rest.map(function(ver){
+                var d=date.DateSimples(ver.time);
+                i++;
+                dates[i] = d;
+                if(dates[i]!=dates[i-1]){
+                    j=b;
+                    b=1;
+                    if(i>1){
+	                    return {
+	                        d:dates[i-1],
+	                        j:j,
+	                    }
+	                }
+                }else{
+                    b++;
+                }
+                
+            }),
+            i:i,
+            ld:dates[i],
+        };
+        res.send({success:true,context});
+        }
+    });
+}
+
+
+exports.frdTable = function(res,nowPage){
+
+    var pageSize = 8;                   //一页多少条
+    //var currentPage = 1;                //当前第几页
+    //var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
+    var condition = {};                 //条件
+    var skipnum = (nowPage - 1) * pageSize;   //跳过数
+    var d = skipnum;
+
+    var query = Friend.find({});
+    //根据userID查询
+    query.where();
+    //查出friendID的user对象
+    query.populate('friendID');
+    query.populate('userID');
+    //按照最后会话时间倒序排列
+    query.sort({'time':-1});
+    //跳过数
+    query.skip(skipnum);
+    //一页多少条
+    query.limit(pageSize);
+    //查询结果
+    query.exec().then(function(result){
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+                return {
+                	d:++d,
+                	id: ver._id,
+                    frd: ver.friendID.name,
+                    use: ver.userID.name,
+                    name: ver.name,
+                    time: date.DateDetail(ver.time),
+                    lasttime: date.DateDetail(ver.lasttime),
+                }
+            }), 
+        };
+        //console.log(context);
+        res.send({success:true,context});
+    }).catch(function(err){
+        console.log(err);
+    });   
+};
+
+//删除数据
+exports.frdDelete = function(req,res){
+	var data = req.body.d;
+	data.map(function(ver){
+		var id = {'_id':ver};
+		Friend.findByIdAndRemove(id, function(err, res){
+	        if (err) {
+	            console.log("数据删除失败：" + err);
+	        }
+	        else {
+	            console.log("数据删除成功！");
+	        }
+	    });
+	});
+	res.send({success:true});
 }

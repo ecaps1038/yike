@@ -1,6 +1,6 @@
 
 var training1 = {
-    init : function(counturl,dturl,tburl){
+    init : function(counturl,dturl,tburl,types){
         this._msgCount(counturl);
         this._handleChose();
         this._handlechoseAll();
@@ -12,6 +12,7 @@ var training1 = {
         this._dturl = dturl;
         this._tburl = tburl;
         this._counturl = counturl;
+        this._types = types;
         this.heightArr = [];
         var _this = this;
 
@@ -43,6 +44,7 @@ var training1 = {
 
 					//处理翻页
 					var page = Math.ceil(aa.i/8);
+					//console.log(page)
 					pages(page);
 				}
 				else{
@@ -70,7 +72,7 @@ var training1 = {
             var html ='';
             acpage(num,lastnum,html);
             //that._msg(num,that._tburl);
-            msg(num);
+            tab(num,that._types);
         })
     },
 		
@@ -142,7 +144,7 @@ var training1 = {
     	var that = this;
 		$('.page ul span li').eq(0).addClass('select').siblings('li').removeClass('select');
 		//that._msg(1,that._tburl);
-		msg(1);
+        tab(1,that._types);
 	},
 
 		// 添加任务按钮、
@@ -177,41 +179,6 @@ var training1 = {
         
     },
 
- // 群数据
-_msg: function(num,tburl,html){
-	//var html = '';
-	$.ajax({
-		url: tburl,
-		type: 'POST',
-		data: {num:num},
-		success: function(data){
-			if(data.success){
-				var aa = data.context.vacation;
-				html +='<tr><th><i></i><span>序号</span></th>'+
-		'<th>内容</th><th>是否查收</th><th>发送者</th><th>接收者</th>'+
-		'<th>发送时间</th><th>操作</th></tr>';
-				//console.log(aa);
-				aa.map(function(ver){
-				html += '<tr><td><i data-id="'+ver.id+'"></i><span>'+ver.d+'</span></td>'+
-				'<td>'+ver.postMessages+'</td>'+
-				'<td>'+ver.status+'</td>'+
-				'<td>'+ver.fromUser+'</td>'+
-				'<td>'+ver.toUser+'</td>'+
-				'<td>'+ver.dateTime+'</td>'+
-				'<td><span class="td-delete">删除</span></td>';
-				html +='</tr>';
-				})
-				$('.user-table table').html(html);
-				}
-				else{
-				console.log('返回数据失败');
-				}
-			},
-			error: function(){
-				console.log('出现问题');
-			}
-		});
-	}
 }
 //现在位置
 

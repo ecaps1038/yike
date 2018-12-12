@@ -59,6 +59,10 @@ module.exports = function(app){
 		var num = req.body.num;
 		manage.userTable(res,id,num);
 	});
+	//获取用户id删除
+	app.post('/yike/manage/user/delete',function(req,res){
+		manage.userDelete(req,res);
+	});
 
 	//群页面
 	app.get('/yike/manage/group',function(req,res){
@@ -79,6 +83,10 @@ module.exports = function(app){
 	app.post('/yike/manage/group/groupTable',function(req,res){
 		var num = req.body.num;
 		manage.groupTable(res,num);
+	});
+	//获取群id删除
+	app.post('/yike/manage/group/delete',function(req,res){
+		manage.groupDelete(req,res);
 	});
 
 	//点信息
@@ -104,6 +112,56 @@ module.exports = function(app){
 	//删除
 	app.post('/yike/manage/msg/delete',function(req,res){
 		manage.msgDelete(req,res);
+	})
+
+	//群信息
+	app.get('/yike/manage/grpmsg',function(req,res){
+		var id = req.session.userId;
+		var adminid = req.session.adminid;
+		if(id == adminid){
+			//manage.userDet(res,id);
+			res.render('manage/grpmsg');
+		}else{
+			res.redirect('/');
+		}
+	});	
+	//获取群建立时间数据
+	app.post('/yike/manage/grpmsg/msgCount',function(req,res){
+		manage.grpmsgCount(res);
+	});
+	//获取群列表
+	app.post('/yike/manage/grpmsg/msgTable',function(req,res){
+		var num = req.body.num;
+		manage.grpmsgTable(res,num);
+	});
+	//删除
+	app.post('/yike/manage/grpmsg/delete',function(req,res){
+		manage.grpmsgDelete(req,res);
+	})
+
+	//点对点关系网
+	app.get('/yike/manage/friend',function(req,res){
+		var id = req.session.userId;
+		var adminid = req.session.adminid;
+		if(id == adminid){
+			//manage.userDet(res,id);
+			res.render('manage/friend');
+		}else{
+			res.redirect('/');
+		}
+	});	
+	//获取群建立时间数据
+	app.post('/yike/manage/friend/frdCount',function(req,res){
+		manage.frdCount(res);
+	});
+	//获取群列表
+	app.post('/yike/manage/friend/frdTable',function(req,res){
+		var num = req.body.num;
+		manage.frdTable(res,num);
+	});
+	//删除
+	app.post('/yike/manage/friend/delete',function(req,res){
+		manage.frdDelete(req,res);
 	})
 
 }

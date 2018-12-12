@@ -1,11 +1,8 @@
 ;(function($,window){
-    msg(1);
-    function nowpages(){
-    	$('.page ul span li').eq(0).addClass('select').siblings('li').removeClass('select');
-    	var now = msg(1);
-    }
+    tab(1,'msg');
+    var types = 'msg';
     $(document).ready(function(){
-        training1.init('/yike/manage/msg/msgCount','/yike/manage/msg/delete','/yike/manage/msg/msgTable');
+        training1.init('/yike/manage/msg/msgCount','/yike/manage/msg/delete','/yike/manage/msg/msgTable',types);
     })
     window.training1 = training1;
 
