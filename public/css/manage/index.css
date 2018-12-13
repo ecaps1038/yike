@@ -41,6 +41,7 @@
 	height: 28px;
 	border: 0px;
 	outline: none;
+	cursor: pointer;
 	background: url('/images/manage/index/search1.png') no-repeat center center;
 }
 .head-user{
@@ -144,7 +145,7 @@
 .bar-option ul li .groupus{
 	background: url('/images/manage/index/groupus.png') no-repeat center center;
 }
-.bar-option ul li .search{
+.bar-option ul li .searchs{
 	background: url('/images/manage/index/search.png') no-repeat center center;
 }
 /*iframe*/

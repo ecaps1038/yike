@@ -7,7 +7,7 @@
 	<div class="manage-head">
 		<div class="head-search">
             <input type="search" placeholder="搜索用户，群，消息" class="search-in">
-            <button class="search" name="search"></button>      
+            <button class="search" name="search" data-link="/yike/manage/search"></button>      
         </div>
         <div class="head-user">
             <div class="userimg"><img src="/vacation-photo/{{img}}"></div>
@@ -26,7 +26,7 @@
                 <li data-show="true" data-link="/yike/manage/grpmsg"><i></i><span class="grpmsg"></span></li>
                 <li data-show="true" data-link="/yike/manage/friend"><i></i><span class="friend"></span></li>
                 <li data-show="true" data-link="/yike/manage/grpuser"><i></i><span class="groupus"></span></li>
-                <li data-show="true" data-link="/yike/manage/search"><i></i><span class="search"></span></li>
+                <li data-show="true" data-link="/yike/manage/search" class="search-page"><i></i><span class="searchs"></span></li>
             </ul>
         </div>
 	</div>
@@ -37,5 +37,6 @@
 </div>
 
 {{#section 'jquery'}}
+    <script src="/js/myfunc.js" type="text/javascript"></script>
 	<script src="/js/manage/index.js" type="text/javascript"></script>
 {{/section}}

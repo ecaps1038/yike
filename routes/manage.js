@@ -200,5 +200,11 @@ module.exports = function(app){
 			res.redirect('/');
 		}
 	});	
+	//搜索用户
+	app.post('/yike/manage/search/user',function(req,res){
+		var id = req.session.userId;
+		var data = req.body.searchs;
+		manage.searchUser(res,id,data);
+	});
 
 }

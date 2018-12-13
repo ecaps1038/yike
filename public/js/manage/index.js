@@ -5,6 +5,7 @@
             this.winH = $(window).height();
             this.winW = $(window).width();
             this._handleLiClick();
+            this._searchClick();
             this._length = 0;
             this.height = 0;
             this.heightArr = [];
@@ -27,34 +28,31 @@
                 $(this).addClass('current').siblings('li').removeClass('current');
                 // 修改取消任务按钮
                 _link = $(this).attr('data-link');
-                
-                // 修改标
-                // $('.training-iframe-div').css('height','623px');
-                //$('.manage').removeAttr('style');
-                //$('.body-title').text($(this).text());
                 $('.training-iframe').attr('src',_link);
+                $('.training-iframe').css("display","block");
             })
         },
         
-        // 处理点击跳转
-        _handleClick : function(){
-            var _num = this._length,_newindex = 0,that = this,_middleH = 0;
-            $('body').on('click','.common-sec',function(){
-                if($(this).hasClass('left-sec')){
-                    _newindex--;
-                    _newindex < 0 ? _newindex = 0 : _newindex = _newindex;
+        //搜索点击事件
+        _searchClick : function(){
+        var that = this, _link = '';
+        $('body').on('click','.manage-head .search',function(){
+            var searchs = $('.manage-head .search-in').val();
+            if(searchs){
+                var len = getByteLen(searchs);
+                if(len<4){
+                    alert('字符太短');
                 }else{
-                    _newindex++;
-                    _newindex >= _num ? _newindex = _num - 1 : _newindex = _newindex;
-                }
-                $('.show-current').text((_newindex+1)+'/'+_num);
-                $('.img-ul').stop().animate({'left':-_newindex  + '00%'});
-                // _middleH = that.heightArr[_newindex] > that.height ? that.heightArr[_newindex] : that.height;
-                // $('#img_inner_cover').css('height',_middleH + 20 +'px');
-            })
+                    $('.bar-option-ul .search-page').addClass('current').siblings('li').removeClass('current');
+                    _link = $(this).attr('data-link');
+                    $('.training-iframe').attr('src',_link);  
+                }          
+            }            
+        })
         },
 
     }
+
     $(document).ready(function(){
         training.init();
         // $('.training-iframe').teoyallScroll();

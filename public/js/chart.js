@@ -23,26 +23,6 @@
             $msgout.scrollTop(toHeight);
         }
 
-        //时间转换
-        function changeTime(date){
-            var d = new Date(date);
-            var h = d.getHours();
-            var m = d.getMinutes();
-            var s = d.getSeconds();
-
-            if(h<10){
-                h = '0'+h;
-            }
-            if(m<10){
-                m = '0'+m;
-            }
-            if(s<10){
-                s = '0'+s;
-            }
-            var tiems = h+':'+m;    
-            return tiems;
-        }
-
         //获取数据库信息
         function showMessage(){
             $.ajax({
@@ -112,7 +92,7 @@
 
                 //获取时间点
                 var nowTime= new Date();
-                var changetime = changeTime(nowTime);
+                var changetime = changeTime1(nowTime);
                 room[j] =nowTime;
                 if(nowTime>(room[j-1]+4*60*1000)){
                     html+="<p class='time'>"+changetime+"</p>";
@@ -134,7 +114,7 @@
 
             //获取时间点
             var nowTime= new Date();
-            var changetime = changeTime(nowTime);
+            var changetime = changeTime1(nowTime);
             room[j] =nowTime;
             if(nowTime>(room[j-1]+4*60*1000)){
                 html+="<p class='time'>"+changetime+"</p>";

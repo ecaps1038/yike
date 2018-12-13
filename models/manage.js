@@ -719,3 +719,47 @@ exports.gpuDelete = function(req,res){
 	// });
 	res.send({success:true});
 }
+
+//search
+//搜索用户
+exports.searchUser = function(res,id,data){
+    var search = {$or:[{'name': {$regex : data}},{'email': {$regex : data}}]};
+    var out = {};
+    var d = 0;
+    User.find(search, out, function(err, rest){
+        if (err) {
+            console.log("查询失败：" + err);
+        }
+        else {
+            var context = {
+                vacation : rest.map(function(ver){
+                    var admin;
+                    if(ver._id==id){
+                        admin=1;
+                    }else{admin=null;}
+                    if(!ver.sex){
+                                var sex = 'asexual';
+                    }else{var sex = ver.sex;}
+                    if(ver.imgurl){
+                        var imgurl = ver.imgurl;
+                    }else{
+                        var imgurl = 'user.jpg';
+                    }
+                    return {
+                        d: ++d,
+                        id : ver._id,
+                        name: ver.name,
+                        email: ver.email,
+                        sex: sex,
+                        imgurl: imgurl,
+                        birth: date.DateSimple(ver.birth),
+                        registerdate: date.DateDetail(ver.registerdate),
+                        online: ver.online,
+                        admin:admin,
+                    }
+                }),
+            };
+        res.send({success:true,context});
+        }
+    });
+}
