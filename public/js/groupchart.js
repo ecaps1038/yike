@@ -75,33 +75,43 @@
         //发送消息
     	$('.but').on('click',function(evt){
             evt.preventDefault();
-            var message = $('.text').val();
-            var mesg = {
-                name:myname,
-                groupid:groupid,
-                message: message,
-                userid: userid,
-                imgurl: myimgurl,
-            }
-            socket.emit('groupmessage',mesg);
-
-            //获取时间点
-            var nowTime= new Date();
-            var changetime = changeTime(nowTime);
-            room[j] =nowTime;
-            if(nowTime>(room[j-1]+4*60*1000)){
-                html+="<p class='time'>"+changetime+"</p>";
-            }
-            j++;
-
-            html+='<div class="my message"><p><img src="/vacation-photo/'+ 
-            myimgurl+'"/>'+message+'</p></div>';
-            $('#message').append(html); 
-            html='';
-            $('.text').val("");
-            scrollToBottom();
-
+            sendmsg();
         });
+        //点击enter发送信息
+        $(document).keyup(function(event){
+          if(event.keyCode ==13){
+            sendmsg();
+          }
+        });
+        function sendmsg(){
+            var message = $('.text').val();
+            if(message){
+                var mesg = {
+                    name:myname,
+                    groupid:groupid,
+                    message: message,
+                    userid: userid,
+                    imgurl: myimgurl,
+                }
+                socket.emit('groupmessage',mesg);
+
+                //获取时间点
+                var nowTime= new Date();
+                var changetime = changeTime(nowTime);
+                room[j] =nowTime;
+                if(nowTime>(room[j-1]+4*60*1000)){
+                    html+="<p class='time'>"+changetime+"</p>";
+                }
+                j++;
+
+                html+='<div class="my message"><p><img src="/vacation-photo/'+ 
+                myimgurl+'"/>'+message+'</p></div>';
+                $('#message').append(html); 
+                html='';
+                $('.text').val("");
+                scrollToBottom();
+            }
+        }
         //接收信息
         socket.on('sendGroupMsg',function(msg,uname,img,fromid){
 

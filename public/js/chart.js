@@ -42,6 +42,8 @@
             var tiems = h+':'+m;    
             return tiems;
         }
+
+        //获取数据库信息
         function showMessage(){
             $.ajax({
                 url: '/showMessage',
@@ -82,36 +84,52 @@
         }
         showMessage();
 
+        //通知加入房间
         socket.emit('chart',from);
+        //点击发送
     	$('.but').on('click',function(evt){
             evt.preventDefault();
-            var message = $('.text').val();
-            var mesg = {
-                name:name,
-                to:to,
-                message: message,
-                fromid: fromid,
-                toid: toid
-            }
-            socket.emit('message',mesg);
-
-            //获取时间点
-            var nowTime= new Date();
-            var changetime = changeTime(nowTime);
-            room[j] =nowTime;
-            if(nowTime>(room[j-1]+4*60*1000)){
-                html+="<p class='time'>"+changetime+"</p>";
-            }
-            j++;
-
-            html+='<div class="my message"><p><img src="/vacation-photo/'+ 
-            myimgurl+'"/>'+message+'</p></div>';
-            $('#message').append(html); 
-            html='';
-            $('.text').val("");
-            scrollToBottom();
-
+            sendmsg();
         });
+        //点击enter发送信息
+        $(document).keyup(function(event){
+          if(event.keyCode ==13){
+            sendmsg();
+          }
+        });
+        //发送信息
+        function sendmsg(){
+            var message = $('.text').val();
+            if(message){
+                var mesg = {
+                    name:name,
+                    to:to,
+                    message: message,
+                    fromid: fromid,
+                    toid: toid
+                }
+                socket.emit('message',mesg);
+
+                //获取时间点
+                var nowTime= new Date();
+                var changetime = changeTime(nowTime);
+                room[j] =nowTime;
+                if(nowTime>(room[j-1]+4*60*1000)){
+                    html+="<p class='time'>"+changetime+"</p>";
+                }
+                j++;
+
+                html+='<div class="my message"><p><img src="/vacation-photo/'+ 
+                myimgurl+'"/>'+message+'</p></div>';
+                $('#message').append(html); 
+                html='';
+                $('.text').val("");
+                scrollToBottom();
+            }
+
+        }
+
+        //接收信息
         socket.on('sendMsg',function(msg){
 
             //获取时间点

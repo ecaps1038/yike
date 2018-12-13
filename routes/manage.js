@@ -187,6 +187,18 @@ module.exports = function(app){
 	//删除
 	app.post('/yike/manage/grpuser/delete',function(req,res){
 		manage.gpuDelete(req,res);
-	})
+	});
+
+	//搜索
+	app.get('/yike/manage/search',function(req,res){
+		var id = req.session.userId;
+		var adminid = req.session.adminid;
+		if(id == adminid){
+			//manage.userDet(res,id);
+			res.render('manage/search');
+		}else{
+			res.redirect('/');
+		}
+	});	
 
 }
