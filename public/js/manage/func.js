@@ -212,3 +212,60 @@ function tab(num,types){
 		});
     }
 }
+
+//搜索
+function search(types){
+	switch (types){
+        case 'user':  
+		$.ajax({
+				url: '/yike/manage/search/user',
+				type: 'POST',
+				data: {searchs:searchs},
+				success: function(data){
+					if(data.success){
+						var aa = data.context.vacation;
+						if(aa.length>0){
+							html +='<tr><th><i></i><span>序号</span></th>'+
+							'<th>头像</th><th>用户名</th><th>邮箱</th><th>性别</th><th>生日</th>'+
+							'<th>注册时间</th><th>是否在线</th><th>操作</th></tr>';
+							//console.log(aa);
+							aa.map(function(ver){
+							html += '<tr><td>';
+							if(ver.admin){
+								html +='<span class="admin"></span>';
+							}else{
+								html +='<i data-id="'+ver.id+'"></i>';
+							}
+							
+							html+='<span>'+ver.d+'</span></td>'+
+							'<td><div class="img"><img src="/vacation-photo/'+ver.imgurl+'"></div></td>'+
+							'<td>'+ver.name+'</td>'+
+							'<td>'+ver.email+'</td>'+
+							'<td>'+ver.sex+'</td>'+
+							'<td>'+ver.birth+'</td>'+
+							'<td>'+ver.registerdate+'</td>'+
+							'<td>'+ver.online+'</td>';
+							if(ver.admin){
+								html +='<td></td>';
+							}else{
+								html +='<td><span class="td-sixin">私信</span><span class="td-delete">删除</span></td>';
+							}
+							html +='</tr>';
+							})
+							$('.user-table table').html(html);
+						}else{
+							$('.user-table table').html('无数据');
+						}
+					}else{
+						console.log('返回数据失败');
+					}
+				},
+				error: function(){
+					console.log('出现问题');
+				}
+			});        
+		break;
+        default:printf("error\n");
+    }
+	
+}
