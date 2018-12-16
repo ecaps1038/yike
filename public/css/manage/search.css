@@ -1,13 +1,12 @@
 .head-search{
-	height: 200px;
-	margin-top: 180px;
 	text-align: center;
 }
 .head-search p{
 	display: inline-block;
+	margin-top: 100px;
 	height: 100px;
 	width: 158px;
-	background: url('/images/manage/logo1.png') no-repeat center center;
+	background: url('/images/manage/logo1.png') no-repeat center center/108px;
 }
 .search-div{
 	width: 480px;
@@ -36,5 +35,5 @@
 	outline: none;
 	cursor: pointer;
 	border: 0px;
-	background: #ef7c2e url('/images/manage/index/search.png') no-repeat center center;
+	background: #ef7c2e url('/images/manage/index/search.png') no-repeat center center/18px;
 	}

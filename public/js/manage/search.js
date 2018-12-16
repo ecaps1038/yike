@@ -3,7 +3,7 @@
     var training = {
         init : function(){
             this._getSearch();
-            //this._searchClick();
+            this._searchClick();
             
         },
        
@@ -13,7 +13,7 @@
             var searchs = $(window.parent.document).find(".search-in").val();
             var ten = getByteLen(searchs);
             if(ten>=4){
-            
+                search(searchs);
         }else{
 			html +='<p></p><div class="search-div"><input type="search" placeholder="搜索用户、群、消息" class="search-in">'+
 			'<button class="search" name="search"></button></div>';
@@ -24,14 +24,17 @@
       //搜索点击事件
       _searchClick : function(){
         var that = this, _link = '';
-        $('body').on('click','.manage-head .search',function(){
-            var searchs = $('.manage-head .search-in').val();
+        $('body').on('click','.head-search .search',function(){
+            var searchs = $('.head-search .search-in').val();
             if(searchs){
-                $('.training-iframe').css("display","none")
+                var ten = getByteLen(searchs);
+                if(ten>=4){
+                    search(searchs);
+                    $('.head-search').html('');
+                }else{
+                    alert('字符小于4');
+                }          
             }
-            $('.bar-option-ul .search-page').addClass('current').siblings('li').removeClass('current');
-            _link = $(this).attr('data-link');
-            //$('.training-iframe').attr('src',_link);
         })
       },
 

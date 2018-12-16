@@ -41,7 +41,7 @@
             if(searchs){
                 var len = getByteLen(searchs);
                 if(len<4){
-                    alert('字符太短');
+                    alert('字符小于4');
                 }else{
                     $('.bar-option-ul .search-page').addClass('current').siblings('li').removeClass('current');
                     _link = $(this).attr('data-link');

@@ -49,7 +49,7 @@
 }
 .detial-count ul li i{
 	width: 20px;
-	height: 60px;
+	max-height: 120px;
 	background: #08d26f;
 	display: block;
 	margin: 4px auto;
@@ -90,6 +90,14 @@
 	text-align: left;
 	width: 100%;
 	border-spacing: 0px;
+}
+.user-table .title{
+	font-size: 18px;
+	line-height: 28px;
+	padding-top: 20px;
+	margin-bottom: 10px;
+	float: left;
+	border-bottom: 3px solid #ff7f26;
 }
 .user-table table tr:hover,.user-table table tr th{
 	background: #f6f6f6;
@@ -137,7 +145,11 @@
 }
 .user-table table tr .selects{
 	border: 1px solid #fe7f26;
-	background: url('/images/manage/select.png') no-repeat center center;
+	background: url('/images/manage/select.png') no-repeat center center/16px;
+}
+.user-table table tr .cg-psw{
+	color: #3b74ff;
+	cursor: pointer;
 }
 /*翻页*/
 .page{

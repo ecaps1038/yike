@@ -8,6 +8,8 @@ var Message = require("./messagesdb.js");
 var Friend = require("./friendsdb.js");
 
 var date = require('./date.js');
+var bcrypt = require('./bcrypt.js');
+
 
 //匹配管理
 exports.allow = function(req,res,id){
@@ -147,52 +149,60 @@ exports.userRegist = function(res){
     });
 }
 //分页查询
-exports.userTable = function(res,id,nowPage){
-    
+exports.userTable = function(res,id,nowPage,select){
+    var sel = {};
+    if(select){
+        sel = {'name':{$regex : select}};
+    }
     var pageSize = 8;                   //一页多少条
-    //var currentPage = 1;                //当前第几页
-    var sort = {'lregisterdate':1};        //排序（按登录时间倒序）
+    var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
     var condition = {};                 //条件
     var skipnum = (nowPage - 1) * pageSize;   //跳过数
     var d = skipnum;
-    
-    User.find(condition).skip(skipnum).limit(pageSize).sort(sort).exec(function (err, rest) {
-        if (err) {
-            console.log("Error:" + err);
-        }
-        else {
-            var context = {
-                vacation : rest.map(function(ver){
-                    var admin;
-                    if(ver._id==id){
-                        admin=1;
-                    }else{admin=null;}
-                    if(!ver.sex){
-                                var sex = 'asexual';
-                    }else{var sex = ver.sex;}
-                    if(ver.imgurl){
-                        var imgurl = ver.imgurl;
-                    }else{
-                        var imgurl = 'user.jpg';
-                    }
-                    return {
-                        d:++d,
-                        id : ver._id,
-                        name: ver.name,
-                        email: ver.email,
-                        sex: sex,
-                        imgurl: imgurl,
-                        birth: date.DateSimple(ver.birth),
-                        registerdate: date.DateDetail(ver.registerdate),
-                        online: ver.online,
-                        admin:admin,
-                    }
-                }),
-            };
-            //res.render('manage/user',context);
-            res.send({success:true,context});
-        }
-    })
+
+    var query = User.find({});
+    //根据userID查询
+    query.where(sel);
+    //按照最后会话时间倒序排列
+    query.sort({'registerdate':1});
+    //跳过数
+    query.skip(skipnum);
+    //一页多少条
+    query.limit(pageSize);
+    //查询结果
+    query.exec().then(function(result){
+        var context = {
+            vacation : result.map(function(ver){
+                var admin;
+                if(ver._id==id){
+                    admin=1;
+                }else{admin=null;}
+                if(!ver.sex){
+                            var sex = 'asexual';
+                }else{var sex = ver.sex;}
+                if(ver.imgurl){
+                    var imgurl = ver.imgurl;
+                }else{
+                    var imgurl = 'user.jpg';
+                }
+                return {
+                    d:++d,
+                    id : ver._id,
+                    name: ver.name,
+                    email: ver.email,
+                    sex: sex,
+                    imgurl: imgurl,
+                    birth: date.DateSimple(ver.birth),
+                    registerdate: date.DateDetail(ver.registerdate),
+                    online: ver.online,
+                    admin:admin,
+                }
+            }),
+        };
+        res.send({success:true,context});
+    }).catch(function(err){
+        console.log(err);
+    });
 }
 
 //删除数据
@@ -210,6 +220,22 @@ exports.userDelete = function(req,res){
 	    });
 	});
 	res.send({success:true});
+}
+//修改密码
+exports.changePsw = function(res,id){
+    //var id = '5bc852dd89cdd953d0dc0938';
+    var pwd = bcrypt.bcrypts('000000');
+    var updatestr = {'pwd': pwd};
+    
+    User.findByIdAndUpdate(id, updatestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            //console.log("数据修改成功！");
+            res.send({success:true});
+        }
+    });
 }
 
 //group
@@ -291,34 +317,37 @@ exports.groupTable = function(res,nowPage){
                 }
             }),
         };
-        //console.log(context);
-        //res.render('manage/user',context);
         res.send({success:true,context});
-    })
+    }).catch(function(err){
+        console.log(err);
+    });
 }
 //删除数据
 exports.groupDelete = function(req,res){
 	var data = req.body.d;
 	console.log('暂时就不删除了');
-	// data.map(function(ver){
-	// 	var id = {'_id':ver};
-	// 	Group.findByIdAndRemove(id, function(err, res){
-	//         if (err) {
-	//             console.log("数据删除失败：" + err);
-	//         }
-	//         else {
-	//             console.log("数据删除成功！");
-	//         }
-	//     });
-	// });
+	data.map(function(ver){
+		var id = {'_id':ver};
+		Group.findByIdAndRemove(id, function(err, res){
+	        if (err) {
+	            console.log("数据删除失败：" + err);
+	        }
+	        else {
+	            console.log("数据删除成功！");
+	        }
+	    });
+	});
 	res.send({success:true});
 }
 
 
 //message
 //查询点消息
-exports.msgCount = function(res){
+exports.msgCount = function(res,select){
     var wherestr = {};
+    if(select){
+        wherestr = {'postMessages':{$regex : select}};
+    }
     var out = {'dateTime':1};
     var i = 0,b = 1,j = 0;
     var dates = {};
@@ -355,18 +384,18 @@ exports.msgCount = function(res){
 }
 
 
-exports.msgTable = function(res,nowPage){
-
+exports.msgTable = function(res,nowPage,select){
+    var sel = {};
+    if(select){
+        sel = {'postMessages':{$regex : select}};
+    }
     var pageSize = 8;                   //一页多少条
-    //var currentPage = 1;                //当前第几页
-    //var sort = {'lregisterdate':-1};        //排序（按登录时间倒序）
-    var condition = {};                 //条件
     var skipnum = (nowPage - 1) * pageSize;   //跳过数
     var d = skipnum;
 
     var query = Message.find({});
     //根据userID查询
-    query.where();
+    query.where(sel);
     //查出friendID的user对象
     query.populate('fromUserID');
     query.populate('toUserID');
@@ -705,18 +734,18 @@ exports.gpuTable = function(res,nowPage){
 //删除数据
 exports.gpuDelete = function(req,res){
 	var data = req.body.d;
-    console.log('还没想好怎么删除解决');
-	// data.map(function(ver){
-	// 	var id = {'_id':ver};
-	// 	Groupuser.findByIdAndRemove(id, function(err, res){
-	//         if (err) {
-	//             console.log("数据删除失败：" + err);
-	//         }
-	//         else {
-	//             console.log("数据删除成功！");
-	//         }
-	//     });
-	// });
+    console.log('此项删除逻辑有问题');
+	data.map(function(ver){
+		var id = {'_id':ver};
+		Groupuser.findByIdAndRemove(id, function(err, res){
+	        if (err) {
+	            console.log("数据删除失败：" + err);
+	        }
+	        else {
+	            console.log("数据删除成功！");
+	        }
+	    });
+	});
 	res.send({success:true});
 }
 
@@ -763,3 +792,107 @@ exports.searchUser = function(res,id,data){
         }
     });
 }
+
+//搜索群
+exports.searchGroup = function(res,data){
+    var query = Group.find({});
+    //根据userID查询
+    query.where({'name': {$regex : data}});
+    //查出friendID的user对象
+    query.populate('adminID');
+    //按照最后会话时间倒序排列
+    query.sort({'time':1});
+    var d = 0;
+    //查询结果
+    query.exec().then(function(result){
+        var context = {
+            vacation : result.map(function(ver){
+                if(ver.icon){
+                    var icon = ver.icon;
+                }else{
+                    var icon = 'group.png';
+                }
+                return {
+                    d: ++d,
+                    id: ver._id,
+                    name: ver.name,
+                    admin: ver.adminID.name,
+                    intro: ver.intro,
+                    icon: icon,
+                    time: date.DateDetail(ver.time),
+                }
+            }),
+        };
+        //console.log(context);
+        //res.render('manage/user',context);
+        res.send({success:true,context});
+    })
+}
+//查询点信息
+exports.searchMsg = function(res,data){
+
+    var query = Message.find({});
+    //根据userID查询
+    query.where({'postMessages': {$regex : data}});
+    //查出friendID的user对象
+    query.populate('fromUserID');
+    query.populate('toUserID');
+    //按照最后会话时间倒序排列
+    query.sort({'lasttime':1});
+    var d = 0;
+    //查询结果
+    query.exec().then(function(result){
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+                return {
+                    d:++d,
+                    id: ver._id,
+                    postMessages: ver.postMessages,
+                    status: ver.status,
+                    fromUser: ver.fromUserID.name,
+                    toUser: ver.toUserID.name,
+                    dateTime: date.DateDetail(ver.dateTime),
+                }
+            }), 
+        };
+        //console.log(context);
+        res.send({success:true,context});
+    }).catch(function(err){
+        console.log(err);
+    });   
+};
+
+exports.searchGrpMsg = function(res,data){
+    var query = Groupmsg.find({});
+    //根据userID查询
+    query.where({'content': {$regex : data}});
+    //查出friendID的user对象
+    query.populate('groupID');
+    query.populate('fromID');
+    //按照最后会话时间倒序排列
+    query.sort({'time':1});
+    var d = 0;
+    //查询结果
+    query.exec().then(function(result){
+        //console.log(result);
+        var context = {
+            vacation : result.map(function(ver){
+                return {
+                    d:++d,
+                    id: ver._id,
+                    content: ver.content,
+                    group: ver.groupID.name,
+                    from: ver.fromID.name,
+                    time: date.DateDetail(ver.time),
+                }
+            }), 
+        };
+        //console.log(context);
+        res.send({success:true,context});
+    }).catch(function(err){
+        console.log(err);
+    });   
+};
+
+

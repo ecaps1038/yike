@@ -42,7 +42,7 @@
 	border: 0px;
 	outline: none;
 	cursor: pointer;
-	background: url('/images/manage/index/search1.png') no-repeat center center;
+	background: url('/images/manage/index/search1.png') no-repeat center center/18px;
 }
 .head-user{
 	float: right;
@@ -55,7 +55,7 @@
 	width: 40px;
 	height: 52px;
 	margin-right: 16px;
-	background: url('/images/manage/index/news.png')no-repeat center center;
+	background: url('/images/manage/index/news.png')no-repeat center center/19px;
 }
 .head-user .news span{
 	font-size: 12px;
@@ -95,7 +95,7 @@
 .manage-left .logo{
 	width: 52px;
 	height: 52px;
-	background: url('/images/manage/index/logo.png') #404040 no-repeat center center;
+	background: url('/images/manage/index/logo.png') #404040 no-repeat center center/19px;
 
 }
 .bar-option ul{
@@ -125,28 +125,28 @@
 	width: 50px;
 }
 .bar-option ul li .home{
-	background: url('/images/manage/index/home.png') no-repeat center center;
+	background: url('/images/manage/index/home.png') no-repeat center center/16px;
 }
 .bar-option ul li .user{
-	background: url('/images/manage/index/user.png') no-repeat center center;
+	background: url('/images/manage/index/user.png') no-repeat center center/18px;
 }
 .bar-option ul li .group{
-	background: url('/images/manage/index/group.png') no-repeat center center;
+	background: url('/images/manage/index/group.png') no-repeat center center/22px;
 }
 .bar-option ul li .msg{
-	background: url('/images/manage/index/msg.png') no-repeat center center;
+	background: url('/images/manage/index/msg.png') no-repeat center center/18px;
 }
 .bar-option ul li .grpmsg{
-	background: url('/images/manage/index/grpmsg.png') no-repeat center center;
+	background: url('/images/manage/index/grpmsg.png') no-repeat center center/18px;
 }
 .bar-option ul li .friend{
-	background: url('/images/manage/index/friend.png') no-repeat center center;
+	background: url('/images/manage/index/friend.png') no-repeat center center/18px;
 }
 .bar-option ul li .groupus{
-	background: url('/images/manage/index/groupus.png') no-repeat center center;
+	background: url('/images/manage/index/groupus.png') no-repeat center center/19px;
 }
 .bar-option ul li .searchs{
-	background: url('/images/manage/index/search.png') no-repeat center center;
+	background: url('/images/manage/index/search.png') no-repeat center center/18px;
 }
 /*iframe*/
 .manage .training-iframe-div{

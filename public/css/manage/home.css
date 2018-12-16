@@ -52,16 +52,16 @@
 	top: 10px;
 }
 .user-count i{
-	background: url('/images/manage/user.png') #f0f0f0 no-repeat center 7px;
+	background: url('/images/manage/user.png') #f0f0f0 no-repeat center 7px/26px;
 }
 .group-count i{
-	background: url('/images/manage/group.png') #f0f0f0 no-repeat center 7px;
+	background: url('/images/manage/group.png') #f0f0f0 no-repeat center 7px/28px;
 }
 .msg-count i{
-	background: url('/images/manage/msg.png') #f0f0f0 no-repeat center 7px;
+	background: url('/images/manage/msg.png') #f0f0f0 no-repeat center 7px/24px;
 }
 .grpmsg-count i{
-	background: url('/images/manage/grpmsg.png') #f0f0f0 no-repeat center 7px;
+	background: url('/images/manage/grpmsg.png') #f0f0f0 no-repeat center 7px/24px;
 }
 .home-count .count .data{
 	font-size: 80px;

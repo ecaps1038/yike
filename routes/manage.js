@@ -49,6 +49,18 @@ module.exports = function(app){
 			res.redirect('/');
 		}
 	});	
+	//修改用户密码
+	app.post('/yike/manage/user/changePsw',function(req,res){
+		var id = req.session.userId;
+		var adminid = req.session.adminid;
+		if(id == adminid){
+			var cgid = req.body.id;
+			var pwd = req.body.pwd
+			manage.changePsw(res,cgid);
+		}else{
+			res.redirect('/');
+		}
+	})
 	//获取用户加入时间数据
 	app.post('/yike/manage/user/userRegist',function(req,res){
 		manage.userRegist(res);
@@ -57,7 +69,8 @@ module.exports = function(app){
 	app.post('/yike/manage/user/userTable',function(req,res){
 		var id = req.session.userId;
 		var num = req.body.num;
-		manage.userTable(res,id,num);
+		var select = req.body.sel;
+		manage.userTable(res,id,num,select);
 	});
 	//获取用户id删除
 	app.post('/yike/manage/user/delete',function(req,res){
@@ -107,7 +120,8 @@ module.exports = function(app){
 	//获取群列表
 	app.post('/yike/manage/msg/msgTable',function(req,res){
 		var num = req.body.num;
-		manage.msgTable(res,num);
+		var select = req.body.sel;
+		manage.msgTable(res,num,select);
 	});
 	//删除
 	app.post('/yike/manage/msg/delete',function(req,res){
@@ -157,7 +171,8 @@ module.exports = function(app){
 	//获取群列表
 	app.post('/yike/manage/friend/frdTable',function(req,res){
 		var num = req.body.num;
-		manage.frdTable(res,num);
+		var select = req.body.sel;
+		manage.frdTable(res,num,select);
 	});
 	//删除
 	app.post('/yike/manage/friend/delete',function(req,res){
@@ -205,6 +220,21 @@ module.exports = function(app){
 		var id = req.session.userId;
 		var data = req.body.searchs;
 		manage.searchUser(res,id,data);
+	});
+	//搜索群
+	app.post('/yike/manage/search/group',function(req,res){
+		var data = req.body.searchs;
+		manage.searchGroup(res,data);
+	});
+	//搜索点消息
+	app.post('/yike/manage/search/msg',function(req,res){
+		var data = req.body.searchs;
+		manage.searchMsg(res,data);
+	});
+	//搜索群消息
+	app.post('/yike/manage/search/grpmsg',function(req,res){
+		var data = req.body.searchs;
+		manage.searchGrpMsg(res,data);
 	});
 
 }
