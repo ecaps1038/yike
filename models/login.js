@@ -160,16 +160,16 @@ exports.logout = function(req,res){
     return res.redirect('/');
 };
 
-exports.logIn = function(email,pwd,req,res){
-    var email = {'email':email};
+exports.logIn = function(data,pwd,req,res){
+    var wherestr = {$or:[{'email': data},{'name': data}]};
     var out = {'name':1,'pwd':1,'email':1,'online':1,'imgurl':1};
-    User.find(email, out, function(err, ress){
+    User.find(wherestr, out, function(err, ress){
         if (err) {
             console.log("查询失败：" + err);
             return res.redirect('/');
         }
         else {
-            if(ress==''){return res.render('home',{return:'无结果'});}
+            if(ress==''){return res.render('home',{return:'输入邮箱或用户名有误，请重新输入'});}
             ress.map(function(ver){
                 const pwdMatchFlag =bcrypt.compareSync(pwd, ver.pwd);
                 if(pwdMatchFlag){
@@ -191,7 +191,7 @@ exports.logIn = function(email,pwd,req,res){
                    return res.redirect('/yike');
                 }else{
                     console.log('匹配失败！');
-                    return res.redirect('/');
+                    return res.render('home',{return:'用户或密码错误，请重新输入',ret:data});
                 }            
             })
         }

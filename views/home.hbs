@@ -3,9 +3,9 @@
     <link rel="stylesheet" type="text/css" href="css/home.css">
 {{/section}}
 <h3>请登录</h3>
-<div class="room">占位{{return}}</div>
+<div class="room">{{return}}</div>
 <form class="newslefft" method="post" action="/login">
-<label>邮箱</label><input type="email" name="email" placeholder="请输入注册邮箱">
+<label>邮箱</label><input type="text" name="email" placeholder="注册邮箱/用户名" value="{{ret}}">
 <label>密码</label><input type="password" name="pswd">
 <input type="submit" name="submit" value="登录" class="log-submit">
 <a href="./forget">忘记密码？</a>

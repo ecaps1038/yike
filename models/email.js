@@ -25,8 +25,8 @@ exports.emails = function(email,res){
 			console.log(err);
 			res.render('register',{title: '邮件发送错误'});
 		}else{
-			console.log('ok');
-			res.render('test',{title:'邮件发送成功！'+msg.accepted})
+			console.log('邮件发送成功');
+			//res.render('test',{title:'邮件发送成功！'+msg.accepted})
 		}
 	});
 };
