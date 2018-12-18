@@ -18,14 +18,26 @@ $(document).ready(function(){
 	});
 	$('.clipphoto').on('click',function(){
 		var dataurl = $('.dataurl').val();
+		var atl = $(this).attr('data-link');
+		if (atl==1){
+			var link = '/userPhoto';
+			upPhoto(link,dataurl);
+		}else if(atl == 2){
+			var link = '/groupPhoto';
+			upPhoto(link,dataurl);
+		}
+		
+	});
+	//对不同来源进行一步存储处理
+	function upPhoto(link,dataurl){
 		$.ajax({
-			url: '/clipphoto',
+			url: link,
 			type: 'POST',
 			data: {dataurl:dataurl},
 			success: function(data){
 				if(data.success){
-					alert('发送成功');
-					$(location).attr('href', '/create-group');
+					//alert('发送成功');
+					history.go(-1);
 				}
 				else{
 					alert('接收失败');
@@ -35,5 +47,5 @@ $(document).ready(function(){
 				alert('添加失败');
 			}
 		});
-	});
+	}
 });

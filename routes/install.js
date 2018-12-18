@@ -5,7 +5,8 @@ module.exports = function(app){
 	//详情页面
 	app.get('/detail',function(req,res){
 		var id = req.query.id;
-		if(id){
+		var usid = req.session.userId;
+		if(id && usid){
 			install.findUser(req,res,id);
 		}else{
 			res.redirect('/');
@@ -18,11 +19,6 @@ module.exports = function(app){
 		}else{
 			res.redirect('/');
 		}
-	});
-	//上传修改头像
-	app.post('/photoinst',function(req,res){
-		var id = req.session.userId;
-		fileServe.userPhoto(req,res,id);
 	});
 	//修改资料
 	app.post('/install',function(req,res){

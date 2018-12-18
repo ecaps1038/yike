@@ -6,20 +6,11 @@
 <a href="/yike">返回</a>
 
 {{#each vacation}}
-{{#if imgurl}}
-	<p><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></p>
-{{else}}
-<form method="post" action="/photoinst" enctype="multipart/form-data">
-	<input type="file" accept="image/*" id="fieldPhoto" name="photo">
-	<input type="submit" name="submit1" value="上传头像">
-</form>
-{{/if}}
-
+<a href="/photocut?atl=1"><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></a>
 <form method="post" class="newslefft" action="/install">
 <p>姓名：<input type="text" value="{{name}}" name="name"></p>
 <p>说明：<textarea name="explain">{{explain}}</textarea></p>
-<p>注册：{{registerdate}}</p>
-<p>邮箱:<input type="email" value="{{email}}" name="email" class="email"></p>
+{{!-- <p>邮箱:<input type="email" value="{{email}}" name="email" class="email"></p> --}}
 <input type="hidden" value="{{sex}}" name="usesex" class="sex">
 <p>性别:<span id="sex"></span></p>
 <p>生日:<input type="date" name="birth" value="{{birth}}"></p>

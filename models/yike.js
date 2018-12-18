@@ -79,7 +79,6 @@ exports.findUser = function(req,res,id){
 			            return {
 			                id : ver._id,
 			                name: ver.name,
-			                pwd: ver.pwd,
 			                email: ver.email,
 			                explain: function(){
 			                    if(ver.explain){

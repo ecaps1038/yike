@@ -43,7 +43,14 @@ exports.findUser = function(req,res,id){
                             return 'user.jpg';
                         }
                     },
-                    birth: date.DateSimple(ver.birth),
+                    birth: function(){
+                        if(ver.birth){
+                            return date.DateSimple(ver.birth);
+                        }else{
+                            return '未知';
+                        }
+                    },
+                    //birth: date.DateSimple(ver.birth),
                     registerdate: date.DateDetail(ver.registerdate),
                     online: ver.online,
                     admin:admin,
@@ -72,8 +79,14 @@ exports.findMy = function(req,res,id){
                     explain: ver.explain,
                     sex: ver.sex,
                     birth: date.DateSimple(ver.birth),
-                    imgurl:ver.imgurl,
-                    registerdate: date.DateDetail(ver.registerdate),
+                    imgurl: function(){
+                        if(ver.imgurl){
+                            return ver.imgurl;
+                        }else{
+                            return 'user.jpg';
+                        }
+                    },
+                    //registerdate: date.DateDetail(ver.registerdate),
                 }
             })
         };

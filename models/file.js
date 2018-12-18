@@ -3,7 +3,7 @@ var path = require('path');
 var formidable = require('formidable');
 var userdbserver = require("./userdbserver.js");
 
-var yikeDir = path.resolve(__dirname, '..')
+var yikeDir = path.resolve(__dirname, '..');
 var dataDir = yikeDir + '/data';
 var vacationPhotoDir = dataDir + '/vacation-photo';
 var groupPhotoDir = dataDir + '/group-photo';
@@ -11,6 +11,7 @@ fs.existsSync(dataDir) || fs.mkdirSync(dataDir);
 fs.existsSync(vacationPhotoDir) || fs.mkdirSync(vacationPhotoDir);
 fs.existsSync(groupPhotoDir) || fs.mkdirSync(groupPhotoDir);
 
+//用户照片上传
 exports.userPhoto = function(req,res,id){
 	var form = new formidable.IncomingForm();
 	form.uploadDir = '/tmp';
@@ -46,6 +47,7 @@ exports.userPhoto = function(req,res,id){
 	return res.redirect(303, '/install');
 	});
 }
+//群图片
 exports.fileUp = function(req,res){
 	var form = new formidable.IncomingForm();
 	form.uploadDir = '/tmp';
@@ -73,8 +75,29 @@ exports.fileUp = function(req,res){
 
 }
 
+//截取后用户图片
 //https://cnodejs.org/topic/4f939c84407edba2143c12f7
-exports.filecil = function(req,res){
+exports.userPhoto = function(req,res){
+	var imgData = req.body.dataurl;
+	var id = req.session.userId;
+	//过滤data:URL
+	var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");
+	var dataBuffer = new Buffer(base64Data, 'base64');
+	// console.log(dataBuffer);
+
+	var photoName = Date.now()+'.png';
+	var pathh = vacationPhotoDir + '/' + photoName;
+	fs.writeFile(pathh,dataBuffer,function(err){
+		if(err){
+			return console.log(err.message);
+		}
+	});
+	userdbserver.update(id,{'imgurl':photoName});
+	res.send({success:true});
+}
+//截取后群图片
+//https://cnodejs.org/topic/4f939c84407edba2143c12f7
+exports.groupPhoto = function(req,res){
 	var imgData = req.body.dataurl;
 	//过滤data:URL
 	var base64Data = imgData.replace(/^data:image\/\w+;base64,/, "");

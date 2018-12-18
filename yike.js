@@ -66,6 +66,7 @@ require('./routes/group.js')(app);
 require('./routes/chart.js')(app,io);
 require('./routes/groupchart.js')(app,io);
 require('./routes/manage.js')(app);
+require('./routes/file.js')(app);
 
 //定制404页面
 app.use(function(req,res,next){

@@ -28,7 +28,9 @@
                         success: function(data){
                             if(data.success){
                                 //$container.html('Thank you!');
-                                alert('添加成功');
+                                alert('添加修改成功');
+                                //返回上一页
+                                history.back(-1);
                             }
                             else{
                                 alert('添加失败');

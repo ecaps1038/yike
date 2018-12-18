@@ -24,6 +24,7 @@
 {{/each}}
 {{#section 'jquery'}}
 	<script>
+		//删除确定弹框
 		$('.delete').on('click',function(ev){
 			ev = ev || window.event;
 			if(confirm("是否删除好友?")){

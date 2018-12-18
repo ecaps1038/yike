@@ -2,12 +2,13 @@
     <title>yike1</title>
     <link rel="stylesheet" type="text/css" href="lib/photo/photocut.css">
 {{/section}}
+<a href="javascript:history.back(-1)">取消</a>
 <div id="clipArea"></div>
 <div id="view"></div>
 <input type="file" id="file">
 <button id="clipBtn">截取</button>
 <input type="hidden" value="" class="dataurl">
-<button class="clipphoto">确定</button>
+<button class="clipphoto" data-link="{{atl}}">确定</button>
 
 {{#section 'jquery'}}
 	<script src="lib/photo/jquery-2.1.3.min.js"></script>

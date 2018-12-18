@@ -10,11 +10,6 @@ module.exports = function(app){
 		login.showFriend1(req,res,userid);
 	});
 
-	//创建群上传图片
-	app.post('/groupicon',function(req,res){
-		fileServe.fileUp(req,res);
-	});
-	
 	//创建裁剪群上传图片
 	app.post('/clipphoto',function(req,res){
 		fileServe.filecil(req,res);
@@ -29,8 +24,4 @@ module.exports = function(app){
 		//res.redirect('/yike');
 		res.send({success:true});
 	});
-
-	app.get('/photocut',function(req,res){
-		res.render('photocut');
-	})
 };
