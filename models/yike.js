@@ -2,10 +2,13 @@ var User = require("./userdb.js");
 var friend = require("./friendsdb.js");
 var userdb = require("./userdbserver.js");
 var frienddb = require("./friendsdbserver.js");
+var groupdb = require("./groupsdb.js");
+var Group = groupdb.model('Group');
 var date = require('./date.js');
 
-exports.search = function(req,res,cont,id){
-    var search = {'name': {$regex : cont}};
+//搜索用户
+exports.searchUser = function(res,cont,id){
+    var search = {$or:[{'name': {$regex : cont}},{'email': {$regex : cont}}]};
     var out = {'name':1,'email':1,'imgurl':1};
     User.find(search, out, function(err, ress){
         if (err) {
@@ -14,13 +17,40 @@ exports.search = function(req,res,cont,id){
         else {
             var context = {
 	            vacation : ress.map(function(ver){
-	            	if(ver.imgurl){var img = ver.imgurl}
-	            		else{var img = 'user.jpg'}
+	            	if(ver._id != id){
+		            	if(ver.imgurl){var img = ver.imgurl}
+		            		else{var img = 'user.jpg'}
+		                return {
+		                    id : ver._id,
+		                    name: ver.name,
+		                    email: ver.email,
+		                    imgurl: img,    
+		                }
+		            }
+	            })
+	        };
+        res.send({success:true,context});
+        }
+    });
+};
+
+//搜索群
+exports.searchGroup = function(res,cont){
+    var search = {'name': {$regex : cont}};
+    var out = {'name':1,'icon':1};
+    Group.find(search, out, function(err, ress){
+        if (err) {
+            console.log("查询失败：" + err);
+        }
+        else {
+            var context = {
+	            vacation : ress.map(function(ver){
+	            	if(ver.icon){var img = ver.icon}
+	            		else{var img = 'group.png'}
 	                return {
 	                    id : ver._id,
 	                    name: ver.name,
-	                    email: ver.email,
-	                    imgurl: img,    
+	                    icon: img,    
 	                }
 	            })
 	        };

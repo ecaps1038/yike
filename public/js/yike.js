@@ -2,20 +2,43 @@ $(document).ready(function(){
 	
 	$('.searup').on('click',function(evt){
 		evt.preventDefault();
-		//var action = $('.newslefft').attr('action');
+		var html='';
 		var $container = $('.sear');
-		$container.html('逸刻');
+		$container.html('无结果');
 		$.ajax({
-			url: '/search',
+			url: '/search/user',
 			type: 'POST',
 			data: $('.search').serialize(),
 			success: function(data){
 				if(data.success){
 					var aa = data.context.vacation;
-					console.log(aa)
-					var html='';
+					html +='<p>用户</p>';
 					var tt = aa.map(function(i){
-						html+="<div><img src='/vacation-photo/"+i.imgurl+"' style='width:60px;'/>"+i.name+
+						html+="<div><img src='/vacation-photo/"+i.imgurl+"' style='width:60px;'/>"+
+						'<span class="name">'+i.name+'</span><span class="email">'+i.email+'</span>'+
+						"<a href='/search-detail?id="+i.id+"'>进入</a></div>";
+						$container.html(html);
+					})					
+				}
+				else{
+				$container.html('出现问题');
+				}
+			},
+			error: function(){
+				$container.html('出现问题');
+			}
+		});
+		$.ajax({
+			url: '/search/group',
+			type: 'POST',
+			data: $('.search').serialize(),
+			success: function(data){
+				if(data.success){
+					var aa = data.context.vacation;
+					html +='<p>群</p>';
+					var tt = aa.map(function(i){
+						html+="<div><img src='/group-photo/"+i.icon+"' style='width:60px;'/>"+
+						'<span class="name">'+i.name+'</span>'+
 						"<a href='/search-detail?id="+i.id+"'>进入</a></div>";
 						$container.html(html);
 					})
@@ -201,7 +224,7 @@ $(document).ready(function(){
 				if(data.success){
 					var html='';
 					var val = data.result.vacation;
-					console.log(val);
+					//console.log(val);
 					var aa = val.map(function(i){
 						//注册群登录
 						socket.emit('grouplogin',i.id); 

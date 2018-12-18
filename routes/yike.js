@@ -20,12 +20,16 @@ module.exports = function(app,io){
 			res.redirect('/');
 		}
 	});
-	//搜索
-	app.post('/search',function(req,res){
+	//搜索用户
+	app.post('/search/user',function(req,res){
 		var content = req.body.search;
 		var id = req.session.userId;
-		yike.search(req,res,content,id);
-		//res.send({success:true});
+		yike.searchUser(res,content,id);
+	});
+	//搜索用户
+	app.post('/search/group',function(req,res){
+		var content = req.body.search;
+		yike.searchGroup(res,content);
 	});
 	//进入搜索结果
 	app.get('/search-detail',function(req,res){
