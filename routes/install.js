@@ -11,7 +11,15 @@ module.exports = function(app){
 		}else{
 			res.redirect('/');
 		}
-	});	
+	});
+	//朋友添加备注名
+	app.post('/detail/markname',function(req,res){
+		var cont = req.body.cont;
+		var id = req.body.id;
+		var usid = req.session.userId;
+		//console.log(cont+';'+id+';'+usid);
+		install.markName(res,cont,id,usid);
+	});
 	app.get('/install',function(req,res){
 		var id = req.session.userId;
 		if(id){

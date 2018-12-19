@@ -113,6 +113,7 @@ exports.findUser = function(req,res,id){
 	});
 };
 
+//添加好友
 exports.addfriend = function(res,friendid,userid){
 	var data1 = {
 		friendID : friendid,                    			
@@ -130,6 +131,7 @@ exports.addfriend = function(res,friendid,userid){
 	frienddb.insert(data2);
 	return res.redirect('/yike');
 }
+//删除好友
 exports.deletefriend = function(res,friendid,userid){
 	frienddb.delOne(friendid,userid);
 	frienddb.delOne(userid,friendid);

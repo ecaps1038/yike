@@ -28,4 +28,10 @@ module.exports = function(app,io){
 		groupdb.updateStatus(groupid,userid);
 		res.send({success:true});
 	});
+
+	//获取用户朋友列表
+	app.post('/groupchart/showMyfriend',function(req,res){
+		var id = req.session.userId;
+		//login.showFriend(req,res,id);
+	})
 }

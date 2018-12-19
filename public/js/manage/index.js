@@ -55,7 +55,6 @@
 
     $(document).ready(function(){
         training.init();
-        // $('.training-iframe').teoyallScroll();
     })
 
     window.training = training;

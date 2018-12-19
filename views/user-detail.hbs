@@ -1,6 +1,6 @@
 {{#section 'head'}}
     <title>详情</title>
-    <link rel="stylesheet" type="text/css" href="css/install.css">
+    <link rel="stylesheet" type="text/css" href="css/detail.css">
 {{/section}}
 <h3>详情</h3>
 <a href="/yike">返回</a>
@@ -8,7 +8,7 @@
 {{#each vacation}}
 <p><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></p>
 {{#if markname}}
-	<p>备注名：{{markname}}</p>
+	<p class="name-mark">备注名：{{markname}}</p>
 	<p>昵称：{{name}}</p>
 {{else}}
 	<p>昵称：{{name}}</p>
@@ -23,21 +23,14 @@
 	<a href="/install">修改</a>
 	<a href="/logout" class="quit">退出</a>
 {{else}}
-	<a href="/delete-friend?id={{id}}" class="delete">删除好友</a>
+	<div class="addmark">
+		<input type="text" class="markname" value="{{markname}}">
+		<button class="upmark" data-id="{{id}}">确定</button>
+	</div>
 	<button class="beizhu">设置备注</button>
+	<div><a href="/delete-friend?id={{id}}" class="delete">删除好友</a></div>
 {{/if}}
 {{/each}}
 {{#section 'jquery'}}
 	<script src="/js/user-detail.js" type="text/javascript"></script>
-	<script>
-		//删除确定弹框
-		$('.delete').on('click',function(ev){
-			ev = ev || window.event;
-			if(confirm("是否删除好友?")){
-				//alert ("点击了确定");
-			}else{
-				return false;
-			}
-		});
-	</script>
 {{/section}}

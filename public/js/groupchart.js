@@ -51,7 +51,7 @@
                                 html+='<div class="my message"><p><img src="/vacation-photo/'+ 
                                 myimgurl+'"/>'+i.content+'</p></div>';
                             }else{
-                                html+='<div class="to message"><p><a href="/search-detail?id='+i.id+'"><img src="/vacation-photo/'+ 
+                                html+='<div class="to message"><p><a href="/detail?id='+i.id+'"><img src="/vacation-photo/'+ 
                                 i.imgurl+'"/></a>'+i.name+':'+i.content+'</p></div>';
                             }                           
 
@@ -133,20 +133,22 @@
 
         //获取群成员列表
         function showUsers(){
+            var html='',num = 0;
         	 $.ajax({
                 url: '/showUser',
                 type: 'POST',
                 data: {groupid:groupid},
                 success: function(data){
                 	if(data.success){
-                		var html='';
                 		var aa = data.result.vacation;
                         //console.log(aa);
                         var tt = aa.map(function(i){
-                        	html += '<li><a href="/search-detail?id='+i.id+'"><div class="img"><img src="/vacation-photo/'
+                        	html += '<li><a href="/detail?id='+i.id+'"><div class="img"><img src="/vacation-photo/'
                         	+i.imgurl+'"/>'+'</div><span>'+i.name+'</span></a>';
                         });
                         $('.groupmsg .user').append(html);
+                        num = $('.groupmsg .user li').length;
+                        $('.name i').html('('+num+')');
 	                }else{
 	                	console.log('出现问题1');
 	                }
@@ -178,6 +180,30 @@
             })
         }
         toyike();
+
+        //添加成员
+        function addMemder(){
+            $('body').on('click','.add-member',function(){
+                $('.user-friend').toggle();
+                //异步获取成员
+                $.ajax({
+                    url: '/groupchart/showMyfriend',
+                    type: 'POST',
+                    data: '',
+                    uccess: function(data){
+                        if(data.success){
+                            console.log('返回刷新成功');
+                        }else{
+                            console.log('出现问题1');
+                        }
+                    },
+                    error: function(){
+                        console.log('出现问题2');
+                    }
+                })       
+            });
+        }
+        addMemder();
     })
 })(jQuery,window,document);
 

@@ -6,7 +6,8 @@
 {{/section}}
 <div class="main">
 	{{#each vacation}}
-		<img src="/group-photo/{{icon}}" style="width:100px;" /><span class="name">{{name}}</span>
+		<img src="/group-photo/{{icon}}" style="width:100px;" />
+		<span class="name">{{name}}<i></i></span>
 		<input type="hidden" value="{{icon}}" class="imgurl">
 		<input type="hidden" value="{{myimgurl}}" class="myimgurl">
 		<input type="hidden" value="{{myname}}" class="myname">
@@ -20,7 +21,7 @@
 		</div>
 		<div class="groupmsg">
 			<ul class="user"></ul>
-			<a href="#">添加人员</a>
+			<a href="#" class="add-member">添加人员</a>
 			<div>
 				<p>群公告</p>
 				<p>公告内容</p>
@@ -44,6 +45,7 @@
 		<input type="text" name="text" class="text">
 		<button class="but" type="button">发送</button>
 	</form>
+	<div class="user-friend"></div>
 </div>
 
 {{#section 'jquery'}}

@@ -63,8 +63,7 @@ exports.delOne = function(userid,friendid){
 //修改最后  Model.findByIdAndUpdate(id, [update], [options], [callback])
 exports.updateTime = function(friendid,userid){
      var wherestr = {'friendID':friendid,'userID':userid};
-     var updatestr = {'lasttime': new Date()};
-    
+     var updatestr = {'lasttime': new Date()}; 
     
     Friend.updateOne(wherestr, updatestr, function(err, res){
         if (err) {

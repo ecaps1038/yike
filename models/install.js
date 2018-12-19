@@ -112,38 +112,21 @@ exports.findUser = function(req,res,id){
             console.log(err);
         });   
     }
-
-    
 };
 
-//查询用户对应的群
-exports.showUser = function(req,res,id){
-    var query = Groupuser.find({});
-    //根据userID查询
-    query.where('userID',id);
-    //查出friendID的user对象
-    query.populate('groupID');
-    //按照最后会话时间倒序排列
-    query.sort({'lasttime':-1});
-    //查询结果
-    query.exec().then(function(result){
-        //console.log(result);
-        var context = {
-            vacation : result.map(function(ver){
-                return {
-                    markname: ver.name,
-                    lasttime: ver.lasttime.getTime(),
-                    id : ver.groupID._id,
-                    name: ver.groupID.name,
-                    intro: ver.groupID.intro,
-                    icon: ver.groupID.icon,
-                }
-            })           
-        };
-        res.send({success:true,result:context});
-    }).catch(function(err){
-        console.log(err);
-    });   
+//修改朋友备注名
+exports.markName = function(res,cont,id,usid){
+    var wherestr = {'friendID':id,'userID':usid};
+    var updatestr = {'name': cont}; 
+    
+    Friend.updateOne(wherestr, updatestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            res.send({success:true});
+        }
+    });
 };
 
 //搜索用户自己
