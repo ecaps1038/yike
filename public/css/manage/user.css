@@ -1,13 +1,16 @@
 .top-count{
+	position: relative;
 	height: 148px;
 	padding: 24px 0 24px 24px;
 	background: #f6f6f6;
 }
 .top-count .title{
+	position: absolute;
+	left: 24px;
+	top: 24px;
 	width: 120px;
 	height: 148px;
 	background: #303030;
-	float: left;
 	border-radius: 5px;
 	color: #fff;
 	text-align: center;
@@ -23,14 +26,12 @@
 }
 .top-count .detial-count{
 	float: left;
-	width: 400px;
+	width: 100%;
 	position: relative;
-	padding-left: 16px;
 	height: 148px;
-	/*border: 1px solid red;*/
 }
 .detial-count ul{
-	padding: 0;
+	padding-left: 140px;
 	margin: 0;
 	position: absolute;
 	bottom: 0;

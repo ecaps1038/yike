@@ -205,6 +205,7 @@ function tab(num,types,select){
 //搜索
 function search(search,types){
 	var html = '';
+	$('.user-table').html('<i class="nothing"></i>');
 	$.ajax({
 		url: '/yike/manage/search/user',
 		type: 'POST',

@@ -36,4 +36,11 @@
 	cursor: pointer;
 	border: 0px;
 	background: #ef7c2e url('/images/manage/index/search.png') no-repeat center center/18px;
-	}
+}
+.user-table .nothing{
+	display: block;
+	width: 210px;
+	height: 114px;
+	margin: 200px auto;
+	background: url('/images/manage/nothing.png') no-repeat center center;
+}
