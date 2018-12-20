@@ -28,7 +28,7 @@ $(document).ready(function(){
 					var tt = aa.map(function(i){
 						html+="<div><img src='/vacation-photo/"+i.imgurl+"' style='width:60px;'/>"+
 						'<span class="name">'+i.name+'</span><span class="email">'+i.email+'</span>'+
-						"<a href='/search-detail?id="+i.id+"'>进入</a></div>";
+						"<a href='/detail?id="+i.id+"'>进入</a></div>";
 						elem.html(html);
 					})					
 				}}

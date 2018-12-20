@@ -18,15 +18,18 @@ $(document).ready(function(){
 	});
 	$('.clipphoto').on('click',function(){
 		var dataurl = $('.dataurl').val();
-		var atl = $(this).attr('data-link');
-		if (atl==1){
-			var link = '/userPhoto';
-			upPhoto(link,dataurl);
-		}else if(atl == 2){
-			var link = '/groupPhoto';
-			upPhoto(link,dataurl);
-		}
-		
+		if(dataurl){
+			var atl = $(this).attr('data-link');
+			if (atl==1){
+				var link = '/userPhoto';
+				upPhoto(link,dataurl);
+			}else if(atl == 2){
+				var link = '/groupPhoto';
+				upPhoto(link,dataurl);
+			}
+		}else{
+			alert('您未选择图片！');
+		}		
 	});
 	//对不同来源进行一步存储处理
 	function upPhoto(link,dataurl){

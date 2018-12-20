@@ -3,10 +3,10 @@
     <link rel="stylesheet" type="text/css" href="css/detail.css">
 {{/section}}
 <h3>详情</h3>
-<a href="/yike">返回</a>
+<a href="javascript:history.back(-1)">返回</a>
 
 {{#each vacation}}
-<p><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></p>
+<p><img src="/vacation-photo/{{mgurl}}" style="width:100px;" /></p>
 {{#if markname}}
 	<p class="name-mark">备注名：{{markname}}</p>
 	<p>昵称：{{name}}</p>
@@ -23,12 +23,17 @@
 	<a href="/install">修改</a>
 	<a href="/logout" class="quit">退出</a>
 {{else}}
+{{#if frid}}
 	<div class="addmark">
 		<input type="text" class="markname" value="{{markname}}">
 		<button class="upmark" data-id="{{id}}">确定</button>
 	</div>
 	<button class="beizhu">设置备注</button>
+	<a href="/chart?id={{id}}">聊天</a>
 	<div><a href="/delete-friend?id={{id}}" class="delete">删除好友</a></div>
+{{else}}
+	<div><button class="add" data-id="{{id}}">添加好友</button></div>
+{{/if}}
 {{/if}}
 {{/each}}
 {{#section 'jquery'}}

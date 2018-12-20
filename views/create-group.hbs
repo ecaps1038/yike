@@ -4,24 +4,16 @@
 {{/section}}
 <h3>创建群聊</h3>
 <a href="/yike">放弃</a>
-	<a href="/photocut?atl=2"><img src="/group-photo/{{iconname}}" class="icon" /></a>
+	<a href="/photocut?atl=2" class="user-photo"></a>
 
-<form method="post" class="group" enctype="multipart/form-data">
 <input type="hidden" name="iconurl" value="{{iconname}}" class="icon-name">
 <p>群名称：<input type="text" name="name" class="group-name"></p>
 
 {{!-- 调出好友列表 --}}
-<ul>
-{{#each vacation}}
-	<li class="user">
-		<input type="checkbox" name="user" value="{{id}}">
-		<img src="/vacation-photo/{{imgurl}}" style="width:100px;" />
-		<span class="name">{{name}}</span>
-	</li>
-{{/each}}
+<ul class="friend-li">
 </ul>
 <button class="upuser">确定</button>
-</form>
+<span class="aaa">点击</p>
 {{#section 'jquery'}}
 	<script src="/js/group.js" type="text/javascript"></script>
 {{/section}}

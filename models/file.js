@@ -85,7 +85,7 @@ exports.userPhoto = function(req,res){
 	var dataBuffer = new Buffer(base64Data, 'base64');
 	// console.log(dataBuffer);
 
-	var photoName = Date.now()+'.png';
+	var photoName = id+'.png';
 	var pathh = vacationPhotoDir + '/' + photoName;
 	fs.writeFile(pathh,dataBuffer,function(err){
 		if(err){

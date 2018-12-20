@@ -2,16 +2,6 @@ var install = require('../models/install');
 var fileServe = require('../models/file.js');
 
 module.exports = function(app){
-	//详情页面
-	app.get('/detail',function(req,res){
-		var id = req.query.id;
-		var usid = req.session.userId;
-		if(id && usid){
-			install.findUser(req,res,id);
-		}else{
-			res.redirect('/');
-		}
-	});
 	//朋友添加备注名
 	app.post('/detail/markname',function(req,res){
 		var cont = req.body.cont;

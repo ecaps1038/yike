@@ -220,3 +220,15 @@ exports.findOne = function(res,groupid){
         console.log(err);
     }); 
 };
+
+//验证好友是否在群内
+exports.isinGroup = function(res,usid,groupid){
+    var wherestr = {'groupID':groupid,'userID':usid};
+    Groupuser.countDocuments(wherestr, function(err, rest){
+        if(err){
+            console.log('汇总失败');
+        }else{
+            res.send({success:true,rest:rest});
+        }
+    });
+};

@@ -68,38 +68,25 @@ exports.findUser = function(wherestr,out){
     //var wherestr = {'username' : '小黄'};
     //var age = {'userage':{$gte:12,$lte:14}};
     //var out = {'username':1,'userage':1,'_id':0};
-    User.find(wherestr, out, function(err, res){
-        if (err) {
-            console.log("查询失败：" + err);
+    User.find(wherestr, out, function(err, ress){
+        if(err){
+            console.log('搜索失败');
+        }else{
+            var context = {
+                res: res.map(function(vacation){
+                    return {
+                        id: vacation._id,
+                        name: vacation.name,
+                        email: vacation.email,
+                        explain: vacation.explain,
+                        sex: vacation.sex,
+                        imgurl: vacation.imgurl,
+                        online: vacation.online,
+                    }
+                })
+            };
+            res.send({success:true,context});
         }
-        else {
-            console.log("查询结果：" + res);
-        }
-    }).then(function(arrys){
-        console.log('结果1'+arrys);
-    });
-};
-//条件查找: Model.find(conditions, [fields], [options], [callback])第2个参数可以设置要查询输出的字段,1或0
-exports.findUser1 = function(wherestr,out){
-    //var wherestr = {'username' : '小黄'};
-    //var age = {'userage':{$gte:12,$lte:14}};
-    //var out = {'username':1,'userage':1,'_id':0};
-   User.find(wherestr, out, function(err, ress){
-    console.log(res);
-        var context = {
-            res: res.map(function(vacation){
-                console.log('name'+vacation.name);
-                return {
-                    name: vacation.name,
-                    pwd: vacation.pwd,
-                    email: vacation.email,
-                    online: vacation.online,
-                }
-            })
-        };
-        console.log('aaa:'+context);
-        return context;
-
     });
 };
 

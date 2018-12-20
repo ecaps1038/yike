@@ -5,6 +5,7 @@
             this._friendDelete();
             this._markname();
             this._upmarkName();
+            this._addfriend();
             this._length = 0;
       },
        
@@ -58,6 +59,29 @@
                         }
                     });
                 }
+            });
+        },
+        //添加好友
+        _addfriend : function(){
+            $('body').on('click','.add',function(){
+                //异步添加好友
+                var _id = $(this).attr('data-id');
+                $.ajax({
+                    url: '/add',
+                    type: 'POST',
+                    data: {id:_id},
+                    success: function(data){
+                        if(data.success){
+                            //刷新当前页面
+                            window.location.reload();
+                        }else{
+                        console.log('取回数据问题');
+                        }
+                    },
+                    error: function(){
+                        console.log('没实现异步');
+                    }
+                });
             });
         },
     }

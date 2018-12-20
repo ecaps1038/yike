@@ -4,7 +4,12 @@ var sockets = require('../models/socket');
 module.exports = function(app,io){
 	app.get('/chart', function(req,res) {
 		var id = req.query.id;
-	    chart.findUser(req,res,id);
+		var usid = req.session.userId;
+		if(usid){
+	    	chart.findUser(req,res,id);
+	    }else{
+	    	res.redirect('/');
+	    }
 	    //res.render('chart');
 	});
 

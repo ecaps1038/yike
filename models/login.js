@@ -132,22 +132,21 @@ exports.showFriend1 = function(req,res,id){
         //console.log(result);
         var context = {
             vacation : result.map(function(ver){
+                if(ver.friendID.imgurl){
+                    var imgurl = ver.friendID.imgurl;
+                }else{
+                    var imgurl = 'user.jpg';
+                }
                 return {
                     markname: ver.name,
                     id : ver.friendID._id,
                     name: ver.friendID.name,
-                    imgurl: function(){
-                        if(ver.friendID.imgurl){
-                            return ver.friendID.imgurl;
-                        }else{
-                            return 'user.jpg';
-                        }
-                    },
+                    imgurl: imgurl,
                 }
             }), 
             iconname:iconname, 
         };
-        res.render('create-group',context,);
+        res.send({success:true,context});
     }).catch(function(err){
         console.log(err);
     });   

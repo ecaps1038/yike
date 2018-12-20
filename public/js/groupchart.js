@@ -183,6 +183,7 @@
 
         //添加成员
         function addMemder(){
+            var html = '',dt = '';
             $('body').on('click','.add-member',function(){
                 $('.user-friend').toggle();
                 //异步获取成员
@@ -190,9 +191,18 @@
                     url: '/groupchart/showMyfriend',
                     type: 'POST',
                     data: '',
-                    uccess: function(data){
+                    success: function(data){
                         if(data.success){
-                            console.log('返回刷新成功');
+                            dt = data.context;
+                            dt.vacation.map(function(ver){
+                            html += '<li class="user">'+
+                                '<input type="checkbox"  class="usercheck" name="user" value="'+ver.id+'">'+
+                                '<img src="/vacation-photo/'+ver.imgurl+'" style="width:40px;" />'+
+                                '<span class="name">'+ver.name+'</span></li>';
+                        });
+                        $('.friend-li').html(html);
+                        isGroup();
+
                         }else{
                             console.log('出现问题1');
                         }
@@ -200,10 +210,38 @@
                     error: function(){
                         console.log('出现问题2');
                     }
-                })       
+                });
             });
         }
         addMemder();
+
+        //遍历好友是否已加入群
+        function isGroup(){
+            $('.friend-li .user').each(function(){
+                var that = $(this);
+                var id = $(this).find('.usercheck').val();
+                console.log(id);
+                //异步验证
+                $.ajax({
+                    url:'/groupchart/isinGroup',
+                    type: 'POST',
+                    data: {id:id,groupid:groupid},
+                    success: function(data){
+                        if(data.success){
+                            var dt = data.rest;
+                            if(dt == 1){
+                                that.find('.usercheck').attr('disabled','disabled');
+                            }
+                        }else{
+
+                        }
+                    },
+                    error: function(){
+                        console.log('出现问题2');
+                    }
+                });
+            });
+        }
     })
 })(jQuery,window,document);
 

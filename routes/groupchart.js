@@ -1,11 +1,17 @@
 var group = require('../models/group');
 var groupdb = require('../models/groupdbserver');
 var sockets = require('../models/socket');
+var login = require('../models/login');
 
 module.exports = function(app,io){
 	app.get('/groupchart', function(req,res) {
 		var id = req.query.id;
-	    group.findGroup(req,res,id);
+		var usid = req.session.userId;
+		if(usid){
+	    	group.findGroup(req,res,id);
+	    }else{
+	    	res.redirect('/');
+	    }
 	    //res.render('chart');
 	});
 
@@ -32,6 +38,13 @@ module.exports = function(app,io){
 	//获取用户朋友列表
 	app.post('/groupchart/showMyfriend',function(req,res){
 		var id = req.session.userId;
-		//login.showFriend(req,res,id);
+		login.showFriend1(req,res,id);
+	});
+
+	//验证好友是否在群内
+	app.post('/groupchart/isinGroup',function(req,res){
+		var groupid = req.body.groupid;
+		var id = req.body.id;
+		group.isinGroup(res,id,groupid);
 	})
 }
