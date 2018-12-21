@@ -73,6 +73,7 @@
                     success: function(data){
                         if(data.success){
                             //刷新当前页面
+                            alert('添加成功');
                             window.location.reload();
                         }else{
                         console.log('取回数据问题');

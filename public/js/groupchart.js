@@ -2,16 +2,13 @@
     $(document).ready(function(){
     	var socket = io();
         var html='';
-        var userid = $('.myid').val();
+        var userid,myimgurl,myname;
         var groupid = $('.id').val();
-        var imgurl = $('.imgurl').val();
-        var myimgurl = $('.myimgurl').val();
-        var myname = $('.myname').val();
-        var name = $('.name').html();
 
         var time =0;
         var room = {};
         var j =1;
+        var tge = false;
         room[0]=0;
 
         //定位到区域最下方
@@ -21,15 +18,48 @@
             var toHeight = $message.outerHeight()-$msgout.height()+30;
             $msgout.scrollTop(toHeight);
         }
-
-        //时间转换
-        function changeTime(date){
-            var d = new Date(date);
-            var tiems = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate()
-             + ' ' + d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(); 
-            return tiems;
+        //初始化页面
+        function initPage(){
+            var html = '',oper = '';
+            var id = $('.id').val();
+            var $init = $('.group-init');
+            var $oper = $('.user-oper');
+            //alert(id)
+            $.ajax({
+                url: '/groupchart/init',
+                type: 'POST',
+                data: {id:id},
+                success: function(data){
+                    if(data.success){
+                        var aa = data.context.vacation;
+                        aa.map(function(ver){
+                            userid = ver.myid;
+                            myimgurl = ver.myimgurl;
+                            myname = ver.myname;
+                            html ='<img src="/group-photo/'+ver.icon+'" style="width:100px;" />'+
+                                '<span class="name">'+ver.name+'<i></i></span>';
+                            if(ver.admin){
+                                oper = '<a href="#">管理群</a>';
+                            }else{
+                                oper = '<button class="quit-group">退群</button>';
+                            }
+                        });
+                        $oper.html(oper);
+                        $init.html(html);
+                        
+                    }
+                    else{
+                        console.log('出现问题1');
+                    }
+                },
+                error: function(){
+                    console.log('出现问题2');
+                }
+            });
         }
+        initPage();
 
+        //获取消息列表
         function showGroupMessage(){
             $.ajax({
                 url: '/showGroupMessage',
@@ -97,7 +127,7 @@
 
                 //获取时间点
                 var nowTime= new Date();
-                var changetime = changeTime(nowTime);
+                var changetime = changeTime1(nowTime);
                 room[j] =nowTime;
                 if(nowTime>(room[j-1]+4*60*1000)){
                     html+="<p class='time'>"+changetime+"</p>";
@@ -117,7 +147,7 @@
 
             //获取时间点
             var nowTime= new Date();
-            var changetime = changeTime(nowTime);
+            var changetime = changeTime1(nowTime);
             room[j] =nowTime;
             if(nowTime>(room[j-1]+4*60*1000)){
                 html+="<p class='time'>"+changetime+"</p>";
@@ -146,7 +176,7 @@
                         	html += '<li><a href="/detail?id='+i.id+'"><div class="img"><img src="/vacation-photo/'
                         	+i.imgurl+'"/>'+'</div><span>'+i.name+'</span></a>';
                         });
-                        $('.groupmsg .user').append(html);
+                        $('.groupmsg .user').html(html);
                         num = $('.groupmsg .user li').length;
                         $('.name i').html('('+num+')');
 	                }else{
@@ -183,9 +213,10 @@
 
         //添加成员
         function addMemder(){
-            var html = '',dt = '';
             $('body').on('click','.add-member',function(){
+                var html = '',dt = '';
                 $('.user-friend').toggle();
+                tge = true;
                 //异步获取成员
                 $.ajax({
                     url: '/groupchart/showMyfriend',
@@ -196,7 +227,8 @@
                             dt = data.context;
                             dt.vacation.map(function(ver){
                             html += '<li class="user">'+
-                                '<input type="checkbox"  class="usercheck" name="user" value="'+ver.id+'">'+
+                                //'<input type="checkbox"  class="usercheck" name="user" value="'+ver.id+'">'+
+                                '<span class="user-id" data-id="'+ver.id+'"></span>'+
                                 '<img src="/vacation-photo/'+ver.imgurl+'" style="width:40px;" />'+
                                 '<span class="name">'+ver.name+'</span></li>';
                         });
@@ -218,9 +250,8 @@
         //遍历好友是否已加入群
         function isGroup(){
             $('.friend-li .user').each(function(){
-                var that = $(this);
-                var id = $(this).find('.usercheck').val();
-                console.log(id);
+                var that = $(this),html = '';
+                var id = $(this).find('.user-id').attr('data-id');
                 //异步验证
                 $.ajax({
                     url:'/groupchart/isinGroup',
@@ -229,8 +260,13 @@
                     success: function(data){
                         if(data.success){
                             var dt = data.rest;
-                            if(dt == 1){
-                                that.find('.usercheck').attr('disabled','disabled');
+                            if(dt == 0){
+                                //that.find('.usercheck').attr('disabled',true);
+                                html = '<input type="checkbox"  class="usercheck" name="user" value="'+id+'">';
+                                that.find('.user-id').html(html);
+                            }else{
+                                html = '<i class="in-group-tip"></i>';
+                                that.find('.user-id').html(html);
                             }
                         }else{
 
@@ -242,6 +278,77 @@
                 });
             });
         }
+
+        //点击取消关闭
+        $('body').on('click','.but-grp .close-but',function(){
+            $('.user-friend').hide();
+        });
+
+         //提交页面
+        function handleClick(){
+           $('body').on('click','.but-grp .put-but',function(evt){
+                evt.preventDefault();
+                var user = [];
+                var i = 0;
+                $(".user input[type=checkbox]").each(function(){
+                    if(this.checked){
+                        //alert($(this).val());
+                        user[i] = $(this).val();
+                        i++
+                    }
+                }); 
+                $.ajax({
+                    url: '/groupchart/joinGroup',
+                    type: 'POST',
+                    data: {groupid:groupid,user:user},
+                    success: function(data){
+                        if(data.success){
+                            $('.user-friend').hide();
+                            showUsers();
+                            //window.location.reload();
+                        }
+                        else{
+                            alert('接收失败');
+                        }
+                    },
+                    error: function(){
+                        alert('添加失败');
+                    }
+                });
+            });
+        }
+        handleClick();
+
+        //退出群
+        function quitGroup(){
+            $('body').on('click','.quit-group',function(ev){
+                 ev = ev || window.event;
+                if(confirm("确定退出该群?")){
+                    $.ajax({
+                        url: '/groupchart/quitGroup',
+                        type: 'POST',
+                        data: {groupid:groupid},
+                        success: function(data){
+                            if(data.success){
+                                //返回上一页
+                                //window.location.reload();
+                                $(location).attr('href', '/yike');
+                            }
+                            else{
+                                alert('接收失败');
+                            }
+                        },
+                        error: function(){
+                            alert('添加失败');
+                        }
+                    });
+                }else{
+                    return false;
+                }
+            });
+        }
+        quitGroup();
+
     })
 })(jQuery,window,document);
 

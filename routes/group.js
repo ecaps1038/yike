@@ -24,10 +24,8 @@ module.exports = function(app){
 	//创建群写入数据库
 	app.post('/addgroup',function(req,res){
 		
-		//var id = req.session.userId;
 		group.addgroup(req,res);
 		//group.addgroupuser(req,res);
-		//res.redirect('/yike');
 		res.send({success:true});
 	});
 };

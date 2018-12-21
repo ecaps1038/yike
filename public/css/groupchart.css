@@ -75,8 +75,23 @@
 }
 .user-friend{
 	display:none;
+	position: relative;
 	margin-top: 20px;
 	height: 120px;
 	width: 860px;
 	background: #f8f8f8;
+}
+.friend-li .user{
+	float: left;
+}
+.in-group-tip{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background: #ddd;
+}
+.but-grp{
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
 }

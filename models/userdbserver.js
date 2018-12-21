@@ -50,6 +50,7 @@ exports.update = function(id,updatestr){
 };
 
 //根据_id删除项：Model.findByIdAndRemove(id, [options], [callback])　
+//Groupuser.deleteOne(wherestr, function(err, res)
 exports.remove = function(id){
     //var id ={'_id':'5bc852dd89cdd953d0dc0938'};
     

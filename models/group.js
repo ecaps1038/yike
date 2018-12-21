@@ -112,7 +112,6 @@ exports.findGroup = function(req,res,id){
 	                    id: ver._id,
 	                    name: ver.name,
 	                    icon: ver.icon,
-	                    online: ver.online,
 	                    myid: myid,
 	                    myimgurl: myimgurl,
 	                    myname: myname,
@@ -120,7 +119,8 @@ exports.findGroup = function(req,res,id){
 	                }
 	            })
 	        };
-	        res.render('groupchart',context);
+            res.send({success:true,context});
+	        //res.render('groupchart',context);
         }
     });
 };
@@ -136,7 +136,6 @@ exports.showGroupMessage = function(req,res,id){
     //query.sort({'time':-1});
     //查询结果
     query.exec().then(function(result){
-        //console.log(result);
         var context = {
             vacation : result.map(function(ver){
             	if(ver.fromID.imgurl){
@@ -168,7 +167,7 @@ exports.showUser = function(req,res,id){
     //查出friendID的user对象
     query.populate('userID');
     //按照最后会话时间倒序排列
-    query.sort({'time':-1});
+    query.sort({'time':1});
     //查询结果
     query.exec().then(function(result){
         //console.log(result);
@@ -231,4 +230,36 @@ exports.isinGroup = function(res,usid,groupid){
             res.send({success:true,rest:rest});
         }
     });
+};
+
+//加入确定群
+exports.joinGroup = function(req,res){
+    var grpid = req.body.groupid;
+    var user = req.body.user;
+
+    user.map(function(ver){
+        var guserData = {
+            groupID: grpid,
+            userID: ver,
+            time: new Date(),
+            lasttime: new Date()
+        }
+        console.log(guserData);
+        groupdbs.insertGroupUser(guserData);
+        res.send({success:true});
+    });
+};
+//加入确定群
+exports.quitGroup = function(req,res){
+    var grpid = req.body.groupid;
+    var userid = req.session.userId;
+    var wherestr = {'groupID':grpid,'userID':userid};
+    Groupuser.deleteOne(wherestr, function(err, rest){
+        if (err) {
+            console.log("Error:" + err);
+        }
+        else {
+            res.send({success:true});
+        }    
+    })
 };

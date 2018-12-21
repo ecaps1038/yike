@@ -5,15 +5,8 @@
     <script src="/js/json3.min.js"></script>
 {{/section}}
 <div class="main">
-	{{#each vacation}}
-		<img src="/group-photo/{{icon}}" style="width:100px;" />
-		<span class="name">{{name}}<i></i></span>
-		<input type="hidden" value="{{icon}}" class="imgurl">
-		<input type="hidden" value="{{myimgurl}}" class="myimgurl">
-		<input type="hidden" value="{{myname}}" class="myname">
-		<input type="hidden" value="{{id}}" class="id">
-		<input type="hidden" value="{{myid}}" class="myid">
-	{{/each}}
+	<input type="hidden" value="{{id}}" class="id">
+	<div class="group-init"></div>
 	<a href="/yike" class="back toyike">返回</a>
 	<div class="inner">
 		<div class="msgout">
@@ -30,6 +23,7 @@
 				<p>群内名称</p>
 				<p>名称</p>
 			</div>
+			<div class="user-oper"></div>
 			{{#each vacation}}
 				{{#if admin}}
 				<div>
@@ -47,9 +41,14 @@
 	</form>
 	<div class="user-friend">
 		<ul class="friend-li"></ul>
+		<div class="but-grp">
+			<button class="put-but">确定</button>
+			<button class="close-but">取消</button>
+		</div>
 	</div>
 </div>
 
 {{#section 'jquery'}}
+	<script src="/js/myfunc.js" type="text/javascript"></script>
 	<script src="/js/groupchart.js" type="text/javascript"></script>
 {{/section}}

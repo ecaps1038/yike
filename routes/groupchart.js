@@ -8,12 +8,17 @@ module.exports = function(app,io){
 		var id = req.query.id;
 		var usid = req.session.userId;
 		if(usid){
-	    	group.findGroup(req,res,id);
+			res.render('groupchart',{id:id});
+	    	//group.findGroup(req,res,id);
 	    }else{
 	    	res.redirect('/');
 	    }
 	    //res.render('chart');
 	});
+	app.post('/groupchart/init',function(req,res){
+		var id = req.body.id;
+		group.findGroup(req,res,id);
+	})
 
 	//获取群成员
 	app.post('/showUser',function(req,res){
@@ -46,5 +51,13 @@ module.exports = function(app,io){
 		var groupid = req.body.groupid;
 		var id = req.body.id;
 		group.isinGroup(res,id,groupid);
+	});
+	//添加用户入群
+	app.post('/groupchart/joinGroup',function(req,res){
+		group.joinGroup(req,res);
+	});
+	//退出群
+	app.post('/groupchart/quitGroup',function(req,res){
+		group.quitGroup(req,res);
 	})
 }

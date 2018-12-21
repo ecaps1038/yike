@@ -71,7 +71,7 @@ exports.updateStatus = function(groupid,userid){
             console.log("复位群消息数失败：" + err);
         }
         else {
-            console.log("复位群消息数成功！");
+           // console.log("复位群消息数成功！");
         }
     });
 }
