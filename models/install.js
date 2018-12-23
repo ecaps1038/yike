@@ -31,6 +31,7 @@ exports.findMy = function(req,res,id){
             vacation : ress.map(function(ver){
                 //console.log(ver);
                 return {
+                    id: ver._id,
                     name: ver.name,
                     pwd: ver.pwd,
                     email: ver.email,

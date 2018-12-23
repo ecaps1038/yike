@@ -95,3 +95,10 @@
 	right: 20px;
 	bottom: 20px;
 }
+/*群内名*/
+.mark{
+	cursor: pointer;
+}
+.change{
+	display: none;
+}

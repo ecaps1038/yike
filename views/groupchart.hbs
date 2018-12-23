@@ -19,20 +19,14 @@
 				<p>群公告</p>
 				<p>公告内容</p>
 			</div>
-			<div>
-				<p>群内名称</p>
-				<p>名称</p>
+			<div class="mark">
+				<span>群内名:</span>
+				<span class="mark-name"></span>
+			</div>
+			<div class="change">
+				<input type="text" value="" class="change-mark"><button>确定</button>
 			</div>
 			<div class="user-oper"></div>
-			{{#each vacation}}
-				{{#if admin}}
-				<div>
-					<a href="#">管理群</a>
-				</div>
-				{{else}}
-				<a href="#">退群</a>
-				{{/if}}
-			{{/each}}
 		</div>
 	</div>
 	<form class="forms">

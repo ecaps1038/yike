@@ -28,6 +28,14 @@ exports.addgroup = function(req,res){
 		            console.log("查询群失败：" + err);
 		            return res.redirect('/');
 		        }else{
+                    //添加自己入群
+                        userData = {
+                            groupID: ids._id,
+                            userID: adminid,
+                            time: new Date(),
+                            lasttime: new Date()
+                        }
+                        groupdbs.insertGroupUser(userData);
 		        	//添加朋友入群
 		        	rest.map(function(ids){
 			        	user.map(function(ver){
@@ -40,14 +48,6 @@ exports.addgroup = function(req,res){
 			        		console.log(guserData);
 			        		groupdbs.insertGroupUser(guserData);
 			        	});
-                        //添加自己入群
-                        userData = {
-                            groupID: ids._id,
-                            userID: adminid,
-                            time: new Date(),
-                            lasttime: new Date()
-                        }
-                        groupdbs.insertGroupUser(userData);
 			        });
 		        }
 			})
@@ -104,18 +104,15 @@ exports.findGroup = function(req,res,id){
         	
             var context = {
 	            vacation : ress.map(function(ver){
-	            	var admin;
-	                if(ver.adminID==myid){
-	                    admin=1;
-	                }else{admin=null;}
 	                return {
 	                    id: ver._id,
+                        adminid: ver.adminID,
 	                    name: ver.name,
 	                    icon: ver.icon,
+                        intro: ver.intro,
 	                    myid: myid,
 	                    myimgurl: myimgurl,
 	                    myname: myname,
-	                    admin: admin,
 	                }
 	            })
 	        };
@@ -249,7 +246,7 @@ exports.joinGroup = function(req,res){
         res.send({success:true});
     });
 };
-//加入确定群
+//退出群
 exports.quitGroup = function(req,res){
     var grpid = req.body.groupid;
     var userid = req.session.userId;
@@ -262,4 +259,20 @@ exports.quitGroup = function(req,res){
             res.send({success:true});
         }    
     })
+};
+//修改群内名
+exports.groupMark = function(req,res){
+    var name = req.body.name;
+    var grpid = req.body.groupid;
+    var userid = req.session.userId;
+    var wherestr = {'groupID':grpid,'userID':userid};
+    var updatestr = {'name': name};     
+    Groupuser.updateOne(wherestr, updatestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            res.send({success:true});
+        }
+    });
 };

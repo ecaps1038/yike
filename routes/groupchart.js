@@ -13,7 +13,6 @@ module.exports = function(app,io){
 	    }else{
 	    	res.redirect('/');
 	    }
-	    //res.render('chart');
 	});
 	app.post('/groupchart/init',function(req,res){
 		var id = req.body.id;
@@ -59,5 +58,22 @@ module.exports = function(app,io){
 	//退出群
 	app.post('/groupchart/quitGroup',function(req,res){
 		group.quitGroup(req,res);
+	});
+
+	//修改群内名
+	app.post('/groupchart/groupMark',function(req,res){
+		group.groupMark(req,res);
+	});
+
+	//修改群内名
+	app.get('/groupchart/managegroup',function(req,res){
+		var id = req.query.id;
+		res.render('managegroup',{id:id});
+		//group.groupMark(req,res);
+	});
+	//获取群内信息
+	app.post('/groupchart/managegroup/init',function(req,res){
+		var id = req.body.id;
+		group.findGroup(req,res,id);
 	})
 }

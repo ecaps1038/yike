@@ -6,7 +6,7 @@
 <a href="/yike">返回</a>
 
 {{#each vacation}}
-<a href="/photocut?atl=1"><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></a>
+<a href="/photocut?atl=1&id={{id}}"><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></a>
 <form method="post" class="newslefft" action="/install">
 <p>昵称：<input type="text" value="{{name}}" name="name"></p>
 <p>说明：<textarea name="explain">{{explain}}</textarea></p>

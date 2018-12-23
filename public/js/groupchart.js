@@ -2,7 +2,7 @@
     $(document).ready(function(){
     	var socket = io();
         var html='';
-        var userid,myimgurl,myname;
+        var userid,myimgurl,myname,adminid;
         var groupid = $('.id').val();
 
         var time =0;
@@ -34,14 +34,15 @@
                         var aa = data.context.vacation;
                         aa.map(function(ver){
                             userid = ver.myid;
+                            adminid = ver.adminid;
                             myimgurl = ver.myimgurl;
                             myname = ver.myname;
                             html ='<img src="/group-photo/'+ver.icon+'" style="width:100px;" />'+
                                 '<span class="name">'+ver.name+'<i></i></span>';
-                            if(ver.admin){
-                                oper = '<a href="#">管理群</a>';
+                            if(userid == adminid){
+                                oper = '<a href="/groupchart/managegroup?id='+groupid+'">管理群</a>';
                             }else{
-                                oper = '<button class="quit-group">退群</button>';
+                                oper = '<button class="quit-group">删除并退群</button>';
                             }
                         });
                         $oper.html(oper);
@@ -163,7 +164,7 @@
 
         //获取群成员列表
         function showUsers(){
-            var html='',num = 0;
+            var html='',num = 0,usname,mymark;
         	 $.ajax({
                 url: '/showUser',
                 type: 'POST',
@@ -173,10 +174,31 @@
                 		var aa = data.result.vacation;
                         //console.log(aa);
                         var tt = aa.map(function(i){
+                            if(i.markname){
+                                usname = i.markname;
+                            }else{
+                                usname = i.name;
+                            }
+                            //自己的名称
+                            if(i.id == userid){
+                                if(i.markname){
+                                    mymark = i.markname;
+                                }else{
+                                    mymark = i.name;
+                                }                            
+                            }
                         	html += '<li><a href="/detail?id='+i.id+'"><div class="img"><img src="/vacation-photo/'
-                        	+i.imgurl+'"/>'+'</div><span>'+i.name+'</span></a>';
+                        	+i.imgurl+'"/>'+'</div>';
+                            if(i.id == adminid){
+                                html += '<span style="color:#00aaee;">'+usname+'</span></a>';
+                            }else{
+                                html += '<span>'+usname+'</span></a>';
+                            }
+                            
                         });
                         $('.groupmsg .user').html(html);
+                        $('.mark-name').html(mymark);
+                        $('.change-mark').val(mymark);
                         num = $('.groupmsg .user li').length;
                         $('.name i').html('('+num+')');
 	                }else{
@@ -348,6 +370,39 @@
             });
         }
         quitGroup();
+
+        //修改群内名
+        function changeMark(){
+            var name,num;
+            $('body').on('click','.mark',function(){
+                $('.change').toggle();
+                name = $(this).find('.mark-name').html();
+            });
+            $('body').on('click','.change button',function(){
+                var num = $('.change .change-mark').val();
+                if(num && num!=name){
+                    $.ajax({
+                        url: '/groupchart/groupMark',
+                        type: 'POST',
+                        data: {name:num,groupid:groupid},
+                        success: function(data){
+                            if(data.success){
+                                //跟新用户
+                                showUsers();
+                                $('.change').hide();
+                            }
+                            else{
+                                alert('接收失败');
+                            }
+                        },
+                        error: function(){
+                            alert('添加失败');
+                        }
+                    });                
+                }
+            })
+        }
+        changeMark();
 
     })
 })(jQuery,window,document);

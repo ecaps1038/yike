@@ -71,7 +71,21 @@ exports.updateStatus = function(groupid,userid){
             console.log("复位群消息数失败：" + err);
         }
         else {
-           // console.log("复位群消息数成功！");
+           // console.log("复位群数成功！");
         }
     });
 }
+//更新群头像
+exports.updateIcon = function(id,updatestr){
+    // var id = '5bc852dd89cdd953d0dc0938';
+    // var updatestr = {'username': '逸刻'};
+    
+    Group.findByIdAndUpdate(id, updatestr, function(err, res){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            console.log("数据修改成功！");
+        }
+    });
+};
