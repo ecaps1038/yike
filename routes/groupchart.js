@@ -65,15 +65,39 @@ module.exports = function(app,io){
 		group.groupMark(req,res);
 	});
 
-	//修改群内名
+	//管理群
 	app.get('/groupchart/managegroup',function(req,res){
 		var id = req.query.id;
-		res.render('managegroup',{id:id});
-		//group.groupMark(req,res);
+		var userid = req.session.userId;
+		if(userid){
+			res.render('managegroup',{id:id,userid:userid});
+	    }else{
+	    	res.redirect('/');
+	    }
 	});
 	//获取群内信息
 	app.post('/groupchart/managegroup/init',function(req,res){
 		var id = req.body.id;
 		group.findGroup(req,res,id);
-	})
+	});
+	//管理群-修改信息
+	app.post('/groupchart/managegroup/update',function(req,res){
+		group.updateGroup(req,res);
+	});
+	//管理群-修改信息
+	app.post('/groupchart/managegroup/groupUser',function(req,res){
+		var id = req.body.id;
+		group.showUser(req,res,id);
+	});
+	//删除群用户
+	app.post('/groupchart/managegroup/removeUser',function(req,res){
+		group.removeUser(req,res);
+	});
+	//删除群
+	app.post('/groupchart/managegroup/dissolveGroup',function(req,res){
+		//group.removeUser(req,res);
+		group.removeAllMsg(req,res);
+		group.removeAllUser(req,res);
+		group.removeGroup(req,res);
+	});
 }

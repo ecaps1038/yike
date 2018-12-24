@@ -28,7 +28,9 @@ exports.addgroup = function(req,res){
 		            console.log("查询群失败：" + err);
 		            return res.redirect('/');
 		        }else{
-                    //添加自己入群
+                    
+		        	rest.map(function(ids){
+                        //添加自己入群
                         userData = {
                             groupID: ids._id,
                             userID: adminid,
@@ -36,8 +38,7 @@ exports.addgroup = function(req,res){
                             lasttime: new Date()
                         }
                         groupdbs.insertGroupUser(userData);
-		        	//添加朋友入群
-		        	rest.map(function(ids){
+                        //添加朋友入群
 			        	user.map(function(ver){
 			        		var guserData = {
 			        			groupID: ids._id,
@@ -45,7 +46,7 @@ exports.addgroup = function(req,res){
 								time: new Date(),
                                 lasttime: new Date()
 			        		}
-			        		console.log(guserData);
+			        		//console.log(guserData);
 			        		groupdbs.insertGroupUser(guserData);
 			        	});
 			        });
@@ -95,7 +96,7 @@ exports.findGroup = function(req,res,id){
     groupdbs.updateStatus(id,myid);
 
     var id = {'_id':id};
-    var out = {'name':1,'icon':1,'adminID':1};
+    var out = {'name':1,'icon':1,'adminID':1,'intro':1};
     Group.find(id, out, function(err, ress){
         if (err) {
             console.log("查询失败：" + err);
@@ -241,7 +242,7 @@ exports.joinGroup = function(req,res){
             time: new Date(),
             lasttime: new Date()
         }
-        console.log(guserData);
+        //console.log(guserData);
         groupdbs.insertGroupUser(guserData);
         res.send({success:true});
     });
@@ -268,6 +269,86 @@ exports.groupMark = function(req,res){
     var wherestr = {'groupID':grpid,'userID':userid};
     var updatestr = {'name': name};     
     Groupuser.updateOne(wherestr, updatestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            res.send({success:true});
+        }
+    });
+};
+
+//修改群内容信息
+exports.updateGroup = function(req,res){
+    var name = req.body.name;
+    var grpid = req.body.id;
+    var main = req.body.main;
+    var wherestr = {'_id':grpid};
+    if(name == "name"){
+        var updatestr = {'name': main};     
+    }else{
+        var updatestr = {'intro': main};
+    }
+    Group.updateOne(wherestr, updatestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            res.send({success:true});
+        }
+    });
+};
+
+//删除群成员
+exports.removeUser = function(req,res){
+    var userid = req.body.userid;
+    var grpid = req.body.id;
+    var wherestr = {'groupID':grpid, 'userID':userid};
+    Groupuser.deleteOne(wherestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            res.send({success:true});
+        }
+    });
+};
+
+//移出群
+//删除群所有消息
+exports.removeAllMsg = function(req,res){
+    var grpid = req.body.id;
+    var wherestr = {'groupID':grpid};
+    Groupmsg.deleteMany(wherestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            console.log('消息删除完成');
+            //res.send({success:true});
+        }
+    });
+};
+//删除群所有成员
+exports.removeAllUser = function(req,res){
+    var grpid = req.body.id;
+    var wherestr = {'groupID':grpid};
+    Groupuser.deleteMany(wherestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            console.log('群成员删除完成');
+            //res.send({success:true});
+        }
+    });
+};
+
+//删除群所有成员
+exports.removeGroup = function(req,res){
+    var grpid = req.body.id;
+    var wherestr = {'_id':grpid};
+    Group.deleteOne(wherestr, function(err, rest){
         if (err) {
             console.log("数据修改出错：" + err);
         }

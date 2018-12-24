@@ -44,6 +44,7 @@
                             }else{
                                 oper = '<button class="quit-group">删除并退群</button>';
                             }
+                            $('.intro').html(ver.intro);
                         });
                         $oper.html(oper);
                         $init.html(html);
@@ -172,7 +173,7 @@
                 success: function(data){
                 	if(data.success){
                 		var aa = data.result.vacation;
-                        //console.log(aa);
+                        console.log(aa);
                         var tt = aa.map(function(i){
                             if(i.markname){
                                 usname = i.markname;

@@ -210,7 +210,7 @@ exports.userDelete = function(req,res){
 	var data = req.body.d;
 	data.map(function(ver){
 		var id = {'_id':ver};
-		User.findByIdAndRemove(id, function(err, res){
+		User.findOneAndDelete(id, function(err, res){
 	        if (err) {
 	            console.log("数据删除失败：" + err);
 	        }
@@ -227,7 +227,7 @@ exports.changePsw = function(res,id){
     var pwd = bcrypt.bcrypts('000000');
     var updatestr = {'pwd': pwd};
     
-    User.findByIdAndUpdate(id, updatestr, function(err, rest){
+    User.findOneAndDelete(id, updatestr, function(err, rest){
         if (err) {
             console.log("数据修改出错：" + err);
         }
@@ -328,7 +328,7 @@ exports.groupDelete = function(req,res){
 	console.log('暂时就不删除了');
 	data.map(function(ver){
 		var id = {'_id':ver};
-		Group.findByIdAndRemove(id, function(err, res){
+		Group.findOneAndDelete(id, function(err, res){
 	        if (err) {
 	            console.log("数据删除失败：" + err);
 	        }
@@ -433,7 +433,7 @@ exports.msgDelete = function(req,res){
 	var data = req.body.d;
 	data.map(function(ver){
 		var id = {'_id':ver};
-		Message.findByIdAndRemove(id, function(err, res){
+		Message.findOneAndDelete(id, function(err, res){
 	        if (err) {
 	            console.log("数据删除失败：" + err);
 	        }
@@ -533,7 +533,7 @@ exports.grpmsgDelete = function(req,res){
 	var data = req.body.d;
 	data.map(function(ver){
 		var id = {'_id':ver};
-		Groupmsg.findByIdAndRemove(id, function(err, res){
+		Groupmsg.findOneAndDelete(id, function(err, res){
 	        if (err) {
 	            console.log("数据删除失败：" + err);
 	        }
@@ -634,7 +634,7 @@ exports.frdDelete = function(req,res){
     var data = req.body.d;
     data.map(function(ver){
         var id = {'_id':ver};
-        Friend.findByIdAndRemove(id, function(err, res){
+        Friend.findOneAndDelete(id, function(err, res){
             if (err) {
                 console.log("数据删除失败：" + err);
             }
@@ -737,7 +737,7 @@ exports.gpuDelete = function(req,res){
     console.log('此项删除逻辑有问题');
 	data.map(function(ver){
 		var id = {'_id':ver};
-		Groupuser.findByIdAndRemove(id, function(err, res){
+		Groupuser.findOneAndDelete(id, function(err, res){
 	        if (err) {
 	            console.log("数据删除失败：" + err);
 	        }

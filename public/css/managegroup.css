@@ -1,0 +1,9 @@
+.group-inf,.group-user{
+	padding: 20px;
+}
+.sub-chg{
+	display: none;
+}
+.user-form ul li img{
+	width: 40px;
+}

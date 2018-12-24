@@ -8,7 +8,11 @@ var date = require('./date.js');
 
 //搜索用户
 exports.searchUser = function(res,cont,id){
-    var search = {$or:[{'name': {$regex : cont}},{'email': {$regex : cont}}]};
+	if (cont == 'yike'){
+		var search = {};
+	}else{
+    	var search = {$or:[{'name': {$regex : cont}},{'email': {$regex : cont}}]};
+	}
     var out = {'name':1,'email':1,'imgurl':1};
     User.find(search, out, function(err, ress){
         if (err) {
@@ -17,7 +21,7 @@ exports.searchUser = function(res,cont,id){
         else {
             var context = {
 	            vacation : ress.map(function(ver){
-	            	if(ver._id != id){
+	            	//if(ver._id != id){
 		            	if(ver.imgurl){var img = ver.imgurl}
 		            		else{var img = 'user.jpg'}
 		                return {
@@ -26,7 +30,7 @@ exports.searchUser = function(res,cont,id){
 		                    email: ver.email,
 		                    imgurl: img,    
 		                }
-		            }
+		           // }
 	            })
 	        };
         res.send({success:true,context});
@@ -36,7 +40,11 @@ exports.searchUser = function(res,cont,id){
 
 //搜索群
 exports.searchGroup = function(res,cont){
-    var search = {'name': {$regex : cont}};
+	if(cont == 'yike'){
+		var search = {};
+	}else{
+    	var search = {'name': {$regex : cont}};
+	}
     var out = {'name':1,'icon':1};
     Group.find(search, out, function(err, ress){
         if (err) {

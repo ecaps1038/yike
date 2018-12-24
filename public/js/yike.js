@@ -23,15 +23,17 @@ $(document).ready(function(){
 			success: function(data){
 				if(data.success){
 					var aa = data.context.vacation;
+					console.log(aa)
 					if(aa.length>0){
-					html +='<p>用户</p>';
-					var tt = aa.map(function(i){
-						html+="<div><img src='/vacation-photo/"+i.imgurl+"' style='width:60px;'/>"+
-						'<span class="name">'+i.name+'</span><span class="email">'+i.email+'</span>'+
-						"<a href='/detail?id="+i.id+"'>进入</a></div>";
-						elem.html(html);
-					})					
-				}}
+						html +='<p>用户</p>';
+						var tt = aa.map(function(ver){
+							html+='<a class="search-result" href="/detail?id='+ver.id+'"><img src="/vacation-photo/'+ver.imgurl+'" style="width:60px;"/>'+
+							'<span class="name">'+ver.name+'</span><span class="email">'+ver.email+'</span>'+
+							"</a>";
+						});
+						elem.html(html);					
+					}
+				}
 				else{
 				elem.html('出现问题');
 				}
@@ -48,15 +50,14 @@ $(document).ready(function(){
 				if(data.success){
 					var aa = data.context.vacation;
 					if(aa.length>0){
-					html +='<p>群</p>';
-					var tt = aa.map(function(i){
-						html+="<div><img src='/group-photo/"+i.icon+"' style='width:60px;'/>"+
-						'<span class="name">'+i.name+'</span>'+
-						"<a href='/search-detail?id="+i.id+"'>进入</a></div>";
+						html +='<p>群</p>';
+						var tt = aa.map(function(i){
+							html+='<a href="/search-detail?id='+i.id+'"><img src="/group-photo/'+i.icon+'" style="width:60px;"/>'+
+							'<span class="name">'+i.name+'</span></a>';
+						});
 						elem.html(html);
-					})
-					
-				}}
+					}
+				}
 				else{
 				elem.html('出现问题');
 				}
