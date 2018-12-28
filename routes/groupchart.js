@@ -42,7 +42,7 @@ module.exports = function(app,io){
 	//获取用户朋友列表
 	app.post('/groupchart/showMyfriend',function(req,res){
 		var id = req.session.userId;
-		login.showFriend1(req,res,id);
+		login.getUser(req,res,id);
 	});
 
 	//验证好友是否在群内

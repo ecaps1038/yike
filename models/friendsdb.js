@@ -7,7 +7,8 @@ var FriendSchema = new Schema({
     userID: {type:Schema.Types.ObjectId,ref:'User'},            //用户id
     name: {type: String},					   					//备注昵称
     time: {type: Date},  										//创建时间
-    lasttime: {type: Date}                      				//最后通话时间
+    lasttime: {type: Date},                      				//最后通话时间
+    cross: {type: Number,default: 0}     						//是否已通过验证
 });
 
 module.exports = mongoose.model('Friend',FriendSchema);

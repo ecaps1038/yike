@@ -108,3 +108,63 @@
 .search-result{
 	display: block;
 }
+.add{
+	width: 240px;
+	height: 60px;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	cursor: pointer;
+	display:none;
+}
+.add .icon{
+	display: inline-block;
+	float: left;
+	margin: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #eae5fc url('../images/add.png') no-repeat center /26px;
+}
+.add .item{
+	display: inline-block;
+	float: right;
+	margin: 20px 10px;
+	min-width: 14px;
+	padding-left: 6px;
+	height: 20px;
+	border-radius: 10px;
+	background: #ff4b60;
+	color: #fff;
+	font-style: normal;
+	font-size: 12px;
+	line-height: 20px;
+}
+.add span{
+	float: left;
+	line-height: 60px;
+}
+.adduser{
+	display: none;
+}
+.aggree{
+	float: right;
+	display: inline-block;
+	width: 54px;
+	height: 28px;
+	border-radius: 14px;
+	background: #6ed802;
+	color: #fff;
+	line-height: 28px;
+	cursor: pointer;
+}
+.disaggree{
+	float: right;
+	display: inline-block;
+	width: 54px;
+	height: 28px;
+	border-radius: 14px;
+	background: #ff7766;
+	color: #fff;
+	line-height: 28px;
+	cursor: pointer;
+}

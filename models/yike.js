@@ -4,6 +4,7 @@ var userdb = require("./userdbserver.js");
 var frienddb = require("./friendsdbserver.js");
 var groupdb = require("./groupsdb.js");
 var Group = groupdb.model('Group');
+var messagedb = require("./messagedbserver.js");
 var date = require('./date.js');
 
 //搜索用户
@@ -189,10 +190,11 @@ exports.findUser = function(req,res,id){
 };
 
 //添加好友
-exports.addfriend = function(res,friendid,userid){
+exports.addfriend = function(res,friendid,userid,reason){
 	var data1 = {
 		friendID : friendid,                    			
-	    userID: userid,                       		
+	    userID: userid,
+	    cross: 2,                       		
 	    time: new Date(),							
 	    lasttime: new Date()  
 	};
@@ -204,6 +206,16 @@ exports.addfriend = function(res,friendid,userid){
 	};
 	frienddb.insert(data1);
 	frienddb.insert(data2);
+	if(reason){
+		var data = {
+		    		postMessages: reason,
+					fromUserID: userid,                    			
+				    toUserID: friendid,                       		
+				    dateTime: new Date(),							
+				    status: 1  
+				}
+		    	messagedb.insert(data);
+	}
 	res.send({success:true});
 }
 //删除好友

@@ -13,7 +13,7 @@ module.exports = function(app){
 	//获取好友列表
 	app.post('/creat-group/frend',function(req,res){
 		var userid = req.session.userId;
-		login.showFriend1(req,res,userid);
+		login.getUser(req,res,userid);
 	})
 
 	//创建裁剪群上传图片

@@ -32,7 +32,11 @@
 	<a href="/chart?id={{id}}">聊天</a>
 	<div><a href="/delete-friend?id={{id}}" class="delete">删除好友</a></div>
 {{else}}
-	<div><button class="add" data-id="{{id}}">添加好友</button></div>
+	<button class="apply">添加好友</button>
+	<div class="apply-main">
+		<textarea class="reason" placeholder="说点什么吧..."></textarea>
+		<button class="add" data-id="{{id}}">添加</button>
+	</div>
 {{/if}}
 {{/if}}
 {{/each}}

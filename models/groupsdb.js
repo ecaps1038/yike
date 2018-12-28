@@ -7,7 +7,7 @@ var GroupSchema = new Schema({
     adminID: {type:Schema.Types.ObjectId,ref:'User'},           //创建者id
     name: {type: String},					   					//群名称
     intro: {type: String},					   					//群简介
-    icon: {type: String},					   					//群图标
+    icon: {type: String, default: 'group.png'},					   					//群图标
     time: {type: Date},  										//创建时间
 });
 

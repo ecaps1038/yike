@@ -6,6 +6,7 @@
             this._markname();
             this._upmarkName();
             this._addfriend();
+            this._addApply();
             this._length = 0;
       },
        
@@ -65,11 +66,14 @@
         _addfriend : function(){
             $('body').on('click','.add',function(){
                 //异步添加好友
-                var _id = $(this).attr('data-id');
+                var _id,reason = '';
+                _id = $(this).attr('data-id');
+                reason = $('.apply-main .reason').val();
+                console.log(reason);
                 $.ajax({
                     url: '/add',
                     type: 'POST',
-                    data: {id:_id},
+                    data: {id:_id,reason:reason},
                     success: function(data){
                         if(data.success){
                             //刷新当前页面
@@ -85,6 +89,21 @@
                 });
             });
         },
+        //显示添加好友项
+        _addApply : function(){
+            var nom = false;
+            $('body').on('click', '.apply',function(){
+                if(!nom){
+                    $('.apply-main').show();
+                    $(this).html('取消添加');
+                    nom = true;
+                }else{
+                    $('.apply-main').hide();
+                    $(this).html('添加好友');
+                    nom = false;
+                }
+            })
+        }
     }
 
     $(document).ready(function(){

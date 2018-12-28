@@ -1,3 +1,9 @@
 .addmark{
 	display: none;
 }
+.img img{
+	width: 40px;
+}
+.apply-main{
+	display: none;
+}

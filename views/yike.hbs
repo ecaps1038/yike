@@ -3,43 +3,30 @@
     <link rel="stylesheet" type="text/css" href="css/yike.css">
     <script src="/socket.io/socket.io.js"></script>
 {{/section}}
-<h3>yike</h3>
-<div>
-	<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{imgurl}}"/>
-	</a>
-	<p>{{name}}</p>
-	<input type="hidden" class="userid" value="{{id}}">
-</div>
-{{!-- <a href="/logout" class="quit">退出</a> --}}
-<a href="/create-group" class="cregroup">创建群</a>
-<form class="search">
-	<input type="text" name="search" class="search-main"><button class="searup">搜索</button>
-</form>
-<div class="sear"></div>
-{{#if vacation}}
+<div class="main">
+	<h3>yike</h3>
+	<div>
+		<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{myimgurl}}"/>
+		</a>
+		<p>{{myname}}</p>
+		<input type="hidden" class="userid" value="{{id}}">
+	</div>
+	<a href="/create-group" class="cregroup">创建群</a>
+	{{!-- <form class="search">
+		<input type="text" name="search" class="search-main"><button class="searup">搜索</button>
+	</form>
+	<div class="sear"></div> --}}
+	<a href="/yike/search">搜索</a>
+	<div class="add">
+		<i class="icon"></i>
+		<span>好友申请</span>
+		<i class="item">0</i>
+	</div>
+	<ul class="adduser"></ul>
 	<ul class="userlist">
-		{{#each vacation}}
-			<li class="user other">
-				<input type="hidden" value="{{id}}" class="friendid">
-				<p class="count"></p>
-				<a href="/chart?id={{id}}" class="chart"></a>
-				<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{imgurl}}"/></a></p>
-				{{#if markname}}
-					<p class="name">{{markname}}</p>
-				{{else}}
-					<p class="name">{{name}}</p>
-				{{/if}}
-				{{!-- <p class="explain">{{explain}}</p> --}}
-				<p class="sex {{sex}}"></p>
-				<p class="news"></p>
-				<p class="nowtime"></p>
-				<p class="lasttime" style="display:none">{{lasttime}}</p>
-			</li>
-		{{/each}}
+		<div class="no-friend"><img src="/images/nothing.png"></div>
 	</ul>
-{{else}}
-	<div><img src="/images/nothing.png"></div>
-{{/if}}
+</div>
 {{#section 'jquery'}}
 	<script src="/js/myfunc.js" type="text/javascript"></script>
 	<script src="/js/yike.js" type="text/javascript"></script>

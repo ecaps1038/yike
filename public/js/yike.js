@@ -5,13 +5,17 @@ $(document).ready(function(){
 		evt.preventDefault();
 		var search = $('.search-main').val();
 		var $container = $('.sear');
-		
 
 		if(search.length>0){
 			$container.html('无结果');
 			gitSearch($container);
 		}
 	});
+
+    //显示与隐藏申请好友
+    $('.add').on('click',function(){
+    	$('.adduser').toggle();
+    })
 
 	//搜索结果
 	function gitSearch(elem){
@@ -23,7 +27,7 @@ $(document).ready(function(){
 			success: function(data){
 				if(data.success){
 					var aa = data.context.vacation;
-					console.log(aa)
+					//console.log(aa)
 					if(aa.length>0){
 						html +='<p>用户</p>';
 						var tt = aa.map(function(ver){
@@ -69,58 +73,171 @@ $(document).ready(function(){
 	}
 
 	//遍历获取未读信息数及最后通话信息
-	$('.other').each(function(){
-		var that = $(this);
-		var id = $(this).find('.friendid').val();
-		var $count = that.find('.count');
-        var $news = that.find('.news');
-        var $time = that.find('.nowtime');
-        var count = $count.html();
+	function initFriend(){
+		$('.other').each(function(){
+			var that = $(this);
+			var id = $(this).find('.friendid').val();
+			var $count = that.find('.count');
+	        var $news = that.find('.news');
+	        var $time = that.find('.nowtime');
+	        var count = $count.html();
 
-		//获取未读数
-		$.ajax({
-			url: '/imsg',
+			//获取未读数
+			$.ajax({
+				url: '/imsg',
+				type: 'POST',
+				data: {id:id},
+				success: function(data){
+					if(data.success){
+						var count = data.rest;
+						if(count>0){
+							that.find('.count').html(count).css('display','block');
+
+						}else{
+							that.find('.count').html(0).css('display','none');
+						}
+					}else{
+						console.log('查询失败');
+					}
+				}
+			})
+
+			//最后通话信息
+			$.ajax({
+				url: '/lastmsg',
+				type: 'POST',
+				data: {id:id},
+				success: function(data){
+					if(data.success){
+						var count = data.result;
+						var nowt = new Date();
+						if(count){
+							var times = gettime(count.dateTime);
+
+							$news.html(count.postMessages);
+
+							if(nowt-times>1000*60*60*18){
+		            		$time.html(changeTime2(count.dateTime));}
+		            		else{$time.html(changeTime1(count.dateTime));}
+	            		}
+					}else{
+						console.log('查询失败');
+					}
+				}
+			})
+		});
+	}
+	//获取好友列表
+    function getUser(){
+    	var userid = $('.userid').val();
+    	var markName;
+ 		$.ajax({
+			url: '/getuser',
 			type: 'POST',
-			data: {id:id},
+			data: '',
 			success: function(data){
 				if(data.success){
-					var count = data.rest;
-					if(count>0){
-						that.find('.count').html(count).css('display','block');
-
-					}else{
-						that.find('.count').html(0).css('display','none');
+					var html='';
+					var val = data.context.vacation;
+					//console.log(val);
+					if(val.length>0){
+						val.map(function(i){
+							//查看是否有备注名
+							if(i.markname){
+								markName = i.markname;
+							}else{
+								markName = i.name;
+							}
+							html +='<li class="user other">'+
+							'<input type="hidden" value="'+i.id+'" class="friendid">'+
+							'<p class="count"></p>'+
+							'<a href="/chart?id='+i.id+'" class="chart"></a>'+
+							'<a href="/detail?id='+i.id+'" class="header"><img src="/vacation-photo/'
+							+i.imgurl+'"/></a></p>'+
+							'<p class="name">'+markName+'</p>'+
+							'<p class="sex '+i.sex+'"></p>'+
+							'<p class="news"></p>'+
+							'<p class="nowtime"></p>'+
+							'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
+						'</li>'
+						});
+						$('.userlist').html(html);
+						initFriend();
 					}
 				}else{
 					console.log('查询失败');
 				}
 			}
 		})
+    }
+    getUser();
 
-		//最后通话信息
-		$.ajax({
-			url: '/lastmsg',
+	//获取好友申请列表
+    function getaddfriend(){
+    	var userid = $('.userid').val();
+    	//alert('aaa')
+ 		$.ajax({
+			url: '/getaddfriend',
 			type: 'POST',
-			data: {id:id},
+			data: '',
 			success: function(data){
 				if(data.success){
-					var count = data.result;
-					var nowt = new Date();
-					if(count){
-						var times = gettime(count.dateTime);
-
-						$news.html(count.postMessages);
-
-						if(nowt-times>1000*60*60*18){
-	            		$time.html(changeTime2(count.dateTime));}
-	            		else{$time.html(changeTime1(count.dateTime));}
-            		}
+					var html='';
+					var val = data.context.vacation;
+					if(val.length>0){
+						$('.add').show();
+						var aa = val.map(function(i){
+							html +='<li class="user other">'+
+							'<input type="hidden" value="'+i.id+'" class="friendid">'+
+							'<p class="count"></p>'+
+							'<span data-id="'+i.id+'" class="aggree">同意</span>'+
+							'<span data-id="'+i.id+'" class="disaggree">拒绝</span>'+
+							'<a href="/detail?id='+i.id+'" class="header"><img src="/vacation-photo/'
+							+i.imgurl+'"/></a></p>'+
+							'<p class="name">'+i.name+'</p>'+
+							'<p class="sex '+i.sex+'"></p>'+
+							'<p class="news"></p>'+
+							'<p class="nowtime"></p>'+
+							
+						'</li>'
+						});
+						$('.adduser').html(html);
+						aggreeUser();
+						//修改申请数
+						var len = $('.adduser li').length;
+						$('.item').html(len);
+						$('.no-friend').hide();
+						//获取群最后通话消息及未读数
+						initFriend();
+					}else{
+						$('.add').hide();
+					}
 				}else{
 					console.log('查询失败');
 				}
 			}
 		})
-	});
+    }
+    getaddfriend();
+
+    //同意好友请求
+    function aggreeUser(){
+    	$('.aggree').on('click',function(){
+    		var id = $(this).attr('data-id');
+    		$.ajax({
+			url: '/yike/aggree',
+			type: 'POST',
+			data: {id:id},
+			success: function(data){
+				if(data.success){
+					
+				}else{
+					console.log('查询失败');
+				}
+			}
+		})
+    	})
+    }
 
 	//遍历获取群未读信息数及最后通话信息、
 	function getgroupcount(){
@@ -225,7 +342,6 @@ $(document).ready(function(){
             }
         });
     });
-
 
     //获取群列表
     function getGroup(){

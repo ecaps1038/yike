@@ -173,7 +173,7 @@
                 success: function(data){
                 	if(data.success){
                 		var aa = data.result.vacation;
-                        console.log(aa);
+                        //console.log(aa);
                         var tt = aa.map(function(i){
                             if(i.markname){
                                 usname = i.markname;
