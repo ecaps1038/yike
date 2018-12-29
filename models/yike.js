@@ -24,7 +24,7 @@ exports.searchUser = function(res,cont,id){
 	            vacation : ress.map(function(ver){
 	            	//if(ver._id != id){
 		            	if(ver.imgurl){var img = ver.imgurl}
-		            		else{var img = 'user.jpg'}
+		            		else{var img = 'user.png'}
 		                return {
 		                    id : ver._id,
 		                    name: ver.name,
@@ -106,7 +106,7 @@ exports.findUser1 = function(req,res,id){
 			                    if(ver.imgurl){
 			                        return ver.imgurl;
 			                    }else{
-			                        return 'user.jpg';
+			                        return 'user.png';
 			                    }
 			                },
 			                birth: date.DateSimple(ver.birth),
@@ -127,7 +127,7 @@ exports.findUser = function(req,res,id){
 	if(id == userid){
 		admin = 1;
 	}
-	var wherestr = {'userID':userid,'friendID':id};
+	var wherestr = {'userID':userid,'friendID':id,'cross':1};
 	friend.findOne(wherestr, function(err, ele){
 		if (err) {
             console.log("数据统计失败：" + err);
@@ -168,7 +168,7 @@ exports.findUser = function(req,res,id){
 			                    if(ver.imgurl){
 			                        return ver.imgurl;
 			                    }else{
-			                        return 'user.jpg';
+			                        return 'user.png';
 			                    }
 			                },
 			                birth: date.DateSimple(ver.birth),
@@ -218,9 +218,15 @@ exports.addfriend = function(res,friendid,userid,reason){
 	}
 	res.send({success:true});
 }
+//同意好友请求
+exports.aggreeAndAdd = function(res,friendid,userid){
+	frienddb.updateCross(friendid,userid);
+	frienddb.updateCross(userid,friendid);
+	res.send({success:true});
+};
 //删除好友
 exports.deletefriend = function(res,friendid,userid){
 	frienddb.delOne(friendid,userid);
 	frienddb.delOne(userid,friendid);
-	return res.redirect('/yike');
+	res.send({success:true});
 }

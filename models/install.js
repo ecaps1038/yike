@@ -63,6 +63,7 @@ exports.upUser = function(req,res,id){
 		'birth' : req.body.birth
 	}
 	//console.log(updatestr);
+    req.session.username = req.body.name;
 	userdb.update(id,updatestr);
 	res.send({success:true});
 }

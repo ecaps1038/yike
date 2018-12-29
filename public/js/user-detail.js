@@ -7,6 +7,7 @@
             this._upmarkName();
             this._addfriend();
             this._addApply();
+            this._deletefriend();
             this._length = 0;
       },
        
@@ -76,9 +77,10 @@
                     data: {id:_id,reason:reason},
                     success: function(data){
                         if(data.success){
-                            //刷新当前页面
+                            //返回上一页
                             alert('添加成功');
-                            window.location.reload();
+                            window.history.back(-1); 
+                           // window.location.reload();
                         }else{
                         console.log('取回数据问题');
                         }
@@ -102,6 +104,25 @@
                     $(this).html('添加好友');
                     nom = false;
                 }
+            })
+        },
+        //删除好友
+        _deletefriend : function(){
+            $('body').on('click','.delete',function(){
+                var id = $(this).attr('data-id');
+                $.ajax({
+                    url: '/delete-friend',
+                    type: 'POST',
+                    data: {id:id},
+                    success: function(data){
+                        if(data.success){
+                            //跳回首页
+                            $(window).attr('location','/yike');
+                        }else{
+                            console.log('查询失败');
+                        }
+                    }
+                })
             })
         }
     }

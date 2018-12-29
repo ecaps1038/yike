@@ -183,7 +183,7 @@ exports.userTable = function(res,id,nowPage,select){
                 if(ver.imgurl){
                     var imgurl = ver.imgurl;
                 }else{
-                    var imgurl = 'user.jpg';
+                    var imgurl = 'user.png';
                 }
                 return {
                     d:++d,
@@ -227,7 +227,7 @@ exports.changePsw = function(res,id){
     var pwd = bcrypt.bcrypts('000000');
     var updatestr = {'pwd': pwd};
     
-    User.findOneAndDelete(id, updatestr, function(err, rest){
+    User.findOneAndUpdate(id, updatestr, function(err, rest){
         if (err) {
             console.log("数据修改出错：" + err);
         }
@@ -618,6 +618,7 @@ exports.frdTable = function(res,nowPage){
                     use: ver.userID.name,
                     name: ver.name,
                     time: date.DateDetail(ver.time),
+                    cross: ver.cross,
                     lasttime: date.DateDetail(ver.lasttime),
                 }
             }), 
@@ -772,7 +773,7 @@ exports.searchUser = function(res,id,data){
                     if(ver.imgurl){
                         var imgurl = ver.imgurl;
                     }else{
-                        var imgurl = 'user.jpg';
+                        var imgurl = 'user.png';
                     }
                     return {
                         d: ++d,

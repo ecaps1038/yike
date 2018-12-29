@@ -160,3 +160,17 @@ GM_ UserGroupID    Int    所属群ID
 mogoose语句
 
 MyModel.find({}).sort({'_id':-1}).limit(6).exec(function(err,docs){})
+
+
+jquery
+//刷新当前页
+window.location.reload();
+//跳转页面
+$(location).attr('href', 'http://www.jb51.net');
+$(window).attr('location','http://www.jb51.net');
+$(location).prop('href', 'http://www.jb51.net')
+
+ //返回上一页
+window.history.back(-1); 
+ //返回上一页并刷新
+window.location.href=document.referrer;

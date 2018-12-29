@@ -30,7 +30,7 @@
                                 //$container.html('Thank you!');
                                 alert('添加修改成功');
                                 //返回上一页
-                                history.back(-1);
+                                $(window).attr('location','/yike');
                             }
                             else{
                                 alert('添加失败');

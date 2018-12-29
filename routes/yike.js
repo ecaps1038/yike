@@ -79,9 +79,15 @@ module.exports = function(app,io){
 		var userid = req.session.userId;
 		yike.addfriend(res,friendid,userid,reason);
 	});	
+	//同意好友申请
+	app.post('/yike/aggree',function(req,res){
+		var friendid = req.body.id;
+		var userid = req.session.userId;
+		yike.aggreeAndAdd(res,friendid,userid);
+	})
 	//删除好友
-	app.get('/delete-friend',function(req,res){
-		var friendid = req.query.id;
+	app.post('/delete-friend',function(req,res){
+		var friendid = req.body.id;
 		var userid = req.session.userId;
 		yike.deletefriend(res,friendid,userid);
 	});

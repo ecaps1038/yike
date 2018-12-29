@@ -68,7 +68,7 @@
         //注册
         _register : function(data){
         	var html = '';
-        	alert('aaaa');
+        	//alert('aaaa');
 			$.ajax({
 				url: '/register',
 				type: 'POST',

@@ -147,7 +147,7 @@ exports.showFriend1 = function(req,res,id){
                 if(ver.friendID.imgurl){
                     var imgurl = ver.friendID.imgurl;
                 }else{
-                    var imgurl = 'user.jpg';
+                    var imgurl = 'user.png';
                 }
                 return {
                     markname: ver.name,

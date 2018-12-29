@@ -147,7 +147,7 @@ function tab(num,types,select){
 					var aa = data.context.vacation;
 					html +='<tr><th><i></i><span>序号</span></th>'+
 				'<th>好友</th><th>申请者</th><th>昵称</th>'+
-				'<th>添加时间</th><th>最后通话</th></tr>';
+				'<th>添加时间</th><th>是否通过</th><th>最后通话</th></tr>';
 					//console.log(aa);
 					aa.map(function(ver){
 					html += '<tr><td><i data-id="'+ver.id+'"></i><span>'+ver.d+'</span></td>'+
@@ -155,6 +155,7 @@ function tab(num,types,select){
 					'<td>'+ver.use+'</td>'+
 					'<td>'+ver.name+'</td>'+
 					'<td>'+ver.time+'</td>'+
+					'<td>'+ver.cross+'</td>'+
 					'<td>'+ver.lasttime+'</td></tr>';
 					})
 					$('.user-table table').html(html);

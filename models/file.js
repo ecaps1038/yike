@@ -69,6 +69,8 @@ exports.userPhoto = function(req,res){
 		}
 	});
 	userdbserver.update(id,{'imgurl':photoName});
+	//更新图片
+	req.session.imgurl = photoName;
 	res.send({success:true});
 }
 //截取后群图片

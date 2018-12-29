@@ -45,7 +45,7 @@ $(document).ready(function(){
 			success: function(data){
 				if(data.success){
 					//alert('发送成功');
-					history.go(-1);
+					window.location.href=document.referrer;
 				}
 				else{
 					alert('接收失败');

@@ -74,4 +74,18 @@ exports.updateTime = function(friendid,userid){
         }
     });
 };
+//修改agree  Model.findByIdAndUpdate(id, [update], [options], [callback])
+exports.updateCross = function(friendid,userid){
+     var wherestr = {'friendID':friendid,'userID':userid};
+     var updatestr = {'cross': 1}; 
+    
+    Friend.updateOne(wherestr, updatestr, function(err, res){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            console.log("数据修改成功！");
+        }
+    });
+};
 

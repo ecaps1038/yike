@@ -203,6 +203,7 @@ $(document).ready(function(){
 						});
 						$('.adduser').html(html);
 						aggreeUser();
+						refuseUser();
 						//修改申请数
 						var len = $('.adduser li').length;
 						$('.item').html(len);
@@ -211,6 +212,7 @@ $(document).ready(function(){
 						initFriend();
 					}else{
 						$('.add').hide();
+						$('.adduser').html('');
 					}
 				}else{
 					console.log('查询失败');
@@ -225,17 +227,42 @@ $(document).ready(function(){
     	$('.aggree').on('click',function(){
     		var id = $(this).attr('data-id');
     		$.ajax({
-			url: '/yike/aggree',
-			type: 'POST',
-			data: {id:id},
-			success: function(data){
-				if(data.success){
-					
-				}else{
-					console.log('查询失败');
+				url: '/yike/aggree',
+				type: 'POST',
+				data: {id:id},
+				success: function(data){
+					if(data.success){
+						//更新好友列表
+						getaddfriend();
+						getUser();
+						getGroup();
+					}else{
+						console.log('查询失败');
+					}
 				}
-			}
-		})
+			})
+    	})
+    }
+
+    //拒绝好友请求
+    function refuseUser(){
+    	$('.disaggree').on('click',function(){
+    		var id = $(this).attr('data-id');
+    		$.ajax({
+				url: '/delete-friend',
+				type: 'POST',
+				data: {id:id},
+				success: function(data){
+					if(data.success){
+						//更新好友列表
+						getUser();
+						getaddfriend();
+						getGroup();
+					}else{
+						console.log('查询失败');
+					}
+				}
+			})
     	})
     }
 
