@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge, chrome=1">
+    <title>滚动条优化示例</title>
+    <link rel="stylesheet" href="../../css/common/normalize.min.css">
+    <link rel="stylesheet" href="../../css/common/common.css">
+    <link rel="stylesheet" href="../../css/common/jquery.snippet.css">
+    <link rel="stylesheet" href="../../plugin/form/form-layout-1.css">
+    <link rel="stylesheet" href="./scroll.css">
+    <style>
+        .demo {
+            position: relative;
+            width: 820px;
+            height: 260px;
+            margin: 10px auto;
+            padding: 0 20px;
+            background-color: #ccc;
+            overflow: hidden;
+            overflow-y: auto;
+        }
+    
+        .demo p {
+            text-indent: 2em;
+            font: normal 14px/2 'Microsoft YaHei';
+            color: #fff;
+            padding: 0 10px;
+            text-align: justify;
+            z-index: 888;
+        }
+    
+        .content {
+            position: relative;
+            width: 800px;
+            margin: 15px auto;
+            z-index: 888;
+        }
+    
+        .module {
+            width: 1400px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    
+        .module-view {
+            padding: 20px;
+        }
+    
+        .module-show {
+            position: relative;
+            width: 100%;
+            border-top: 1px solid #ddd;
+            overflow: hidden;
+        }
+    
+        .module-show p {
+            float: left;
+            height: 30px;
+            padding-left: 20px;
+            line-height: 30px;
+        }
+    
+        .module-show button {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            margin-top: -9px;
+            width: 18px;
+            height: 18px;
+            background: url("../images/icon/more.png") no-repeat center;
+        }
+    
+        .snippet-wrap pre.sh_sourceCode {
+            box-shadow: none;
+            border-radius: 0;
+        }
+    </style>
+    <script src="../../lib/jquery-1.12.3.min.js"></script>
+    <script src="./scroll.js"></script>
+</head>
+<body>
+    <button class="del-btn">删除删除</button>
+    <button class="add-btn">增加增加</button>
+    <div class="demo">
+        <div class="module">
+            <div class="module-view">
+                <!-- 左右分栏，操作按钮右边样式 -->
+                <div class="form-layout-wrap-1">
+                    <div class="form-layout">
+                        <div class="form-layout-left">
+                            <table class="form-layout-table">
+                                <tr>
+                                    <td class="form-layout-label">
+                                        <label for="">表单元素label</label>
+                                    </td>
+                                    <td class="form-layout-input">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="form-layout-label">
+                                        <label for="">一行两个并列</label>
+                                    </td>
+                                    <td class="form-layout-input">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="form-layout-label">
+                                        <label for="">一行两个中间文字</label>
+                                    </td>
+                                    <td class="form-layout-input">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                            <div class="form-layout-input-td">
+                                                <p class="form-layout-txt">至</p>
+                                            </div>
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="form-layout-label">
+                                        <label for="">一行三个并列</label>
+                                    </td>
+                                    <td class="form-layout-input">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="form-layout-hide-row">
+                                    <td class="form-layout-label">
+                                        <label for="">居住地址</label>
+                                    </td>
+                                    <td class="form-layout-input" colspan="3">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="form-layout-hide-row">
+                                    <td class="form-layout-label">
+                                        <label for="">简述个人意见</label>
+                                    </td>
+                                    <td class="form-layout-input" colspan="3">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <textarea class="form-layout-f"></textarea>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="form-layout-hide-row">
+                                    <td class="form-layout-label">
+                                        <label for="">一行三个并列</label>
+                                    </td>
+                                    <td class="form-layout-input">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                            <div class="form-layout-input-td">
+                                                <input type="text" class="form-layout-f">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="form-layout-label">
+                                        <label for="">课程简介</label>
+                                    </td>
+                                    <td class="form-layout-input">
+                                        <div class="form-layout-input-table">
+                                            <div class="form-layout-input-td">
+                                                <textarea class="form-layout-f"></textarea>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="form-layout-right">
+                            <div class="form-layout-btn">
+                                <button>
+                                    <i class="icon search">&nbsp;</i>
+                                    <span>搜索</span>
+                                </button>
+                                <button>
+                                    <i class="icon reset">&nbsp;</i>
+                                    <span>重置</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-layout-more">
+                        <button class="form-layout-more-btn">
+                            <i class="icon form-more-btn-icon">&nbsp;</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="txt-main">
+            <p>
+                昨天（8月15日），《万宝争霸》这出大戏又出现新的高潮，万科A连续两天涨停！据《每日经济新闻》披露，王石在这部戏中的对头人，潮汕年轻人姚振华已经浮盈252亿元。
+            </p>
+            <p>
+                而仅仅在一个月前，还有无数的文章称在这栋大楼里办公的年轻人被套牢了，等着看“爆仓”的大戏。转眼之间，姚振华不但没有爆仓，还躺着就把252亿给挣了。图为深圳深业物流大厦，宝能总部。
+            </p>
+            <p>
+                和姚振华躺着赚钱相比，王石可谓是风里来雨里去，奔波了一整年。早在去年7月姚振华开始拉几个“纵队”试攻万科时，王石就在北京地产大佬冯仑的安排下，和姚振华在冯的办公室深夜密会4个小时。
+            </p>
+            <p>
+                当时老王对这个年轻人还是相当轻视的。王石在北京万科复述这次秘会的时候，说“他还是挺健谈，有点收不住嘴。”“你想成为第一大股东，我是不欢迎的……不欢迎的理由很简单：你的信用不够。”
+            </p>
+            <p>
+                然而，随着姚振华的钱“一车一车的拉来”，王石的心理开始发生变化。随后，已经在外游山玩水游学谈情怀好几年的王石开始重启工作狂模式，驾着“筋斗云”四处奔波。
+            </p>
+            <p>
+                在这一年里，王石可能很少回到万科这个山清水秀，远离闹市的高大上总部。据报道，2015年的平安夜，王石都没有闲着，白天他到香港拜会了一家外资机构，下午又去深圳走访了国泰君安。
+            </p>
+            <p>
+                今年3月12日，王石几经奔波，终于请来一位大神，深圳地铁愿意用两块地换万科大股东的宝座坐坐。
+            </p>
+            <p>
+                而就在这个时候，一直被王石赞不绝口的华润，从总部的神秘大楼里传来反对新的大神来抢宝座的声音。
+            </p>
+            <p>
+                王石继续奔波，他拜访各路神仙的传闻一直不绝于耳。一会儿传他去华润总部拜访了，一会儿又传他去香港了。然而，神还没请来，却引来了一个“镇元大仙”。
+            </p>
+            <p>
+                这位坐镇广州珠江新城，曾拂尘一甩，就在中国足坛引来一阵“龙卷风”的镇元大仙，连“观音菩萨也要让他三分”。这不，市场一致认为，万科的这两个涨停，就是这位大仙在玩拂尘。不知道王石早年是不是偷吃过他的人参果？
+            </p>
+            <p>
+                就在王石的“筋斗云”都快累扒的同时，今年7月8日，“汕头市委书记带着30多名潮商会会长拜访姚振华，要支持尽管开口”的新闻在网络上投下一枚重磅炸弹。一个是到处去请神仙，一个是一群上仙来拜会，中间的区别，小伙伴们慢慢体味。
+            </p>
+            <p>
+                更大的区别是，抨击王石游山玩水还领取5000万薪水的姚老板，躺着就进账252亿。真是应了那句话：不是你赚钱的方式不对，是姿势不对。
+            </p>
+            <p>
+                就在昨天（8月15日），新的消息传来，有网友曝料称王石现身深圳弘法寺,并且“有图有真相”。分析认为，王石低调到访弘法寺，似乎是在紧要关头“临时抱佛脚”。佛教在潮汕资本圈影响力很大，不少资本大佬的父母都是虔诚的佛教徒。不看僧面看佛面，或许后续会有某种出人意料的转机出现。
+            </p>
+            <p>
+                昨天（8月15日），《万宝争霸》这出大戏又出现新的高潮，万科A连续两天涨停！据《每日经济新闻》披露，王石在这部戏中的对头人，潮汕年轻人姚振华已经浮盈252亿元。
+            </p>
+            <p>
+                而仅仅在一个月前，还有无数的文章称在这栋大楼里办公的年轻人被套牢了，等着看“爆仓”的大戏。转眼之间，姚振华不但没有爆仓，还躺着就把252亿给挣了。图为深圳深业物流大厦，宝能总部。
+            </p>
+            <p>
+                和姚振华躺着赚钱相比，王石可谓是风里来雨里去，奔波了一整年。早在去年7月姚振华开始拉几个“纵队”试攻万科时，王石就在北京地产大佬冯仑的安排下，和姚振华在冯的办公室深夜密会4个小时。
+            </p>
+            <p>
+                当时老王对这个年轻人还是相当轻视的。王石在北京万科复述这次秘会的时候，说“他还是挺健谈，有点收不住嘴。”“你想成为第一大股东，我是不欢迎的……不欢迎的理由很简单：你的信用不够。”
+            </p>
+            <p>
+                然而，随着姚振华的钱“一车一车的拉来”，王石的心理开始发生变化。随后，已经在外游山玩水游学谈情怀好几年的王石开始重启工作狂模式，驾着“筋斗云”四处奔波。
+            </p>
+            <p>
+                在这一年里，王石可能很少回到万科这个山清水秀，远离闹市的高大上总部。据报道，2015年的平安夜，王石都没有闲着，白天他到香港拜会了一家外资机构，下午又去深圳走访了国泰君安。
+            </p>
+            <p>
+                今年3月12日，王石几经奔波，终于请来一位大神，深圳地铁愿意用两块地换万科大股东的宝座坐坐。
+            </p>
+            <p>
+                而就在这个时候，一直被王石赞不绝口的华润，从总部的神秘大楼里传来反对新的大神来抢宝座的声音。
+            </p>
+            <p>
+                王石继续奔波，他拜访各路神仙的传闻一直不绝于耳。一会儿传他去华润总部拜访了，一会儿又传他去香港了。然而，神还没请来，却引来了一个“镇元大仙”。
+            </p>
+            <p>
+                这位坐镇广州珠江新城，曾拂尘一甩，就在中国足坛引来一阵“龙卷风”的镇元大仙，连“观音菩萨也要让他三分”。这不，市场一致认为，万科的这两个涨停，就是这位大仙在玩拂尘。不知道王石早年是不是偷吃过他的人参果？
+            </p>
+            <p>
+                就在王石的“筋斗云”都快累扒的同时，今年7月8日，“汕头市委书记带着30多名潮商会会长拜访姚振华，要支持尽管开口”的新闻在网络上投下一枚重磅炸弹。一个是到处去请神仙，一个是一群上仙来拜会，中间的区别，小伙伴们慢慢体味。
+            </p>
+            <p>
+                更大的区别是，抨击王石游山玩水还领取5000万薪水的姚老板，躺着就进账252亿。真是应了那句话：不是你赚钱的方式不对，是姿势不对。
+            </p>
+            <p>
+                就在昨天（8月15日），新的消息传来，有网友曝料称王石现身深圳弘法寺,并且“有图有真相”。分析认为，王石低调到访弘法寺，似乎是在紧要关头“临时抱佛脚”。佛教在潮汕资本圈影响力很大，不少资本大佬的父母都是虔诚的佛教徒。不看僧面看佛面，或许后续会有某种出人意料的转机出现。
+            </p>
+            <p>
+                昨天（8月15日），《万宝争霸》这出大戏又出现新的高潮，万科A连续两天涨停！据《每日经济新闻》披露，王石在这部戏中的对头人，潮汕年轻人姚振华已经浮盈252亿元。
+            </p>
+            <p>
+                而仅仅在一个月前，还有无数的文章称在这栋大楼里办公的年轻人被套牢了，等着看“爆仓”的大戏。转眼之间，姚振华不但没有爆仓，还躺着就把252亿给挣了。图为深圳深业物流大厦，宝能总部。
+            </p>
+            <p>
+                和姚振华躺着赚钱相比，王石可谓是风里来雨里去，奔波了一整年。早在去年7月姚振华开始拉几个“纵队”试攻万科时，王石就在北京地产大佬冯仑的安排下，和姚振华在冯的办公室深夜密会4个小时。
+            </p>
+            <p>
+                当时老王对这个年轻人还是相当轻视的。王石在北京万科复述这次秘会的时候，说“他还是挺健谈，有点收不住嘴。”“你想成为第一大股东，我是不欢迎的……不欢迎的理由很简单：你的信用不够。”
+            </p>
+            <p>
+                然而，随着姚振华的钱“一车一车的拉来”，王石的心理开始发生变化。随后，已经在外游山玩水游学谈情怀好几年的王石开始重启工作狂模式，驾着“筋斗云”四处奔波。
+            </p>
+            <p>
+                在这一年里，王石可能很少回到万科这个山清水秀，远离闹市的高大上总部。据报道，2015年的平安夜，王石都没有闲着，白天他到香港拜会了一家外资机构，下午又去深圳走访了国泰君安。
+            </p>
+            <p>
+                今年3月12日，王石几经奔波，终于请来一位大神，深圳地铁愿意用两块地换万科大股东的宝座坐坐。
+            </p>
+            <p>
+                而就在这个时候，一直被王石赞不绝口的华润，从总部的神秘大楼里传来反对新的大神来抢宝座的声音。
+            </p>
+            <p>
+                王石继续奔波，他拜访各路神仙的传闻一直不绝于耳。一会儿传他去华润总部拜访了，一会儿又传他去香港了。然而，神还没请来，却引来了一个“镇元大仙”。
+            </p>
+            <p>
+                这位坐镇广州珠江新城，曾拂尘一甩，就在中国足坛引来一阵“龙卷风”的镇元大仙，连“观音菩萨也要让他三分”。这不，市场一致认为，万科的这两个涨停，就是这位大仙在玩拂尘。不知道王石早年是不是偷吃过他的人参果？
+            </p>
+            <p>
+                就在王石的“筋斗云”都快累扒的同时，今年7月8日，“汕头市委书记带着30多名潮商会会长拜访姚振华，要支持尽管开口”的新闻在网络上投下一枚重磅炸弹。一个是到处去请神仙，一个是一群上仙来拜会，中间的区别，小伙伴们慢慢体味。
+            </p>
+            <p>
+                更大的区别是，抨击王石游山玩水还领取5000万薪水的姚老板，躺着就进账252亿。真是应了那句话：不是你赚钱的方式不对，是姿势不对。
+            </p>
+            <p>
+                就在昨天（8月15日），新的消息传来，有网友曝料称王石现身深圳弘法寺,并且“有图有真相”。分析认为，王石低调到访弘法寺，似乎是在紧要关头“临时抱佛脚”。佛教在潮汕资本圈影响力很大，不少资本大佬的父母都是虔诚的佛教徒。不看僧面看佛面，或许后续会有某种出人意料的转机出现。
+            </p>
+        </div>
+        <p class="dd">点我试试</p>
+    </div>
+    <script>
+        $(function () {
+            var $demo = $('.demo');
+            var $p = $demo.find('p');
+            var a = null;
+            var $html = $('<div class="txt-main"></div>');
+            $html.append($('.txt-main').find('p:lt(8)'));
+            $demo.teoyallScroll({
+                conced: 0,
+                standBar: true,
+                acrossBar: true,
+                bottomFixed: true,
+                rightFixed: false,
+                borderRadius: '6px',
+                autoResetRraw: true,
+                autoHideScroll: true,
+                afterFn: function (h) {
+                    a = h;
+                },
+                afterScrollFn: function (a) {
+
+                }
+            });
+
+            $p.on('click', function () {
+                console.log(a);
+                a.toScrollBottom();
+            });
+            $('.del-btn').on('click', function () {
+                $('.txt-main').remove();
+            });
+            $('.add-btn').on('click', function () {
+                $('.zr-scroll-main').append($html);
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            var $wrap = $('.form-layout-wrap-1');
+            var $hideRow = $('.form-layout-hide-row', $wrap);
+            var $more = $('.form-layout-more', $wrap);
+            if ($hideRow.length > 0) {
+                $more.on('click', '.form-layout-more-btn', function () {
+                    var $this = $(this);
+                    var $icon = $('.form-more-btn-icon', $this);
+                    if ($this.hasClass('show')) {
+                        $hideRow.fadeOut(300);
+                        $this.removeClass('show');
+                    } else {
+                        $hideRow.fadeIn(300);
+                        $this.addClass('show');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

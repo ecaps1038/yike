@@ -1,0 +1,47 @@
+.zr-stand-scroll-mode,
+.zr-across-scroll-mode {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    padding: 10px 0;
+    background-color: rgba(0, 0, 0, .1);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#30000000, endColorstr=#30000000)\0;
+    box-sizing: border-box;
+    transition: opacity .4s;
+}
+.zr-across-scroll-mode {
+    left: 0;
+    bottom: 0;
+    top: auto;
+    right: auto;
+    padding: 0 10px;
+}
+.scroll-toggle-animation .zr-stand-scroll-mode,
+.scroll-toggle-animation .zr-across-scroll-mode {
+    opacity: 0;
+}
+.scroll-toggle-animation:hover .zr-stand-scroll-mode,
+.scroll-toggle-animation:hover .zr-across-scroll-mode,
+.show-opacity {
+    opacity: 1 !important;
+}
+.zr-stand-scroll-wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.zr-scroll-cont {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.zr-stand-scroll-bar,
+.zr-across-scroll-bar {
+    background-color: #000;
+    opacity: .4;
+    filter: alpha(opacity=40);
+    transform: translate3d(0, 0, 0);
+}

@@ -4,13 +4,13 @@
 {{/section}}
 <h3>请登录</h3>
 <div class="room">{{return}}</div>
-<form class="newslefft" method="post" action="/login">
+<form class="newslefft">
 <label>邮箱</label><input type="text" name="email" placeholder="注册邮箱/用户名" value="{{ret}}">
 <label>密码</label><input type="password" name="pswd">
-<input type="submit" name="submit" value="登录" class="log-submit">
+<button class="log-submit">登录</button>
+</form>
 <a href="./forget">忘记密码？</a>
 <a href="./register">注册</a>
-</form>
 {{#section 'jquery'}}
-	
+	<script src="/js/home.js" type="text/javascript"></script>
 {{/section}}

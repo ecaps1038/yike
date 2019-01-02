@@ -1,0 +1,208 @@
+.main{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	width: 920px;
+	height: 680px;
+}
+.main-left{
+	position: relative;
+	float: left;
+	padding-top: 64px;
+	width: 260px;
+	border: 1px solid #eee;
+	border-radius: 8px;
+	height: 660px;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	overflow-x: hidden;
+}
+.main-left .left-header{
+	position: absolute;
+	z-index: 100;
+	top: 0;
+	left: 0;
+	padding: 0 10px;
+	width: 100%;
+	height: 64px;
+	background: #3F56FE;
+}
+.left-header .header{
+	display: inline-block;
+	margin-top: 12px;
+	border-radius: 50%;
+	height: 40px;
+	width: 40px;
+	overflow: hidden;
+	/*border: 1px solid #fff;*/
+}
+.left-header .header img{
+	width: 42px;
+}
+.left-user{
+	height: 596px;
+	width: 100%;
+	overflow-x: hidden;
+}
+.user{
+	width:240px;
+	border-radius: 12px;
+	margin: 10px;
+	padding: 20px;
+	float:left;
+	text-align: center;
+	color: #333;
+	position: relative;
+	list-style: none;
+	background: #f8f8f8;
+}
+.quit{
+	display: block;
+	position: fixed;
+	right: 40px;
+	top: 40px;
+	height: 42px;
+	width: 80px;
+	border-radius: 21px;
+	background: #f9644e;
+	text-decoration: none;
+	font-size: 16px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;
+}
+.cregroup{
+	display: block;
+	position: fixed;
+	right: 40px;
+	top: 40px;
+	height: 42px;
+	width: 80px;
+	border-radius: 21px;
+	background: #f9644e;
+	text-decoration: none;
+	font-size: 16px;
+	color: #fff;
+	line-height: 42px;
+	text-align: center;}
+.myself{
+	background: #eee;
+}
+.name{
+	font-size: 18px;
+}
+.explain{
+	font-size: 14px;
+}
+.sex{
+	position: absolute;
+	top: 70px;
+	left: 160px;
+	height: 28px;
+	width: 28px;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.male{
+	background: url('../images/sex/male.png');
+}
+.female{
+	background: url('../images/sex/female.png');
+}
+.asexual{
+	background: url('../images/sex/asexual.png');
+}
+.group{
+	background: url('../images/sex/group.png');
+}
+.chart{
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background: url('../images/chart.png') no-repeat center /30px;
+
+}
+.count{
+	display: none;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	min-width: 10px;
+	height: 20px;
+	padding: 0 5px;
+	margin: 0;
+	border-radius:10px;
+	color:#fff;
+	background: #ff462d;
+	z-index: 1000;
+	font-size: 14px;
+	line-height: 20px;
+}
+.search-result{
+	display: block;
+}
+.add{
+	width: 240px;
+	height: 60px;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	cursor: pointer;
+	display:none;
+}
+.add .icon{
+	display: inline-block;
+	float: left;
+	margin: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #eae5fc url('../images/add.png') no-repeat center /26px;
+}
+.add .item{
+	display: inline-block;
+	float: right;
+	margin: 20px 10px;
+	min-width: 14px;
+	padding-left: 6px;
+	height: 20px;
+	border-radius: 10px;
+	background: #ff4b60;
+	color: #fff;
+	font-style: normal;
+	font-size: 12px;
+	line-height: 20px;
+}
+.add span{
+	float: left;
+	line-height: 60px;
+}
+.adduser{
+	display: none;
+}
+.aggree{
+	float: right;
+	display: inline-block;
+	width: 54px;
+	height: 28px;
+	border-radius: 14px;
+	background: #6ed802;
+	color: #fff;
+	line-height: 28px;
+	cursor: pointer;
+}
+.disaggree{
+	float: right;
+	display: inline-block;
+	width: 54px;
+	height: 28px;
+	border-radius: 14px;
+	background: #ff7766;
+	color: #fff;
+	line-height: 28px;
+	cursor: pointer;
+}

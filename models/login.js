@@ -199,7 +199,8 @@ exports.logIn = function(data,pwd,req,res){
                     //console.log(ver);
                     //res.render('test',{title:ver.id});
                     //showUser(res);
-                   return res.redirect('/yike');
+                    res.send({success:true});
+                   //return res.redirect('/yike');
                 }else{
                     console.log('匹配失败！');
                     return res.render('home',{return:'用户或密码错误，请重新输入',ret:data});

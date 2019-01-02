@@ -4,6 +4,7 @@ var yike = require('../models/yike');
 var chart = require('../models/chart');
 var group = require('../models/group');
 module.exports = function(app,io){
+	//移动端进入首页
 	app.get('/yike',function(req,res){
 		if(req.signedCookies.id){
 			req.session.userId = req.signedCookies.id;
@@ -20,6 +21,29 @@ module.exports = function(app,io){
 			var myimgurl = req.session.imgurl;
 		    var myname = req.session.username;
 			res.render('yike',{id:id,myimgurl:myimgurl,myname:myname});
+			//group.showGroup(req,res,id);
+		}else{
+			res.redirect('/');
+		}
+	});
+
+	//pc端进入首页
+	app.get('/yikepc',function(req,res){
+		if(req.signedCookies.id){
+			req.session.userId = req.signedCookies.id;
+			req.session.username = req.signedCookies.username;
+			req.session.imgurl = req.signedCookies.imgurl;
+			var id = req.session.userId;
+		    var myimgurl = req.session.imgurl;
+		    var myname = req.session.username;
+			//login.showFriend(req,res,id);
+			res.render('pc/yikepc',{id:id,myimgurl:myimgurl,myname:myname});
+			//group.showGroup(req,res,id);
+		}else if(req.session.userId){
+			var id = req.session.userId;
+			var myimgurl = req.session.imgurl;
+		    var myname = req.session.username;
+			res.render('pc/yikepc',{id:id,myimgurl:myimgurl,myname:myname});
 			//group.showGroup(req,res,id);
 		}else{
 			res.redirect('/');

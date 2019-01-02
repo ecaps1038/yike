@@ -1,0 +1,36 @@
+{{#section 'head'}}
+    <title>yike</title>
+    <link rel="stylesheet" type="text/css" href="css/pc/yike.css">
+    <link rel="stylesheet" type="text/css" href="/lib/scroll/scroll.css">
+    <script src="/socket.io/socket.io.js"></script>
+{{/section}}
+<div class="main">
+	<div class="main-left">
+		<div class="left-header">
+			<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{myimgurl}}"/>
+			</a>
+			{{!-- <p>{{myname}}</p> --}}
+			<input type="hidden" class="userid" value="{{id}}">
+			<a href="/create-group" class="cregroup">创建群</a>
+			<a href="/yike/search">搜索</a>
+		</div>
+		<div class="left-user">
+			<div class="add">
+				<i class="icon"></i>
+				<span>好友申请</span>
+				<i class="item">0</i>
+			</div>
+			<ul class="adduser"></ul>
+			<ul class="userlist">
+				<div class="no-friend"><img src="/images/nothing.png"></div>
+			</ul>
+		</div>
+	</div>
+	<div class="main-right">
+	</div>
+</div>
+{{#section 'jquery'}}
+	<script src="/js/myfunc.js" type="text/javascript"></script>
+	<script type="text/javascript" src="/lib/scroll/scroll.min.js"></script>
+	<script src="/js/pc/yike.js" type="text/javascript"></script>
+{{/section}}
