@@ -7,12 +7,12 @@
 <div class="main">
 	<div class="main-left">
 		<div class="left-header">
-			<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{myimgurl}}"/>
+			<a href="/detail?id={{id}}" class="img"><img src="/vacation-photo/{{myimgurl}}"/>
 			</a>
 			{{!-- <p>{{myname}}</p> --}}
 			<input type="hidden" class="userid" value="{{id}}">
-			<a href="/create-group" class="cregroup">创建群</a>
-			<a href="/yike/search">搜索</a>
+			<a href="/create-group" class="cregroup">群</a>
+			<a href="/yike/search" class="search">搜索</a>
 		</div>
 		<div class="left-user">
 			<div class="add">
@@ -27,6 +27,7 @@
 		</div>
 	</div>
 	<div class="main-right">
+		<iframe src="http://www.baidu.com" frameborder="0" class="right-iframe" ></iframe>
 	</div>
 </div>
 {{#section 'jquery'}}

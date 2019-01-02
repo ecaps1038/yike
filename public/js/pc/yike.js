@@ -148,17 +148,15 @@ $(document).ready(function(){
 							}else{
 								markName = i.name;
 							}
-							html +='<li class="user other">'+
+							html +='<li class="user other" data-link="/chart?id='+i.id+'">'+
 							'<input type="hidden" value="'+i.id+'" class="friendid">'+
 							'<p class="count"></p>'+
-							'<a href="/chart?id='+i.id+'" class="chart"></a>'+
-							'<a href="/detail?id='+i.id+'" class="header"><img src="/vacation-photo/'
-							+i.imgurl+'"/></a></p>'+
-							'<p class="name">'+markName+'</p>'+
-							'<p class="sex '+i.sex+'"></p>'+
+							'<div class="img"><img src="/vacation-photo/'
+							+i.imgurl+'"/></div>'+
+							'<div class="user-inf"><p class="name">'+markName+'</p>'+
+							//'<p class="sex '+i.sex+'"></p>'+
 							'<p class="news"></p>'+
-							'<p class="nowtime"></p>'+
-							'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
+							'<p class="nowtime"></p></div>'+
 						'</li>'
 						});
 						$('.userlist').html(html);
@@ -192,8 +190,8 @@ $(document).ready(function(){
 							'<p class="count"></p>'+
 							'<span data-id="'+i.id+'" class="aggree">同意</span>'+
 							'<span data-id="'+i.id+'" class="disaggree">拒绝</span>'+
-							'<a href="/detail?id='+i.id+'" class="header"><img src="/vacation-photo/'
-							+i.imgurl+'"/></a></p>'+
+							'<a href="/detail?id='+i.id+'" class="header"><div class="img"><img src="/vacation-photo/'
+							+i.imgurl+'"/></div></a>'+
 							'<p class="name">'+i.name+'</p>'+
 							'<p class="sex '+i.sex+'"></p>'+
 							'<p class="news"></p>'+
@@ -385,17 +383,14 @@ $(document).ready(function(){
 					var aa = val.map(function(i){
 						//注册群登录
 						socket.emit('grouplogin',i.id); 
-						html +='<li class="user groups">'+
+						html +='<li class="user groups" data-link="/groupchart?id='+i.id+'">'+
 						'<input type="hidden" value="'+i.id+'" class="groupid">'+
 						'<p class="count"></p>'+
-						'<a href="/groupchart?id='+i.id+'" class="chart"></a>'+
-						'<a href="/groupchart?id='+i.id+'" class="header"><img src="/group-photo/'
-						+i.icon+'"/></a></p>'+
-						'<p class="name">'+i.name+'</p>'+
-						'<p class="sex group"></p>'+
+						'<div class="img"><img src="/group-photo/'
+						+i.icon+'"/></div>'+
+						'<div class="user-inf"><p class="name">'+i.name+'</p>'+
 						'<p class="news"></p>'+
-						'<p class="nowtime"></p>'+
-						'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
+						'<p class="nowtime"></p></div>'+
 					'</li>'
 					});
 					$('.userlist').append(html);
@@ -452,4 +447,17 @@ $(document).ready(function(){
         });
     }
     sideMenuScroll();
+     // 左侧导航栏点击事件
+    function handleLiClick(){
+    	var _link;
+        $('body').on('click','.left-user li',function(){
+            $(this).addClass('current').siblings('li').removeClass('current');
+            // 修改取消任务按钮
+            _link = $(this).attr('data-link');
+            $('.right-iframe').attr('src',_link);
+            $(this).find('.count').css('display','none').html(0);
+            //$('.training-iframe').css("display","block");
+        })
+    }
+    handleLiClick();
 });
