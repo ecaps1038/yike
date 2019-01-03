@@ -15,7 +15,12 @@ $(document).ready(function(){
     //显示与隐藏申请好友
     $('.add').on('click',function(){
     	$('.adduser').toggle();
-    })
+    	if($(this).hasClass('current')){
+    		$(this).removeClass('current');
+    	}else{
+    		$(this).addClass('current');
+    	}
+    });
 
 	//搜索结果
 	function gitSearch(elem){
@@ -149,17 +154,17 @@ $(document).ready(function(){
 								markName = i.name;
 							}
 							html +='<li class="user other">'+
+							'<a href="/chart?id='+i.id+'" class="user-list">'+
 							'<input type="hidden" value="'+i.id+'" class="friendid">'+
 							'<p class="count"></p>'+
-							'<a href="/chart?id='+i.id+'" class="chart"></a>'+
-							'<a href="/detail?id='+i.id+'" class="header"><img src="/vacation-photo/'
-							+i.imgurl+'"/></a></p>'+
+							'<div class="img"><img src="/vacation-photo/'
+							+i.imgurl+'"/></div>'+
 							'<p class="name">'+markName+'</p>'+
-							'<p class="sex '+i.sex+'"></p>'+
+							//'<p class="sex '+i.sex+'"></p>'+
 							'<p class="news"></p>'+
 							'<p class="nowtime"></p>'+
 							'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
-						'</li>'
+						'</a></li>'
 						});
 						$('.userlist').html(html);
 						initFriend();
@@ -187,15 +192,15 @@ $(document).ready(function(){
 					if(val.length>0){
 						$('.add').show();
 						var aa = val.map(function(i){
-							html +='<li class="user other">'+
+							html +='<li class="user other add-place">'+
 							'<input type="hidden" value="'+i.id+'" class="friendid">'+
 							'<p class="count"></p>'+
 							'<span data-id="'+i.id+'" class="aggree">同意</span>'+
 							'<span data-id="'+i.id+'" class="disaggree">拒绝</span>'+
-							'<a href="/detail?id='+i.id+'" class="header"><img src="/vacation-photo/'
+							'<a href="/detail?id='+i.id+'" class="img"><img src="/vacation-photo/'
 							+i.imgurl+'"/></a></p>'+
-							'<p class="name">'+i.name+'</p>'+
 							'<p class="sex '+i.sex+'"></p>'+
+							'<p class="name">'+i.name+'</p>'+
 							'<p class="news"></p>'+
 							'<p class="nowtime"></p>'+
 							

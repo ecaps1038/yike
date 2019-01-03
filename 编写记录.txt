@@ -174,3 +174,6 @@ $(location).prop('href', 'http://www.jb51.net')
 window.history.back(-1); 
  //返回上一页并刷新
 window.location.href=document.referrer;
+
+//调整rem换算值
+Sublime Text -> Preferences -> Package Settings -> cssrem->Settings-user中设置，输入以下参数配置，

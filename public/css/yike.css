@@ -1,46 +1,208 @@
+.head .img{
+	display: inline-block;
+	float: left;
+	margin-top: 0.15rem;
+	margin-left: 0.3rem;
+	width: 0.85rem;
+	height: 0.85rem;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.head .img img{
+	width: 0.85rem;
+}
+.head{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1001;
+	height: 1.125rem;
+	width: 100%;
+	text-align: center;
+	border-bottom: 0.025rem solid #eee;
+	background: rgba(255,255,255,0.96);
+}
+.logo-name{
+	line-height: 1.125rem;
+	font-size: 0.45rem;
+	font-weight: bold;
+	margin: 0 auto;
+	width: 1.6rem;
+}
+.head .cregroup{
+	position: absolute;
+	top: 0.15rem;
+	right: 0.175rem;
+	display: block;
+	float: right;
+	height: 0.85rem;
+	width: 0.85rem;
+	background: url('../images/add2.png') no-repeat center/0.5rem;
+}
+.search{
+	margin-top: 1.125rem;
+	height: 1.12rem;
+	text-align: center;
+	border-bottom: 0.025rem solid #ddd;
+}
+.search-inner{
+	display: inline-block;
+	margin-top: 0.2rem;
+	width: 100%;
+	border-radius: 0.15rem;
+	height: 0.7rem;
+	background: #f3f4f6;
+}
+.search-inner p{
+	display: inline-block;
+	padding-left: 0.25rem;
+	width: 2.5rem;
+	font-size: 0.35rem;
+	line-height: 0.7rem;
+	color: #b4b5be;
+	background: url('../images/search.png') no-repeat left center /0.35rem;
+}
+/*好友申请*/
+.search-result{
+	display: block;
+}
+.add{
+	width: 100%;
+	height: 1.85rem;
+	display:none;
+}
+.current{
+	background: #F4F4F9;
+}
+.add .icon{
+	display: inline-block;
+	float: left;
+	margin: 0.3rem;
+	width: 1.25rem;
+	height: 1.25rem;
+	border-radius: 50%;
+	background: #d9deff url('../images/add.png') no-repeat center /0.75rem;
+}
+.add .item{
+	display: inline-block;
+	float: right;
+	margin: 0.625rem 0.3rem;
+	min-width: 0.525rem;
+	padding-left: 0.155rem;
+	height: 0.525rem;
+	border-radius: 50%;
+	background: #ff4b60;
+	color: #fff;
+	font-style: normal;
+	font-size: 0.35rem;
+	line-height: 0.525rem;
+}
+.add span{
+	float: left;
+	font-size: 0.45rem;
+	line-height: 1.85rem;
+}
+.adduser{
+	display: none;
+	position: relative;
+	margin-bottom: 0.25rem;
+}
+.adduser .add-place{
+	margin-top: 0.2rem;
+	padding: 0.3rem;
+	background: #F4F4F9;
+}
+.adduser .name{
+	float: left;
+	width: 4rem;
+	padding-left: 0.4rem;
+	line-height: 1.25rem;
+	font-size: 0.45rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.adduser .news{
+	clear: both;
+	padding-top: 0.25rem;
+	line-height: 0.6rem;
+	font-size: 0.35rem;
+	color: #999;
+	text-align: left;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.adduser .nowtime{
+	position: absolute;
+	right: 0.3rem;
+	top: 0.125rem;
+	line-height: 0.6rem;
+	font-size: 0.35rem;
+	color: #999;
+}
+.sex{
+	position: absolute;
+	top: 1.05rem;
+	left: 1.2rem;
+	height: 0.5rem;
+	width: 0.5rem;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.male{
+	background: url('../images/sex/male.png') no-repeat center /0.5rem;
+}
+.female{
+	background: url('../images/sex/female.png') no-repeat center /0.5rem;
+}
+.asexual{
+	background: url('../images/sex/asexual.png') no-repeat center /0.5rem;
+}
+.aggree{
+	float: right;
+	display: inline-block;
+	width: 1.5rem;
+	height: 0.85rem;
+	border-radius: 0.5rem;
+	background: #6ed802;
+	color: #fff;
+	line-height: 0.85rem;
+	font-size: 0.35rem;
+	margin-top: 0.4rem;
+}
+.disaggree{
+	float: right;
+	display: inline-block;
+	width: 1.5rem;
+	height: 0.85rem;
+	border-radius: 0.5rem;
+	background: #ff7766;
+	color: #fff;
+	line-height: 0.85rem;
+	font-size: 0.35rem;
+	margin: 0.4rem 0.3rem 0 0;
+}
+.user .img{
+	display: block;
+	float: left;
+	width: 1.25rem;
+	height: 1.25rem;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.user .img img{
+	width: 1.25rem;
+}
 .user{
-	width:240px;
+	width:100%;
 	border-radius: 12px;
-	margin: 10px;
-	padding: 20px;
-	float:left;
+	margin-top:1px; 
 	text-align: center;
 	color: #333;
 	position: relative;
 	list-style: none;
 	background: #f8f8f8;
-}
-.quit{
-	display: block;
-	position: fixed;
-	right: 40px;
-	top: 40px;
-	height: 42px;
-	width: 80px;
-	border-radius: 21px;
-	background: #f9644e;
-	text-decoration: none;
-	font-size: 16px;
-	color: #fff;
-	line-height: 42px;
-	text-align: center;
-}
-.cregroup{
-	display: block;
-	position: fixed;
-	right: 40px;
-	top: 40px;
-	height: 42px;
-	width: 80px;
-	border-radius: 21px;
-	background: #f9644e;
-	text-decoration: none;
-	font-size: 16px;
-	color: #fff;
-	line-height: 42px;
-	text-align: center;}
-.myself{
-	background: #eee;
 }
 .header{
 	display: inline-block;
@@ -53,31 +215,20 @@
 	width: 82px;
 }
 .name{
-	font-size: 18px;
+	text-align: left;
+	line-height: 0.7rem;
+	font-size: 0.45rem;
 }
 .explain{
+	text-align: left;
 	font-size: 14px;
 }
-.sex{
-	position: absolute;
-	top: 70px;
-	left: 160px;
-	height: 28px;
-	width: 28px;
-	border-radius: 50%;
-	overflow: hidden;
+.news{
+	text-align: left;
 }
-.male{
-	background: url('../images/sex/male.png');
-}
-.female{
-	background: url('../images/sex/female.png');
-}
-.asexual{
-	background: url('../images/sex/asexual.png');
-}
+
 .group{
-	background: url('../images/sex/group.png');
+	background: url('../images/sex/group.png') no-repeat center /0.5rem;
 }
 .chart{
 	position: absolute;
@@ -104,67 +255,4 @@
 	z-index: 1000;
 	font-size: 14px;
 	line-height: 20px;
-}
-.search-result{
-	display: block;
-}
-.add{
-	width: 240px;
-	height: 60px;
-	border: 1px solid #eee;
-	border-radius: 4px;
-	cursor: pointer;
-	display:none;
-}
-.add .icon{
-	display: inline-block;
-	float: left;
-	margin: 10px;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background: #eae5fc url('../images/add.png') no-repeat center /26px;
-}
-.add .item{
-	display: inline-block;
-	float: right;
-	margin: 20px 10px;
-	min-width: 14px;
-	padding-left: 6px;
-	height: 20px;
-	border-radius: 10px;
-	background: #ff4b60;
-	color: #fff;
-	font-style: normal;
-	font-size: 12px;
-	line-height: 20px;
-}
-.add span{
-	float: left;
-	line-height: 60px;
-}
-.adduser{
-	display: none;
-}
-.aggree{
-	float: right;
-	display: inline-block;
-	width: 54px;
-	height: 28px;
-	border-radius: 14px;
-	background: #6ed802;
-	color: #fff;
-	line-height: 28px;
-	cursor: pointer;
-}
-.disaggree{
-	float: right;
-	display: inline-block;
-	width: 54px;
-	height: 28px;
-	border-radius: 14px;
-	background: #ff7766;
-	color: #fff;
-	line-height: 28px;
-	cursor: pointer;
 }
