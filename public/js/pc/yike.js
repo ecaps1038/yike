@@ -15,6 +15,11 @@ $(document).ready(function(){
     //显示与隐藏申请好友
     $('.add').on('click',function(){
     	$('.adduser').toggle();
+    	if($(this).hasClass('current')){
+    		$(this).removeClass('current');
+    	}else{
+    		$(this).addClass('current');
+    	}
     })
 
 	//搜索结果
@@ -154,9 +159,9 @@ $(document).ready(function(){
 							'<div class="img"><img src="/vacation-photo/'
 							+i.imgurl+'"/></div>'+
 							'<div class="user-inf"><p class="name">'+markName+'</p>'+
-							//'<p class="sex '+i.sex+'"></p>'+
 							'<p class="news"></p>'+
 							'<p class="nowtime"></p></div>'+
+							'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
 						'</li>'
 						});
 						$('.userlist').html(html);
@@ -185,18 +190,16 @@ $(document).ready(function(){
 					if(val.length>0){
 						$('.add').show();
 						var aa = val.map(function(i){
-							html +='<li class="user other">'+
+							html +='<li class="user other new-user">'+
 							'<input type="hidden" value="'+i.id+'" class="friendid">'+
+							'<div class="img"><img src="/vacation-photo/'+i.imgurl+'"/></div>'+
 							'<p class="count"></p>'+
-							'<span data-id="'+i.id+'" class="aggree">同意</span>'+
-							'<span data-id="'+i.id+'" class="disaggree">拒绝</span>'+
-							'<a href="/detail?id='+i.id+'" class="header"><div class="img"><img src="/vacation-photo/'
-							+i.imgurl+'"/></div></a>'+
 							'<p class="name">'+i.name+'</p>'+
 							'<p class="sex '+i.sex+'"></p>'+
 							'<p class="news"></p>'+
 							'<p class="nowtime"></p>'+
-							
+							'<div class="cz"><span data-id="'+i.id+'" class="aggree">同意</span>'+
+							'<span data-id="'+i.id+'" class="disaggree">拒绝</span></div>'+
 						'</li>'
 						});
 						$('.adduser').html(html);
@@ -391,6 +394,7 @@ $(document).ready(function(){
 						'<div class="user-inf"><p class="name">'+i.name+'</p>'+
 						'<p class="news"></p>'+
 						'<p class="nowtime"></p></div>'+
+						'<p class="lasttime" style="display:none">'+i.lasttime+'</p>'+
 					'</li>'
 					});
 					$('.userlist').append(html);
@@ -437,10 +441,16 @@ $(document).ready(function(){
 	    }
     }
    
-   // 用户动条
+   // 滚动条
     function sideMenuScroll() {
-            $wrap = $('.main-left .left-user');
+        var $wrap = $('.main-left .left-user');
         $wrap.teoyallScroll({
+            borderRadius: '6px',
+            autoHideScroll: true,
+            autoResetRraw: true
+        });
+        var $wrap1 = $('.main-right');
+        $wrap1.teoyallScroll({
             borderRadius: '6px',
             autoHideScroll: true,
             autoResetRraw: true
@@ -457,7 +467,15 @@ $(document).ready(function(){
             $('.right-iframe').attr('src',_link);
             $(this).find('.count').css('display','none').html(0);
             //$('.training-iframe').css("display","block");
-        })
+        });
+
+        $('body').on('click','.left-header li',function(){
+            // 修改取消任务按钮
+            _link = $(this).attr('data-link');
+            $('.right-iframe').attr('src',_link);
+            $(this).find('.count').css('display','none').html(0);
+            //$('.training-iframe').css("display","block");
+        });
     }
     handleLiClick();
 });

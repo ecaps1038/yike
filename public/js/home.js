@@ -1,23 +1,34 @@
 $(document).ready(function(){
+	//点击登录提交
 	$('.log-submit').on('click',function(evt){
 		evt.preventDefault();
-		$.ajax({
-			url: '/login',
-			type: 'POST',
-			data: $('.newslefft').serialize(),
-			success: function(data){
-				if(data.success){
-					goPAGE();
-					//$(window).attr('location','/yike');
+		var email = $('.email').val();
+		var pwd = $('.pwd').val();
+		if(email && pwd){
+			$.ajax({
+				url: '/login',
+				type: 'POST',
+				data: $('.newslefft').serialize(),
+				success: function(data){
+					if(data.success){
+						var tep = data.tep;
+						if(tep == 0){
+							goPAGE();
+						}else if(tep == 1){
+							$('.room').html(data.return);
+							$('.pwd').val("");
+						}
+						//$(window).attr('location','/yike');
+					}
+					else{
+					alert("问题");
+					}
+				},
+				error: function(){
+					alert("问题1");
 				}
-				else{
-				alert("问题");
-				}
-			},
-			error: function(){
-				alert("问题1");
-			}
-		});
+			});		
+		}
 	});
 
 

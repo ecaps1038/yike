@@ -49,6 +49,10 @@ module.exports = function(app,io){
 			res.redirect('/');
 		}
 	});
+	//pc端进入默认展示
+	app.get('/yikepc/firstview',function(req,res){
+		res.render('pc/firstview');
+	})
 
 	//获取用户列表
 	app.post('/getuser',function(req,res){

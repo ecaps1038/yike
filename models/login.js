@@ -180,7 +180,10 @@ exports.logIn = function(data,pwd,req,res){
             return res.redirect('/');
         }
         else {
-            if(ress==''){return res.render('home',{return:'输入邮箱或用户名有误，请重新输入'});}
+            if(ress==''){
+                res.send({success:true,tep:1,return:'输入邮箱或用户名有误，请重新输入'});
+                //return res.render('home',{return:'输入邮箱或用户名有误，请重新输入'});
+            }
             ress.map(function(ver){
                 const pwdMatchFlag =bcrypt.compareSync(pwd, ver.pwd);
                 if(pwdMatchFlag){
@@ -199,11 +202,12 @@ exports.logIn = function(data,pwd,req,res){
                     //console.log(ver);
                     //res.render('test',{title:ver.id});
                     //showUser(res);
-                    res.send({success:true});
+                    res.send({success:true,tep:0});
                    //return res.redirect('/yike');
                 }else{
                     console.log('匹配失败！');
-                    return res.render('home',{return:'用户或密码错误，请重新输入',ret:data});
+                    res.send({success:true,tep:1,return:'用户或密码错误，请重新输入'});
+                    //return res.render('home',{return:'用户或密码错误，请重新输入',ret:data});
                 }            
             })
         }

@@ -1,0 +1,44 @@
+.header{
+	height: 64px;
+	width: 100%;
+	background: -webkit-linear-gradient(left bottom, #3F56FE , #7627FF); /* Safari 5.1 - 6.0 */
+	background: -o-linear-gradient(top right, #3F56FE, #7627FF); /* Opera 11.1 - 12.0 */
+	background: -moz-linear-gradient(top right, #3F56FE, #7627FF); /* Firefox 3.6 - 15 */
+	background: linear-gradient(to top right, #3F56FE , #7627FF); /* 标准的语法 */
+}
+.header .head-inner{
+	text-align: center;
+	height: 64px;
+	margin: 0px auto;
+}
+.head-inner p{
+	font-size: 20px;
+	color: #fff;
+	line-height: 64px;
+}
+.content{
+	position: relative;
+	text-align: center;
+	width: 100%;
+	height: 480px;
+	background: url('/images/logo1.svg') no-repeat center 210px/200px;
+}
+.content p.one{
+	display: none;
+	text-align: center;
+	position: absolute;
+	top: 320px;
+	left: 0px;
+	font-size: 20px;
+	width: 100%;
+}
+.content p.two{
+	display: none;
+	text-align: center;
+	position: absolute;
+	top: 348px;
+	left: 0px;
+	font-size: 14px;
+	color: #aaa;
+	width: 100%;
+}

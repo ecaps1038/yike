@@ -1,18 +1,19 @@
 {{#section 'head'}}
     <title>yike</title>
-    <link rel="stylesheet" type="text/css" href="css/pc/yike.css">
+    <link rel="stylesheet" type="text/css" href="/css/pc/yike.css">
     <link rel="stylesheet" type="text/css" href="/lib/scroll/scroll.css">
     <script src="/socket.io/socket.io.js"></script>
 {{/section}}
 <div class="main">
 	<div class="main-left">
 		<div class="left-header">
-			<a href="/detail?id={{id}}" class="img"><img src="/vacation-photo/{{myimgurl}}"/>
-			</a>
-			{{!-- <p>{{myname}}</p> --}}
 			<input type="hidden" class="userid" value="{{id}}">
-			<a href="/create-group" class="cregroup">群</a>
-			<a href="/yike/search" class="search">搜索</a>
+			<ul>
+				<li data-link="/detail?id={{id}}"><p class="img"><img src="/vacation-photo/{{myimgurl}}"/>
+				</p></li>
+				<li data-link="/create-group"><p href="/create-group" class="cregroup"></p></li>
+				<li data-link="/yike/search"  class="search"><i></i><p class="search-inner">搜索好友、群</p><li>
+			</ul>
 		</div>
 		<div class="left-user">
 			<div class="add">
@@ -27,7 +28,7 @@
 		</div>
 	</div>
 	<div class="main-right">
-		<iframe src="http://www.baidu.com" frameborder="0" class="right-iframe" ></iframe>
+		<iframe src="/yikepc/firstview" frameborder="0" class="right-iframe" ></iframe>
 	</div>
 </div>
 {{#section 'jquery'}}
