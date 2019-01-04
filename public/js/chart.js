@@ -121,9 +121,8 @@
                 html+="<p class='time'>"+changetime+"</p>";
             }
             j++;
-
-            html+='<div class="to message"><p><img src="/vacation-photo/'+ 
-            imgurl+'"/>'+name+':'+msg+'</p></div>';
+            html+='<div class="message"><div class="to"><div class="img user-img"><img src="/vacation-photo/'+ 
+                    imgurl+'"/></div><p><i></i>'+msg+'</p></div></div>';
             $('#message').append(html);
             html='';
             scrollToBottom();
