@@ -4,25 +4,27 @@
     <script src="/socket.io/socket.io.js"></script>
 {{/section}}
 <div class="main">
-	<h3>yike</h3>
-	<div>
-		<a href="/detail?id={{id}}" class="header"><img src="/vacation-photo/{{myimgurl}}"/>
+	<div class="head">
+		<a href="/detail?id={{id}}" class="img"><img src="/vacation-photo/{{myimgurl}}"/>
 		</a>
-		<p>{{myname}}</p>
+		{{!-- <p>{{myname}}</p> --}}
 		<input type="hidden" class="userid" value="{{id}}">
+		<p class="logo-name">yike</p>
+		<a href="/create-group" class="cregroup"></a>
 	</div>
-	<a href="/create-group" class="cregroup">创建群</a>
+	<div class="search padding">
+		<a href="/yike/search" class="search-inner"><p>搜索好友、群</p></a>
+	</div>
 	{{!-- <form class="search">
 		<input type="text" name="search" class="search-main"><button class="searup">搜索</button>
 	</form>
 	<div class="sear"></div> --}}
-	<a href="/yike/search">搜索</a>
 	<div class="add">
 		<i class="icon"></i>
 		<span>好友申请</span>
 		<i class="item">0</i>
 	</div>
-	<ul class="adduser"></ul>
+	<ul class="adduser padding"></ul>
 	<ul class="userlist">
 		<div class="no-friend"><img src="/images/nothing.png"></div>
 	</ul>
