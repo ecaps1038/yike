@@ -449,12 +449,6 @@ $(document).ready(function(){
             autoHideScroll: true,
             autoResetRraw: true
         });
-        var $wrap1 = $('.main-right');
-        $wrap1.teoyallScroll({
-            borderRadius: '6px',
-            autoHideScroll: true,
-            autoResetRraw: true
-        });
     }
     sideMenuScroll();
      // 左侧导航栏点击事件

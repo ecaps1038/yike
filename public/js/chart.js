@@ -42,16 +42,16 @@
                             j++;
 
                             if(i.toUserID==toid){
-                                html+='<div class="my message"><p><img src="/vacation-photo/'+ 
-                                myimgurl+'"/>'+i.message+'</p></div>';
+                                html+='<div class="message"><div class="my"><div class="img user-img"><img src="/vacation-photo/'+ 
+                                myimgurl+'"/></div><p><i></i>'+i.message+'</p></div></div>';
                             }else{
-                                html+='<div class="to message"><p>'+
-                                '<a href="/detail?id='+i.fromUserID+'"><img src="/vacation-photo/'+ 
-                                imgurl+'"/></a>'+name+':'+i.message+'</p></div>';
+                                html+='<div class="message"><div class="to">'+
+                                '<a href="/detail?id='+i.fromUserID+'" class="img friend-img"><img src="/vacation-photo/'+ 
+                                imgurl+'"/></a><p><i></i>'+i.message+'</p></div></div>';
                             }                           
 
                     })
-                    $('#message').append(html);
+                    $('#message').html(html);
                     scrollToBottom();
                     }
                     else{
@@ -80,6 +80,7 @@
         });
         //发送信息
         function sendmsg(){
+            var html = '';
             var message = $('.text').val();
             if(message){
                 var mesg = {
@@ -99,9 +100,8 @@
                     html+="<p class='time'>"+changetime+"</p>";
                 }
                 j++;
-
-                html+='<div class="my message"><p><img src="/vacation-photo/'+ 
-                myimgurl+'"/>'+message+'</p></div>';
+                html+='<div class="message"><div class="my"><div class="img user-img"><img src="/vacation-photo/'+ 
+                    myimgurl+'"/></div><p><i></i>'+message+'</p></div></div>';
                 $('#message').append(html); 
                 html='';
                 $('.text').val("");
@@ -128,6 +128,31 @@
             html='';
             scrollToBottom();
         });
+
+        // 滚动条
+        function sideMenuScroll() {
+            if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+            }
+            else {
+                // var $wrap = $('.msgout');
+                // $wrap.teoyallScroll({
+                //     borderRadius: '6px',
+                //     autoHideScroll: true,
+                //     autoResetRraw: true
+                // });
+                $('.back').hide();
+                $('html').css('zoom',0.7);
+                //$('windows').style.zoom = size;
+            }
+        }
+        sideMenuScroll();
+        function textareaHeight(){
+            $(".text").height($(".text")[0].scrollHeight);
+            $(".text").on("keyup keydown", function(){
+                $(this).height(this.scrollHeight);
+            })
+        }
+        //textareaHeight();
     })
 })(jQuery,window,document);
 

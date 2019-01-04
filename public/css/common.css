@@ -1,0 +1,33 @@
+*{
+	-webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/*移动端公共样式*/
+.padding{
+    padding: 0 0.3rem 0 0.3rem;
+}
+.head{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    height: 1.125rem;
+    width: 100%;
+    text-align: center;
+    background: rgba(255,255,255,0.96);
+}
+.head .name{
+    line-height: 1.125rem;
+    font-size: 0.45rem;
+}
+.head .back{
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    width: 1.0rem;
+    height: 100%;
+    background: url('../images/back.svg') no-repeat center/0.6rem;
+}

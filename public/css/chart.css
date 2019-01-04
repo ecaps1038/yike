@@ -1,38 +1,117 @@
 .main{
-	margin: 20px auto;
-	width: 800px;
+	height: 100%;
+	width: 100%;
+}
+.head{
+	border-bottom: 0.0125rem solid #dedede;
 }
 .msgout{
-	position:relative;
-	height: 400px;
-	width: 800px;
-	background: #f0f0f0;
+	position:fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: #F6F6F6;
 	overflow-y: auto;
+}
+#message{
+	padding: 1.125rem 0.3rem;
+	overflow-y: hidden;
 }
 #message .message{
 	width:100%;
-	height: 50px;
-	margin: 10px 0;
-	padding-bottom:30px;
+	clear: both;
+	margin: 0.3rem 0;
 }
 #message .message p{
-	max-width: 400px;
-	padding: 5px;
-	border:1px solid #ddd;
-	margin: 0;
+	position: relative;
+	/*max-width: 6.875rem;*/
+	max-width: 72%;
+	border-radius: 0.125rem;
+	font-size: 0.4rem;
+	line-height: 0.6rem;
+	padding: 0.2rem 0.3rem;
+	margin:0 0.25rem 0.5rem 0.25rem;
 }
-#message .message img{
-	width: 38px;
-	height: 38px;
+.message p i{
+	position: absolute;
+	display: inline-block;
+	width: 0.5rem;
+	height: 0.5rem;
+}
+.message .my i{
+	top: 0.25rem;
+	right: -0.25rem;
+	background: url('../images/right.svg') no-repeat center/0.3rem;
+}
+.message .to i{
+	top: 0.25rem;
+	left: -0.25rem;
+	background: url('../images/left.svg') no-repeat center/0.3rem;
+}
+#message .message .img{
+	width: 1.0rem;
+	height: 1.0rem;
+	border-radius: 50%;
+	overflow: hidden;
+}
+.message .img img{
+	width: 1.0rem;
+}
+#message .my .img{
+	float: right;
+}
+#message .to .img{
+	float: left;
 }
 #message .my p{
 	float: right;
-	background:#fff;
+	background:#adb7ff;
+	color: #222;
 }
 #message .to p{
 	float: left;
+	background:#fff;
+	color: #222;
 }
 #message .time{
+	clear: both;
 	text-align: center;
-	padding: 20px 0;
+	font-size: 0.3rem;
+	color: #aaa;
+}
+
+.forms{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 1.225rem;
+	background: #F6F6F6;
+	border-top: 0.0125rem solid #dedede;
+	z-index: 1000;
+}
+.forms .area{
+	width: 100%;
+	padding: 0.175rem 1.35rem 0 0.3rem;
+}
+.forms .text{
+	border-radius: 0.125rem;
+	height: 0.875rem;
+	resize: none;
+	width: 100%;
+	border: 0;
+	font-size: 0.35rem;
+	line-height: 0.475rem;
+	padding: 0.2rem;
+}
+.forms .but{
+	position: absolute;
+	right: 0.3rem;
+	top: 0.2rem;
+	background: #b9bec1 url('../images/send.svg') no-repeat center 0.12rem/0.5rem;
+	border: 0;
+	height: 0.8rem;
+	width: 0.8rem;
+	border-radius: 50%;
 }

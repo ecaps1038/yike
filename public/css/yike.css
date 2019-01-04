@@ -1,26 +1,15 @@
 .head .img{
 	display: inline-block;
 	float: left;
-	margin-top: 0.15rem;
+	margin-top: 0.1rem;
 	margin-left: 0.3rem;
-	width: 0.85rem;
-	height: 0.85rem;
+	width: 0.925rem;
+	height: 0.925rem;
 	border-radius: 50%;
 	overflow: hidden;
 }
 .head .img img{
-	width: 0.85rem;
-}
-.head{
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 1001;
-	height: 1.125rem;
-	width: 100%;
-	text-align: center;
-	border-bottom: 0.025rem solid #eee;
-	background: rgba(255,255,255,0.96);
+	width: 0.925rem;
 }
 .logo-name{
 	line-height: 1.125rem;
@@ -37,7 +26,7 @@
 	float: right;
 	height: 0.85rem;
 	width: 0.85rem;
-	background: url('../images/add2.png') no-repeat center/0.5rem;
+	background: url('../images/add.svg') no-repeat center/0.65rem;
 }
 .search{
 	margin-top: 1.125rem;
@@ -47,18 +36,18 @@
 }
 .search-inner{
 	display: inline-block;
-	margin-top: 0.2rem;
+	margin-top: 0.15rem;
 	width: 100%;
 	border-radius: 0.15rem;
-	height: 0.7rem;
+	height: 0.8rem;
 	background: #f3f4f6;
 }
 .search-inner p{
 	display: inline-block;
-	padding-left: 0.25rem;
-	width: 2.5rem;
+	padding-left: 0.3rem;
+	width: 2.8rem;
 	font-size: 0.35rem;
-	line-height: 0.7rem;
+	line-height: 0.8rem;
 	color: #b4b5be;
 	background: url('../images/search.png') no-repeat left center /0.35rem;
 }
@@ -68,7 +57,8 @@
 }
 .add{
 	width: 100%;
-	height: 1.85rem;
+	height: 1.75rem;
+	border-bottom: 0.0125rem solid #dedfe5;
 	display:none;
 }
 .current{
@@ -77,21 +67,21 @@
 .add .icon{
 	display: inline-block;
 	float: left;
-	margin: 0.3rem;
+	margin: 0.25rem;
 	width: 1.25rem;
 	height: 1.25rem;
 	border-radius: 50%;
-	background: #d9deff url('../images/add.png') no-repeat center /0.75rem;
+	background: #d9deff url('../images/addgrp.svg') no-repeat center /0.75rem;
 }
 .add .item{
 	display: inline-block;
 	float: right;
-	margin: 0.625rem 0.3rem;
+	margin: 0.6rem 0.3rem;
 	min-width: 0.525rem;
 	padding-left: 0.155rem;
 	height: 0.525rem;
 	border-radius: 50%;
-	background: #ff4b60;
+	background: #ff4b4b;
 	color: #fff;
 	font-style: normal;
 	font-size: 0.35rem;
@@ -100,7 +90,7 @@
 .add span{
 	float: left;
 	font-size: 0.45rem;
-	line-height: 1.85rem;
+	line-height: 1.75rem;
 }
 .adduser{
 	display: none;
@@ -108,34 +98,39 @@
 	margin-bottom: 0.25rem;
 }
 .adduser .add-place{
+	text-align: center;
 	margin-top: 0.2rem;
-	padding: 0.3rem;
+	padding: 0.25rem;
+	border-radius: 0.15rem;
 	background: #F4F4F9;
 }
-.adduser .name{
-	float: left;
-	width: 4rem;
-	padding-left: 0.4rem;
-	line-height: 1.25rem;
-	font-size: 0.45rem;
+.adduser .add-place .img{
+	display: block;
+	margin: 0 auto;
+	width: 1.0rem;
+	height: 1.0rem;
+	border-radius: 50%;
 	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+}
+.adduser .add-place .img img{
+	width: 1.0rem;
+}
+.adduser .name{
+	line-height: 0.75rem;
+	font-size: 0.45rem;
 }
 .adduser .news{
 	clear: both;
-	padding-top: 0.25rem;
-	line-height: 0.6rem;
+	line-height: 0.5rem;
 	font-size: 0.35rem;
 	color: #999;
-	text-align: left;
-	overflow: hidden;
+/*	overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis;
+	text-overflow: ellipsis;*/
 }
 .adduser .nowtime{
 	position: absolute;
-	right: 0.3rem;
+	right: 0.6rem;
 	top: 0.125rem;
 	line-height: 0.6rem;
 	font-size: 0.35rem;
@@ -143,8 +138,8 @@
 }
 .sex{
 	position: absolute;
-	top: 1.05rem;
-	left: 1.2rem;
+	top: 0.85rem;
+	left: 5.15rem;
 	height: 0.5rem;
 	width: 0.5rem;
 	border-radius: 50%;
@@ -160,30 +155,31 @@
 	background: url('../images/sex/asexual.png') no-repeat center /0.5rem;
 }
 .aggree{
-	float: right;
 	display: inline-block;
 	width: 1.5rem;
-	height: 0.85rem;
+	height: 0.75rem;
 	border-radius: 0.5rem;
-	background: #6ed802;
+	background: #3f56fe;
+	border: 0.0125rem solid #3f56fe;
 	color: #fff;
-	line-height: 0.85rem;
+	line-height: 0.75rem;
 	font-size: 0.35rem;
-	margin-top: 0.4rem;
+	margin-top: 0.25rem;
 }
 .disaggree{
-	float: right;
 	display: inline-block;
 	width: 1.5rem;
-	height: 0.85rem;
+	height: 0.75rem;
 	border-radius: 0.5rem;
-	background: #ff7766;
-	color: #fff;
-	line-height: 0.85rem;
+	border: 0.0125rem solid #3f56fe;
+	color: #3f56fe;
+	line-height: 0.75rem;
 	font-size: 0.35rem;
-	margin: 0.4rem 0.3rem 0 0;
+	margin:  0.25rem 0.5rem 0 0;
 }
-.user .img{
+
+/*列表*/
+.list .img{
 	display: block;
 	float: left;
 	width: 1.25rem;
@@ -191,68 +187,68 @@
 	border-radius: 50%;
 	overflow: hidden;
 }
-.user .img img{
+.list .img img{
 	width: 1.25rem;
 }
-.user{
+.list{
 	width:100%;
-	border-radius: 12px;
-	margin-top:1px; 
-	text-align: center;
-	color: #333;
+	height: 1.75rem;
+	padding: 0.25rem 0 0 0.25rem;
+	text-align: left;
 	position: relative;
-	list-style: none;
-	background: #f8f8f8;
+	background: #fff;
 }
-.header{
-	display: inline-block;
-	border-radius: 50%;
-	height: 80px;
-	width: 80px;
-	overflow: hidden;
+.list:active{
+	background: #F4F4F9;
 }
-.header img{
-	width: 82px;
+.list .user-list{
+	text-decoration: none;
 }
-.name{
-	text-align: left;
-	line-height: 0.7rem;
+.list .user-inf{
+	padding-left: 1.55rem;
+	width: 100%;
+	height: 100%;
+}
+.user-inf .down-line{
+	padding-right: 0.3rem;
+	height: 100%;
+	border-bottom: 0.0125rem solid #dedfe5;
+}
+.list .name{
+	line-height: 0.75rem;
 	font-size: 0.45rem;
+	color: #151516;
 }
-.explain{
-	text-align: left;
-	font-size: 14px;
-}
-.news{
-	text-align: left;
-}
-
-.group{
-	background: url('../images/sex/group.png') no-repeat center /0.5rem;
-}
-.chart{
+.list .nowtime{
 	position: absolute;
-	right: 20px;
-	top: 20px;
-	display: block;
-	width: 30px;
-	height: 30px;
-	background: url('../images/chart.png') no-repeat center /30px;
-
+	right: 0.3rem;
+	top: 0.425rem;
+	font-size: 0.3rem;
+	color: #999;
+	line-height: 0.375rem;
 }
-.count{
+.list .news{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	line-height: 0.375rem;
+	font-size: 0.35rem;
+	color: #828284;
+}
+/*提醒消息*/
+.list .count{
 	display: none;
 	position: absolute;
-	right: 10px;
-	top: 10px;
-	min-width: 10px;
-	height: 20px;
-	padding: 0 5px;
+	left: 1.25rem;
+	top: 0.3rem;
+	min-width: 0.425rem;
+	height: 0.425rem;
+	padding: 0 0.13rem;
 	margin: 0;
-	border-radius:10px;
+	border-radius:50%;
 	color:#fff;
-	background: #ff462d;
+	background: #ff4b4b;
 	z-index: 1000;
-	font-size: 14px;
-	line-height: 20px;
+	font-size: 0.3rem;
+	line-height: 0.425rem;
 }

@@ -166,10 +166,6 @@
 .asexual{
 	background: url('/images/sex/asexual.png') no-repeat center/18px;
 }
-.group{
-	background: url('/images/sex/group.png') no-repeat center/18px;
-}
-
 
 .search-result{
 	display: block;
@@ -187,7 +183,7 @@
 	width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	background: #eae5fc url('/images/add.png') no-repeat center /22px;
+	background: #eae5fc url('/images/addgrp.svg') no-repeat center /22px;
 }
 .add .item{
 	display: inline-block;
@@ -213,10 +209,11 @@
 }
 /*单独设置新的好友请求*/
 .left-user .new-user{
+	cursor: auto;
 	width: 248px;
-	height: 136px;
+	height: auto;
 	margin:6px;
-	padding: 0;
+	padding: 0 0 10px 0;
 	border-radius: 8px;
 	background: #f4f4f9;
 }
@@ -240,9 +237,9 @@
 	line-height: 16px;
 	font-size: 12px;
 	color: #666;
-	overflow: hidden;
+	/*overflow: hidden;
 	white-space: nowrap;
-	text-overflow: ellipsis;
+	text-overflow: ellipsis;*/
 }
 .cz{
 	width: 124px;
@@ -254,9 +251,10 @@
 	width: 54px;
 	height: 24px;
 	border-radius: 14px;
-	background: #6ed802;
+	border: 1px solid #3f56fe;
+	background: #3f56fe;
 	color: #fff;
-	line-height: 24px;
+	line-height: 22px;
 	font-size: 14px;
 	cursor: pointer;
 }
@@ -265,14 +263,12 @@
 	width: 54px;
 	height: 24px;
 	border-radius: 14px;
-	background: #ff7766;
-	color: #fff;
-	line-height: 24px;
+	border: 1px solid #3f56fe;
+	color: #3f56fe;
+	line-height: 22px;
 	font-size: 14px;
 	cursor: pointer;
 }
-
-
 
 /*right*/
 .main-right{
@@ -283,11 +279,12 @@
 	border-radius: 8px;
 	height: 680px;
 	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	overflow-x: hidden;
+	overflow: hidden;
 }
 .right-iframe{
 	width: 100%;
-	height: 670px;
+	padding: 0;
+	margin: 0;
+	height: 100%;
 	overflow: hidden;
 }
-

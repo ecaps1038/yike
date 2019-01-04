@@ -4,11 +4,6 @@
     font: normal 0.373333rem/0.64rem 'Arial','PingFangSC','Sans-serif','Microsoft Yahei';
     color: #333;
     outline: none !important;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    box-sizing: border-box;
 }
 html , body{
 	position: relative;
@@ -42,8 +37,3 @@ img{
     font-size: 0;
     display: block;
 }
-/*移动端公共样式*/
-.padding{
-    padding: 0 0.3rem 0 0.3rem;
-}
-
