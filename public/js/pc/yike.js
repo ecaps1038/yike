@@ -311,7 +311,7 @@ $(document).ready(function(){
 						if(msg){
 							var times = gettime(msg.time);
 
-							$news.html(msg.content);
+							$news.html(msg.fromID.name+':'+msg.content);
 
 							if(nowt-times>1000*60*60*18){
 		            		$time.html(changeTime2(msg.time));}
@@ -342,8 +342,13 @@ $(document).ready(function(){
             var $time = that.find('.nowtime');
             var count = $count.html();
             if(id==toid){
-            	count++;
-            	$count.html(count).css('display','block');
+            	if(that.hasClass('current')){
+            	count = 0;
+            	$count.html(count).css('display','none');
+	            }else{
+	            	count++;
+	            	$count.html(count).css('display','block');
+	            }
             	$news.html(msg);
             	$time.html(time);
             	$('.userlist').prepend(that);
@@ -362,10 +367,15 @@ $(document).ready(function(){
             var $time = that.find('.nowtime');
             var count = $count.html();
             if(id==groupid){
-            	count++;
-            	$count.html(count).css('display','block');
-            	$news.html(name+':'+msg);
-            	$time.html(time);
+            	if(that.hasClass('current')){
+            		count = 0;
+            		$count.html(count).css('display','none');
+            	}else{
+	            	count++;
+	            	$count.html(count).css('display','block');
+	            }
+	            $news.html(name+':'+msg);
+	            $time.html(time);
             	$('.userlist').prepend(that);
             }
         });

@@ -104,16 +104,8 @@
 	border-radius: 0.15rem;
 	background: #F4F4F9;
 }
-.adduser .add-place .img{
-	display: block;
+.adduser .add-place .img-80{
 	margin: 0 auto;
-	width: 1.0rem;
-	height: 1.0rem;
-	border-radius: 50%;
-	overflow: hidden;
-}
-.adduser .add-place .img img{
-	width: 1.0rem;
 }
 .adduser .name{
 	line-height: 0.75rem;
@@ -179,16 +171,8 @@
 }
 
 /*列表*/
-.list .img{
-	display: block;
+.list .img-100{
 	float: left;
-	width: 1.25rem;
-	height: 1.25rem;
-	border-radius: 50%;
-	overflow: hidden;
-}
-.list .img img{
-	width: 1.25rem;
 }
 .list{
 	width:100%;
@@ -212,7 +196,7 @@
 .user-inf .down-line{
 	padding-right: 0.3rem;
 	height: 100%;
-	border-bottom: 0.0125rem solid #dedfe5;
+	border-bottom: 0.0125rem solid #bbb;
 }
 .list .name{
 	line-height: 0.75rem;

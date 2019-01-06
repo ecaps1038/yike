@@ -157,7 +157,7 @@ $(document).ready(function(){
 							'<a href="/chart?id='+i.id+'" class="user-list">'+
 							'<input type="hidden" value="'+i.id+'" class="friendid">'+
 							'<p class="count"></p>'+
-							'<div class="img"><img src="/vacation-photo/'
+							'<div class="img-100"><img src="/vacation-photo/'
 							+i.imgurl+'"/></div>'+
 							'<div class="user-inf"><div class="down-line"><p class="name">'+markName+'</p>'+
 							//'<p class="sex '+i.sex+'"></p>'+
@@ -195,7 +195,7 @@ $(document).ready(function(){
 							html +='<li class="user other add-place">'+
 							'<input type="hidden" value="'+i.id+'" class="friendid">'+
 							'<p class="count"></p>'+
-							'<a href="/detail?id='+i.id+'" class="img"><img src="/vacation-photo/'
+							'<a href="/detail?id='+i.id+'" class="img-80"><img src="/vacation-photo/'
 							+i.imgurl+'"/></a></p>'+
 							'<p class="sex '+i.sex+'"></p>'+
 							'<p class="name">'+i.name+'</p>'+
@@ -314,7 +314,7 @@ $(document).ready(function(){
 						if(msg){
 							var times = gettime(msg.time);
 
-							$news.html(msg.content);
+							$news.html(msg.fromID.name+':'+msg.content);
 
 							if(nowt-times>1000*60*60*18){
 		            		$time.html(changeTime2(msg.time));}
@@ -393,7 +393,7 @@ $(document).ready(function(){
 						'<a href="/groupchart?id='+i.id+'" class="user-list">'+
 						'<input type="hidden" value="'+i.id+'" class="groupid">'+
 						'<p class="count"></p>'+
-						'<div class="img"><img src="/group-photo/'+i.icon+'"/></div>'+
+						'<div class="img-100"><img src="/group-photo/'+i.icon+'"/></div>'+
 						'<div class="user-inf"><div class="down-line"><p class="name">'+i.name+'</p>'+
 						//'<p class="sex group"></p>'+
 						'<p class="news"></p></div></div>'+

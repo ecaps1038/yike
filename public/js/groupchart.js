@@ -2,7 +2,7 @@
     $(document).ready(function(){
     	var socket = io();
         var html='';
-        var userid,myimgurl,myname,adminid;
+        var userid,myimgurl,myname,adminid,groupname,groupIcon;
         var groupid = $('.id').val();
 
         var time =0;
@@ -37,12 +37,14 @@
                             adminid = ver.adminid;
                             myimgurl = ver.myimgurl;
                             myname = ver.myname;
-                            html ='<img src="/group-photo/'+ver.icon+'" style="width:100px;" />'+
+                            groupname = ver.name;
+                            groupicon = ver.icon;
+                            html ='<div class="img-64 group-more"><img src="/group-photo/'+ver.icon+'"/></div>'+
                                 '<span class="name">'+ver.name+'<i></i></span>';
                             if(userid == adminid){
-                                oper = '<a href="/groupchart/managegroup?id='+groupid+'">管理群</a>';
+                                oper = '<a href="/groupchart/managegroup?id='+groupid+'">管理群</a><p class="quxiao">取消</p>';
                             }else{
-                                oper = '<button class="quit-group">删除并退群</button>';
+                                oper = '<p class="quit-group">删除并退群</p><p class="quxiao">取消</p>';
                             }
                             $('.intro').html(ver.intro);
                         });
@@ -78,14 +80,14 @@
                                 html+="<p class='time'>"+i.dateTime+"</p>";
                             }
                             j++;
-
                             if(i.id==userid){
-                                html+='<div class="my message"><p><img src="/vacation-photo/'+ 
-                                myimgurl+'"/>'+i.content+'</p></div>';
+                                html+='<div class="message"><div class="my"><div class="img-80 user-img"><img src="/vacation-photo/'+ 
+                                myimgurl+'"/></div><p><i></i>'+i.content+'</p></div></div>';
                             }else{
-                                html+='<div class="to message"><p><a href="/detail?id='+i.id+'"><img src="/vacation-photo/'+ 
-                                i.imgurl+'"/></a>'+i.name+':'+i.content+'</p></div>';
-                            }                           
+                                html+='<div class="message"><div class="to">'+
+                                '<a href="/detail?id='+i.id+'" class="img-80 friend-img"><img src="/vacation-photo/'+ 
+                                i.imgurl+'"/></a><p><i></i>'+i.content+'</p></div></div>';
+                            }                          
 
                     })
                     $('#message').append(html);
@@ -108,11 +110,13 @@
     	$('.but').on('click',function(evt){
             evt.preventDefault();
             sendmsg();
+            clearCount();
         });
         //点击enter发送信息
         $(document).keyup(function(event){
           if(event.keyCode ==13){
             sendmsg();
+            clearCount();
           }
         });
         function sendmsg(){
@@ -135,9 +139,8 @@
                     html+="<p class='time'>"+changetime+"</p>";
                 }
                 j++;
-
-                html+='<div class="my message"><p><img src="/vacation-photo/'+ 
-                myimgurl+'"/>'+message+'</p></div>';
+                html+='<div class="message"><div class="my"><div class="img-80 user-img"><img src="/vacation-photo/'+ 
+                    myimgurl+'"/></div><p><i></i>'+message+'</p></div></div>';
                 $('#message').append(html); 
                 html='';
                 $('.text').val("");
@@ -155,9 +158,9 @@
                 html+="<p class='time'>"+changetime+"</p>";
             }
             j++;
-
-            html+='<div class="to message"><p><a href="/search-detail?id='+fromid+'"><img src="/vacation-photo/'+ 
-            img+'"/></a>'+uname+':'+msg+'</p></div>';
+            html+='<div class="message"><div class="to">'+
+                '<a href="/detail?id='+fromid+'" class="img-80 friend-img"><img src="/vacation-photo/'+ 
+                img+'"/></a><p><i></i>'+msg+'</p></div></div>';
             $('#message').append(html);
             html='';
             scrollToBottom();
@@ -188,19 +191,19 @@
                                     mymark = i.name;
                                 }                            
                             }
-                        	html += '<li><a href="/detail?id='+i.id+'"><div class="img"><img src="/vacation-photo/'
+                        	html += '<li><a href="/detail?id='+i.id+'"><div class="img-100"><img src="/vacation-photo/'
                         	+i.imgurl+'"/>'+'</div>';
                             if(i.id == adminid){
-                                html += '<span style="color:#00aaee;">'+usname+'</span></a>';
+                                html += '<p>'+usname+'</p></a></li>';
                             }else{
-                                html += '<span>'+usname+'</span></a>';
-                            }
-                            
+                                html += '<p>'+usname+'</p></a></li>';
+                            }     
                         });
+                        html += '<li><a href="#" class="add-member"><i class="add-icon img-100"></i><p class="remind">邀请</p></a></li>'
                         $('.groupmsg .user').html(html);
                         $('.mark-name').html(mymark);
                         $('.change-mark').val(mymark);
-                        num = $('.groupmsg .user li').length;
+                        num = $('.groupmsg .user li').length-1;
                         $('.name i').html('('+num+')');
 	                }else{
 	                	console.log('出现问题1');
@@ -215,24 +218,27 @@
         //返回时清一下群消息数
         function toyike(){
             $('.toyike').on('click',function(){
-                $.ajax({
-                    url: '/toyike',
-                    type: 'POST',
-                    data: {groupid:groupid},
-                    uccess: function(data){
-                        if(data.success){
-                            console.log('返回刷新成功');
-                        }else{
-                            console.log('出现问题1');
-                        }
-                    },
-                    error: function(){
-                        console.log('出现问题2');
-                    }
-                })
+                clearCount();
             })
         }
         toyike();
+        function clearCount(){
+            $.ajax({
+                url: '/toyike',
+                type: 'POST',
+                data: {groupid:groupid},
+                uccess: function(data){
+                    if(data.success){
+                        console.log('返回刷新成功');
+                    }else{
+                        console.log('出现问题1');
+                    }
+                },
+                error: function(){
+                    console.log('出现问题2');
+                }
+            })
+        }
 
         //添加成员
         function addMemder(){
@@ -249,11 +255,10 @@
                         if(data.success){
                             dt = data.context;
                             dt.vacation.map(function(ver){
-                            html += '<li class="user">'+
-                                //'<input type="checkbox"  class="usercheck" name="user" value="'+ver.id+'">'+
-                                '<span class="user-id" data-id="'+ver.id+'"></span>'+
-                                '<img src="/vacation-photo/'+ver.imgurl+'" style="width:40px;" />'+
-                                '<span class="name">'+ver.name+'</span></li>';
+                            html += '<li class="user-select">'+
+                                '<div class="left"><div class="user-id" data-id="'+ver.id+'"></div>'+
+                                '<div class="img-80"><img src="/vacation-photo/'+ver.imgurl+'"/></div></div>'+
+                                '<p class="name"><span>'+ver.name+'</span></p></li>';
                         });
                         $('.friend-li').html(html);
                         isGroup();
@@ -272,7 +277,7 @@
 
         //遍历好友是否已加入群
         function isGroup(){
-            $('.friend-li .user').each(function(){
+            $('.friend-li .user-select').each(function(){
                 var that = $(this),html = '';
                 var id = $(this).find('.user-id').attr('data-id');
                 //异步验证
@@ -284,12 +289,9 @@
                         if(data.success){
                             var dt = data.rest;
                             if(dt == 0){
-                                //that.find('.usercheck').attr('disabled',true);
-                                html = '<input type="checkbox"  class="usercheck" name="user" value="'+id+'">';
-                                that.find('.user-id').html(html);
-                            }else{
                                 html = '<i class="in-group-tip"></i>';
                                 that.find('.user-id').html(html);
+                            }else{
                             }
                         }else{
 
@@ -302,42 +304,92 @@
             });
         }
 
+        //获取选择数
+        function selectFriend1(){
+            $('.friend-li').on('click','.user-select',function(){
+                var i = 0;
+                $(".user-select input[type=checkbox]").each(function(){
+                    if(this.checked){
+                        i++
+                    }
+                });
+                if(i>0){
+                    $('.put-but').css('opacity','1');
+                    $('.put-but i').html('('+i+')');             
+                }else{
+                    $('.put-but').css('opacity','0.5');
+                    $('.put-but i').html('');             
+                }
+            })
+        }
+        //selectFriend();
+
+        function selectFriend(){
+            var i = 0;
+            $('body').on('click','.friend-li .user-select',function(){
+                if($(this).find('.in-group-tip').length>0){
+                    if($(this).find('.in-group-tip').hasClass('select')){
+                        $(this).find('.in-group-tip').removeClass('select');
+                        i--;
+                    }else{
+                        $(this).find('.in-group-tip').addClass('select');
+                        i++;
+                    }
+                }
+                if(i>0){
+                    $('.put-but').css('opacity','1');
+                    $('.put-but i').html('('+i+')');             
+                }else{
+                    $('.put-but').css('opacity','0.5');
+                    $('.put-but i').html('');             
+                }
+            })
+        }
+        selectFriend();
+
         //点击取消关闭
-        $('body').on('click','.but-grp .close-but',function(){
+        $('body').on('click','.close-but',function(){
             $('.user-friend').hide();
+            $('.put-but').css('opacity','0.5');
+            $('.put-but i').html('');
         });
 
          //提交页面
         function handleClick(){
-           $('body').on('click','.but-grp .put-but',function(evt){
+           $('body').on('click','.put-but',function(evt){
                 evt.preventDefault();
                 var user = [];
                 var i = 0;
-                $(".user input[type=checkbox]").each(function(){
-                    if(this.checked){
+                $('.user-select .in-group-tip').each(function(){
+                    if($(this).hasClass('select')){
+                        var val = $(this).parent().attr('data-id')
                         //alert($(this).val());
-                        user[i] = $(this).val();
+                        user[i] = val;
                         i++
                     }
                 }); 
-                $.ajax({
-                    url: '/groupchart/joinGroup',
-                    type: 'POST',
-                    data: {groupid:groupid,user:user},
-                    success: function(data){
-                        if(data.success){
-                            $('.user-friend').hide();
-                            showUsers();
-                            //window.location.reload();
+                if(i>0){
+                    $.ajax({
+                        url: '/groupchart/joinGroup',
+                        type: 'POST',
+                        data: {groupid:groupid,user:user},
+                        success: function(data){
+                            if(data.success){
+                                $('.user-friend').hide();
+                                $('.put-but').css('opacity','0.5');
+                                $('.put-but i').html('');
+                                showUsers();
+                                //window.location.reload();
+                            }
+                            else{
+                                alert('接收失败');
+                            }
+                        },
+                        error: function(){
+                            alert('添加失败');
                         }
-                        else{
-                            alert('接收失败');
-                        }
-                    },
-                    error: function(){
-                        alert('添加失败');
-                    }
-                });
+                    });
+            }
             });
         }
         handleClick();
@@ -376,9 +428,14 @@
         function changeMark(){
             var name,num;
             $('body').on('click','.mark',function(){
-                $('.change').toggle();
+                $('.change').show();
                 name = $(this).find('.mark-name').html();
+                //定位光标位置
+                $(".change .change-mark").focus();   
             });
+            $('body').on('click','.change .left',function(){
+                $('.change').hide();
+            })
             $('body').on('click','.change button',function(){
                 var num = $('.change .change-mark').val();
                 if(num && num!=name){
@@ -404,7 +461,44 @@
             })
         }
         changeMark();
-
+        //群基本信息展示
+        function groupmsgIn(){
+            var html = '';
+            $('body').on('click','.group-init .group-more',function(){
+                html += '<img src="/group-photo/'+groupicon+'"/><p class="group-name">'+groupname+'</p>';
+                $('.group-icon').html(html);
+                $('.groupmsg').animate({ left: "0px"}, "fast");
+            })
+            $('body').on('click','.groupmsg .back',function(){
+                // alert('a')
+                $('.groupmsg').animate({ left: "100%"}, "fast");
+            })
+        }
+        groupmsgIn();
+        // 滚动条
+        sideMenuScroll(1,1);
+        //获取滚动事项
+        function jianting(){
+            $('.groupmsg-in').scroll(function(){
+                // 滚动条距离顶部的距离 大于100px时
+                if($('.groupmsg-in').scrollTop()>120){
+                    $('.groupmsg .head1').css('display',"block");
+                } else{
+                    $('.groupmsg .head1').css('display',"none");
+                }
+            });
+        }
+        jianting();
+        //更多信息
+        function more(){
+            $('body').on('click','.more',function(){
+                $('.user-oper').css('display','block');
+            })
+            $('body').on('click','.user-oper',function(){
+                $('.user-oper').css('display','none');
+            })
+        }
+        more();
     })
 })(jQuery,window,document);
 

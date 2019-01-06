@@ -49,13 +49,14 @@ module.exports = function(io){
 					postMessages: msg.message,
 					fromUserID: msg.fromid,                    			
 				    toUserID: msg.toid,                       		
-				    dateTime: new Date(),							
+				    dateTime: new Date(),					
 				    status: 0  
 				}
 		    	messagedb.insert(data);
-		    	socket.to(socketLogin[msg.toid]).emit('addMsg',msg.fromid,msg.message);
-		    	socket.to(socketLogin[msg.fromid]).emit('addMsg',msg.fromid,msg.message);
 			}
+			socket.to(socketLogin[msg.toid]).emit('addMsg',msg.fromid,msg.message);
+		    socket.to(socketLogin[msg.fromid]).emit('addMsg',msg.toid,msg.message);
+
 	  	});
 	  	//用户离开
 	  	socket.on('disconnect', function() {

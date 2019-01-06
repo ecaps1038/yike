@@ -19,15 +19,87 @@
     text-align: center;
     background: rgba(255,255,255,0.96);
 }
-.head .name{
+.head1{
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    text-align: center;
+    border-bottom: 0.0125rem solid #ddd;
+}
+.head2{
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    height: 0;
+    width: 100%;
+    text-align: center;
+}
+.name , .name i{
+    font-weight: bold;
     line-height: 1.125rem;
     font-size: 0.45rem;
 }
-.head .back{
+.back{
     position: absolute;
     top: 0rem;
     left: 0rem;
     width: 1.0rem;
-    height: 100%;
-    background: url('../images/back.svg') no-repeat center/0.6rem;
+    height: 1.125rem;
+}
+.back-one{
+    background: url('../images/back.svg') no-repeat center/0.25rem;
+}
+.back-two{
+    background: url('../images/back1.svg') no-repeat center/0.25rem;
+}
+.more{
+    position: absolute;
+    cursor: pointer;
+    top: 0rem;
+    right: 0rem;
+    width: 1.0rem;
+    height: 1.125rem;
+}
+.more1{
+    background: url('../images/more1.svg') no-repeat left center/0.6rem;
+}
+.more2{
+    background: url('../images/more2.svg') no-repeat left center/0.6rem;
+}
+
+/*图片头像*/
+.img-64{
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.img-64 img{
+    width: 0.8rem;
+}
+.img-80{
+    display: inline-block;
+    width: 1.0rem;
+    height: 1.0rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.img-80 img{
+    width: 1.0rem;
+}
+.img-100{
+    display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.img-100 img{
+    width: 1.25rem;
+}
+/*提醒颜色*/
+.remind{
+    /*color: #3f56fe;*/
 }

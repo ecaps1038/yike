@@ -209,6 +209,8 @@ exports.findOne = function(res,groupid){
     var query = Groupmsg.findOne({});
     //根据userID查询
     query.where({'groupID':groupid});
+    //查出friendID的user对象
+    query.populate('fromID');
     query.sort({'time':-1});
     //查询结果
     query.exec().then(function(result){

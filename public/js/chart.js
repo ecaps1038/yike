@@ -42,11 +42,11 @@
                             j++;
 
                             if(i.toUserID==toid){
-                                html+='<div class="message"><div class="my"><div class="img user-img"><img src="/vacation-photo/'+ 
+                                html+='<div class="message"><div class="my"><div class="img-80 user-img"><img src="/vacation-photo/'+ 
                                 myimgurl+'"/></div><p><i></i>'+i.message+'</p></div></div>';
                             }else{
                                 html+='<div class="message"><div class="to">'+
-                                '<a href="/detail?id='+i.fromUserID+'" class="img friend-img"><img src="/vacation-photo/'+ 
+                                '<a href="/detail?id='+i.fromUserID+'" class="img-80 friend-img"><img src="/vacation-photo/'+ 
                                 imgurl+'"/></a><p><i></i>'+i.message+'</p></div></div>';
                             }                           
 
@@ -100,7 +100,7 @@
                     html+="<p class='time'>"+changetime+"</p>";
                 }
                 j++;
-                html+='<div class="message"><div class="my"><div class="img user-img"><img src="/vacation-photo/'+ 
+                html+='<div class="message"><div class="my"><div class="img-80 user-img"><img src="/vacation-photo/'+ 
                     myimgurl+'"/></div><p><i></i>'+message+'</p></div></div>';
                 $('#message').append(html); 
                 html='';
@@ -121,7 +121,7 @@
                 html+="<p class='time'>"+changetime+"</p>";
             }
             j++;
-            html+='<div class="message"><div class="to"><div class="img user-img"><img src="/vacation-photo/'+ 
+            html+='<div class="message"><div class="to"><div class="img-80 user-img"><img src="/vacation-photo/'+ 
                     imgurl+'"/></div><p><i></i>'+msg+'</p></div></div>';
             $('#message').append(html);
             html='';
@@ -129,22 +129,7 @@
         });
 
         // 滚动条
-        function sideMenuScroll() {
-            if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-            }
-            else {
-                // var $wrap = $('.msgout');
-                // $wrap.teoyallScroll({
-                //     borderRadius: '6px',
-                //     autoHideScroll: true,
-                //     autoResetRraw: true
-                // });
-                $('.back').hide();
-                $('html').css('zoom',0.7);
-                //$('windows').style.zoom = size;
-            }
-        }
-        sideMenuScroll();
+        sideMenuScroll(1,0);
         function textareaHeight(){
             $(".text").height($(".text")[0].scrollHeight);
             $(".text").on("keyup keydown", function(){

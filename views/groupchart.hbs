@@ -2,47 +2,70 @@
     <title>群聊天</title>
     <link rel="stylesheet" type="text/css" href="css/groupchart.css">
     <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
+    <link rel="stylesheet" type="text/css" href="/lib/mobile/swiper-3.3.1.min.css">
     <script src="/js/json3.min.js"></script>
 {{/section}}
 <div class="main">
-	<input type="hidden" value="{{id}}" class="id">
-	<div class="group-init"></div>
-	<a href="/yike" class="back toyike">返回</a>
+	<div class="head">
+		<input type="hidden" value="{{id}}" class="id">
+		<div class="group-init"></div>
+		<a href="/yike" class="back toyike back-one"></a>
+	</div>
 	<div class="inner">
 		<div class="msgout">
 			<div id="message"></div>
 		</div>
 		<div class="groupmsg">
-			<ul class="user"></ul>
-			<a href="#" class="add-member">添加人员</a>
-			<div>
-				<span>群公告:</span>
-				<span class="intro"></span>
+			<div class="head2">
+				<i class="back back-two"></i>
+				<i class="more more2"></i>
 			</div>
-			<div class="mark">
-				<span>群内名:</span>
-				<span class="mark-name"></span>
+			<div class="head1">
+				<i class="back back-one"></i>
+				<div class="name group-dt">群聊资料<i></i></div>
+				<i class="more more1"></i>
+			</div>
+			<div class="groupmsg-in">
+				<div class="group-icon"></div>
+				<ul class="user"></ul>
+				
+				<div class="group-intro mlist">
+					<p class="title">群公告</p>
+					<p class="intro"></p>
+				</div>
+				<div class="mark mlist">
+					<p class="title">群内名</p>
+					<p class="mark-inner"><span class="mark-name"></span></p>
+				</div>
 			</div>
 			<div class="change">
-				<input type="text" value="" class="change-mark"><button>确定</button>
+				<div class="top">
+					<button class="left">取消</button>
+					<p class="name">我在本群的昵称</p>
+					<button class="right">确定</button>
+				</div>
+				<input type="text" value="" class="change-mark">
 			</div>
 			<div class="user-oper"></div>
+			<div class="user-friend">
+				<div class="top">
+					<button class="close-but left">取消</button>
+					<p class="name">邀请成员</p>
+				</div>
+				<ul class="friend-li"></ul>
+				<div class="put"><button class="put-but">邀请<i> </i></button></div>
+			</div>
 		</div>
 	</div>
 	<form class="forms">
-		<textarea class="text"></textarea>
-		<button class="but" type="button">发送</button>
+		<div class="area"><textarea class="text"></textarea></div>
+		<button class="but" type="button"></button>
 	</form>
-	<div class="user-friend">
-		<ul class="friend-li"></ul>
-		<div class="but-grp">
-			<button class="put-but">确定</button>
-			<button class="close-but">取消</button>
-		</div>
-	</div>
 </div>
 
 {{#section 'jquery'}}
-	<script src="/js/myfunc.js" type="text/javascript"></script>
+	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>
+	<script src="/lib/mobile/swiper-3.3.1.jquery.min.js" type="text/javascript"></script>
 	<script src="/js/groupchart.js" type="text/javascript"></script>
 {{/section}}

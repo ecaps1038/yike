@@ -12,15 +12,16 @@
 	height: 148px;
 	background: #303030;
 	border-radius: 5px;
-	color: #fff;
 	text-align: center;
 }
 .title .count{
 	font-size: 48px;
+	color: #fff;
 	line-height: 60px;
 	padding-top: 30px;
 }
 .title .name{
+	color: #fff;
 	font-size: 18px;
 	line-height: 30px;
 }
@@ -127,7 +128,7 @@
 .user-table table tr i{
 	display: inline-block;
 	margin-right: 8px;
-	vertical-align: top;
+	vertical-align: inherit;
 	height: 14px;
 	width: 14px;
 	overflow: hidden;
