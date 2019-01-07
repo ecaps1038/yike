@@ -42,9 +42,9 @@
                             html ='<div class="img-64 group-more"><img src="/group-photo/'+ver.icon+'"/></div>'+
                                 '<span class="name">'+ver.name+'<i></i></span>';
                             if(userid == adminid){
-                                oper = '<a href="/groupchart/managegroup?id='+groupid+'">管理群</a><p class="quxiao">取消</p>';
+                                oper = '<div class="manage"><a href="/groupchart/managegroup?id='+groupid+'" class="control manage-tb">管理群</a><p class="quxiao">取消</p></div>';
                             }else{
-                                oper = '<p class="quit-group">删除并退群</p><p class="quxiao">取消</p>';
+                                oper = '<div class="manage"><p class="quit-group control">删除并退群</p><p class="quxiao">取消</p></div>';
                             }
                             $('.intro').html(ver.intro);
                         });
@@ -492,10 +492,12 @@
         //更多信息
         function more(){
             $('body').on('click','.more',function(){
-                $('.user-oper').css('display','block');
+                $('.user-oper').show(100);
+                $('.user-oper .manage').animate({bottom:0},100);
             })
             $('body').on('click','.user-oper',function(){
-                $('.user-oper').css('display','none');
+                $('.user-oper').hide(100);
+                $('.user-oper .manage').animate({bottom:'-2.75rem'},100);
             })
         }
         more();

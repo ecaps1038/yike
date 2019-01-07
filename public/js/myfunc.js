@@ -62,6 +62,7 @@ function sideMenuScroll(typ,scroll) {
     else {
     	if(scroll == 1){
     		var $wrap = $('.scroll');
+    		$wrap.css('height','968px');
 	        $wrap.teoyallScroll({
 	            borderRadius: '6px',
 	            autoHideScroll: true,

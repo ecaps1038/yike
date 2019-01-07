@@ -196,7 +196,7 @@
 .user-inf .down-line{
 	padding-right: 0.3rem;
 	height: 100%;
-	border-bottom: 0.0125rem solid #bbb;
+	border-bottom: 0.0125rem solid #ddd;
 }
 .list .name{
 	line-height: 0.75rem;
@@ -235,4 +235,21 @@
 	z-index: 1000;
 	font-size: 0.3rem;
 	line-height: 0.425rem;
+}
+
+/*无好友时*/
+.nothing{
+	position: relative;
+	width: 5.8rem;
+	height: 5.2rem;
+	margin: 2.0rem auto;
+	background: url('../images/kong.svg') no-repeat top center/4.8rem;
+}
+.nothing p{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	font-size: 0.425rem;
+	color: #dadbe9;
+	text-align: center;
 }

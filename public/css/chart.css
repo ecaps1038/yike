@@ -6,7 +6,7 @@
 	border-bottom: 0.0125rem solid #bbb;
 }
 .msgout{
-	position:fixed;
+	position:relative;
 	top: 0;
 	left: 0;
 	height: 100%;

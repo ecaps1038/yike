@@ -270,6 +270,23 @@
 	cursor: pointer;
 }
 
+/*无好友时*/
+.nothing{
+	position: relative;
+	width: 220px;
+	height: 180px;
+	margin: 100px auto;
+	background: url('/images/kong.svg') no-repeat center/148px;
+}
+.nothing p{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	font-size: 14px;
+	color: #c9cad3;
+	text-align: center;
+}
+
 /*right*/
 .main-right{
 	position: relative;

@@ -1,3 +1,90 @@
-.search-result{
+
+.head .right{
+	z-index: 100;
+	width: 1rem;
+	line-height: 1.125rem;
+	padding-right: 0.25rem;
+}
+.search{
+	position: relative;
+	width: 100%;
+	padding-left: 0.3rem;
+	padding-right: 1.25rem;
+}
+.search-main{
+	display: inline-block;
+	margin-top: 0.15rem;
+	width: 100%;
+	border-radius: 0.15rem;
+	padding: 0 1.0rem 0 0.15rem;
+	border: 0;
+	height: 0.8rem;
+	background: #f3f4f6;
+}
+.search .searup{
+	position: absolute;
+	right: 1.25rem;
+	top: 0.15rem;
+	border: 0;
+	background: url('../images/search.png') no-repeat center/0.45rem;
+	width: 1.0rem;
+	height: 0.8rem;
+}
+.sear-inner{
+	padding-top: 1.0rem;
+	padding-bottom: 0.3rem;
+}
+.sear .default{
+	text-align: center;
+	padding-top: 0.3rem;
+	font-size: 0.4rem;
+	color: #999;
+}
+.sear .nothing{
+	position: relative;
+	width: 5.0rem;
+	height: 5.6rem;
+	margin: 2.0rem auto;
+	background: url('../images/kong.svg') no-repeat center;
+}
+.sear .nothing p{
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	font-size: 0.45rem;
+	color: #dadbe9;
+	text-align: center;
+}
+.sear .sear-inner .title{
+	font-size: 0.525rem;
+	line-height: 0.5rem;
+	padding: 0.8rem 0 0.3rem 0.3rem;
+	border-bottom: 0.0125rem solid #ccc;
+}
+.search-list{
 	display: block;
+	text-decoration: none;
+	padding-left: 0.3rem;
+}
+.search-list .img-80{
+	margin-top: 0.25rem;
+	float: left;
+}
+.search-list p{
+	padding-right: 0.3rem;
+	margin-left: 1.25rem;
+	line-height: 1.5rem;
+	border-bottom: 0.0125rem solid #ddd;
+}
+.search-list .name{
+	display: inline-block;
+	font-size: 0.4rem;
+	line-height: 1.5rem;
+}
+.search-list .email{
+	display: inline-block;
+	font-size: 0.35rem;
+	float: right;
+	color: #999;
+	line-height: 1.5rem;
 }

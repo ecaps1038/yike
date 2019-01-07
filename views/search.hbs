@@ -1,14 +1,26 @@
 {{#section 'head'}}
     <title>搜索</title>
     <link rel="stylesheet" type="text/css" href="/css/search.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
 {{/section}}
-<h3>搜索</h3>
-<a href="javascript:history.back(-1)">取消</a>
-<form class="search">
-	<input type="text" name="search" class="search-main"><button class="searup">搜索</button>
-</form>
-<div class="sear"></div>
+<div class="main">
+	<div class="head">
+		<a href="javascript:history.back(-1)" class="more right">取消</a>
+	<form class="search">
+		<input type="search" name="search" class="search-main">
+		<button class="searup"></button>
+	</form>
+</div>
+
+<div class="sear scroll">
+	<div class="sear-inner">
+		<p class="default">您可以搜索 用户/群</p>
+	</div>
+</div>
+</div>
 
 {{#section 'jquery'}}
+	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>
+	<script src="/js/myfunc.js" type="text/javascript"></script>
 	<script src="/js/search.js" type="text/javascript"></script>
 {{/section}}
