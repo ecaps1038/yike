@@ -111,7 +111,7 @@
         }
 
         //接收信息
-        socket.on('sendMsg',function(msg){
+        socket.on('sendMsg',function(id,msg){
 
             //获取时间点
             var nowTime= new Date();
@@ -121,8 +121,12 @@
                 html+="<p class='time'>"+changetime+"</p>";
             }
             j++;
-            html+='<div class="message"><div class="to"><div class="img-80 user-img"><img src="/vacation-photo/'+ 
-                    imgurl+'"/></div><p><i></i>'+msg+'</p></div></div>';
+            if(id == toid){
+                html+='<div class="message"><div class="to"><a href="/detail?id='+toid+'" class="img-80 friend-img"><img src="/vacation-photo/'+ 
+                    imgurl+'"/></a><p><i></i>'+msg+'</p></div></div>';
+            }else if(id == fromid){
+                html+='<div class="message"><div class="my"><div class="img-80 user-img"><img src="/vacation-photo/'+ 
+                    imgurl+'"/></div><p><i></i>'+msg+'</p></div></div>';            }
             $('#message').append(html);
             html='';
             scrollToBottom();

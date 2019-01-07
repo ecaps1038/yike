@@ -30,7 +30,8 @@
                                 //$container.html('Thank you!');
                                 alert('添加修改成功');
                                 //返回上一页
-                                $(window).attr('location','/yike');
+                                window.location.href=document.referrer;
+                                //$(window).attr('location','document.referrer');
                             }
                             else{
                                 alert('添加失败');

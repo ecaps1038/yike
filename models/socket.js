@@ -42,7 +42,7 @@ module.exports = function(io){
 				    status: 1  
 				}
 		    	messagedb.insert(data);
-			    socket.to(socketList[msg.to]).emit('sendMsg',msg.message);
+			    socket.to(socketList[msg.to]).emit('sendMsg',msg.fromid,msg.message);
 			}else{
 				//保存数据库且标为未读
 				var data = {

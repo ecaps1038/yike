@@ -36,9 +36,11 @@
     text-align: center;
 }
 .name , .name i{
-    font-weight: bold;
     line-height: 1.125rem;
     font-size: 0.45rem;
+}
+.head .name,.head1 .name,.head2 .name{
+	font-weight: bold;
 }
 .back{
     position: absolute;
