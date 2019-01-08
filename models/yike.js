@@ -158,19 +158,8 @@ exports.findUser = function(req,res,id){
 			                        return '不签名是我的个性之一'
 			                    }
 			                },
-			                sex: function(){
-			                    if(ver.sex){
-			                        if(ver.sex=='male'){return '男';}
-			                        else{return '女';}
-			                    }else{return '不知';}
-			                },
-			                mgurl: function(){
-			                    if(ver.imgurl){
-			                        return ver.imgurl;
-			                    }else{
-			                        return 'user.png';
-			                    }
-			                },
+			                sex: ver.sex,
+			                mgurl: ver.imgurl,
 			                birth: date.DateSimple(ver.birth),
 			                registerdate: date.DateDetail(ver.registerdate),
 			                frid: frid,

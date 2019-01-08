@@ -8,6 +8,7 @@
             this._addfriend();
             this._addApply();
             this._deletefriend();
+            this._userMore();
             this._length = 0;
       },
        
@@ -26,15 +27,8 @@
         //设置备注
         _markname : function(){
             var that = this, _link = '';
-            $('body').on('click','.beizhu',function(){
-                var vel = $('.beizhu').html();
-                if(vel == "设置备注"){
-                    $('.beizhu').html('取消');
-                    $('.addmark').show();
-                }else{
-                    $('.beizhu').html('设置备注');
-                    $('.addmark').hide();
-                }         
+            $('body').on('click','.mark',function(){
+                $('.addmark').toggle();      
             });
         },
         //备注提交
@@ -124,6 +118,16 @@
                     }
                 })
             })
+        },
+        //基本信息展示
+        _userMore : function(){
+            $('body').on('click','.head2 .more',function(){
+                $('.user-more').animate({ left: "0px"}, "fast");
+            })
+            $('body').on('click','.user-more .back',function(){
+                // alert('a')
+                $('.user-more').animate({ left: "100%"}, "fast");
+            })
         }
     }
 
@@ -132,5 +136,7 @@
     })
 
     window.training = training;
+    // 滚动条
+    sideMenuScroll(1,1);
 
 }(jQuery,window));

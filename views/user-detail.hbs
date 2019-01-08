@@ -1,45 +1,69 @@
 {{#section 'head'}}
     <title>详情</title>
     <link rel="stylesheet" type="text/css" href="css/detail.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
 {{/section}}
-<h3>详情</h3>
-<a href="javascript:history.back(-1)">返回</a>
+<div class="main">
+	<div class="head2">
+		<a href="javascript:history.back(-1)" class="back back-two"></a>
+		<div class="name group-dt"></div>
+		<i class="more more2"></i>
+	</div>
 
-{{#each vacation}}
-<p><img src="/vacation-photo/{{mgurl}}" style="width:100px;" /></p>
-{{#if markname}}
-	<p class="name-mark">备注名：{{markname}}</p>
-	<p>昵称：{{name}}</p>
-{{else}}
-	<p>昵称：{{name}}</p>
-{{/if}}
-<p>说明：{{explain}}</p>
-<p>注册：{{registerdate}}</p>
-<p>邮箱:{{email}}</p>
-<p>性别:{{sex}}</p>
-<p>生日:{{birth}}</p>
-<p>在线:{{online}}</p>
-{{#if admin}}
-	<a href="/install">修改</a>
-	<a href="/logout" class="quit">退出</a>
-{{else}}
-{{#if frid}}
-	<div class="addmark">
-		<input type="text" class="markname" value="{{markname}}">
-		<button class="upmark" data-id="{{id}}">确定</button>
-	</div>
-	<button class="beizhu">设置备注</button>
-	<a href="/chart?id={{id}}">聊天</a>
-	<button class="delete" data-id="{{id}}">删除好友</button>
-{{else}}
-	<button class="apply">添加好友</button>
-	<div class="apply-main">
-		<textarea class="reason" placeholder="说点什么吧..."></textarea>
-		<button class="add" data-id="{{id}}">添加</button>
-	</div>
-{{/if}}
-{{/if}}
-{{/each}}
+	{{#each vacation}}
+		<div class='container' style="background-image: url(/vacation-photo/{{mgurl}});">		 
+				 <div class='frosted-glass'></div>               
+		</div>
+		<div class="user-head">
+			<div class="img" style="background-image: url(/vacation-photo/{{mgurl}});">
+			</div>
+			<i class="sex {{sex}}"></i>
+		</div>
+		{{#if markname}}
+			<p class="name-mark">{{markname}}</p>
+			<p class="user-name">昵称：{{name}}</p>
+			<p class="explain">{{explain}}</p>
+		{{else}}
+			<p class="name-mark">{{name}}</p>
+			<p class="explain">{{explain}}</p>
+		{{/if}}
+		<div class="user-more">
+			<div class="head1">
+				<i class="back back-one"></i>
+				<div class="name group-dt">更多</div>
+			</div>
+			<div class="more-list">
+				<p>昵称<span>{{name}}</span></p>
+				<p class="mark">备注<span>{{markname}}</span></p>
+			</div>
+			<div class="more-list">
+				<p>邮箱<span>{{email}}</span></p>
+				<p>生日<span>{{birth}}</span></p>
+				<p>注册<span>{{registerdate}}</span></p>
+			</div>
+			{{#if admin}}
+				<div class="tb"><a href="/logout" class="quit warning">退出</a></div></div>
+				<div class="tb"><a href="/install" class="tb-inner">修改</a></div>
+			{{else}}
+			{{#if frid}}
+				<div class="addmark">
+					<input type="text" class="markname" value="{{markname}}">
+					<button class="upmark" data-id="{{id}}">确定</button>
+				</div>
+				<div class="tb"><button class="delete warning" data-id="{{id}}">删除好友</button></div></div>
+				<div class="tb"><a href="/chart?id={{id}}" class="tb-inner">聊天</a></div>
+			{{else}}
+			</div>
+			<div class="tb"><button class="apply tb-inner">添加好友</button></div>
+			<div class="apply-main">
+				<textarea class="reason" placeholder="说点什么吧..."></textarea>
+				<button class="add" data-id="{{id}}">添加</button>
+			</div>
+		{{/if}}
+		{{/if}}
+	{{/each}}
+</div>
 {{#section 'jquery'}}
+	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>
 	<script src="/js/user-detail.js" type="text/javascript"></script>
 {{/section}}

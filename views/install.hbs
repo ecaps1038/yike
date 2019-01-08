@@ -6,6 +6,7 @@
 <a href="javascript:history.back(-1)">返回</a>
 
 {{#each vacation}}
+	<input type="text" value="{{id}}" class="user-id"/>
 <a href="/photocut?atl=1&id={{id}}"><img src="/vacation-photo/{{imgurl}}" style="width:100px;" /></a>
 <form method="post" class="newslefft" action="/install">
 <p>昵称：<input type="text" value="{{name}}" name="name"></p>

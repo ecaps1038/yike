@@ -125,7 +125,7 @@
 	background: #f2f2f2;
 }
 .groupmsg .head1{
-	background: #fafafa;
+	background: #fff;
 	display: none;
 	transition: all 2s;
 }
@@ -158,7 +158,7 @@
 }
 .groupmsg .user{
 	padding: 0.25rem 0.3rem;
-	background: #fafafa;
+	background: #fff;
 	border-bottom: 0.0125rem solid #ddd;
 }
 .groupmsg .user li{
@@ -190,7 +190,7 @@
 
 .groupmsg .mlist{
 	position: relative;
-	background: #fafafa;
+	background: #fff;
 	margin-top: 0.3rem;
 	padding: 0.3rem;
 	border-top: 0.0125rem solid #ddd;
@@ -236,25 +236,29 @@
 	position: absolute;
 	bottom: -2.75rem;
 	width: 100%;
-	background: #e6e6e6;
+	padding: 0.2rem 0.3rem;
 }
 .user-oper .quxiao{
 	background: #fff;
+	font-weight: bold;
 	width: 100%;
 	height: 1.25rem;
 	text-align: center;
 	font-size: 0.45rem;
 	line-height: 1.25rem;
+	color: #3f56fe;
+	border-radius: 0.125rem;
 }
 .user-oper .control{
 	display: block;
-	margin-bottom: 0.3rem;
+	margin-bottom: 0.2rem;
 	background: #fff;
 	width: 100%;
 	height: 1.25rem;
 	text-align: center;
 	font-size: 0.45rem;
 	line-height: 1.25rem;
+	border-radius: 0.125rem;
 }
 .manage-tb{
 	color: #3f56fe;
@@ -280,7 +284,7 @@
 }
 .friend-li .user-select{
 	width: 100%;
-	background: #fafafa;
+	background: #fff;
 }
 .friend-li .user-select .left{
 	float: left;
@@ -319,7 +323,7 @@
 	height: 0.6rem;
 	border-radius: 50%;
 	border: 1px solid #bbb;
-	background: #fafafa;
+	background: #fff;
 }
 .select{
 	border: 0;

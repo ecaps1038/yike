@@ -20,7 +20,7 @@
             upUser : function(){
                 $('.upuser').on('click',function(evt){
                     evt.preventDefault();
-                    //var action = $('.newslefft').attr('action');
+                    var userId = $('.user-id').val();
                     $.ajax({
                         url: '/install',
                         type: 'POST',
@@ -28,10 +28,11 @@
                         success: function(data){
                             if(data.success){
                                 //$container.html('Thank you!');
-                                alert('添加修改成功');
+                                //alert('添加修改成功');
                                 //返回上一页
-                                window.location.href=document.referrer;
-                                //$(window).attr('location','document.referrer');
+                                //window.location.href=document.referrer;
+                                var goto = '/detail?id='+userId;
+                                $(window).attr('location',goto);
                             }
                             else{
                                 alert('添加失败');

@@ -14,6 +14,7 @@
         var room = {};
         var j =1;
         room[0]=0;
+        //alert($('.main').outerHeight());
 
         //定位到区域最下方
         function scrollToBottom(){
@@ -133,7 +134,7 @@
         });
 
         // 滚动条
-        sideMenuScroll(1,0);
+        sideMenuScroll(1,1);
         function textareaHeight(){
             $(".text").height($(".text")[0].scrollHeight);
             $(".text").on("keyup keydown", function(){

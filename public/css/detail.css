@@ -1,9 +1,177 @@
+/*设置模糊层*/
+.container{
+	position:absolid;
+	left:0;
+	top:0;
+	opacity:1;
+    width: 100%;
+    height: 6.5rem;
+	background-size:100%;
+    background-repeat: no-repeat;
+	background-position:center -100px;
+    /*background-attachment: fixed;*/
+    overflow: hidden;
+}
+.frosted-glass{
+	position:relative;
+	z-index:100;
+    width: 106%;
+    height: 8.75rem;
+	top:-0.2rem;
+	left:-0.2rem;
+    background: inherit;
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    -ms-filter: blur(4px);
+    -o-filter: blur(4px);
+    filter: blur(4px);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=4, MakeShadow=false);
+}
+
+/*头像*/
+.user-head{
+	width: 3.0rem;
+	height: 2.5rem;
+	margin: 0 auto;
+	position: relative;
+	z-index: 100;
+	margin-top: -1.5rem;
+	text-align: center;
+}
+.img{
+	display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 0.075rem solid rgba(255,255,255,0.6);
+    background-size:2.5rem;
+    background-repeat: no-repeat;
+	background-position:center;
+
+}
+.sex{
+	position: absolute;
+	display: inline-block;
+	left: 2.15rem;
+	bottom: 0;
+	width: 0.6rem;
+	height: 0.6rem;
+	border-radius: 50%;
+}
+.male{
+	background: rgba(39,136,255,0.8) url('../images/sex/male.svg') no-repeat center/0.4rem;
+}
+.female{
+	background: rgba(255,75,75,0.8) url('../images/sex/female.svg') no-repeat center/0.4rem;
+}
+.asexual{
+	background: rgba(1,207,152,0.8) url('../images/sex/asexual.svg') no-repeat center/0.4rem;
+}
+
+.name-mark{
+	font-size: 0.6rem;
+	text-align: center;
+	padding-top: 0.2rem;
+	line-height: 1.0rem;
+}
+.explain{
+	font-size: 0.4rem;
+	text-align: center;
+	line-height: 0.6rem;
+	padding: 0 1.0rem;
+	color: #828282;
+}
+.user-name{
+	font-size: 0.4rem;
+	text-align: center;
+	line-height: 0.45rem;
+	padding-bottom: 0.2rem;
+	color: #828282;
+}
+
+/*页面按钮*/
+.tb{
+	position: absolute;
+	bottom: 0;
+	height: 1.4rem;
+	width: 100%;
+	padding:0.2rem 0.3rem; 
+	background: #f2f2f2;
+}
+.tb .tb-inner{
+	display: inline-block;
+	height: 1.0rem;
+	width: 100%;
+	background: #3f56fe;
+	border-radius: 0.125rem;
+	border: 0;
+	text-align: center;
+	color: #fff;
+	line-height: 1.0rem;
+	font-size: 0.45rem;
+}
+.tb .warning{
+	display: inline-block;
+	height: 1.0rem;
+	width: 100%;
+	background: rgb(255,75,75);
+	border-radius: 0.125rem;
+	border: 0;
+	text-align: center;
+	color: #fff;
+	line-height: 1.0rem;
+	font-size: 0.45rem;
+}
+
+.user-more{
+	/*display: none;*/
+	position: fixed;
+	z-index: 1000;
+	left: 100%;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #f2f2f2;
+	padding-top: 1.8rem;
+}
+.user-more .head1{
+	background: #fff;
+}
+.more-list{
+	background: #fff;
+	width: 100%;
+	padding-left: 0.3rem;
+	border-top: 0.0125rem solid #ddd;
+	border-bottom: 0.0125rem solid #ddd;
+	margin-bottom: 0.3rem;
+}
+.more-list p{
+	height: 1.125rem;
+	font-size: 0.425rem;
+	line-height: 1.125rem;
+	padding-right: 0.3rem;
+	border-bottom: 0.0125rem solid #ddd;
+}
+.more-list p span{
+	height: 1.125rem;
+	float: right;
+	line-height: 1.125rem;
+	color: #888;
+	font-size: 0.375rem;
+}
+.more-list p:last-child{
+	border-bottom: 0;
+}
+.more-list .mark span{
+	padding-right: 0.5rem;
+	background: url('../images/go.svg') no-repeat center right/0.2rem;
+}
+
 .addmark{
 	display: none;
 }
-.img img{
-	width: 40px;
-}
+
 .apply-main{
 	display: none;
 }
