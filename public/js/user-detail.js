@@ -9,6 +9,7 @@
             this._addApply();
             this._deletefriend();
             this._userMore();
+            this._showIcon();
             this._length = 0;
       },
        
@@ -28,7 +29,12 @@
         _markname : function(){
             var that = this, _link = '';
             $('body').on('click','.mark',function(){
-                $('.addmark').toggle();      
+                //定位光标位置
+                $('.addmark').show();
+                $(".addmark .markname").focus();    
+            });
+            $('body').on('click','.addmark .left',function(){
+                $('.addmark').hide();      
             });
         },
         //备注提交
@@ -87,17 +93,11 @@
         },
         //显示添加好友项
         _addApply : function(){
-            var nom = false;
             $('body').on('click', '.apply',function(){
-                if(!nom){
-                    $('.apply-main').show();
-                    $(this).html('取消添加');
-                    nom = true;
-                }else{
-                    $('.apply-main').hide();
-                    $(this).html('添加好友');
-                    nom = false;
-                }
+                $('.apply-main').show();
+            });
+            $('body').on('click', '.apply-main .left',function(){
+                $('.apply-main').hide();
             })
         },
         //删除好友
@@ -127,6 +127,18 @@
             $('body').on('click','.user-more .back',function(){
                 // alert('a')
                 $('.user-more').animate({ left: "100%"}, "fast");
+            })
+        },
+        //显示及隐藏图片
+        _showIcon: function(){
+            $('body').on('click','.user-head',function(){
+                $('.user-icon').show();
+            })
+            $('body').on('click','.user-icon',function(){
+                $('.user-icon').hide();
+            })
+            $('body').on('click','.user-icon img',function(){
+                $('.user-icon').hide();
             })
         }
     }

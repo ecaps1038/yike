@@ -236,7 +236,17 @@
 	font-size: 0.3rem;
 	line-height: 0.425rem;
 }
-
+/*群标注*/
+.it-group{
+	position: absolute;
+	z-index: 100;
+	left: 1.2rem;
+	top: 1.2rem;
+	width: 0.25rem;
+	height: 0.25rem;
+	border-radius: 50%;
+	background: rgba(63,86,254,0.6);
+}
 /*无好友时*/
 .nothing{
 	position: relative;

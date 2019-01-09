@@ -286,7 +286,17 @@
 	color: #c9cad3;
 	text-align: center;
 }
-
+/*群标志*/
+.it-group{
+	position: absolute;
+	z-index: 100;
+	left: 39px;
+	top: 40px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: rgba(63,86,254,0.6);
+}
 /*right*/
 .main-right{
 	position: relative;

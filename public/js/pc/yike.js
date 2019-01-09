@@ -399,8 +399,7 @@ $(document).ready(function(){
 						html +='<li class="user groups" data-link="/groupchart?id='+i.id+'">'+
 						'<input type="hidden" value="'+i.id+'" class="groupid">'+
 						'<p class="count"></p>'+
-						'<div class="img"><img src="/group-photo/'
-						+i.icon+'"/></div>'+
+						'<div class="img"><img src="/group-photo/'+i.icon+'"/></div><i class="it-group"></i>'+
 						'<div class="user-inf"><p class="name">'+i.name+'</p>'+
 						'<p class="news"></p>'+
 						'<p class="nowtime"></p></div>'+

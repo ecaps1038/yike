@@ -11,6 +11,7 @@
 	</div>
 
 	{{#each vacation}}
+		<div class="user-icon"><img src="/vacation-photo/{{mgurl}}"></div>
 		<div class='container' style="background-image: url(/vacation-photo/{{mgurl}});">		 
 				 <div class='frosted-glass'></div>               
 		</div>
@@ -47,19 +48,27 @@
 			{{else}}
 			{{#if frid}}
 				<div class="addmark">
+					<div class="top">
+						<button class="left">取消</button>
+						<p class="name">修改备注</p>
+						<button class="right upmark" data-id="{{id}}">确定</button>
+					</div>
 					<input type="text" class="markname" value="{{markname}}">
-					<button class="upmark" data-id="{{id}}">确定</button>
 				</div>
 				<div class="tb"><button class="delete warning" data-id="{{id}}">删除好友</button></div></div>
 				<div class="tb"><a href="/chart?id={{id}}" class="tb-inner">聊天</a></div>
-			{{else}}
-			</div>
-			<div class="tb"><button class="apply tb-inner">添加好友</button></div>
-			<div class="apply-main">
-				<textarea class="reason" placeholder="说点什么吧..."></textarea>
-				<button class="add" data-id="{{id}}">添加</button>
-			</div>
-		{{/if}}
+				{{else}}
+				</div>
+				<div class="tb"><button class="apply tb-inner">添加好友</button></div>
+				<div class="apply-main">
+					<div class="top">
+							<button class="left">取消</button>
+							<p class="name">好友请求</p>
+							<button class="right add" data-id="{{id}}">发送</button>
+					</div>
+					<textarea class="reason" placeholder="说点什么吧..."></textarea>
+				</div>
+			{{/if}}
 		{{/if}}
 	{{/each}}
 </div>

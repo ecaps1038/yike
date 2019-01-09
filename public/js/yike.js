@@ -393,7 +393,7 @@ $(document).ready(function(){
 						'<a href="/groupchart?id='+i.id+'" class="user-list">'+
 						'<input type="hidden" value="'+i.id+'" class="groupid">'+
 						'<p class="count"></p>'+
-						'<div class="img-100"><img src="/group-photo/'+i.icon+'"/></div>'+
+						'<div class="img-100"><img src="/group-photo/'+i.icon+'"/></div><i class="it-group"></i>'+
 						'<div class="user-inf"><div class="down-line"><p class="name">'+i.name+'</p>'+
 						//'<p class="sex group"></p>'+
 						'<p class="news"></p></div></div>'+
