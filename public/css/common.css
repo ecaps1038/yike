@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 /*移动端公共样式*/
+.main input{
+    padding-left: 0.25rem;
+    height: 0.85rem;
+    font-size: 0.4rem;
+}
 .padding{
     padding: 0 0.3rem 0 0.3rem;
 }
@@ -100,6 +105,16 @@
 }
 .img-100 img{
     width: 1.25rem;
+}
+.img-200{
+    display: inline-block;
+    width: 2.5rem;
+    height: 2.5rem;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.img-200 img{
+    width: 2.5rem;
 }
 /*提醒颜色*/
 .remind{

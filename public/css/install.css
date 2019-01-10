@@ -1,0 +1,30 @@
+.main{
+	padding-top: 1.125rem;
+}
+.img{
+	padding: 0.9rem 0 0.6rem;
+	text-align: center;
+}
+.newslefft{
+	border-top: 0.0125rem solid #ddd;
+	border-bottom: 0.0125rem solid #ddd;
+	padding: 0.5rem 0.3rem;
+}
+.newslefft p{
+	position: relative;
+	height: 1.25rem;
+	padding-top: 0.2rem;
+	padding-left: 1.0rem;
+}
+.newslefft p label{
+	position: absolute;
+	left: 0;
+	top: 0.3rem;
+	font-size: 0.4rem;
+}
+.newslefft .name{
+	width: 100%;
+	border: 0;
+	border-radius: 0.125rem;
+	background: #f4f4f4;
+}

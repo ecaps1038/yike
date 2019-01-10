@@ -26,6 +26,7 @@
 			<p class="explain">{{explain}}</p>
 		{{else}}
 			<p class="name-mark">{{name}}</p>
+			<p class="user-name">昵称：{{name}}</p>
 			<p class="explain">{{explain}}</p>
 		{{/if}}
 		<div class="user-more">
@@ -43,8 +44,20 @@
 				<p>注册<span>{{registerdate}}</span></p>
 			</div>
 			{{#if admin}}
+				<div class="more-list">
+					<p class="pwd mark">密码<span>修改密码</span></p>
+				</div>
 				<div class="tb"><a href="/logout" class="quit warning">退出</a></div></div>
 				<div class="tb"><a href="/install" class="tb-inner">修改</a></div>
+				<div class="changepwd">
+					<div class="top">
+						<button class="left">取消</button>
+						<p class="name">修改密码</p>
+						<button class="right uppwd" data-id="{{id}}">确定</button>
+					</div>
+					<div class="old pwd-list"><label>原密码</label><input type="text" class="old-pwd" value=""></div>
+					<div class="new pwd-list"><label>新密码</label><input type="text" class="new-pwd" value=""></div>
+				</div>
 			{{else}}
 			{{#if frid}}
 				<div class="addmark">

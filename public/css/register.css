@@ -16,20 +16,30 @@
 	bottom: 0;
 	margin: auto;
 	width: 9.0rem;
-	height: 10.8rem;
+	height: 12.0rem;
 	background: #fff url('../images/login/lg-logo.png') no-repeat center 0.8rem/2.5rem;
 	box-shadow: 0 0.15rem 0.3rem rgba(0,0,0,0.1);
 	border-radius: 0.125rem;
-	padding: 3.65rem 0.8rem 0.8rem 0.8rem;
-}
-.room{
-	font-size: 0.3rem;
-	line-height: 0.8rem;
-	color: #fe4848;
-	height: 0.8rem;
+	padding: 4rem 0.8rem 0.8rem 0.8rem;
 }
 .inputs{
 	position: relative;
+}
+.judge-name,.judge-email,.judge-pwd{
+	position: absolute;
+	z-index: 100;
+	right: 0.2rem;
+	top: 0.3rem;
+	font-size: 0.3rem;
+	line-height: 0.6rem;
+	color: #fe4848;
+}
+.judge-name i,.judge-email i,.judge-pwd i{
+	vertical-align:top;
+	display: inline-block;
+	width: 0.6rem;
+	height: 0.6rem;
+	background: url('../images/login/able.svg') no-repeat center/0.45rem;
 }
 .newslefft label{
 	font-size: 0.4rem;
@@ -49,11 +59,11 @@
 	background: #fff;
 	margin-bottom: 0.3rem;
 }
-.newslefft .log-submit{
+.newslefft .submit{
 	padding: 0;
-	background: #3e56fe;
-	border: 0;
-	color: #fff;
+	background: #f4f5ff;
+	border: 1px solid #3e56fe;
+	color: #3e56fe;
 }
 .register{
 	position: relative;
@@ -70,17 +80,11 @@
 	margin: auto;
 	display: inline-block;
 	height: 1.1rem;
-	width: 2.8rem;
+	width: 1.6rem;
 	font-size: 0.4rem;
 	line-height: 1.1rem;
 	color: #3e56fe;
 	padding: 0 0.4rem;
 	background: #fff;
-	text-decoration: none;
-}
-.forget{
-	float: right;
-	font-size: 0.3rem;
-	color: #666;
 	text-decoration: none;
 }

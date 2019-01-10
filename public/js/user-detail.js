@@ -10,6 +10,7 @@
             this._deletefriend();
             this._userMore();
             this._showIcon();
+            this._changePwd();
             this._length = 0;
       },
        
@@ -140,6 +141,42 @@
             $('body').on('click','.user-icon img',function(){
                 $('.user-icon').hide();
             })
+        },
+        //用户修改密码
+        _changePwd : function(){
+             $('body').on('click', '.pwd span',function(){
+                $('.changepwd').show();
+            });
+            $('body').on('click', '.changepwd .left',function(){
+                $('.changepwd').hide();
+            });
+            //提交密码修改
+            $('body').on('click','.changepwd .uppwd',function(){
+                var old = $('.old-pwd').val();
+                var news = $('.new-pwd').val();
+                if(old && news){
+                    //异步添加用户备注
+                    var _id = $(this).attr('data-id');
+                    $.ajax({
+                        url: '/detail/changepwd',
+                        type: 'POST',
+                        data: {old:old,news:news,id:_id},
+                        success: function(data){
+                            if(data.success){
+                                //刷新当前页面
+                                window.location.reload();
+                            }else{
+                            console.log('取回数据问题');
+                            }
+                        },
+                        error: function(){
+                            console.log('没实现异步');
+                        }
+                    });
+                }else{
+                    alert('请填写完整');
+                }
+            });
         }
     }
 

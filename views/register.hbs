@@ -1,17 +1,30 @@
 {{#section 'head'}}
-    <title>yike1</title>
+    <title>新友注册</title>
     <link rel="stylesheet" type="text/css" href="css/register.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
 {{/section}}
-<h3>注册</h3>
-<p>信息：{{title}}</p>
-<label>用户名</label><input type="text" name="name" class="name" placeholder="请取一个名字">
-<span class="judge-name"></span></br>
-<label>邮箱</label><input type="email" name="email" class="email" placeholder="请输入注册邮箱">
-<span class="judge-email"></span></br>
-<label>密码</label><input type="password" name="pwd" class="pwd">
-<span class="judge-pwd"></span></br>
-<button class="submit">注册</button>
-<a href="./">登录</a>
+<div class="main">
+	<div class="bg"></div>
+	<div class="content">
+		<div class="newslefft">
+			<div class="inputs">
+				<label>用户</label><input type="text" name="name" class="name" placeholder="请取一个名字">
+				<span class="judge-name"></span>
+			</div>
+			<div class="inputs">
+				<label>邮箱</label><input type="email" name="email" class="email" placeholder="请输入注册邮箱">
+				<span class="judge-email"></span>
+			</div>
+			<div class="inputs">
+				<label>密码</label><input type="password" name="pwd" class="pwd">
+				<span class="judge-pwd"></span>
+			</div>
+			<button class="submit">注册</button>
+			<div class="register"><a href="./">登录</a></div>
+		</div>
+	</div>
+</div>
 {{#section 'jquery'}}
+	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>
 	<script src="/js/register.js" type="text/javascript"></script>
 {{/section}}

@@ -7,6 +7,7 @@
             this._clickEmail();
             this._clickPwd();
             this._clickSubmit();
+            this._widthHei();
             var _this = this;
 
         },
@@ -24,7 +25,7 @@
 						if(aa>0){
 							html += '该邮箱已注册！';
 						}else{
-							html +='<i>1</i>';
+							html +='<i></i>';
 						}
 						$('.judge-email').html(html);
 					}
@@ -49,9 +50,9 @@
 					if(data.success){
 						var aa = data.rest;
 						if(aa>0){
-							html += '该用户名已注册！';
+							html += '用户名已注册！';
 						}else{
-							html +='<i>1</i>';
+							html +='<i></i>';
 						}
 						$('.judge-name').html(html);
 					}
@@ -155,6 +156,16 @@
 	            }       
 	        })
         },
+        // 移动端适应
+        _widthHei : function(){                               
+			if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+	            //$('.content').css('zoom',1.8);
+	        }
+	        else {
+	        	$('html').css('zoom',0.7);
+	            //$(window).attr('location','/yikepc');
+	        }
+	    }
 
     }
 

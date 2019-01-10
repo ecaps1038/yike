@@ -48,7 +48,6 @@
     background-size:2.5rem;
     background-repeat: no-repeat;
 	background-position:center;
-
 }
 .sex{
 	position: absolute;
@@ -174,7 +173,7 @@
 	display: none;
 }
 
-.addmark, .apply-main{
+.addmark, .apply-main, .changepwd{
 	position: absolute;
 	top: 0;
 	z-index: 1002;
@@ -183,14 +182,14 @@
 	background: #f2f2f2;
 	display: none;
 }
-.addmark .top, .apply-main .top{
+.top, .top{
 	position: relative;
 	height: 1.125rem;
     width: 100%;
     text-align: center;
     border-bottom: 0.0125rem solid #ddd;
 }
-.addmark .top .left,.apply-main .top .left{
+.top .left, .top .left{
 	cursor: pointer;
 	position: absolute;
 	left: 0.3rem;
@@ -200,7 +199,7 @@
 	border: 0;
 	background: #f2f2f2;
 }
-.addmark .top .right,.apply-main .top .right{
+ .top .right, .top .right{
 	cursor: pointer;
 	position: absolute;
 	right: 0.3rem;
@@ -251,4 +250,39 @@
 	bottom: 0;
 	margin: auto;
 	width: 100%;
+}
+
+/*用户修改密码*/
+.pwd-list{
+	position: relative;
+	width: 100%;
+	height: 1.8rem;
+	background: #fff;
+	}
+.old{
+	margin-top: 0.6rem;
+	padding: 0.5rem 0.3rem 0 1.7rem;
+}
+.new{
+	padding: 0rem 0.3rem 0 1.7rem;
+}
+.pwd-list input{
+	width: 100%;
+	padding-left: 0.25rem;
+	border: 0;
+	background: #f4f4f4;
+	border-radius: 0.125rem;
+	margin-top: 0.2rem;
+}
+.old label{
+	position: absolute;
+	left: 0.3rem;
+	top: 0.7rem;
+	font-size: 0.4rem;
+}
+.new label{
+	position: absolute;
+	left: 0.3rem;
+	top: 0.3rem;
+	font-size: 0.4rem;
 }

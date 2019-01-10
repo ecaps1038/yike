@@ -31,17 +31,22 @@ $(document).ready(function(){
 		}
 	});
 
-
 	function goPAGE(){                               
 		if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
-            // window.location.href="移动端url";
-            //alert("mobile")
             $(window).attr('location','/yike');
         }
         else {
-            // window.location.href="pc端url"; 
-            //alert("pc")
             $(window).attr('location','/yikepc');
         }
     }
+    function widthHei(){                               
+		if((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i))) {
+            //$('.content').css('zoom',1.8);
+        }
+        else {
+        	$('html').css('zoom',0.7);
+            //$(window).attr('location','/yikepc');
+        }
+    }
+    widthHei();
 });
