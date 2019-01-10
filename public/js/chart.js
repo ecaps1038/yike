@@ -115,6 +115,7 @@
         socket.on('sendMsg',function(id,msg){
 
             //获取时间点
+            var html = '';
             var nowTime= new Date();
             var changetime = changeTime1(nowTime);
             room[j] =nowTime;

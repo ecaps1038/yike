@@ -5,22 +5,21 @@
 {{/section}}
 <div class="main">
 	<div class="head1">
-		<a href="javascript:history.back(-1)" class="back back-one"></a>
+		<a href="javascript:history.back(-1)" class="left">取消</a>
 		<div class="name group-dt">资料修改</div>
+		<button class="upuser right">确定</button>
 	</div>
 	{{#each vacation}}
 		<input type="hidden" value="{{id}}" class="user-id"/>
-		<div class="img"><a href="/photocut?atl=1&id={{id}}" class="img-200"><img src="/vacation-photo/{{imgurl}}"/></a></div>
+		<div class="img"><a href="/photocut?atl=1&id={{id}}" class="img-200"><img src="/vacation-photo/{{imgurl}}"/><i></i></a></div>
 		<form method="post" class="newslefft" action="/install">
-		<p><label>昵称</label><input type="text" value="{{name}}" name="name" class="name"></p>
-		<p><label>说明</label><textarea name="explain">{{explain}}</textarea></p>
+		<p><span>昵称</span><input type="text" value="{{name}}" name="name" class="name"></p>
+		<p><span>说明</span><textarea name="explain">{{explain}}</textarea></p>
 		{{!-- <p>邮箱:<input type="email" value="{{email}}" name="email" class="email"></p> --}}
 		<input type="hidden" value="{{sex}}" name="usesex" class="sex">
-		<p><label>性别</label><span id="sex"></span></p>
-		<p><label>生日</label></lab<input type="date" name="birth" value="{{birth}}"></p>
+		<p class="sex"><span>性别</span><p id="sex"></p></p>
+		<p class="birth"><span>生日</span><input type="date" name="birth" value="{{birth}}"></p>
 	{{/each}}
-	{{!-- <input type="submit" name="submit" value="确定" class="upuser"> --}}
-		<button class="upuser">确定</button>
 	</form>
 </div>
 {{#section 'jquery'}}

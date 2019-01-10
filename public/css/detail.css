@@ -182,14 +182,14 @@
 	background: #f2f2f2;
 	display: none;
 }
-.top, .top{
+.top{
 	position: relative;
 	height: 1.125rem;
     width: 100%;
     text-align: center;
     border-bottom: 0.0125rem solid #ddd;
 }
-.top .left, .top .left{
+.top .left{
 	cursor: pointer;
 	position: absolute;
 	left: 0.3rem;
@@ -199,7 +199,7 @@
 	border: 0;
 	background: #f2f2f2;
 }
- .top .right, .top .right{
+.top .right{
 	cursor: pointer;
 	position: absolute;
 	right: 0.3rem;
@@ -256,7 +256,7 @@
 .pwd-list{
 	position: relative;
 	width: 100%;
-	height: 1.8rem;
+	height: 2rem;
 	background: #fff;
 	}
 .old{
@@ -268,6 +268,7 @@
 }
 .pwd-list input{
 	width: 100%;
+	height: 1.125rem;
 	padding-left: 0.25rem;
 	border: 0;
 	background: #f4f4f4;
@@ -277,12 +278,12 @@
 .old label{
 	position: absolute;
 	left: 0.3rem;
-	top: 0.7rem;
+	top: 0.9rem;
 	font-size: 0.4rem;
 }
 .new label{
 	position: absolute;
 	left: 0.3rem;
-	top: 0.3rem;
+	top: 0.45rem;
 	font-size: 0.4rem;
 }

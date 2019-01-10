@@ -6,11 +6,7 @@
     box-sizing: border-box;
 }
 /*移动端公共样式*/
-.main input{
-    padding-left: 0.25rem;
-    height: 0.85rem;
-    font-size: 0.4rem;
-}
+
 .padding{
     padding: 0 0.3rem 0 0.3rem;
 }
@@ -49,6 +45,7 @@
 }
 .back{
     position: absolute;
+    cursor: pointer;
     top: 0rem;
     left: 0rem;
     width: 1.0rem;

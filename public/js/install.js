@@ -5,15 +5,15 @@
     			var html = '';
     			if(sex){
     				if(sex == 'male'){
-    					html+='<input type="radio" name="sex" value="male" checked>男'+
-		                  '<input type="radio" name="sex" value="female">女';
+    					html+='<input type="radio" name="sex" value="male" checked><label for="male"></label>男'+
+		                  '<input type="radio" name="sex" value="female"><label for="female"></label>女';
     				}else{
-    					html+='<input type="radio" name="sex" value="male">男'+
-		                  '<input type="radio" name="sex" value="female" checked>女';
+    					html+='<input type="radio" name="sex" value="male"><label for="male"></label>男'+
+		                  '<input type="radio" name="sex" value="female" checked><label for="female"></label>女';
     				}
     			}else{
-    				html+='<input type="radio" name="sex" value="male">男'+
-		              '<input type="radio" name="sex" value="female">女';
+    				html+='<input type="radio" name="sex" value="male"><label for="male"></label>男'+
+		              '<input type="radio" name="sex" value="female"><label for="female"></label>女';
     			}
     			return html;
     		},
@@ -50,5 +50,6 @@
     	$('#sex').html(aaa);
 
         chander.upUser();
+        sideMenuScroll(1,0);
     });
    })(jQuery,window,document);

@@ -1,30 +1,138 @@
 .main{
-	padding-top: 1.125rem;
+	padding-top: 0.8rem;
+}
+.top{
+	position: relative;
+	height: 1.125rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 0.0125rem solid #ddd;
+}
+.head1 .left{
+	cursor: pointer;
+	position: absolute;
+	left: 0.3rem;
+	top: 0rem;
+	line-height: 1.1rem;
+	font-size: 0.4rem;
+	border: 0;
+}
+.head1 .right{
+	cursor: pointer;
+	position: absolute;
+	right: 0.3rem;
+	top: 0rem;
+	font-size: 0.4rem;
+	line-height: 1.1rem;
+	color: #3f56fe;
+	border: 0;
+	background: #fff;
+}
+.main .head1{
+	border-bottom: 0;
 }
 .img{
-	padding: 0.9rem 0 0.6rem;
+	padding: 0.8rem 0 0.6rem;
 	text-align: center;
 }
+.img a{
+	position: relative;
+}
+.img i{
+	position: absolute;
+	bottom: 1rem;
+	left: 1rem;
+	width: 0.5rem;
+	height: 0.5rem;
+	background: url('../images/revise.svg') no-repeat center/0.4rem;
+}
 .newslefft{
-	border-top: 0.0125rem solid #ddd;
-	border-bottom: 0.0125rem solid #ddd;
-	padding: 0.5rem 0.3rem;
+	padding: 0rem 0.3rem;
 }
 .newslefft p{
 	position: relative;
-	height: 1.25rem;
-	padding-top: 0.2rem;
-	padding-left: 1.0rem;
 }
-.newslefft p label{
+.newslefft p span{
 	position: absolute;
-	left: 0;
-	top: 0.3rem;
+	left: 0.25rem;
+	top: 0.25rem;
 	font-size: 0.4rem;
+	color: #888;
 }
-.newslefft .name{
-	width: 100%;
+.newslefft input, .newslefft textarea{
 	border: 0;
 	border-radius: 0.125rem;
 	background: #f4f4f4;
+	font-size: 0.4rem;
+	margin-bottom: 0.25rem;
+}
+.newslefft textarea{
+	height: 2.0rem;
+	resize: none;
+	width: 100%;
+	padding: 0.25rem 0 0.25rem 1.25rem;
+}
+.newslefft .name {
+	width: 100%;
+	height: 1.125rem;
+	padding-left: 1.25rem;
+}
+.newslefft .birth{
+	width: 100%;
+	height: 1.125rem;
+	border-radius: 0.125rem;
+	background: #f4f4f4;
+	padding-left: 1.25rem;
+}
+.birth input{
+	border: 0;
+	height: 1.125rem;
+	background:none;
+}
+
+#sex{
+	display: block;
+	padding-top: 0.3rem;
+	padding-left: 1.25rem;
+	margin-bottom: 0.9rem;
+	line-height: 0.525rem;
+	height: 0.525rem;
+}
+input[type="radio"] {
+    width: 1.0rem;
+    height: 1rem;
+    opacity: 0;
+    margin-left: 0.6rem;
+    margin-top: -0.25rem;
+    vertical-align: top;
+}
+ 
+label {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    border: 1px solid #999;
+    vertical-align: top;
+    margin: -0.17rem 0.3rem 0 -1rem;
+}
+ 
+/*设置选中的input的样式*/
+/* + 是兄弟选择器,获取选中后的label元素*/
+input:checked+label {
+    background-color: #3f56fe;
+    border: 0.1rem solid #cdd3ff;
+}
+ 
+input:checked+label::after {
+    position: absolute;
+    content: "";
+    width: 5px;
+    height: 10px;
+    top: 3px;
+    left: 6px;
+    border: 2px solid #fff;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg)
 }

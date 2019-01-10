@@ -20,7 +20,7 @@
 	background: #fff url('../images/login/lg-logo.png') no-repeat center 0.8rem/2.5rem;
 	box-shadow: 0 0.15rem 0.3rem rgba(0,0,0,0.1);
 	border-radius: 0.125rem;
-	padding: 3.65rem 0.8rem 0.8rem 0.8rem;
+	padding: 3.5rem 0.8rem 0.8rem 0.8rem;
 }
 .room{
 	font-size: 0.3rem;
@@ -30,6 +30,10 @@
 }
 .inputs{
 	position: relative;
+	border: 1px solid #ddd;
+	border-radius: 0.125rem;
+	margin-bottom: 0.3rem;
+	padding: 0.0125rem;
 }
 .newslefft label{
 	font-size: 0.4rem;
@@ -39,15 +43,14 @@
 	top: 0;
 }
 .newslefft input,.newslefft button{
-	border: 1px solid #ddd;
+	border: 0px;
 	border-radius: 0.125rem;
 	height: 1.125rem;
 	font-size: 0.4rem;
-	line-height: 1.125rem;
+	/*line-height: 1.12rem;*/
 	padding: 0 0.15rem 0 1.25rem;
 	width: 100%;
 	background: #fff;
-	margin-bottom: 0.3rem;
 }
 .newslefft .log-submit{
 	padding: 0;
@@ -60,7 +63,7 @@
 	height: 0.5rem;
 	width: 100%;
 	border-top: 1px solid #dbdff9;
-	margin-top: 0.5rem;
+	margin-top: 0.8rem;
 }
 .register a{
 	position: absolute;
