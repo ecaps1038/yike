@@ -26,11 +26,13 @@
                         	if(ver.intro){
                         		explain = ver.intro;
                         	}
-                        	html +='<a href="/photocut?atl=3&id='+id+'"><img src="/group-photo/'+ver.icon+'" style="width:100px;" /></a>'+
-							'<p>群名称：<input type="text" value="'+ver.name+'" name="name" disabled class="inputs">'+
-                            '<span class="change-name change"> 更改 </span><span class="sub-change-name sub-chg"> 确定</span></p>'+
-							'<p>群说明：<textarea name="explain" class="inputs" disabled>'+explain+'</textarea>'+
-                            '<span class="change-explain change"> 更改 </span><span class="sub-change-exp sub-chg"> 确定</span></p></p>';
+                        	html +='<div class="img"><a href="/photocut?atl=3&id='+id+
+                            '" class="img-200"><img src="/group-photo/'+ver.icon+'"/><i></i></a></div>'+
+                            '<div class="inf-head"><p>群信息</p><span>修改</span></div>'+
+							'<div class="newslefft"><p><span>群名称</span><input type="text" value="'+ver.name+'" name="name" class="inputs name">'+
+                            
+							'<p><span>群说明</span><textarea name="explain" class="inputs">'+explain+'</textarea>'+
+                            '</div>';
                         });
                         grpInf.html(html);
                     }else{

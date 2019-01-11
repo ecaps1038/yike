@@ -81,6 +81,57 @@ exports.showMessage = function(req,res,from,to){
     });
 
 };
+//获取数据库聊天数据
+exports.showMessage1 = function(req,res,from,to,nowPage){
+    var search={
+        $or : [ //多条件，数组
+            {'fromUserID': from,'toUserID':to},
+            {'fromUserID': to,'toUserID':from}
+        ]
+    };
+    var pageSize = 8;
+    var skipnum = (nowPage - 1) * pageSize;   //跳过数
+    //var search = {'fromUserID': from,'toUserID': to};
+    var out = {};
+    var query = message.find({});
+    //根据userID查询
+    query.where(search);
+     //按照最后会话时间倒序排列
+    query.sort({'dateTime':-1});
+    //跳过数
+    query.skip(skipnum);
+    //一页多少条
+    query.limit(pageSize);
+    //查询结果
+    query.exec().then(function(result){
+        var context = {
+                vacation : result.map(function(ver){
+                    //将对应的信息标为已读
+                    if(ver.status==0 && ver.toUserID==from){
+                        messagedb.read(to,from);
+                    }
+                    var now = new Date();
+                    if(now-ver.dateTime>1000*60*60*18){
+                        var lasttime = date.DateDetail(ver.dateTime);
+                    }else{
+                        var lasttime = date.DateHouse(ver.dateTime);
+                    }
+                    return {
+                        message: ver.postMessages,
+                        status : ver.status,
+                        fromUserID : ver.fromUserID,
+                        toUserID: ver.toUserID,          
+                        dateTime: lasttime, 
+                        timeInt: ver.dateTime.getTime(),
+                    }
+                })
+            };
+            //console.log(context);
+            res.send({success:true,context});
+        }).catch(function(err){
+        console.log(err);
+    });  
+};
 
 //统计未读数
 exports.getcount = function(res,userid,friendid){

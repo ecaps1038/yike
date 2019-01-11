@@ -2,6 +2,8 @@ var User = require("./userdb.js");
 var userdb = require("./userdbserver.js");
 var Friend = require("./friendsdb.js");
 var date = require('./date.js');
+var bcrypt = require('bcryptjs');
+var bcrypt1 = require('./bcrypt.js');
 
 //修改朋友备注名
 exports.markName = function(res,cont,id,usid){
@@ -67,3 +69,31 @@ exports.upUser = function(req,res,id){
 	userdb.update(id,updatestr);
 	res.send({success:true});
 }
+
+//修改用户密码
+exports.changePwd = function(res,old,news,id){
+    var wherestr = {'_id':id};
+    var out = {'pwd':1};
+    User.find(wherestr, out, function(err, ress){
+        if (err) {
+            console.log("查询失败：" + err);
+            return res.redirect('/');
+        }
+        else {
+            ress.map(function(ver){
+                const pwdMatchFlag = bcrypt.compareSync(old, ver.pwd);
+                if(pwdMatchFlag){
+                    //匹配成功
+                    var pwd = bcrypt1.bcrypts(news);
+                    var updatestr = {'pwd': pwd};
+                    userdb.update(id,updatestr);
+                    res.send({success:true,tep:0});
+                }else{
+                    console.log('原密码错误');
+                    res.send({success:true,tep:1});
+                }            
+            })
+        }
+    })
+};
+

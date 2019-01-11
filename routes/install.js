@@ -10,6 +10,14 @@ module.exports = function(app){
 		//console.log(cont+';'+id+';'+usid);
 		install.markName(res,cont,id,usid);
 	});
+	//修改用户名
+	app.post('/detail/changepwd',function(req,res){
+		var old = req.body.old;
+		var news = req.body.news;
+		var id = req.session.userId;
+		install.changePwd(res,old,news,id);
+	});
+
 	app.get('/install',function(req,res){
 		var id = req.session.userId;
 		if(id){

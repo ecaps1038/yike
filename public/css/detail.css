@@ -131,7 +131,7 @@
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: #f2f2f2;
+	background: #f4f4f4;
 	padding-top: 1.8rem;
 }
 .user-more .head1{
@@ -179,7 +179,7 @@
 	z-index: 1002;
 	height: 100%;
 	width: 100%;
-	background: #f2f2f2;
+	background: #f4f4f4;
 	display: none;
 }
 .top{
@@ -197,7 +197,7 @@
 	line-height: 1.1rem;
 	font-size: 0.4rem;
 	border: 0;
-	background: #f2f2f2;
+	background: #f4f4f4;
 }
 .top .right{
 	cursor: pointer;
@@ -208,7 +208,7 @@
 	line-height: 1.1rem;
 	color: #3f56fe;
 	border: 0;
-	background: #f2f2f2;
+	background: #f4f4f4;
 }
 .addmark .markname{
 	height: 1.5rem;
@@ -220,6 +220,7 @@
     border-bottom: 0.0125rem solid #ddd;
 }
 .apply-main .reason{
+	margin-top: 0.75rem;
 	height: 2.8rem;
 	resize: none;
 	width: 100%;
@@ -227,6 +228,7 @@
 	padding: 0.3rem;
 	font-size: 0.425rem;
 	line-height: 0.74rem;
+    border-top: 0.0125rem solid #ddd;
     border-bottom: 0.0125rem solid #ddd;
 }
 

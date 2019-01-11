@@ -158,25 +158,31 @@
                     if(news.length<6){
                         alert('密码不得少于6位数');
                     }else{
-                        alert('go');
                         //异步添加用户备注
-                        // var _id = $(this).attr('data-id');
-                        // $.ajax({
-                        //     url: '/detail/changepwd',
-                        //     type: 'POST',
-                        //     data: {old:old,news:news,id:_id},
-                        //     success: function(data){
-                        //         if(data.success){
-                        //             //刷新当前页面
-                        //             window.location.reload();
-                        //         }else{
-                        //         console.log('取回数据问题');
-                        //         }
-                        //     },
-                        //     error: function(){
-                        //         console.log('没实现异步');
-                        //     }
-                        // });
+                        var _id = $(this).attr('data-id');
+                        $.ajax({
+                            url: '/detail/changepwd',
+                            type: 'POST',
+                            data: {old:old,news:news},
+                            success: function(data){
+                                if(data.success){
+                                    var tep = data.tep;
+                                    if(tep == 0){
+                                        //刷新当前页面
+                                        window.location.reload();
+                                    }else if(tep == 1){
+                                        alert('输入原密码有误！');
+                                        $('.old-pwd').val('');
+                                        $('.new-pwd').val('');
+                                    }
+                                }else{
+                                console.log('取回数据问题');
+                                }
+                            },
+                            error: function(){
+                                console.log('没实现异步');
+                            }
+                        });
                     }
                 }else{
                     alert('请填写完整');

@@ -8,7 +8,7 @@
     text-align: center;
     border-bottom: 0.0125rem solid #ddd;
 }
-.head1 .left{
+.head .left{
 	cursor: pointer;
 	position: absolute;
 	left: 0.3rem;
@@ -17,7 +17,7 @@
 	font-size: 0.4rem;
 	border: 0;
 }
-.head1 .right{
+.head .right{
 	cursor: pointer;
 	position: absolute;
 	right: 0.3rem;
@@ -28,11 +28,11 @@
 	border: 0;
 	background: #fff;
 }
-.main .head1{
-	border-bottom: 0;
+.main .head{
+	border-bottom: 0.0125rem solid #ddd;
 }
 .img{
-	padding: 0.8rem 0 0.6rem;
+	padding: 0.8rem 0 0.4rem;
 	text-align: center;
 }
 .img a{
@@ -47,7 +47,10 @@
 	background: url('../images/revise.svg') no-repeat center/0.4rem;
 }
 .newslefft{
-	padding: 0rem 0.3rem;
+	padding: 0.525rem 0.3rem;
+	background: #fff;
+	border-top: 0.0125rem solid #ddd;
+	border-bottom: 0.0125rem solid #ddd;
 }
 .newslefft p{
 	position: relative;
@@ -67,7 +70,7 @@
 	margin-bottom: 0.25rem;
 }
 .newslefft textarea{
-	height: 2.0rem;
+	height: 2.45rem;
 	resize: none;
 	width: 100%;
 	padding: 0.25rem 0 0.25rem 1.25rem;
