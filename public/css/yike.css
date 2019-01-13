@@ -62,7 +62,7 @@
 	display:none;
 }
 .current{
-	background: #F4F4F9;
+	background: #F4F4F4;
 }
 .add .icon{
 	display: inline-block;
@@ -102,7 +102,7 @@
 	margin-top: 0.2rem;
 	padding: 0.25rem;
 	border-radius: 0.15rem;
-	background: #F4F4F9;
+	background: #F4F4F4;
 }
 .adduser .add-place .img-80{
 	margin: 0 auto;
@@ -138,15 +138,16 @@
 	overflow: hidden;
 }
 .male{
-	background: url('../images/sex/male.png') no-repeat center /0.5rem;
+	background: rgba(39,136,255,0.8) url('../images/sex/male.svg') no-repeat center/0.3rem;
 }
 .female{
-	background: url('../images/sex/female.png') no-repeat center /0.5rem;
+	background: rgba(255,75,75,0.8) url('../images/sex/female.svg') no-repeat center/0.3rem;
 }
 .asexual{
-	background: url('../images/sex/asexual.png') no-repeat center /0.5rem;
+	background: rgba(1,207,152,0.8) url('../images/sex/asexual.svg') no-repeat center/0.3rem;
 }
 .aggree{
+	cursor: pointer;
 	display: inline-block;
 	width: 1.5rem;
 	height: 0.75rem;
@@ -159,6 +160,7 @@
 	margin-top: 0.25rem;
 }
 .disaggree{
+	cursor: pointer;
 	display: inline-block;
 	width: 1.5rem;
 	height: 0.75rem;
@@ -183,7 +185,7 @@
 	background: #fff;
 }
 .list:active{
-	background: #F4F4F9;
+	background: #F4F4F4;
 }
 .list .user-list{
 	text-decoration: none;

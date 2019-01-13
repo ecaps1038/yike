@@ -1,15 +1,103 @@
-#clipArea {
-	margin: 20px;
-	height: 400px;
-	width: 400px;
+.main{
+	padding-top: 1.125rem;
+	width: 100%;
+	height: 100%;
 }
-#file,
-#clipBtn {
-	margin: 20px;
+.main .back{
+	line-height: 1.125rem;
+	width: 1.2rem;
+	font-size: 0.4rem;
+	padding-left: 0.28rem;
+}
+.main .head{
+	border: 0.0125rem solid #ddd;
+}
+.cutphoto{
+	display: none;
+}
+/*选择图片*/
+.selects{
+	display: block;
+	padding-top: 2.0rem;
+}
+.files{
+	position: relative;
+	margin: 0 auto;
+	width: 3.5rem;
+	height: 3.5rem;
+	border: 1px dashed #999;
+	border-radius: 50%;
+}
+.files i{
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	margin: auto;
+	display: block;
+	background: #999;
+}
+.files .one{
+	width: 1.6rem;
+	height: 0.05rem;
+}
+.files .two{
+	height: 1.6rem;
+	width: 0.05rem;
+}
+#file{
+	position: absolute;
+	top: 3.0rem;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	width: 4.0rem;
+	height: 4.0rem;
+	background: #ddd;
+	opacity: 0;
+}
+#clipArea {
+	height: 8.5rem;
+	width: 100%;
+}
+#clipArea .photo-clip-view{
 }
 #view {
-	margin: -220px 0px 0 440px;
-	width: 200px;
-	height: 200px;
-	background-color:#fff; 
+	margin: 0.3rem;
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 0.125rem;
+	overflow: hidden;
+	background-color:#f4f4f4; 
+}
+.bot-btn{
+	position: absolute;
+	bottom: 0;
+	padding: 0.3rem 0.3rem;
+	text-align: center;
+	width: 100%;
+}
+.bot-btn button{
+	cursor: pointer;
+	height: 1.0rem;
+	width: 4.0rem;
+	border-radius: 0.125rem;
+	margin: 0 0.15rem;
+	font-size: 0.45rem;
+}
+.bot-btn .btn-in{
+	display: inline-block;
+	width: 8.8rem;
+}
+#clipBtn{
+	border: 1px solid #3f56fe;
+	background: #fff;
+	color: #3f56fe;
+}
+.clipphoto{
+	border: 0;
+	background: #3f56fe;
+	color: #fff;
+	opacity: 0.5;
 }

@@ -144,7 +144,7 @@
         },
         //用户修改密码
         _changePwd : function(){
-             $('body').on('click', '.pwd span',function(){
+             $('body').on('click', '.pwd',function(){
                 $('.changepwd').show();
             });
             $('body').on('click', '.changepwd .left',function(){

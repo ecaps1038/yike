@@ -1,13 +1,14 @@
 $(document).ready(function(){
 	//上传头像
 	var clipArea = new bjj.PhotoClip("#clipArea", {
-		size: [260, 260],
+		size: [400, 400],
 		outputSize: [640, 640],
 		file: "#file",
 		view: "#view",
 		ok: "#clipBtn",
 		loadStart: function() {
 			console.log("照片读取中");
+			showCut();
 		},
 		loadComplete: function() {
 			console.log("照片读取完成");
@@ -56,4 +57,15 @@ $(document).ready(function(){
 			}
 		});
 	}
+	//显示裁剪界面
+	function showCut(){
+		$('.selects').css('display','none');
+		$('.cutphoto').css('display','block');
+	}
+	//裁剪后能确定
+	$('#clipBtn').on('click',function(){
+		$('.clipphoto').css('opacity',1).attr('disabled',false);
+	})
+	sideMenuScroll(0,0);
+	
 });

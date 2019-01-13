@@ -1,0 +1,115 @@
+.main{
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+/*群信息*/
+.groupmsg{
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1002;
+	height: 100%;
+	width: 100%;
+	background: #f2f2f2;
+}
+.groupmsg .head1{
+	background: #fff;
+	display: none;
+	transition: all 2s;
+}
+.groupmsg .back{
+	cursor: pointer;
+}
+.groupmsg-in{
+	height: 100%;
+	width: 100%;
+	padding-bottom: 0.3rem;
+	overflow-y: auto;
+}
+.groupmsg .group-icon{
+	position: relative;
+	width: 100%;
+	height: 5.75rem;
+	overflow: hidden;
+}
+.groupmsg .group-icon img{
+	width: 100%;
+}
+.group-icon .group-name{
+	position: absolute;
+	bottom: 0.4rem;
+	left: 0.3rem;
+	font-size: 0.525rem;
+	color: #fff;
+	text-shadow: 0 0 0.075rem rgba(0,0,0,0.2);
+
+}
+.groupmsg .user{
+	padding: 0.25rem 0.3rem;
+	background: #fff;
+	border-bottom: 0.0125rem solid #ddd;
+}
+.groupmsg .user li{
+	width: 20%;
+	padding-top: 0.25rem;
+	display: inline-block;
+	text-align: center;
+}
+.user li a{
+	width: 1.75rem;
+	display: inline-block;
+	text-decoration: none;
+}
+.user li a p{
+	font-size: 0.3rem;
+	color: #666;
+	line-height: 0.425rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.user li .remind{
+	color: #3f56fe;
+}
+.user li .add-member .add-icon{
+	border: 1px solid #ccc;
+	background: url('../images/invite.svg') no-repeat center/0.5rem;
+}
+.group-intro{
+	margin-top: 0.3rem;
+	padding-bottom: 0.3rem;
+}
+.group-intro .title{
+	border: 0;
+}
+
+.intro{
+	font-size: 0.375rem;
+	display: block;
+	color: #888;
+	line-height: 0.575rem;
+	margin-top: -0.15rem;
+}
+
+/*页面按钮*/
+.user-oper{
+	position: absolute;
+	bottom: 0;
+	height: 1.4rem;
+	width: 100%;
+	padding:0.2rem 0.3rem; 
+	background: #f2f2f2;
+}
+.manage .manage-tb, .manage .join-group{
+	display: inline-block;
+	height: 1.0rem;
+	width: 100%;
+	background: #3f56fe;
+	border-radius: 0.125rem;
+	border: 0;
+	text-align: center;
+	color: #fff;
+	line-height: 1.0rem;
+	font-size: 0.45rem;
+}

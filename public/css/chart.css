@@ -11,7 +11,7 @@
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background: #f4f4f4;
+	background: #f2f2f2;
 	overflow-y: auto;
 }
 #message{
@@ -78,7 +78,7 @@
 	left: 0;
 	width: 100%;
 	height: 1.225rem;
-	background: #F4f4f4;
+	background: #f2f2f2;
 	border-top: 0.0125rem solid #bbb;
 	z-index: 1000;
 }

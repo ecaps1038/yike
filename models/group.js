@@ -284,6 +284,25 @@ exports.groupMark = function(req,res){
 exports.updateGroup = function(req,res){
     var name = req.body.name;
     var grpid = req.body.id;
+    var intro = req.body.explain;
+
+    var wherestr = {'_id':grpid};
+    var updatestr = {'name': name, 'intro':intro};     
+
+    Group.updateOne(wherestr, updatestr, function(err, rest){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            res.send({success:true});
+        }
+    });
+};
+
+//修改群内容信息
+exports.updateGroup1 = function(req,res){
+    var name = req.body.name;
+    var grpid = req.body.id;
     var main = req.body.main;
     var wherestr = {'_id':grpid};
     if(name == "name"){

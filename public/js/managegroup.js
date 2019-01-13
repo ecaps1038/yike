@@ -7,9 +7,9 @@
             this._gorupUser();
             this._removeUser();
             this._dissolveGroup();
+            this._changeTb();
             this._length = 0;
       },
-       
         // 获取群信息
         _initGroup : function(){
         	var id = $('.id').val();
@@ -28,10 +28,10 @@
                         	}
                         	html +='<div class="img"><a href="/photocut?atl=3&id='+id+
                             '" class="img-200"><img src="/group-photo/'+ver.icon+'"/><i></i></a></div>'+
-                            '<div class="inf-head"><p>群信息</p><span>修改</span></div>'+
+                            '<span class="inf-head">修改</span>'+
 							'<div class="newslefft"><p><span>群名称</span><input type="text" value="'+ver.name+'" name="name" class="inputs name">'+
                             
-							'<p><span>群说明</span><textarea name="explain" class="inputs">'+explain+'</textarea>'+
+							'<p><span>群说明</span><textarea name="explain" class="inputs explain">'+explain+'</textarea>'+
                             '</div>';
                         });
                         grpInf.html(html);
@@ -50,35 +50,30 @@
             var fal = false;
             var that = this;
             var id = $('.id').val();
-            $('body').on('click', '.inf-form .change', function(){
-                var $that = $(this);
-                if(!fal){
-                    $that.siblings('.sub-chg').show();
-                    $that.siblings('.inputs').attr('disabled',false);
-                    $that.html('取消');
-                    fal = true;
-                }else{
-                    $that.siblings('.sub-chg').hide();
-                    $that.siblings('.inputs').attr('disabled',true);
-                    $that.html(' 更改');
-                    fal = false;                
-                }
+            $('body').on('click', '.inf-form .inputs', function(){
+                $('.inf-head').css('opacity', 1);
+                
+            });
+            $('body').on('click', '.inf-form .inf-head', function(){
+                $('.inf-head').css('opacity', 1);
+                
             });
             //提交群名称或群资料
-            $('body').on('click','.inf-form .sub-chg',function(){
-                var main = $(this).siblings('.inputs').val();
-                var name = $(this).siblings('.inputs').attr("name");
-                if(main){
+            $('body').on('click','.inf-head',function(){
+                // var name = $(this).siblings('.inputs').val();
+                // var name = $(this).siblings('.inputs').attr("name");
+                var name = $('.newslefft .name').val();
+                var explain = $('.newslefft .explain').val();
+                if(name){
                     $.ajax({
                         url: '/groupchart/managegroup/update',
                         type: 'POST',
-                        data: {main: main, name: name, id: id},
+                        data: {name: name, explain: explain, id: id},
                         success: function(data){
                             if(data.success){
                                 //刷新当前页面
                                 //alert('添加成功');
-                                //window.location.reload();
-                                that._initGroup();
+                                //that._initGroup();
                             }else{
                             console.log('取回数据问题');
                             }
@@ -108,12 +103,11 @@
                             }else{
                                 usname = i.name;
                             }
-                            html += '<li><img src="/vacation-photo/'
-                            +i.imgurl+'"/>';
+                            html += '<li class="user-select"><div class="img-80"><img src="/vacation-photo/'+i.imgurl+'"/></div>';
                             if(i.id == userid){
-                                html += '<span style="color:#00aaee;">'+usname+'</span></li>';
+                                html += '<p class="name"><span>'+usname+'</span></p></li>';
                             }else{
-                                html += '<span>'+usname+'</span><button class="remove-user" value="'+i.id+'">移出群</button></li>';
+                                html += '<p class="name"><span>'+usname+'</span></p><button class="remove-user" value="'+i.id+'">移出群</button></li>';
                             }
                         });
                         $('.user-form ul').html(html);
@@ -153,25 +147,45 @@
         },
         _dissolveGroup : function(){
             var id = $('.id').val();
-            $('body').on('click','.dissolve button',function(){
-                $.ajax({
-                    url: '/groupchart/managegroup/dissolveGroup',
-                    type: 'POST',
-                    data: {id: id},
-                    success: function(data){
-                        if(data.success){
-                            //跳转页面
-                            alert('删除成功');
-                            $(location).attr('href', '/yike');
-                            //that._gorupUser();
-                        }else{
-                        console.log('取回数据问题');
+            $('body').on('click','.dissolve button',function(ev){
+                ev = ev || window.event;
+                if(confirm("确定解散该群?")){
+                    $.ajax({
+                        url: '/groupchart/managegroup/dissolveGroup',
+                        type: 'POST',
+                        data: {id: id},
+                        success: function(data){
+                            if(data.success){
+                                //跳转页面
+                                alert('删除成功');
+                                $(location).attr('href', '/yike');
+                                //that._gorupUser();
+                            }else{
+                            console.log('取回数据问题');
+                            }
+                        },
+                        error: function(){
+                            console.log('没实现异步');
                         }
-                    },
-                    error: function(){
-                        console.log('没实现异步');
-                    }
-                });    
+                    });  
+                }else{
+                    return false;
+                }
+            })
+        },
+        //群信息于群列表切换
+        _changeTb : function(){
+            $('.title .inform').on('click',function(){
+                $(this).addClass('selected');
+                $('.title .users').removeClass('selected');
+                $('.group-user').css('display','none');
+                $('.group-inf').css('display','block');
+            });
+            $('.title .users').on('click',function(){
+                $(this).addClass('selected');
+                $('.title .inform').removeClass('selected');
+                $('.group-inf').css('display','none');
+                $('.group-user').css('display','block');
             })
         }
     }
@@ -181,5 +195,6 @@
     })
 
     window.training = training;
+    sideMenuScroll(0,0);
 
 }(jQuery,window));

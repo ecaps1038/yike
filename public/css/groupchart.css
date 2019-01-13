@@ -11,7 +11,7 @@
 	left: 0;
 	height: 100%;
 	width: 100%;
-	background: #f4f4f4;
+	background: #f2f2f2;
 	overflow-y: auto;
 }
 #message{
@@ -78,7 +78,7 @@
 	left: 0;
 	width: 100%;
 	height: 1.225rem;
-	background: #F4f4f4;
+	background: #F2f2f2;
 	border-top: 0.0125rem solid #bbb;
 	z-index: 1000;
 }
@@ -187,35 +187,20 @@
 	border: 1px solid #ccc;
 	background: url('../images/invite.svg') no-repeat center/0.5rem;
 }
-
-.groupmsg .mlist{
-	position: relative;
-	background: #fff;
+.group-intro{
 	margin-top: 0.3rem;
-	padding: 0.3rem;
-	border-top: 0.0125rem solid #ddd;
-	border-bottom: 0.0125rem solid #ddd;
+	padding-bottom: 0.3rem;
 }
-.mlist .title{
-	font-size: 0.425rem;
+.group-intro .title{
+	border: 0;
 }
-.mlist .intro{
+
+.intro{
 	font-size: 0.375rem;
+	display: block;
 	color: #888;
 	line-height: 0.575rem;
-	padding-top: 0.05rem;
-}
-.mlist .mark-inner{
-	position: absolute;
-	right: 0.3rem;
-	top: 0.3rem;
-	padding-right: 0.5rem;
-	background: url('../images/go.svg') no-repeat center right/0.2rem;
-}
-.mlist .mark-inner span{
-	font-size: 0.375rem;
-	color: #888;
-	line-height: 0.575rem;
+	margin-top: -0.15rem;
 }
 
 
@@ -278,9 +263,12 @@
 	background: #f2f2f2;
 }
 .friend-li{
-	height: 100%;
-	padding-bottom: 1.825rem;
+	margin-top: 0.5rem;
+	margin-bottom: 1.825rem;
+	border-top: 0.0125rem solid #ddd;
+	border-bottom: 0.0125rem solid #ddd;
 	overflow-y: auto;
+	height: 100%;
 }
 .friend-li .user-select{
 	width: 100%;
@@ -311,10 +299,6 @@
 	border-bottom: 0.0125rem solid #ddd;
 }
 .friend-li .user-select:last-child .name{
-	margin-left: 2.5rem;
-	font-weight: lighter;
-	font-size: 0.425rem;
-	line-height: 1.5rem;
 	border-bottom:0;
 }
 .in-group-tip{
@@ -371,6 +355,7 @@
 	height: 1.125rem;
     width: 100%;
     text-align: center;
+    background: rgba(255,255,255,0.96);
     border-bottom: 0.0125rem solid #ddd;
 }
 .groupmsg .top .left{
@@ -381,7 +366,7 @@
 	line-height: 1.1rem;
 	font-size: 0.4rem;
 	border: 0;
-	background: #f2f2f2;
+	background: #fff;
 }
 .groupmsg .top .right{
 	cursor: pointer;
@@ -392,14 +377,16 @@
 	line-height: 1.1rem;
 	color: #3f56fe;
 	border: 0;
-	background: #f2f2f2;
+	background: #fff;
 }
 .change .change-mark{
+	margin-top: 0.5rem;
 	height: 1.5rem;
 	width: 100%;
 	border: 0;
 	padding: 0.3rem;
 	font-size: 0.425rem;
 	line-height: 0.9rem;
+    border-top: 0.0125rem solid #ddd;
     border-bottom: 0.0125rem solid #ddd;
 }

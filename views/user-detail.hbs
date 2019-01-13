@@ -35,17 +35,17 @@
 				<div class="name group-dt">更多</div>
 			</div>
 			<div class="more-list">
-				<p>昵称<span>{{name}}</span></p>
-				<p class="mark">备注<span>{{markname}}</span></p>
+				<p class="list1">昵称<span>{{name}}</span></p>
+				<p class="mark list1 goto">备注<span>{{markname}}</span></p>
 			</div>
 			<div class="more-list">
-				<p>邮箱<span>{{email}}</span></p>
-				<p>生日<span>{{birth}}</span></p>
-				<p>注册<span>{{registerdate}}</span></p>
+				<p class="list1">邮箱<span>{{email}}</span></p>
+				<p class="list1">生日<span>{{birth}}</span></p>
+				<p class="list1">注册<span>{{registerdate}}</span></p>
 			</div>
 			{{#if admin}}
 				<div class="more-list">
-					<p class="pwd mark">密码<span>修改密码</span></p>
+					<p class="pwd list1 goto">密码<span>修改密码</span></p>
 				</div>
 				<div class="tb"><a href="/logout" class="quit warning">退出</a></div></div>
 				<div class="tb"><a href="/install" class="tb-inner">修改</a></div>
@@ -70,7 +70,7 @@
 				</div>
 				<div class="tb"><button class="delete warning" data-id="{{id}}">删除好友</button></div></div>
 				<div class="tb"><a href="/chart?id={{id}}" class="tb-inner">聊天</a></div>
-				{{else}}
+			{{else}}
 				</div>
 				<div class="tb"><button class="apply tb-inner">添加好友</button></div>
 				<div class="apply-main">

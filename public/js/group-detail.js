@@ -1,9 +1,9 @@
 ;(function($, window, document, undefined){
     $(document).ready(function(){
-        var adminid;
+        var html='';
+        var userid,myimgurl,myname,adminid,groupname,groupicon;
         var groupid = $('.id').val();
         var usid = $('.usid').val();
-        var $oper = $('.user-oper');
 
         //初始化页面
         function initPage(){
@@ -19,13 +19,22 @@
                     if(data.success){
                         var aa = data.context.vacation;
                         aa.map(function(ver){
+                            userid = ver.myid;
                             adminid = ver.adminid;
-                            html +='<img src="/group-photo/'+ver.icon+'" style="width:100px;" />'+
-                                '<span class="name">'+ver.name+'<i></i></span>'+
-                                '<p>'+ver.intro+'</p>';
+                            myimgurl = ver.myimgurl;
+                            myname = ver.myname;
+                            groupname = ver.name;
+                            groupicon = ver.icon;
+                            html ='<div class="img-64 group-more"><img src="/group-photo/'+ver.icon+'"/></div>'+
+                                '<span class="name">'+ver.name+'<i></i></span>';
                             $('.intro').html(ver.intro);
+
+                            //图片信息
+                            var html1 = '<img src="/group-photo/'+groupicon+'"/><p class="group-name">'+groupname+'</p>';
+                            $('.group-icon').html(html1);
                         });
                         $init.html(html);
+                        
                     }
                     else{
                         console.log('出现问题1');
@@ -40,14 +49,14 @@
 
         //获取群成员列表
         function showUsers(){
-            var html='',num = 0,usname,ingroup= '';
-        	 $.ajax({
+            var html='',num = 0,usname,groupIn = 0;
+             $.ajax({
                 url: '/showUser',
                 type: 'POST',
                 data: {groupid:groupid},
                 success: function(data){
-                	if(data.success){
-                		var aa = data.result.vacation;
+                    if(data.success){
+                        var aa = data.result.vacation;
                         //console.log(aa);
                         var tt = aa.map(function(i){
                             if(i.markname){
@@ -55,32 +64,27 @@
                             }else{
                                 usname = i.name;
                             }
-                            //判断是否已经加入该群
-                            if(i.id == usid){
-                            	ingroup = 1;
+                            //自己的名称
+                            if(i.id == userid){
+                                groupIn = 1;                          
                             }
-                        	html += '<li><a href="/detail?id='+i.id+'"><div class="img"><img src="/vacation-photo/'
-                        	+i.imgurl+'"/>'+'</div>';
-                            if(i.id == adminid){
-                                html += '<span style="color:#00aaee;">'+usname+'</span></a>';
-                            }else{
-                                html += '<span>'+usname+'</span></a>';
-                            }
-                            
+                            html += '<li><a href="/detail?id='+i.id+'"><div class="img-100"><img src="/vacation-photo/'
+                            +i.imgurl+'"/>'+'</div>';
+                            html += '<p>'+usname+'</p></a></li>';
                         });
-                        if(ingroup){
-                            oper = '<a href="/groupchart?id='+groupid+'" class="chart">进入群</a>';
+                        if(groupIn == 1){
+                            oper = '<div class="manage"><a href="/groupchart?id='+groupid+'" class="control manage-tb">进入群聊</a></div>';
                         }else{
-                            oper = '<button class="join-group">加入该群</button>';
+                            oper = '<div class="manage"><p class="join-group control">加入群</p></div>';
                         }
-                        $oper.html(oper);
-
+                        var $oper = $('.user-oper');
+                        $oper.html(oper);                        
                         $('.groupmsg .user').html(html);
-                        num = $('.groupmsg .user li').length;
+                        num = $('.groupmsg .user li').length-1;
                         $('.name i').html('('+num+')');
-	                }else{
-	                	console.log('出现问题1');
-	                }
+                    }else{
+                        console.log('出现问题1');
+                    }
                 },
                 error: function(){
                     console.log('出现问题2');

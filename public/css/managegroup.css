@@ -4,6 +4,12 @@
 .main .head{
 	border: 0.0125rem solid #ddd;
 }
+.head .back{
+	width: 1.2rem;
+	padding-left: 0.3rem;
+	line-height: 1.125rem;
+	font-size: 0.4rem;
+}
 .title{
 	margin: 0.2125rem auto;
 	width: 4.0rem;
@@ -29,7 +35,7 @@
 }
 
 .img{
-	padding: 0.8rem 0 0.6rem;
+	padding: 0.8rem 0 0.4rem 0;
 	text-align: center;
 }
 .img a{
@@ -60,7 +66,7 @@
 .newslefft input, .newslefft textarea{
 	border: 0;
 	border-radius: 0.125rem;
-	background: #f4f4f4;
+	background: #f8f8f8;
 	font-size: 0.4rem;
 	margin-top: 0.1rem;
 }
@@ -77,35 +83,64 @@
 	margin-bottom: 0.3rem;
 }
 .inf-head{
-	height: 1.4rem;
-	padding: 0.3rem;
-}
-.inf-head{
-	
-}
-.inf-head p{
-	float: left;
-	font-weight: bold;
-	font-size: 0.425rem;
-	line-height: 0.8rem;
-}
-.inf-head span{
-	float: right;
+	cursor: pointer;
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 1001;
 	display: inline-block;
-	width: 1.5rem;
 	text-align: center;
-	border: 1px solid #3f56fe;
-	border-radius: 0.125rem;
 	font-size: 0.4rem;
 	color: #3f56fe;
-	line-height: 0.8rem;
+	line-height: 1.125rem;
+	padding-right: 0.3rem;
+	width: 1.2rem;
+	opacity: 0.5;
 }
-
-.sub-chg{display: none;}
 .group-user{
+	margin-top: 0.5rem;
 	display: none;
+	border-top: 0.0125rem solid #ddd;
+	border-bottom: 0.0125rem solid #ddd;
+}
+.group-user .user-select{
+	width: 100%;
+	background: #fff;
+	position: relative;
+}
+.user-select .img-80{
+	float: left;
+	margin: 0.25rem 0.3rem;
+}
+.group-user .user-select .name{
+	margin-left: 1.6rem;
+	font-weight: lighter;
+	font-size: 0.425rem;
+	line-height: 1.5rem;
+	border-bottom: 0.0125rem solid #ddd;
+}
+.group-user .user-select:last-child .name{
+	border-bottom:0;
+}
+.user-select .remove-user{
+	height: 0.7rem;
+	border-radius: 0.125rem;
+	line-height: 0.7rem;
+	padding: 0 0.2rem;
+	background: #feeced;
+	border: 0;
+	color: #ff4b4b;
+	position: absolute;
+	right: 0.3rem;
+	top: 0.4rem;
 }
 
-.dissolve{
-	display: none;
+.dissolve button{
+	margin-top: 0.5rem;
+	line-height: 1.375rem;
+	color: #ff4b4b;
+	width: 100%;
+	border-left: 0;
+	border-right: 0;
+	background: #fff;
 }

@@ -1,14 +1,30 @@
 {{#section 'head'}}
-    <title>yike1</title>
+    <title>yike</title>
     <link rel="stylesheet" type="text/css" href="lib/photo/photocut.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
 {{/section}}
-<a href="javascript:history.back(-1)">取消</a>
-<div id="clipArea"></div>
-<div id="view"></div>
-<input type="file" id="file">
-<button id="clipBtn">截取</button>
-<input type="hidden" value="" class="dataurl">
-<button class="clipphoto" data-link="{{atl}}" data-id="{{id}}">确定</button>
+<div class="main">
+	<div class="bg"></div>
+	<div class="head">
+		<a href="javascript:history.back(-1)" class="back">取消</a>
+		<div class="name group-dt">选择图片</div>
+	</div>
+	<div class="selects">
+		<div class="files"><i class="one"></i><i class="two"></i></div>
+		<input type="file" id="file">
+	</div>
+	<div class="cutphoto">
+		<div id="clipArea"></div>
+		<div id="view"></div>
+		<input type="hidden" value="" class="dataurl">
+		<div class="bot-btn">
+			<div class="btn-in">
+				<button id="clipBtn">截取</button>
+				<button class="clipphoto" data-link="{{atl}}" data-id="{{id}}" disabled="disabled">确定</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 {{#section 'jquery'}}
 	<script src="lib/photo/jquery-2.1.3.min.js"></script>
@@ -16,5 +32,7 @@
 	<script src="lib/photo/hammer.js"></script>
 	<script src="lib/photo/lrz.all.bundle.js"></script>
 	<script src="lib/photo/jquery.photoClip.js"></script>
+	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>
+	<script src="/js/myfunc.js" type="text/javascript"></script>
 	<script src="lib/photo/index.js"></script>
 {{/section}}

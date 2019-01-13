@@ -4,7 +4,32 @@
     <link rel="stylesheet" type="text/css" href="/css/common.css">
 {{/section}}
 <div class="main">
-	<h3>详情</h3>
+	<input type="hidden" value="{{id}}" class="id">
+	<input type="hidden" value="{{usid}}" class="usid">
+
+	<div class="groupmsg">
+			<div class="head2">
+				<a href="javascript:history.back(-1)" class="back back-two"></a>
+			</div>
+			<div class="head1">
+				<a href="javascript:history.back(-1)" class="back back-one"></a>
+				<div class="name group-dt">群聊资料<i></i></div>
+			</div>
+			<div class="groupmsg-in">
+				<div class="group-icon"></div>
+				<ul class="user"></ul>
+				
+				<div class="group-intro more-list">
+					<p class="title list1">群公告</p>
+					<span class="intro"></span>
+				</div>
+				<div class="mark more-list">
+					<p class="title list1 goto">群内名<span class="mark-name"></span></p>
+				</div>
+			</div>
+			<div class="user-oper"></div>
+		</div>
+	{{!-- <h3>详情</h3>
 	<a href="javascript:history.back(-1)">返回</a>
 	<input type="hidden" value="{{id}}" class="id">
 	<input type="hidden" value="{{usid}}" class="usid">
@@ -13,7 +38,7 @@
 		<h3>群成员</h3>
 		<ul class="user"></ul>
 	</div>
-	<div class="user-oper"></div>
+	<div class="user-oper"></div> --}}
 </div>
 {{#section 'jquery'}}
 	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>

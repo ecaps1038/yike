@@ -6,27 +6,24 @@
 <div class="main">
 	<div class="bg"></div>
 	<div class="head">
-		<a href="javascript:history.back(-1)" class="back back-one"></a>
+		<a href="/groupchart?id={{id}}" class="back">取消</a>
 		<div class="title">
 			<p class="inform selected">群信息</p>
 			<p class="users">群成员</p>
 		</div>
-		<i class="more more1"></i>
 	</div>
 <input type="hidden" value="{{id}}" class="id">
 <input type="hidden" value="{{userid}}" class="userid">
 
 <div class="group-inf">
 	<div class="inf-form"></div>
+	<div class="dissolve"><button class="more-list">解散并清除群</button></div>
 </div>
 <div class="group-user">
-	<h3>群成员</h3>
 	<div class="user-form">
 		<ul></ul>
 	</div>
 </div>
-
-<div class="dissolve"><button>解散并清除群</button></div>
 </div>
 
 {{#section 'jquery'}}
