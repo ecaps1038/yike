@@ -44,7 +44,7 @@
                             if(userid == adminid){
                                 oper = '<div class="manage"><a href="/groupchart/managegroup?id='+groupid+'" class="control manage-tb">管理群</a><p class="quxiao">取消</p></div>';
                             }else{
-                                oper = '<div class="manage"><p class="join-group control">删除并退群</p><p class="quxiao">取消</p></div>';
+                                oper = '<div class="manage"><p class="quit-group control">删除并退群</p><p class="quxiao">取消</p></div>';
                             }
                             $('.intro').html(ver.intro);
                         });
@@ -406,8 +406,8 @@
                         success: function(data){
                             if(data.success){
                                 //返回上一页
-                                //window.location.reload();
-                                $(location).attr('href', '/yike');
+                                window.history.back(-1);
+                                //$(location).attr('href', '/yike');
                             }
                             else{
                                 alert('接收失败');

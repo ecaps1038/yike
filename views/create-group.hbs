@@ -1,18 +1,26 @@
 {{#section 'head'}}
     <title>创建群</title>
     <link rel="stylesheet" type="text/css" href="css/group.css">
+    <link rel="stylesheet" type="text/css" href="/css/common.css">
 {{/section}}
-<h3>创建群聊</h3>
-<a href="javascript:history.back(-1)">放弃</a>
-	<a href="/photocut?atl=2&id=0" class="user-photo"></a>
+<div class="main">
+	<div class="bg"></div>
+	<div class="head">
+		<a href="javascript:history.back(-1)" class="back left">放弃</a>
+		<div class="name group-dt">创建群</div>
+	</div>
+		<div class="scroll">
+		<div class="img"><a href="/photocut?atl=2&id=0" class="user-photo img-200"></a></div>
 
-<p>群名称：<input type="text" name="name" class="group-name"></p>
+		<p class="group-n"><input type="text" name="name" class="group-name" placeholder="给群取个名"></p>
 
-{{!-- 调出好友列表 --}}
-<ul class="friend-li">
-</ul>
-<button class="upuser">确定</button>
-<span class="aaa">点击</p>
+		{{!-- 调出好友列表 --}}
+		<ul class="friend-li">
+		</ul>
+	</div>
+	<div class="put"><button class="put-but upuser">创建<i> </i></button></div>
+</div>
 {{#section 'jquery'}}
+	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>
 	<script src="/js/group.js" type="text/javascript"></script>
 {{/section}}

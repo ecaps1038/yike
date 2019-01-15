@@ -32,7 +32,7 @@
 .judge-name,.judge-email,.judge-pwd{
 	position: absolute;
 	z-index: 100;
-	right: 0.2rem;
+	right: 0.15rem;
 	top: 0.3rem;
 	font-size: 0.3rem;
 	line-height: 0.6rem;

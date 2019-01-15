@@ -106,7 +106,7 @@
                     data: {groupid:groupid,user:user},
                     success: function(data){
                         if(data.success){
-                        	alert('加入成功');
+                        	//alert('加入成功');
                         	showUsers();
                             //window.location.reload();
                         }
@@ -121,6 +121,8 @@
             });
         }
         handleClick();
+
+        sideMenuScroll(1,1);
 
     })
 })(jQuery,window,document);
