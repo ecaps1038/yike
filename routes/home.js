@@ -1,4 +1,5 @@
 var login = require('../models/login');
+var emails = require('../models/email');
 
 module.exports = function(app){
 	app.get('/', function(req, res){
@@ -23,4 +24,10 @@ module.exports = function(app){
 	app.get('/logout', function(req,res) {
         login.logout(req,res);
 	});
+	//忘记密码
+	app.post('/forget',function(req,res){
+		var date = req.body.date;
+		var email = req.body.email;
+		emails.forget(res,date,email);
+	})
 }

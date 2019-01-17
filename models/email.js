@@ -30,3 +30,21 @@ exports.emails = function(email,res){
 		}
 	});
 };
+exports.forget = function(res,date,email){
+	var options = {
+		from : '1334785356@qq.com',
+		to : email,
+		subject : 'yike密码修改',
+		text : '我们在yike相聚',
+		html : '<span>请在这里</span><a href="http://localhost:3000/forget?date='+date+'">点击修改本站密码</a>'
+	};
+	transporter.sendMail(options,function(err,msg){
+		if(err){
+			console.log(err);
+			res.render('register',{title: '邮件发送错误'});
+		}else{
+			console.log('邮件发送成功');
+			//res.render('test',{title:'邮件发送成功！'+msg.accepted})
+		}
+	});
+}

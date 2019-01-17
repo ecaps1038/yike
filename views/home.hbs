@@ -13,7 +13,13 @@
 		<button class="log-submit">登录</button>
 		</form>
 		<div class="register"><a href="./register">新用户注册</a></div>
-		<a href="./forget" class="forget">忘记密码？</a>
+		<button class="forget">忘记密码？</button>
+		<div class="getpwd">
+			<div class="inputs"><input type="text" name="email" placeholder="请输入注册邮箱" value="{{ret}}" class="regemail"></div>
+			<button class="no-send">取消</button>
+			<button class="send-email">邮箱找回</button>
+			<p>发送邮箱只在十分钟内有效！</p>
+		</div>
 	</div>
 </div>
 {{#section 'jquery'}}
