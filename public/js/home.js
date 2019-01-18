@@ -11,8 +11,14 @@ $(document).ready(function(){
 				data: $('.newslefft').serialize(),
 				success: function(data){
 					if(data.success){
-						window.location.reload();
-					}
+							var tep = data.tep;
+							if(tep == 0){
+								goPAGE();
+							}else if(tep == 1){
+								$('.room').html(data.return);
+								$('.pwd').val("");
+							}
+						}
 					else{
 					alert("问题");
 					}
@@ -43,14 +49,8 @@ $(document).ready(function(){
 					data: {date:dd,email:email},
 					success: function(data){
 						if(data.success){
-							var tep = data.tep;
-							if(tep == 0){
-								goPAGE();
-							}else if(tep == 1){
-								$('.room').html(data.return);
-								$('.pwd').val("");
-							}
-							//$(window).attr('location','/yike');
+							alert('邮件发送成功，请尽快打开邮箱验证！')
+							window.location.reload();
 						}
 						else{
 						alert("问题");

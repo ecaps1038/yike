@@ -29,5 +29,10 @@ module.exports = function(app){
 		var date = req.body.date;
 		var email = req.body.email;
 		emails.forget(res,date,email);
+	});
+	//忘记密码找回
+	app.get('/forget',function(res,req){
+		var date = req.query.aa;
+		res.render('forget',{date:date});
 	})
 }

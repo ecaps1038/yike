@@ -31,12 +31,13 @@ exports.emails = function(email,res){
 	});
 };
 exports.forget = function(res,date,email){
+	res.cookie('dates',date,{signed:true, maxAge: 1000*60*10});
 	var options = {
 		from : '1334785356@qq.com',
 		to : email,
 		subject : 'yike密码修改',
 		text : '我们在yike相聚',
-		html : '<span>请在这里</span><a href="http://localhost:3000/forget?date='+date+'">点击修改本站密码</a>'
+		html : '<span>请在这里</span><a href="http://127.0.0.1:3000/forget?date='+date+'&email='+email+'">点击修改本站密码</a>'
 	};
 	transporter.sendMail(options,function(err,msg){
 		if(err){

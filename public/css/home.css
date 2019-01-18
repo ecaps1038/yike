@@ -53,6 +53,7 @@
 	background: #fff;
 }
 .newslefft .log-submit{
+	cursor: pointer;
 	padding: 0;
 	background: #3e56fe;
 	border: 0;
@@ -88,6 +89,7 @@
 	color: #666;
 	text-decoration: none;
 	border: 0;
+	background: #fff;
 }
 /*找回密码*/
 .getpwd{
