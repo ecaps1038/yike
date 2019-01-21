@@ -1,16 +1,26 @@
 {{#section 'head'}}
     <title>yike</title>
     <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/forget.css">
     <link rel="stylesheet" type="text/css" href="/css/common.css">
 {{/section}}
 <div class="main">
 	<div class="bg"></div>
 	<div class="content">
-		<p>时间{{date}}</p>
-		<p>邮箱{{email}}</p>
+		<div class="msgs" style="display:none">
+			<p class="date">时间{{date}}</p>
+			<p class="email">邮箱{{email}}</p>
+		</div>
+		<div class="top-msg"></div>
+		<form class="newslefft">
+			<p class="ch-title">密码修改</p>
+			<div class="inputs"><input type="password" name="pswd" class="new-pwd" placeholder="请输入新密码" ></div>
+			<button class="log-submit">修改密码</button>
+		</form>
+		<div class="register"><a href="./">旧密码登录</a></div>
 	</div>
 </div>
 {{#section 'jquery'}}
 	<script src="/lib/mobile/flexible.js" type="text/javascript"></script>
-	<script src="/js/home.js" type="text/javascript"></script>
+	<script src="/js/forget.js" type="text/javascript"></script>
 {{/section}}

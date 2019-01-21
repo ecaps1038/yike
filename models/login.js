@@ -214,6 +214,44 @@ exports.logIn = function(data,pwd,req,res){
     })
 };
 
+//忘记密码找回回调
+exports.forget = function(req,res){
+    var dates = req.signedCookies.dates;
+    var date = req.body.date;
+    var email =req.body.email;
+    if(dates){
+        if(dates == date){
+            var wherestr = {'email': email};
+            var out = {'name':1,'imgurl':1};
+            User.find(wherestr, out, function(err, ress){
+                if (err) {
+                    console.log("查询失败：" + err);
+                    return res.redirect('/');
+                }
+                else {
+                    var context = {
+                        vacation : ress.map(function(ver){
+                            
+                            return {
+                                id : ver._id,
+                                name: ver.name,
+                                imgurl: ver.imgurl,
+                            }
+                        }), 
+                    };
+                    res.send({success:true,tep:1,context});
+                }
+            })
+        }else{
+            res.send({success:true,tep:2});
+        }
+    }else{
+        //回到登陆页面
+        res.send({success:true,tep:3});
+
+    }
+}
+
 
 //对密码加密测试
 exports.bcrypts = function(pswd,res){

@@ -31,7 +31,7 @@ exports.emails = function(email,res){
 	});
 };
 exports.forget = function(res,date,email){
-	res.cookie('dates',date,{signed:true, maxAge: 1000*60*10});
+	res.cookie('dates',date,{signed:true, maxAge: 1000*60*30});
 	var options = {
 		from : '1334785356@qq.com',
 		to : email,
@@ -48,4 +48,5 @@ exports.forget = function(res,date,email){
 			//res.render('test',{title:'邮件发送成功！'+msg.accepted})
 		}
 	});
+	res.send({success:true});
 }

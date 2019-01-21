@@ -31,8 +31,12 @@ module.exports = function(app){
 		emails.forget(res,date,email);
 	});
 	//忘记密码找回
-	app.get('/forget',function(res,req){
-		var date = req.query.aa;
-		res.render('forget',{date:date});
+	app.get('/forget',function(req,res){
+		var date = req.query.date;
+		var email = req.query.email;
+		res.render('forget',{date:date,email:email});
+	});
+	app.post('/forget/init',function(req,res){
+		login.forget(req,res);
 	})
 }
