@@ -34,7 +34,11 @@ module.exports = function(app){
 	app.get('/forget',function(req,res){
 		var date = req.query.date;
 		var email = req.query.email;
-		res.render('forget',{date:date,email:email});
+		if(date && email){
+			res.render('forget',{date:date,email:email});
+		}else{
+			res.redirect('/');
+		}
 	});
 	app.post('/forget/init',function(req,res){
 		login.forget(req,res);
