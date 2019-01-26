@@ -48,6 +48,19 @@ exports.update = function(id,updatestr){
         }
     });
 };
+exports.update1 = function(wherestr,updatestr){
+    // var id = '5bc852dd89cdd953d0dc0938';
+    // var updatestr = {'username': '逸刻'};
+    
+    User.updateOne(wherestr, updatestr, function(err, res){
+        if (err) {
+            console.log("数据修改出错：" + err);
+        }
+        else {
+            console.log("数据修改成功！");
+        }
+    });
+};
 
 //根据_id删除项：Model.findByIdAndRemove(id, [options], [callback])　
 //Groupuser.deleteOne(wherestr, function(err, res)

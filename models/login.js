@@ -1,5 +1,6 @@
 var userdbserver = require('./userdbserver.js');
 var bcrypt = require('bcryptjs');
+var bcrypt1 = require('./bcrypt.js');
 var User = require("./userdb.js");
 var date = require('./date.js');
 var friend = require('./friendsdb.js');
@@ -216,19 +217,20 @@ exports.logIn = function(data,pwd,req,res){
 
 //忘记密码找回回调
 exports.forget = function(req,res){
-    var dates = req.signedCookies.dates;
-    var date = req.body.date;
+    var date = new Date();
+    var times = date.getTime();
+    var dates = req.body.date;
     var email =req.body.email;
-    if(dates){
-        if(dates == date){
-            var wherestr = {'email': email};
-            var out = {'name':1,'imgurl':1};
-            User.find(wherestr, out, function(err, ress){
-                if (err) {
-                    console.log("查询失败：" + err);
-                    return res.redirect('/');
-                }
-                else {
+    if((date-dates)<60000){
+        var wherestr = {'email': email};
+        var out = {'name':1,'imgurl':1};
+        User.find(wherestr, out, function(err, ress){
+            if (err) {
+                console.log("查询失败：" + err);
+                return res.redirect('/');
+            }
+            else {
+                if(ress){
                     var context = {
                         vacation : ress.map(function(ver){
                             
@@ -240,17 +242,26 @@ exports.forget = function(req,res){
                         }), 
                     };
                     res.send({success:true,tep:1,context});
+                }else{
+                    //邮箱没有注册
+                    res.send({success:true,tep:3});
                 }
-            })
-        }else{
-            res.send({success:true,tep:2});
-        }
+            }
+        })
     }else{
-        //回到登陆页面
-        res.send({success:true,tep:3});
-
+        res.send({success:true,tep:2});
     }
-}
+};
+//修改密码
+exports.changePwd = function(req,res){
+    var newpwd = req.body.pwd;
+    var email = req.body.email;
+    var pwd = bcrypt1.bcrypts(newpwd);
+    var wherestr = {'email':email};
+    var updatestr = {'pwd': pwd};
+    userdbserver.update1(wherestr,updatestr);
+    res.send({success:true,tep:0});
+};
 
 
 //对密码加密测试

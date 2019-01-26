@@ -30,8 +30,7 @@ exports.emails = function(email,res){
 		}
 	});
 };
-exports.forget = function(res,date,email){
-	res.cookie('dates',date,{signed:true, maxAge: 1000*60*30});
+exports.forget = function(req,res,date,email){
 	var options = {
 		from : '1334785356@qq.com',
 		to : email,
