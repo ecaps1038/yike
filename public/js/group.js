@@ -77,7 +77,7 @@
                         var val = $(this).attr('data-id')
                         //alert($(this).val());
                         user[i] = val;
-                        i++
+                        i++;
                     }
                 });  
 				if(i>0){

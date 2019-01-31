@@ -46,7 +46,7 @@ exports.addgroup = function(req,res){
 								time: new Date(),
                                 lasttime: new Date()
 			        		}
-			        		//console.log(guserData);
+			        		//console.log(guserData)
 			        		groupdbs.insertGroupUser(guserData);
 			        	});
 			        });
