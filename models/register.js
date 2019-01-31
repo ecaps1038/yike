@@ -38,7 +38,7 @@ exports.loginUp = function(res,name,email,pwd){
 	    email: email,
 	    registerdate : new Date(),					//注册时间   
 	    online: 1,
-	    //grade: 1,  
+	    grade: 1,  
 	}
 	//userdb.insert(data);
 	var user = new User(data);
