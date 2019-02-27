@@ -13,7 +13,7 @@ exports.insertGroup = function(data){
             console.log("群添加失败" + err);
         }
         else {
-            console.log("群添加成功");
+            //console.log("群添加成功");
         }
     });
 };
@@ -28,7 +28,7 @@ exports.insertGroupUser = function(data){
             console.log("数据添加失败" + err);
         }
         else {
-            console.log("数据添加成功");
+            //console.log("数据添加成功");
         }
     });
 };
@@ -43,7 +43,7 @@ exports.insertGroupMsg = function(data){
             console.log("数据群消息失败" + err);
         }
         else {
-            console.log("数据群消息成功");
+            //console.log("数据群消息成功");
         }
     });
 };
@@ -57,7 +57,7 @@ exports.updateTime = function(groupid){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log("数据修改成功！");
+            //console.log("数据修改成功！");
         }
     });
 }
@@ -85,7 +85,7 @@ exports.updateIcon = function(id,updatestr){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log("数据修改成功！");
+            //console.log("数据修改成功！");
         }
     });
 };

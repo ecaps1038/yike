@@ -9,7 +9,7 @@ exports.insert = function(data){
             console.log("数据添加失败" + err);
         }
         else {
-            console.log("数据添加成功");
+            //console.log("数据添加成功");
         }
     });
 };
@@ -24,7 +24,7 @@ exports.update = function(id,updatestr){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log("数据修改成功！");
+            //console.log("数据修改成功！");
         }
     });
 };
@@ -39,7 +39,7 @@ exports.read = function(from,to){
             console.log("修改已读失败" + err);
         }
         else {
-            console.log("修改已读成功");
+            //console.log("修改已读成功");
         }
     });
 };

@@ -196,7 +196,7 @@ exports.logIn = function(data,pwd,req,res){
                         res.cookie('imgurl','user.jpg',{signed:true, maxAge: 1000});
                    }
                     
-                    console.log('匹配成功！');
+                    //console.log('匹配成功！');
                     if(ver.online==0){
                         userdbserver.update(ver._id,{'online':1});
                     }
@@ -206,7 +206,7 @@ exports.logIn = function(data,pwd,req,res){
                     res.send({success:true,tep:0});
                    //return res.redirect('/yike');
                 }else{
-                    console.log('匹配失败！');
+                    //console.log('匹配失败！');
                     res.send({success:true,tep:1,return:'用户或密码错误，请重新输入'});
                     //return res.render('home',{return:'用户或密码错误，请重新输入',ret:data});
                 }            

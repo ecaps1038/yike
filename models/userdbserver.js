@@ -29,7 +29,7 @@ exports.insert = function(data){
             console.log("数据添加失败" + err);
         }
         else {
-            console.log("数据添加成功");
+            //console.log("数据添加成功");
         }
     });
 };
@@ -44,7 +44,7 @@ exports.update = function(id,updatestr){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log("数据修改成功！");
+            //console.log("数据修改成功！");
         }
     });
 };
@@ -57,7 +57,7 @@ exports.update1 = function(wherestr,updatestr){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log("数据修改成功！");
+            //console.log("数据修改成功！");
         }
     });
 };
@@ -72,7 +72,7 @@ exports.remove = function(id){
             console.log("数据删除失败：" + err);
         }
         else {
-            console.log("数据删除成功！");
+            //console.log("数据删除成功！");
         }
     });
 };
@@ -113,7 +113,7 @@ exports.getCount = function(wherestr){
             console.log("数据统计失败：" + err);
         }
         else {
-            console.log("数据统计成功！" + res);
+            //console.log("数据统计成功！" + res);
             return res;
         }
     });
@@ -128,7 +128,7 @@ exports.getById = function(id){
             console.log("id未查找到" + err);
         }
         else {
-            console.log("id查询成功" + res);
+            //console.log("id查询成功" + res);
             return res;
         }
     })
@@ -148,7 +148,7 @@ exports.getByPager = function(pagesize,nowpage){
             console.log("分页查询出错：" + err);
         }
         else {
-            console.log("分页查询成功");
+            //console.log("分页查询成功");
             return res;
         }
     })

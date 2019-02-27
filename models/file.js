@@ -28,12 +28,12 @@ exports.userPhoto = function(req,res,id){
 		return res.redirect(303, '/install');
 		}
 	var photo = files.photo;
-	console.log(photo.name);
+	//console.log(photo.name);
 	var photos = photo.name.match(/\.(\w+)/)[0];
 	var photoName = id+photos;
 	userdbserver.update(id,{'imgurl':photoName});
 	var pathh = vacationPhotoDir + '/' + photoName;
-	console.log(photoName);
+	//console.log(photoName);
 	fs.rename(photo.path, pathh,function(err){
 		if(err){
 			return console.log(err.message);

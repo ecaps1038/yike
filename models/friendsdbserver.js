@@ -12,7 +12,7 @@ function insert1(data) {
     	if(err){
     		console.log('error');
     	}else{
-    		console.log('ok');
+    		//console.log('ok');
     	}
     });
 }
@@ -27,7 +27,7 @@ exports.insert = function(data){
             console.log("数据添加失败" + err);
         }
         else {
-            console.log("数据添加成功");
+            //console.log("数据添加成功");
         }
     });
 };
@@ -41,7 +41,7 @@ exports.getCount = function(userid,friendid){
             console.log("数据统计失败：" + err);
         }
         else {
-            console.log("数据统计成功！" + res);
+            //console.log("数据统计成功！" + res);
             return res;
         }
     });
@@ -55,7 +55,7 @@ exports.delOne = function(userid,friendid){
             console.log("Error:" + err);
         }
         else {
-            console.log('删除朋友成功');
+            //console.log('删除朋友成功');
         }
     })
 };
@@ -70,7 +70,7 @@ exports.updateTime = function(friendid,userid){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log("数据修改成功！");
+            //console.log("数据修改成功！");
         }
     });
 };
@@ -84,7 +84,7 @@ exports.updateCross = function(friendid,userid){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log("数据修改成功！");
+            //console.log("数据修改成功！");
         }
     });
 };

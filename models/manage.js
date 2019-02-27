@@ -215,7 +215,7 @@ exports.userDelete = function(req,res){
 	            console.log("数据删除失败：" + err);
 	        }
 	        else {
-	            console.log("数据删除成功！");
+	            //console.log("数据删除成功！");
 	        }
 	    });
 	});
@@ -333,7 +333,7 @@ exports.groupDelete = function(req,res){
 	            console.log("数据删除失败：" + err);
 	        }
 	        else {
-	            console.log("数据删除成功！");
+	            //console.log("数据删除成功！");
 	        }
 	    });
 	});
@@ -438,7 +438,7 @@ exports.msgDelete = function(req,res){
 	            console.log("数据删除失败：" + err);
 	        }
 	        else {
-	            console.log("数据删除成功！");
+	            //console.log("数据删除成功！");
 	        }
 	    });
 	});
@@ -538,7 +538,7 @@ exports.grpmsgDelete = function(req,res){
 	            console.log("数据删除失败：" + err);
 	        }
 	        else {
-	            console.log("数据删除成功！");
+	            //console.log("数据删除成功！");
 	        }
 	    });
 	});
@@ -640,7 +640,7 @@ exports.frdDelete = function(req,res){
                 console.log("数据删除失败：" + err);
             }
             else {
-                console.log("数据删除成功！");
+                //console.log("数据删除成功！");
             }
         });
     });
@@ -743,7 +743,7 @@ exports.gpuDelete = function(req,res){
 	            console.log("数据删除失败：" + err);
 	        }
 	        else {
-	            console.log("数据删除成功！");
+	            //console.log("数据删除成功！");
 	        }
 	    });
 	});

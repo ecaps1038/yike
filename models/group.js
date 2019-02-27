@@ -345,7 +345,7 @@ exports.removeAllMsg = function(req,res){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log('消息删除完成');
+            //console.log('消息删除完成');
             //res.send({success:true});
         }
     });
@@ -359,7 +359,7 @@ exports.removeAllUser = function(req,res){
             console.log("数据修改出错：" + err);
         }
         else {
-            console.log('群成员删除完成');
+            //console.log('群成员删除完成');
             //res.send({success:true});
         }
     });

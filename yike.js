@@ -81,7 +81,7 @@ app.use(function(err,req,res,next){
 	res.render('500');
 });
 
-app.set('port',process.env.PORT || 3000);
+app.set('port',process.env.PORT || 8080);
 http.listen(app.get('port'),function(){
 	console.log('监听. http://localhost:' + app.get('port'));
 });
