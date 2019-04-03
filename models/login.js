@@ -57,6 +57,35 @@ exports.showUser = function(req,res,id){
         }
     });
 };
+exports.showUser1 = function(req,res){
+    var email = {};
+    // var out = {'name':1,'pwd':1,'email':1,'online':1};
+    var out = {};
+    User.find(email, out, function(err, ress){
+        if (err) {
+            console.log("查询失败：" + err);
+        }
+        else {
+            var context = {
+            vacation : ress.map(function(ver){
+                return {
+                    id : ver._id,
+                    name: ver.name,
+                    pwd: ver.pwd,
+                    email: ver.email,
+                    explain: ver.explain,
+                    sex: ver.sex,
+                    img: ver.imgurl,
+                    birth: date.DateSimple(ver.birth),
+                    registerdate: date.DateDetail(ver.registerdate),
+                    online: ver.online,
+                }
+            })
+        };
+        res.send({success:true,context});
+        }
+    });
+};
 //获取好友列表
 exports.getUser = function(req,res,id){
     var query = friend.find({});
